@@ -1,6 +1,8 @@
 #include <xc.h>
 #include <pic16f1823.h>
 #include "lcd_hd44780_pic16.h"
+#include "adc_pic16.h"
+#include "lm35_pic16.h"
 
 // CONFIG
 #pragma config FOSC = HS        // Oscillator Selection bits (HS oscillator)
@@ -13,22 +15,32 @@
 #pragma config CP = OFF         // Flash Program Memory Code Protection bit (Code protection off)
 
 
-
 void main (void)
 {
-  //Initialize the LCD Module
-  LCDInit(LS_NONE);
+    //Initialize the LCD module
+    LCDInit(LS_NONE);
 
-  //Clear the display
-  LCDClear();
+    //Initialize the ADC module
+    ADCInit();
 
-  //Write a string
-  LCDWriteString("Hello World !");
+    //Clear the LCD
+    LCDClear();
 
-  while(1)
-  {
-     //Do nothing, just loop indefinitely
-  }
+    LCDWriteString("Thermometer");
 
+    while(1)
+    {
+        //Read the temperature using LM35
+        float t = LM35ReadTemp();
+
+        //Print it on the LCD
+        LCDWriteIntXY(0,1,t,3);
+
+        //Print the degree symbol and C
+        LCDWriteString("%0C");
+
+        //Wait 200ms before taking next reading
+        __delay_ms(200);
+    }
 }
 

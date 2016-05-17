@@ -189,23 +189,23 @@ void LCDBusyLoop()
 	LCD_DATA_TRIS&=(~(0x0F<<LCD_DATA_POS));
 
 }
+/*****************************************************************
+
+This function Initializes the lcd module
+must be called before calling lcd related functions
+
+Arguments:
+style = LS_BLINK,LS_ULINE(can be "OR"ed for combination)
+LS_BLINK : The cursor is blinking type
+LS_ULINE : Cursor is "underline" type else "block" type
+    LS_NONE : No visible cursor
+
+*****************************************************************/
+
+//After power on Wait for LCD to Initialize
 
 void LCDInit(uint8_t style)
 {
-	/*****************************************************************
-
-	This function Initializes the lcd module
-	must be called before calling lcd related functions
-
-	Arguments:
-	style = LS_BLINK,LS_ULINE(can be "OR"ed for combination)
-	LS_BLINK : The cursor is blinking type
-	LS_ULINE : Cursor is "underline" type else "block" type
-        LS_NONE : No visible cursor
-
-	*****************************************************************/
-
-	//After power on Wait for LCD to Initialize
 	__delay_ms(30);
 
 	//Set IO Ports
@@ -248,36 +248,36 @@ void LCDInit(uint8_t style)
 
 
 }
+/*****************************************************************
+
+This function Writes a given string to lcd at the current cursor
+location.
+
+Arguments:
+msg: a null terminated C style string to print
+
+Their are 8 custom char in the LCD they can be defined using
+"LCD Custom Character Builder" PC Software.
+
+You can print custom character using the % symbol. For example
+to print custom char number 0 (which is a degree symbol), you
+need to write
+
+LCDWriteString("Temp is 30%0C");
+                              ^^
+                               |----> %0 will be replaced by
+                                      custom char 0.
+
+So it will be printed like.
+
+    Temp is 30°C
+
+In the same way you can insert any symbols numbered 0-7
+
+
+*****************************************************************/
 void LCDWriteString(const char *msg)
 {
-	/*****************************************************************
-
-	This function Writes a given string to lcd at the current cursor
-	location.
-
-	Arguments:
-	msg: a null terminated C style string to print
-
-	Their are 8 custom char in the LCD they can be defined using
-	"LCD Custom Character Builder" PC Software.
-
-	You can print custom character using the % symbol. For example
-	to print custom char number 0 (which is a degree symbol), you
-	need to write
-
-	LCDWriteString("Temp is 30%0C");
-                                  ^^
-                                   |----> %0 will be replaced by
-                                          custom char 0.
-
-	So it will be printed like.
-
-		Temp is 30°C
-
-	In the same way you can insert any symbols numbered 0-7
-
-
-	*****************************************************************/
  while(*msg!='\0')
  {
  	//Custom Char Support
@@ -303,20 +303,19 @@ void LCDWriteString(const char *msg)
 	msg++;
  }
 }
+/***************************************************************
+This function writes a integer type value to LCD module
+
+Arguments:
+1)int val	: Value to print
+
+2)unsigned int field_length :total length of field in which the value is printed
+must be between 1-5 if it is -1 the field length is no of digits in the val
+
+****************************************************************/
 
 void LCDWriteInt(int val,int8_t field_length)
 {
-	/***************************************************************
-	This function writes a integer type value to LCD module
-
-	Arguments:
-	1)int val	: Value to print
-
-	2)unsigned int field_length :total length of field in which the value is printed
-	must be between 1-5 if it is -1 the field length is no of digits in the val
-
-	****************************************************************/
-
 	char str[5]={0,0,0,0,0};
 	int i=4,j=0;
 

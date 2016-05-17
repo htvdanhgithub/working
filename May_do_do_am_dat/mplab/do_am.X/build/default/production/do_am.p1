@@ -2,10 +2,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "78 lcd_hd44780_pic16.h
 [v _LCDInit `(v ~T0 @X0 0 ef1`uc ]
-"84
+"27 adc_pic16.h
+[v _ADCInit `(v ~T0 @X0 0 ef ]
+"84 lcd_hd44780_pic16.h
 [v _LCDByte `(v ~T0 @X0 0 ef2`uc`uc ]
 "79
 [v _LCDWriteString `(v ~T0 @X0 0 ef1`*Cuc ]
+"15 lm35_pic16.h
+[v _LM35ReadTemp `(f ~T0 @X0 0 ef ]
+"81 lcd_hd44780_pic16.h
+[v _LCDGotoXY `(v ~T0 @X0 0 ef2`uc`uc ]
+"80
+[v _LCDWriteInt `(v ~T0 @X0 0 ef2`i`c ]
+[v F2438 `(v ~T0 @X0 1 tf1`ul ]
+"152 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
+[v __delay `JF2438 ~T0 @X0 0 e ]
+[p i __delay ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2382,55 +2394,77 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lcd_hd44780_pic16.h: 81: void LCDGotoXY(uint8_t x,uint8_t y);
 [; ;lcd_hd44780_pic16.h: 84: void LCDByte(uint8_t,uint8_t);
 [; ;lcd_hd44780_pic16.h: 88: void LCDBusyLoop();
-"6 do_am.c
+[; ;adc_pic16.h: 27: void ADCInit();
+[; ;adc_pic16.h: 28: uint16_t ReadADC(uint8_t ch);
+[; ;lm35_pic16.h: 15: float LM35ReadTemp();
+"8 do_am.c
 [p x FOSC=HS ]
-"7
-[p x WDTE=OFF ]
-"8
-[p x PWRTE=OFF ]
 "9
-[p x BOREN=ON ]
+[p x WDTE=OFF ]
 "10
-[p x LVP=ON ]
+[p x PWRTE=OFF ]
 "11
-[p x CPD=OFF ]
+[p x BOREN=ON ]
 "12
-[p x WRT=OFF ]
+[p x LVP=ON ]
 "13
+[p x CPD=OFF ]
+"14
+[p x WRT=OFF ]
+"15
 [p x CP=OFF ]
-"17
-[v _main `(v ~T0 @X0 1 ef ]
 "18
+[v _main `(v ~T0 @X0 1 ef ]
+"19
 {
-[; ;do_am.c: 17: void main (void)
-[; ;do_am.c: 18: {
+[; ;do_am.c: 18: void main (void)
+[; ;do_am.c: 19: {
 [e :U _main ]
 [f ]
-[; ;do_am.c: 20: LCDInit(0B00000000);
-"20
+[; ;do_am.c: 21: LCDInit(0B00000000);
+"21
 [e ( _LCDInit (1 -> -> 0 `i `uc ]
-[; ;do_am.c: 23: (LCDByte(0b00000001,0));
-"23
+[; ;do_am.c: 24: ADCInit();
+"24
+[e ( _ADCInit ..  ]
+[; ;do_am.c: 27: (LCDByte(0b00000001,0));
+"27
 [e ( _LCDByte (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;do_am.c: 26: LCDWriteString("Hello World !");
-"26
-[e ( _LCDWriteString (1 :s 1C ]
-[; ;do_am.c: 28: while(1)
-"28
-[e :U 295 ]
-[; ;do_am.c: 29: {
+[; ;do_am.c: 29: LCDWriteString("Thermometer");
 "29
-{
+[e ( _LCDWriteString (1 :s 1C ]
+[; ;do_am.c: 31: while(1)
 "31
+[e :U 295 ]
+[; ;do_am.c: 32: {
+"32
+{
+"34
+[v _t `f ~T0 @X0 1 a ]
+[; ;do_am.c: 34: float t = LM35ReadTemp();
+[e = _t ( _LM35ReadTemp ..  ]
+[; ;do_am.c: 37: { LCDGotoXY(0,1); LCDWriteInt(t,3);};
+"37
+{
+[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
+[e ( _LCDWriteInt (2 , -> _t `i -> -> 3 `i `c ]
+}
+[; ;do_am.c: 40: LCDWriteString("%0C");
+"40
+[e ( _LCDWriteString (1 :s 2C ]
+[; ;do_am.c: 43: _delay((unsigned long)((200)*(20000000/4000.0)));
+"43
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"44
 }
 [e :U 294 ]
-"28
+"31
 [e $U 295  ]
 [e :U 296 ]
-[; ;do_am.c: 31: }
-[; ;do_am.c: 33: }
-"33
+[; ;do_am.c: 44: }
+[; ;do_am.c: 45: }
+"45
 [e :UE 293 ]
 }
-[a 1C 72 101 108 108 111 32 87 111 114 108 100 32 33 0 ]
-
+[a 1C 84 104 101 114 109 111 109 101 116 101 114 0 ]
+[a 2C 37 48 67 0 ]

@@ -3290,13 +3290,8 @@ void LCDBusyLoop();
 unsigned char __cgram[]=
 {
 0x0C, 0x12, 0x12, 0x0C, 0x00, 0x00, 0x00, 0x00,
-0x00, 0x04, 0x0E, 0x1F, 0x0E, 0x04, 0x00, 0x00,
-0x04, 0x04, 0x04, 0x04, 0x1F, 0x0E, 0x04, 0x00,
-0x0A, 0x15, 0x11, 0x0A, 0x04, 0x00, 0x00, 0x00,
-0x0A, 0x1F, 0x1F, 0x0E, 0x04, 0x00, 0x00, 0x00,
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+
+# 25
 };
 
 # 80 "lcd_hd44780_pic16.c"
@@ -3360,7 +3355,7 @@ uint8_t busy,status=0x00,temp;
 TRISC|=(0x0f<<2);
 
 
-(RA4=1);
+(RA0=1);
 (RC0=0);
 
 
@@ -3401,17 +3396,16 @@ _delay((unsigned long)((0.5)*(20000000/4000000.0)));
 _delay((unsigned long)((1)*(20000000/4000000.0)));
 }while(busy);
 
-(RA4=0);
+(RA0=0);
 
 
 TRISC&=(~(0x0F<<2));
 
 }
 
+# 207
 void LCDInit(uint8_t style)
 {
-
-# 209
 _delay((unsigned long)((30)*(20000000/4000.0)));
 
 
@@ -3419,12 +3413,12 @@ TRISC&=(~(0x0F<<2));
 
 TRISCbits.TRISC1=0;
 TRISCbits.TRISC0=0;
-TRISAbits.TRISA4=0;
+TRISAbits.TRISA0=0;
 
 PORTC&=(~(0x0F<<2));
 
 (RC1=0);
-(RA4=0);
+(RA0=0);
 (RC0=0);
 
 
@@ -3454,10 +3448,10 @@ for(__i=0;__i<sizeof(__cgram);__i++)
 
 
 }
+
+# 279
 void LCDWriteString(const char *msg)
 {
-
-# 281
 while(*msg!='\0')
 {
 
@@ -3484,10 +3478,9 @@ msg++;
 }
 }
 
+# 317
 void LCDWriteInt(int val,int8_t field_length)
 {
-
-# 320
 char str[5]={0,0,0,0,0};
 int i=4,j=0;
 
@@ -3516,7 +3509,7 @@ for(i=j;i<5;i++)
 }
 }
 
-# 352
+# 351
 void LCDGotoXY(uint8_t x,uint8_t y)
 {
 if(x>=20) return;
@@ -3538,7 +3531,7 @@ x+=0x54;
 break;
 }
 
-# 393
+# 392
 x|=0b10000000;
 (LCDByte(x,0));
 }

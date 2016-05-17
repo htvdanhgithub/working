@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=lcd_hd44780_pic16.c do_am.c
+SOURCEFILES_QUOTED_IF_SPACED=lcd_hd44780_pic16.c do_am.c adc_pic16.c lm35_pic16.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/lcd_hd44780_pic16.p1 ${OBJECTDIR}/do_am.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/lcd_hd44780_pic16.p1.d ${OBJECTDIR}/do_am.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/lcd_hd44780_pic16.p1 ${OBJECTDIR}/do_am.p1 ${OBJECTDIR}/adc_pic16.p1 ${OBJECTDIR}/lm35_pic16.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/lcd_hd44780_pic16.p1.d ${OBJECTDIR}/do_am.p1.d ${OBJECTDIR}/adc_pic16.p1.d ${OBJECTDIR}/lm35_pic16.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/lcd_hd44780_pic16.p1 ${OBJECTDIR}/do_am.p1
+OBJECTFILES=${OBJECTDIR}/lcd_hd44780_pic16.p1 ${OBJECTDIR}/do_am.p1 ${OBJECTDIR}/adc_pic16.p1 ${OBJECTDIR}/lm35_pic16.p1
 
 # Source Files
-SOURCEFILES=lcd_hd44780_pic16.c do_am.c
+SOURCEFILES=lcd_hd44780_pic16.c do_am.c adc_pic16.c lm35_pic16.c
 
 
 CFLAGS=
@@ -97,6 +97,22 @@ ${OBJECTDIR}/do_am.p1: do_am.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/do_am.d ${OBJECTDIR}/do_am.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/do_am.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/adc_pic16.p1: adc_pic16.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/adc_pic16.p1.d 
+	@${RM} ${OBJECTDIR}/adc_pic16.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -D_XTAL_FREQ=20000000 -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/adc_pic16.p1  adc_pic16.c 
+	@-${MV} ${OBJECTDIR}/adc_pic16.d ${OBJECTDIR}/adc_pic16.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/adc_pic16.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/lm35_pic16.p1: lm35_pic16.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/lm35_pic16.p1.d 
+	@${RM} ${OBJECTDIR}/lm35_pic16.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -D_XTAL_FREQ=20000000 -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/lm35_pic16.p1  lm35_pic16.c 
+	@-${MV} ${OBJECTDIR}/lm35_pic16.d ${OBJECTDIR}/lm35_pic16.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/lm35_pic16.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/lcd_hd44780_pic16.p1: lcd_hd44780_pic16.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -113,6 +129,22 @@ ${OBJECTDIR}/do_am.p1: do_am.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -D_XTAL_FREQ=20000000 -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/do_am.p1  do_am.c 
 	@-${MV} ${OBJECTDIR}/do_am.d ${OBJECTDIR}/do_am.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/do_am.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/adc_pic16.p1: adc_pic16.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/adc_pic16.p1.d 
+	@${RM} ${OBJECTDIR}/adc_pic16.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -D_XTAL_FREQ=20000000 -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/adc_pic16.p1  adc_pic16.c 
+	@-${MV} ${OBJECTDIR}/adc_pic16.d ${OBJECTDIR}/adc_pic16.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/adc_pic16.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/lm35_pic16.p1: lm35_pic16.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/lm35_pic16.p1.d 
+	@${RM} ${OBJECTDIR}/lm35_pic16.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -D_XTAL_FREQ=20000000 -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/lm35_pic16.p1  lm35_pic16.c 
+	@-${MV} ${OBJECTDIR}/lm35_pic16.d ${OBJECTDIR}/lm35_pic16.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/lm35_pic16.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

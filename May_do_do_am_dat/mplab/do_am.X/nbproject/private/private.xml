@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>lcd_hd44780_pic16.c</url>
+            <bookmark id="1">
+                <name/>
+                <line>245</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Working/working/May_do_do_am_dat/mplab/do_am.X/do_am.c</file>
+            <file>file:/D:/Working/working/May_do_do_am_dat/mplab/do_am.X/lm35_pic16.c</file>
             <file>file:/D:/Working/working/May_do_do_am_dat/mplab/do_am.X/lcd_hd44780_pic16.h</file>
+            <file>file:/D:/Working/working/May_do_do_am_dat/mplab/do_am.X/adc_pic16.c</file>
+            <file>file:/D:/Working/working/May_do_do_am_dat/mplab/do_am.X/adc_pic16.h</file>
+            <file>file:/D:/Working/working/May_do_do_am_dat/mplab/do_am.X/lm35_pic16.h</file>
             <file>file:/D:/Working/working/May_do_do_am_dat/mplab/do_am.X/myutils.h</file>
             <file>file:/D:/Working/working/May_do_do_am_dat/mplab/do_am.X/lcd_hd44780_pic16.c</file>
         </group>

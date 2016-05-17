@@ -3286,8 +3286,15 @@ void LCDByte(uint8_t,uint8_t);
 
 void LCDBusyLoop();
 
+# 27 "adc_pic16.h"
+void ADCInit();
+uint16_t ReadADC(uint8_t ch);
 
-# 6 "do_am.c"
+# 15 "lm35_pic16.h"
+float LM35ReadTemp();
+
+
+# 8 "do_am.c"
 #pragma config FOSC = HS
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -3298,22 +3305,32 @@ void LCDBusyLoop();
 #pragma config CP = OFF
 
 
-
 void main (void)
 {
 
 LCDInit(0B00000000);
 
 
+ADCInit();
+
+
 (LCDByte(0b00000001,0));
 
-
-LCDWriteString("Hello World !");
+LCDWriteString("Thermometer");
 
 while(1)
 {
 
-}
+float t = LM35ReadTemp();
 
+
+{ LCDGotoXY(0,1); LCDWriteInt(t,3);};
+
+
+LCDWriteString("%0C");
+
+
+_delay((unsigned long)((200)*(20000000/4000.0)));
+}
 }
 

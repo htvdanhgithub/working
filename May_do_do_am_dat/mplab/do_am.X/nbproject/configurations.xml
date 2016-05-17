@@ -7,6 +7,8 @@
       <itemPath>custom_char.h</itemPath>
       <itemPath>lcd_hd44780_pic16.h</itemPath>
       <itemPath>myutils.h</itemPath>
+      <itemPath>adc_pic16.h</itemPath>
+      <itemPath>lm35_pic16.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -17,6 +19,8 @@
                    projectFiles="true">
       <itemPath>lcd_hd44780_pic16.c</itemPath>
       <itemPath>do_am.c</itemPath>
+      <itemPath>adc_pic16.c</itemPath>
+      <itemPath>lm35_pic16.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
