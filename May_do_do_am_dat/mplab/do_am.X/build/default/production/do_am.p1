@@ -1,23 +1,79 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"1467 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1823.h
+[s S78 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S78 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 ]
+"1466
+[u S77 `S78 1 ]
+[n S77 . . ]
+"1476
+[v _TRISAbits `VS77 ~T0 @X0 0 e@140 ]
+"3062
+[s S152 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S152 . ANSA0 ANSA1 ANSA2 . ANSA4 ]
+"3069
+[s S153 :5 `uc 1 ]
+[n S153 . ANSELA ]
+"3061
+[u S151 `S152 1 `S153 1 ]
+[n S151 . . . ]
+"3073
+[v _ANSELAbits `VS151 ~T0 @X0 0 e@396 ]
+"343
+[s S27 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S27 . IOCIF INTF TMR0IF IOCIE INTE TMR0IE PEIE GIE ]
+"353
+[s S28 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S28 . . T0IF . T0IE ]
+"342
+[u S26 `S27 1 `S28 1 ]
+[n S26 . . . ]
+"360
+[v _INTCONbits `VS26 ~T0 @X0 0 e@11 ]
+"4835
+[s S249 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S249 . IOCAP0 IOCAP1 IOCAP2 IOCAP3 IOCAP4 IOCAP5 ]
+"4843
+[s S250 :6 `uc 1 ]
+[n S250 . IOCAP ]
+"4834
+[u S248 `S249 1 `S250 1 ]
+[n S248 . . . ]
+"4847
+[v _IOCAPbits `VS248 ~T0 @X0 0 e@913 ]
+"4949
+[s S255 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S255 . IOCAF0 IOCAF1 IOCAF2 IOCAF3 IOCAF4 IOCAF5 ]
+"4957
+[s S256 :6 `uc 1 ]
+[n S256 . IOCAF ]
+"4948
+[u S254 `S255 1 `S256 1 ]
+[n S254 . . . ]
+"4961
+[v _IOCAFbits `VS254 ~T0 @X0 0 e@915 ]
+"84 lcd_hd44780_pic16.h
+[v _LCDByte `(v ~T0 @X0 0 ef2`uc`uc ]
+"81
+[v _LCDGotoXY `(v ~T0 @X0 0 ef2`uc`uc ]
+"79
+[v _LCDWriteString `(v ~T0 @X0 0 ef1`*Cuc ]
+[v F2438 `(v ~T0 @X0 1 tf1`ul ]
+"152 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
+[v __delay `JF2438 ~T0 @X0 0 e ]
+[p i __delay ]
+"80 lcd_hd44780_pic16.h
+[v _LCDWriteInt `(v ~T0 @X0 0 ef2`i`c ]
+"6080 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1823.h
+[v _RA5 `Vb ~T0 @X0 0 e@101 ]
 [p mainexit ]
 "78 lcd_hd44780_pic16.h
 [v _LCDInit `(v ~T0 @X0 0 ef1`uc ]
 "27 adc_pic16.h
 [v _ADCInit `(v ~T0 @X0 0 ef ]
-"84 lcd_hd44780_pic16.h
-[v _LCDByte `(v ~T0 @X0 0 ef2`uc`uc ]
-"79
-[v _LCDWriteString `(v ~T0 @X0 0 ef1`*Cuc ]
 "15 lm35_pic16.h
-[v _LM35ReadTemp `(f ~T0 @X0 0 ef ]
-"81 lcd_hd44780_pic16.h
-[v _LCDGotoXY `(v ~T0 @X0 0 ef2`uc`uc ]
-"80
-[v _LCDWriteInt `(v ~T0 @X0 0 ef2`i`c ]
-[v F2438 `(v ~T0 @X0 1 tf1`ul ]
-"152 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
-[v __delay `JF2438 ~T0 @X0 0 e ]
-[p i __delay ]
+[v _LM35ReadTemp `(i ~T0 @X0 0 ef ]
+"6072 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1823.h
+[v _RA1 `Vb ~T0 @X0 0 e@97 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2396,7 +2452,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lcd_hd44780_pic16.h: 88: void LCDBusyLoop();
 [; ;adc_pic16.h: 27: void ADCInit();
 [; ;adc_pic16.h: 28: uint16_t ReadADC(uint8_t ch);
-[; ;lm35_pic16.h: 15: float LM35ReadTemp();
+[; ;lm35_pic16.h: 15: int LM35ReadTemp();
 "8 do_am.c
 [p x FOSC=HS ]
 "9
@@ -2413,58 +2469,289 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p x WRT=OFF ]
 "15
 [p x CP=OFF ]
-"18
-[v _main `(v ~T0 @X0 1 ef ]
-"19
+[; ;do_am.c: 46: typedef struct {
+[; ;do_am.c: 47: unsigned FOSC0 :1;
+[; ;do_am.c: 48: unsigned FOSC1 :1;
+[; ;do_am.c: 49: unsigned FOSC2 :1;
+[; ;do_am.c: 50: unsigned WDTE0 :1;
+[; ;do_am.c: 51: unsigned WDTE1 :1;
+[; ;do_am.c: 52: unsigned PWRTE :1;
+[; ;do_am.c: 53: unsigned MCLRE :1;
+[; ;do_am.c: 54: unsigned CP :1;
+[; ;do_am.c: 55: unsigned CPD :1;
+[; ;do_am.c: 56: unsigned BOREN0 :1;
+[; ;do_am.c: 57: unsigned BOREN1 :1;
+[; ;do_am.c: 58: unsigned CLKOUTEN :1;
+[; ;do_am.c: 59: unsigned IESO :1;
+[; ;do_am.c: 60: unsigned FCMEN :1;
+[; ;do_am.c: 61: } CONFIG1bits_t;
+[; ;do_am.c: 63: extern volatile CONFIG1bits_t CONFIG1bits @ 0x8007;
+"66
+[v _tuneTemp `i ~T0 @X0 1 e ]
+[i _tuneTemp
+-> 0 `i
+]
+[; ;do_am.c: 66: int tuneTemp = 0;
+"67
+[v _curTemp `i ~T0 @X0 1 e ]
+[i _curTemp
+-> 0 `i
+]
+[; ;do_am.c: 67: int curTemp = 0;
+"68
+[v _tuneTempDir `uc ~T0 @X0 1 e ]
+[i _tuneTempDir
+-> -> 1 `i `uc
+]
+[; ;do_am.c: 68: char tuneTempDir = 1;
+"70
+[v _TriggerOutInit `(v ~T0 @X0 1 ef ]
+"71
 {
-[; ;do_am.c: 18: void main (void)
-[; ;do_am.c: 19: {
-[e :U _main ]
+[; ;do_am.c: 70: void TriggerOutInit()
+[; ;do_am.c: 71: {
+[e :U _TriggerOutInit ]
 [f ]
-[; ;do_am.c: 21: LCDInit(0B00000000);
-"21
-[e ( _LCDInit (1 -> -> 0 `i `uc ]
-[; ;do_am.c: 24: ADCInit();
-"24
-[e ( _ADCInit ..  ]
-[; ;do_am.c: 27: (LCDByte(0b00000001,0));
-"27
-[e ( _LCDByte (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;do_am.c: 29: LCDWriteString("Thermometer");
-"29
-[e ( _LCDWriteString (1 :s 1C ]
-[; ;do_am.c: 31: while(1)
-"31
-[e :U 295 ]
-[; ;do_am.c: 32: {
-"32
+[; ;do_am.c: 73: (TRISAbits.TRISA1 = 0);
+"73
+[e = . . _TRISAbits 0 1 -> -> 0 `i `uc ]
+[; ;do_am.c: 76: ANSELAbits.ANSA1 = 0;
+"76
+[e = . . _ANSELAbits 0 1 -> -> 0 `i `uc ]
+[; ;do_am.c: 84: }
+"84
+[e :UE 294 ]
+}
+"85
+[v _TuneButtonInit `(v ~T0 @X0 1 ef ]
+"86
 {
-"34
-[v _t `f ~T0 @X0 1 a ]
-[; ;do_am.c: 34: float t = LM35ReadTemp();
-[e = _t ( _LM35ReadTemp ..  ]
-[; ;do_am.c: 37: { LCDGotoXY(0,1); LCDWriteInt(t,3);};
-"37
+[; ;do_am.c: 85: void TuneButtonInit()
+[; ;do_am.c: 86: {
+[e :U _TuneButtonInit ]
+[f ]
+[; ;do_am.c: 88: INTCONbits.IOCIE = 1;
+"88
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+[; ;do_am.c: 90: (TRISAbits.TRISA5 = 1);
+"90
+[e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
+[; ;do_am.c: 93: IOCAPbits.IOCAP5 = 1;
+"93
+[e = . . _IOCAPbits 0 5 -> -> 1 `i `uc ]
+[; ;do_am.c: 95: INTCONbits.IOCIF = 0;
+"95
+[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
+[; ;do_am.c: 96: IOCAFbits.IOCAF5 = 0;
+"96
+[e = . . _IOCAFbits 0 5 -> -> 0 `i `uc ]
+[; ;do_am.c: 99: INTCONbits.PEIE = 1;
+"99
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+[; ;do_am.c: 101: INTCONbits.GIE = 1;
+"101
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[; ;do_am.c: 102: }
+"102
+[e :UE 295 ]
+}
+[v F2511 `(v ~T0 @X0 1 tf ]
+"103
+[v _ISR `IF2511 ~T0 @X0 1 e ]
+"104
+{
+[; ;do_am.c: 103: void interrupt ISR()
+[; ;do_am.c: 104: {
+[e :U _ISR ]
+[f ]
+[; ;do_am.c: 105: if(INTCONbits.IOCIF == 1)
+"105
+[e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 297  ]
+[; ;do_am.c: 106: {
+"106
+{
+[; ;do_am.c: 107: if(IOCAFbits.IOCAF5 == 1)
+"107
+[e $ ! == -> . . _IOCAFbits 0 5 `i -> 1 `i 298  ]
+[; ;do_am.c: 108: {
+"108
+{
+[; ;do_am.c: 110: (LCDByte(0b00000001,0));
+"110
+[e ( _LCDByte (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;do_am.c: 112: { LCDGotoXY(0,0); LCDWriteString("Thermometer set:");};
+"112
+{
+[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
+[e ( _LCDWriteString (1 :s 1C ]
+}
+[; ;do_am.c: 114: while(RA5 == 1)
+"114
+[e $U 299  ]
+[e :U 300 ]
+[; ;do_am.c: 115: {
+"115
+{
+[; ;do_am.c: 116: tuneTemp++;
+"116
+[e ++ _tuneTemp -> 1 `i ]
+[; ;do_am.c: 117: if(tuneTemp > 150)
+"117
+[e $ ! > _tuneTemp -> 150 `i 302  ]
+[; ;do_am.c: 118: {
+"118
+{
+[; ;do_am.c: 119: tuneTemp = 0;
+"119
+[e = _tuneTemp -> 0 `i ]
+"120
+}
+[e :U 302 ]
+[; ;do_am.c: 120: }
+[; ;do_am.c: 121: _delay((unsigned long)((50)*(20000000/4000.0)));
+"121
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[; ;do_am.c: 124: { LCDGotoXY(0,1); LCDWriteInt(tuneTemp,3);};
+"124
 {
 [e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteInt (2 , -> _t `i -> -> 3 `i `c ]
+[e ( _LCDWriteInt (2 , _tuneTemp -> -> 3 `i `c ]
 }
-[; ;do_am.c: 40: LCDWriteString("%0C");
-"40
+[; ;do_am.c: 127: LCDWriteString("%0C");
+"127
 [e ( _LCDWriteString (1 :s 2C ]
-[; ;do_am.c: 43: _delay((unsigned long)((200)*(20000000/4000.0)));
-"43
+"129
+}
+[e :U 299 ]
+"114
+[e $ == -> _RA5 `i -> 1 `i 300  ]
+[e :U 301 ]
+[; ;do_am.c: 129: }
+[; ;do_am.c: 130: tuneTempDir = 1;
+"130
+[e = _tuneTempDir -> -> 1 `i `uc ]
+[; ;do_am.c: 131: IOCAFbits.IOCAF5 = 0;
+"131
+[e = . . _IOCAFbits 0 5 -> -> 0 `i `uc ]
+"132
+}
+[e :U 298 ]
+[; ;do_am.c: 132: }
+[; ;do_am.c: 133: INTCONbits.IOCIF = 0;
+"133
+[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
+"134
+}
+[e :U 297 ]
+[; ;do_am.c: 134: }
+[; ;do_am.c: 135: }
+"135
+[e :UE 296 ]
+}
+"136
+[v _main `(v ~T0 @X0 1 ef ]
+"137
+{
+[; ;do_am.c: 136: void main (void)
+[; ;do_am.c: 137: {
+[e :U _main ]
+[f ]
+[; ;do_am.c: 139: LCDInit(0B00000000);
+"139
+[e ( _LCDInit (1 -> -> 0 `i `uc ]
+[; ;do_am.c: 142: ADCInit();
+"142
+[e ( _ADCInit ..  ]
+[; ;do_am.c: 145: TuneButtonInit();
+"145
+[e ( _TuneButtonInit ..  ]
+[; ;do_am.c: 148: TriggerOutInit();
+"148
+[e ( _TriggerOutInit ..  ]
+[; ;do_am.c: 151: (LCDByte(0b00000001,0));
+"151
+[e ( _LCDByte (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;do_am.c: 153: while(1)
+"153
+[e :U 305 ]
+[; ;do_am.c: 154: {
+"154
+{
+[; ;do_am.c: 157: curTemp = LM35ReadTemp();
+"157
+[e = _curTemp ( _LM35ReadTemp ..  ]
+[; ;do_am.c: 159: if(curTemp >= tuneTemp)
+"159
+[e $ ! >= _curTemp _tuneTemp 307  ]
+[; ;do_am.c: 160: {
+"160
+{
+[; ;do_am.c: 161: RA1 = 1;
+"161
+[e = _RA1 -> -> 1 `i `b ]
+"162
+}
+[; ;do_am.c: 162: }
+[e $U 308  ]
+"163
+[e :U 307 ]
+[; ;do_am.c: 163: else
+[; ;do_am.c: 164: {
+"164
+{
+[; ;do_am.c: 165: RA1 = 0;
+"165
+[e = _RA1 -> -> 0 `i `b ]
+"166
+}
+[e :U 308 ]
+[; ;do_am.c: 166: }
+[; ;do_am.c: 168: if(tuneTempDir == 1)
+"168
+[e $ ! == -> _tuneTempDir `i -> 1 `i 309  ]
+[; ;do_am.c: 169: {
+"169
+{
+[; ;do_am.c: 171: (LCDByte(0b00000001,0));
+"171
+[e ( _LCDByte (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;do_am.c: 173: { LCDGotoXY(0,0); LCDWriteString("Thermometer:");};
+"173
+{
+[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
+[e ( _LCDWriteString (1 :s 3C ]
+}
+[; ;do_am.c: 174: tuneTempDir = 0;
+"174
+[e = _tuneTempDir -> -> 0 `i `uc ]
+"175
+}
+[e :U 309 ]
+[; ;do_am.c: 175: }
+[; ;do_am.c: 178: { LCDGotoXY(0,1); LCDWriteInt(curTemp,3);};
+"178
+{
+[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
+[e ( _LCDWriteInt (2 , _curTemp -> -> 3 `i `c ]
+}
+[; ;do_am.c: 181: LCDWriteString("%0C");
+"181
+[e ( _LCDWriteString (1 :s 4C ]
+[; ;do_am.c: 184: _delay((unsigned long)((200)*(20000000/4000.0)));
+"184
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"44
+"185
 }
-[e :U 294 ]
-"31
-[e $U 295  ]
-[e :U 296 ]
-[; ;do_am.c: 44: }
-[; ;do_am.c: 45: }
-"45
-[e :UE 293 ]
+[e :U 304 ]
+"153
+[e $U 305  ]
+[e :U 306 ]
+[; ;do_am.c: 185: }
+[; ;do_am.c: 186: }
+"186
+[e :UE 303 ]
 }
-[a 1C 84 104 101 114 109 111 109 101 116 101 114 0 ]
 [a 2C 37 48 67 0 ]
+[a 4C 37 48 67 0 ]
+[a 1C 84 104 101 114 109 111 109 101 116 101 114 32 115 101 116 58 0 ]
+[a 3C 84 104 101 114 109 111 109 101 116 101 114 58 0 ]

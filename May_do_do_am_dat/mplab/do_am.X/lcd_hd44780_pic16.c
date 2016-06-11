@@ -316,7 +316,7 @@ must be between 1-5 if it is -1 the field length is no of digits in the val
 
 void LCDWriteInt(int val,int8_t field_length)
 {
-	char str[5]={0,0,0,0,0};
+	char str[5]={-16,-16,-16,-16,-16};
 	int i=4,j=0;
 
         //Handle negative integers
@@ -333,7 +333,7 @@ void LCDWriteInt(int val,int8_t field_length)
             i--;
 	}
 	if(field_length==-1)
-		while(str[j]==0) j++;
+		while(str[j]==-16) j++;
 	else
 		j=5-field_length;
 

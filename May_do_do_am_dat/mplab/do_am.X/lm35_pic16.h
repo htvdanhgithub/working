@@ -12,7 +12,7 @@
 extern "C" {
 #endif
 
-float LM35ReadTemp();
+int LM35ReadTemp();
 
 
 #ifdef	__cplusplus

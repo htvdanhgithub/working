@@ -3291,7 +3291,7 @@ void ADCInit();
 uint16_t ReadADC(uint8_t ch);
 
 # 15 "lm35_pic16.h"
-float LM35ReadTemp();
+int LM35ReadTemp();
 
 
 # 8 "do_am.c"
@@ -3304,7 +3304,92 @@ float LM35ReadTemp();
 #pragma config WRT = OFF
 #pragma config CP = OFF
 
+# 46
+typedef struct {
+unsigned FOSC0 :1;
+unsigned FOSC1 :1;
+unsigned FOSC2 :1;
+unsigned WDTE0 :1;
+unsigned WDTE1 :1;
+unsigned PWRTE :1;
+unsigned MCLRE :1;
+unsigned CP :1;
+unsigned CPD :1;
+unsigned BOREN0 :1;
+unsigned BOREN1 :1;
+unsigned CLKOUTEN :1;
+unsigned IESO :1;
+unsigned FCMEN :1;
+} CONFIG1bits_t;
 
+extern volatile CONFIG1bits_t CONFIG1bits @ 0x8007;
+
+
+int tuneTemp = 0;
+int curTemp = 0;
+char tuneTempDir = 1;
+
+void TriggerOutInit()
+{
+
+(TRISAbits.TRISA1 = 0);
+
+
+ANSELAbits.ANSA1 = 0;
+
+# 84
+}
+void TuneButtonInit()
+{
+
+INTCONbits.IOCIE = 1;
+
+(TRISAbits.TRISA5 = 1);
+
+
+IOCAPbits.IOCAP5 = 1;
+
+INTCONbits.IOCIF = 0;
+IOCAFbits.IOCAF5 = 0;
+
+
+INTCONbits.PEIE = 1;
+
+INTCONbits.GIE = 1;
+}
+void interrupt ISR()
+{
+if(INTCONbits.IOCIF == 1)
+{
+if(IOCAFbits.IOCAF5 == 1)
+{
+
+(LCDByte(0b00000001,0));
+
+{ LCDGotoXY(0,0); LCDWriteString("Thermometer set:");};
+
+while(RA5 == 1)
+{
+tuneTemp++;
+if(tuneTemp > 150)
+{
+tuneTemp = 0;
+}
+_delay((unsigned long)((50)*(20000000/4000.0)));
+
+
+{ LCDGotoXY(0,1); LCDWriteInt(tuneTemp,3);};
+
+
+LCDWriteString("%0C");
+
+}
+tuneTempDir = 1;
+IOCAFbits.IOCAF5 = 0;
+}
+INTCONbits.IOCIF = 0;
+}
+}
 void main (void)
 {
 
@@ -3314,17 +3399,40 @@ LCDInit(0B00000000);
 ADCInit();
 
 
-(LCDByte(0b00000001,0));
+TuneButtonInit();
 
-LCDWriteString("Thermometer");
+
+TriggerOutInit();
+
+
+(LCDByte(0b00000001,0));
 
 while(1)
 {
 
-float t = LM35ReadTemp();
+
+curTemp = LM35ReadTemp();
+
+if(curTemp >= tuneTemp)
+{
+RA1 = 1;
+}
+else
+{
+RA1 = 0;
+}
+
+if(tuneTempDir == 1)
+{
+
+(LCDByte(0b00000001,0));
+
+{ LCDGotoXY(0,0); LCDWriteString("Thermometer:");};
+tuneTempDir = 0;
+}
 
 
-{ LCDGotoXY(0,1); LCDWriteInt(t,3);};
+{ LCDGotoXY(0,1); LCDWriteInt(curTemp,3);};
 
 
 LCDWriteString("%0C");

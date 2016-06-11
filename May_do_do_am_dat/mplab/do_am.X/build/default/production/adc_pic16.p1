@@ -2440,7 +2440,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc_pic16.c: 11: ANSELAbits.ANSA2 = 1;
 "11
 [e = . . _ANSELAbits 0 2 -> -> 1 `i `uc ]
-[; ;adc_pic16.c: 13: ADCON0bits.CHS = 0b010;
+[; ;adc_pic16.c: 13: ADCON0bits.CHS = 0b00010;
 "13
 [e = . . _ADCON0bits 1 2 -> -> 2 `i `uc ]
 [; ;adc_pic16.c: 15: ADCON1bits.ADPREF = 0b00;

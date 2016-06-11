@@ -5,26 +5,26 @@
 #include "lm35_pic16.h"
 
 
-float LM35ReadTemp()
+int LM35ReadTemp()
 {
     //Temperature
-    float t;
+//    float t;
 
     //Read ADC
     uint16_t adc_value=ReadADC(ADC_LM35_POS);
-    __delay_us(100);
-
-    adc_value+=ReadADC(ADC_LM35_POS);
-    __delay_us(100);
-
-     adc_value+=ReadADC(ADC_LM35_POS);
-    __delay_us(100);
-
-    adc_value=adc_value/3;
+//    __delay_us(100);
+//
+//    adc_value+=ReadADC(ADC_LM35_POS);
+//    __delay_us(100);
+//
+//     adc_value+=ReadADC(ADC_LM35_POS);
+//    __delay_us(100);
+//
+//    adc_value=adc_value/3;
 
     //Convert to degree Centrigrade
-    t=((adc_value/1023.00)*500.00);
+//    t=((adc_value/1023.00)*500.00);
 
-    return t;
+    return (int)(adc_value*0.4887);
 }
 

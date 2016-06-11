@@ -3278,29 +3278,18 @@ void ADCInit();
 uint16_t ReadADC(uint8_t ch);
 
 # 15 "lm35_pic16.h"
-float LM35ReadTemp();
+int LM35ReadTemp();
 
 # 8 "lm35_pic16.c"
-float LM35ReadTemp()
+int LM35ReadTemp()
 {
 
-float t;
+
 
 
 uint16_t adc_value=ReadADC(2);
-_delay((unsigned long)((100)*(20000000/4000000.0)));
 
-adc_value+=ReadADC(2);
-_delay((unsigned long)((100)*(20000000/4000000.0)));
-
-adc_value+=ReadADC(2);
-_delay((unsigned long)((100)*(20000000/4000000.0)));
-
-adc_value=adc_value/3;
-
-
-t=((adc_value/1023.00)*500.00);
-
-return t;
+# 28
+return (int)(adc_value*0.4887);
 }
 

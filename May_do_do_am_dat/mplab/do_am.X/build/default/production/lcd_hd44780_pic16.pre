@@ -3481,7 +3481,7 @@ msg++;
 # 317
 void LCDWriteInt(int val,int8_t field_length)
 {
-char str[5]={0,0,0,0,0};
+char str[5]={-16,-16,-16,-16,-16};
 int i=4,j=0;
 
 
@@ -3498,7 +3498,7 @@ val=val/10;
 i--;
 }
 if(field_length==-1)
-while(str[j]==0) j++;
+while(str[j]==-16) j++;
 else
 j=5-field_length;
 

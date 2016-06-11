@@ -1,6 +1,6 @@
 #include <xc.h>
 #include <stdint.h>
-
+#include <pic16f1823.h>
 #include "adc_pic16.h"
 
 
@@ -10,7 +10,7 @@ void ADCInit()
     ADC_LM35_TRIS = 1; // Input
     ANSELAbits.ANSA2 = 1;  // RA2: analog input
 // 2. Channel selection
-    ADCON0bits.CHS = 0b010;
+    ADCON0bits.CHS = 0b00010;
 // 3. ADC voltage reference selection
     ADCON1bits.ADPREF = 0b00; // VREF+ is connected to AVDD
 // 4. ADC conversion clock source

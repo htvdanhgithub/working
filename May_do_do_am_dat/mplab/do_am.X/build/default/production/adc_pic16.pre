@@ -3284,7 +3284,7 @@ void ADCInit()
 TRISAbits.TRISA2 = 1;
 ANSELAbits.ANSA2 = 1;
 
-ADCON0bits.CHS = 0b010;
+ADCON0bits.CHS = 0b00010;
 
 ADCON1bits.ADPREF = 0b00;
 

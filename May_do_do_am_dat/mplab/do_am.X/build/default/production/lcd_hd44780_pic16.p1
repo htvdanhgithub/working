@@ -2804,15 +2804,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [i F2516
 :U ..
 "319
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
+-> -U -> 16 `i `uc
+-> -U -> 16 `i `uc
+-> -U -> 16 `i `uc
+-> -U -> 16 `i `uc
+-> -U -> 16 `i `uc
 ..
 ]
 [v _str `uc ~T0 @X0 -> 5 `i a ]
-[; ;lcd_hd44780_pic16.c: 319: char str[5]={0,0,0,0,0};
+[; ;lcd_hd44780_pic16.c: 319: char str[5]={-16,-16,-16,-16,-16};
 [e = _str F2516 ]
 "320
 [v _i `i ~T0 @X0 1 a ]
@@ -2862,13 +2862,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lcd_hd44780_pic16.c: 335: if(field_length==-1)
 "335
 [e $ ! == -> _field_length `i -U -> 1 `i 317  ]
-[; ;lcd_hd44780_pic16.c: 336: while(str[j]==0) j++;
+[; ;lcd_hd44780_pic16.c: 336: while(str[j]==-16) j++;
 "336
 [e $U 318  ]
 [e :U 319 ]
 [e ++ _j -> 1 `i ]
 [e :U 318 ]
-[e $ == -> *U + &U _str * -> -> _j `ui `ux -> -> # *U &U _str `ui `ux `i -> 0 `i 319  ]
+[e $ == -> *U + &U _str * -> -> _j `ui `ux -> -> # *U &U _str `ui `ux `i -U -> 16 `i 319  ]
 [e :U 320 ]
 [e $U 321  ]
 "337

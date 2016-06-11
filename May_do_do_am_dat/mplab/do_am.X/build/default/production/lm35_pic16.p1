@@ -1,10 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "28 adc_pic16.h
 [v _ReadADC `(ui ~T0 @X0 0 ef1`uc ]
-[v F2438 `(v ~T0 @X0 1 tf1`ul ]
-"152 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
-[v __delay `JF2438 ~T0 @X0 0 e ]
-[p i __delay ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2377,46 +2373,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;adc_pic16.h: 27: void ADCInit();
 [; ;adc_pic16.h: 28: uint16_t ReadADC(uint8_t ch);
-[; ;lm35_pic16.h: 15: float LM35ReadTemp();
+[; ;lm35_pic16.h: 15: int LM35ReadTemp();
 "8 lm35_pic16.c
-[v _LM35ReadTemp `(f ~T0 @X0 1 ef ]
+[v _LM35ReadTemp `(i ~T0 @X0 1 ef ]
 "9
 {
-[; ;lm35_pic16.c: 8: float LM35ReadTemp()
+[; ;lm35_pic16.c: 8: int LM35ReadTemp()
 [; ;lm35_pic16.c: 9: {
 [e :U _LM35ReadTemp ]
 [f ]
-"11
-[v _t `f ~T0 @X0 1 a ]
 "14
 [v _adc_value `ui ~T0 @X0 1 a ]
-[; ;lm35_pic16.c: 11: float t;
 [; ;lm35_pic16.c: 14: uint16_t adc_value=ReadADC(2);
 [e = _adc_value ( _ReadADC (1 -> -> 2 `i `uc ]
-[; ;lm35_pic16.c: 15: _delay((unsigned long)((100)*(20000000/4000000.0)));
-"15
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-[; ;lm35_pic16.c: 17: adc_value+=ReadADC(2);
-"17
-[e =+ _adc_value ( _ReadADC (1 -> -> 2 `i `uc ]
-[; ;lm35_pic16.c: 18: _delay((unsigned long)((100)*(20000000/4000000.0)));
-"18
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-[; ;lm35_pic16.c: 20: adc_value+=ReadADC(2);
-"20
-[e =+ _adc_value ( _ReadADC (1 -> -> 2 `i `uc ]
-[; ;lm35_pic16.c: 21: _delay((unsigned long)((100)*(20000000/4000000.0)));
-"21
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-[; ;lm35_pic16.c: 23: adc_value=adc_value/3;
-"23
-[e = _adc_value / _adc_value -> -> 3 `i `ui ]
-[; ;lm35_pic16.c: 26: t=((adc_value/1023.00)*500.00);
-"26
-[e = _t -> * / -> _adc_value `d .1023.00 .500.00 `f ]
-[; ;lm35_pic16.c: 28: return t;
+[; ;lm35_pic16.c: 28: return (int)(adc_value*0.4887);
 "28
-[e ) _t ]
+[e ) -> * -> _adc_value `d .0.4887 `i ]
 [e $UE 293  ]
 [; ;lm35_pic16.c: 29: }
 "29
