@@ -5,14 +5,28 @@
 #include "lm35_pic16.h"
 
 // CONFIG
-#pragma config FOSC = HS        // Oscillator Selection bits (HS oscillator)
-#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled)
-#pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
-#pragma config BOREN = ON       // Brown-out Reset Enable bit (BOR enabled)
-#pragma config LVP = ON         // Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit (RB3/PGM pin has PGM function; low-voltage programming enabled)
-#pragma config CPD = OFF        // Data EEPROM Memory Code Protection bit (Data EEPROM code protection off)
-#pragma config WRT = OFF        // Flash Program Memory Write Enable bits (Write protection off; all program memory may be written to by EECON control)
-#pragma config CP = OFF         // Flash Program Memory Code Protection bit (Code protection off)
+// #pragma config statements should precede project file includes.
+// Use project enums instead of #define for ON and OFF.
+
+// CONFIG1
+#pragma config FOSC = INTOSC    // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
+#pragma config WDTE = OFF       // Watchdog Timer Enable (WDT disabled)
+#pragma config PWRTE = OFF      // Power-up Timer Enable (PWRT disabled)
+#pragma config MCLRE = OFF      // MCLR Pin Function Select (MCLR/VPP pin function is digital input)
+#pragma config CP = ON          // Flash Program Memory Code Protection (Program memory code protection is enabled)
+#pragma config CPD = ON         // Data Memory Code Protection (Data memory code protection is enabled)
+#pragma config BOREN = ON       // Brown-out Reset Enable (Brown-out Reset enabled)
+#pragma config CLKOUTEN = OFF   // Clock Out Enable (CLKOUT function is disabled. I/O or oscillator function on the CLKOUT pin)
+#pragma config IESO = ON        // Internal/External Switchover (Internal/External Switchover mode is enabled)
+#pragma config FCMEN = ON       // Fail-Safe Clock Monitor Enable (Fail-Safe Clock Monitor is enabled)
+
+// CONFIG2
+#pragma config WRT = OFF        // Flash Memory Self-Write Protection (Write protection off)
+#pragma config PLLEN = ON       // PLL Enable (4x PLL enabled)
+#pragma config STVREN = ON      // Stack Overflow/Underflow Reset Enable (Stack Overflow or Underflow will cause a Reset)
+#pragma config BORV = LO        // Brown-out Reset Voltage Selection (Brown-out Reset Voltage (Vbor), low trip point selected.)
+#pragma config LVP = ON         // Low-Voltage Programming Enable (Low-voltage programming enabled)
+
 
 #define IOC_ENABLE      INTCONbits.IOCIE
 #define IOC_FLAG        INTCONbits.IOCIF
@@ -22,59 +36,39 @@
 //LM35 is connected to Port A bit 2
 
 #define TUNE_BUTTON_PORT      A
-#define TUNE_BUTTON_POS       5
+#define TUNE_BUTTON_POS       1
 #define TUNE_BUTTON_PIN       PIN(TUNE_BUTTON_PORT, TUNE_BUTTON_POS)
 
 #define TUNE_BUTTON                     PORTBIT(TUNE_BUTTON_PIN)
 #define TUNE_BUTTON_TRIS                TRISBIT(TUNE_BUTTON_PIN)
 
-#define TRIGGER_DOWN_OUT_PORT      A
-#define TRIGGER_DOWN_OUT_POS       1
-#define TRIGGER_DOWN_OUT_PIN       PIN(TRIGGER_DOWN_OUT_PORT, TRIGGER_DOWN_OUT_POS)
-#define TRIGGER_DOWN_OUT           PORTBIT(TRIGGER_DOWN_OUT_PIN)
+#define TRIGGER_OPEN_OUT_PORT      A
+#define TRIGGER_OPEN_OUT_POS       4
+#define TRIGGER_OPEN_OUT_PIN       PIN(TRIGGER_OPEN_OUT_PORT, TRIGGER_OPEN_OUT_POS)
+#define TRIGGER_OPEN_OUT           PORTBIT(TRIGGER_OPEN_OUT_PIN)
 
-#define TRIGGER_UP_OUT_PORT      A
-#define TRIGGER_UP_OUT_POS       0
-#define TRIGGER_UP_OUT_PIN       PIN(TRIGGER_UP_OUT_PORT, TRIGGER_UP_OUT_POS)
-#define TRIGGER_UP_OUT           PORTBIT(TRIGGER_UP_OUT_PIN)
+#define TRIGGER_CLOSE_OUT_PORT      A
+#define TRIGGER_CLOSE_OUT_POS       5
+#define TRIGGER_CLOSE_OUT_PIN       PIN(TRIGGER_CLOSE_OUT_PORT, TRIGGER_CLOSE_OUT_POS)
+#define TRIGGER_CLOSE_OUT           PORTBIT(TRIGGER_CLOSE_OUT_PIN)
 
 
 #define TUNE_BUTTON_RAISING_EDGE        IOCPBIT(TUNE_BUTTON_PIN)
 #define TUNE_BUTTON_IOC_FLAG            IOCFBIT(TUNE_BUTTON_PIN)
 
 
-typedef struct {
-        unsigned FOSC0                   :1;
-        unsigned FOSC1                   :1;
-        unsigned FOSC2                   :1;
-        unsigned WDTE0                   :1;
-        unsigned WDTE1                   :1;
-        unsigned PWRTE                   :1;
-        unsigned MCLRE                   :1;
-        unsigned CP                      :1;
-        unsigned CPD                     :1;
-        unsigned BOREN0                  :1;
-        unsigned BOREN1                  :1;
-        unsigned CLKOUTEN                :1;
-        unsigned IESO                    :1;
-        unsigned FCMEN                   :1;
-    } CONFIG1bits_t;
-    
-extern volatile CONFIG1bits_t CONFIG1bits @ 0x8007;
-
-
-int tuneTemp = 0;
+int tuneUpTemp = 26;
 int curTemp = 0;
-char tuneTempDir = 1;
+char tuneUpTempDir = 1;
 
 void TriggerOutInit()
 {
     // 1. Individual pin configuration
-    IO_OUTPUT(TRIGGER_DOWN_OUT_PIN);
-//    IO_OUTPUT(TRIGGER_UP_OUT_PIN);
+    IO_OUTPUT(TRIGGER_OPEN_OUT_PIN);
+    IO_OUTPUT(TRIGGER_CLOSE_OUT_PIN);
     // 2. Digital I/O
-    ANSELBIT(TRIGGER_DOWN_OUT_PIN) = 0;
-//    ANSELBIT(TRIGGER_UP_OUT_PIN) = 0;
+    ANSELBIT(TRIGGER_OPEN_OUT_PIN) = 0;
+//    ANSELBIT(TRIGGER_CLOSE_OUT_PIN) = 0;
     
 //    APFCONbits.SDOSEL = 0;
 //    APFCONbits.T1GSEL = 0;
@@ -88,6 +82,7 @@ void TuneButtonInit()
     IOC_ENABLE = 1;
     // 2. Individual pin configuration
     IO_INPUT(TUNE_BUTTON_PIN);
+    ANSELBIT(TUNE_BUTTON_PIN) = 0;
 
     // 3. Rising and falling edge detection
     TUNE_BUTTON_RAISING_EDGE = 1;
@@ -106,28 +101,31 @@ void interrupt ISR()
     {
         if(TUNE_BUTTON_IOC_FLAG == 1)
         {
-            //Clear the LCD
-            LCDClear();
-
-            LCDWriteStringXY(0, 0, "Thermometer set:");
+//            //Clear the LCD
+//            LCDClear();
+//
+//            LCDWriteStringXY(0, 0, "Thermometer set:");
             
             while(TUNE_BUTTON == 1)
             {
-                tuneTemp++;
-                if(tuneTemp > 150)
+                tuneUpTemp++;
+                if(tuneUpTemp > 150)
                 {
-                    tuneTemp = 0;
+                    tuneUpTemp = 0;
                 }
-                __delay_ms(50);
-                
                 //Print it on the LCD
-                LCDWriteIntXY(0, 1, tuneTemp, 3);
-
-                //Print the degree symbol and C
-                LCDWriteString("%0C");
+                LCDWriteIntXY(4, 1, tuneUpTemp, 3);
+                
+                __delay_ms(10);
+                
+//                //Print it on the LCD
+//                LCDWriteIntXY(0, 1, tuneUpTemp, 3);
+//
+//                //Print the degree symbol and C
+//                LCDWriteString("%0C");
                 
             }
-            tuneTempDir = 1;
+            tuneUpTempDir = 1;
             TUNE_BUTTON_IOC_FLAG = 0;
         }
         IOC_FLAG = 0;
@@ -147,41 +145,59 @@ void main (void)
     //Initialize Trigger out
     TriggerOutInit();
     
+//    //Clear the LCD
+//    LCDClear();
+
+    TRIGGER_OPEN_OUT = 0;
+    TRIGGER_CLOSE_OUT = 1;
+    
     //Clear the LCD
     LCDClear();
 
+    LCDWriteStringXY(0, 0, "Cur:");
+    //Print the degree symbol and C
+    LCDWriteStringXY(7, 0, "%0C"); 
+
+    LCDWriteStringXY(10, 0, "Wa:");
+
+    LCDWriteStringXY(0, 1, "Max:");
+    //Print the degree symbol and C
+    LCDWriteStringXY(7, 1, "%0C"); 
+
+    LCDWriteStringXY(13, 0, "OFF");
+
     while(1)
     {
-//    TRIGGER_UP_OUT = 1;
         //Read the temperature using LM35
         curTemp = LM35ReadTemp();
 
-        if(curTemp >= tuneTemp)
+        if((tuneUpTemp >= 5) && (curTemp >= tuneUpTemp))
         {
-            TRIGGER_DOWN_OUT = 1;
+            LCDWriteStringXY(13, 0, "ON ");
+            TRIGGER_OPEN_OUT = 1;
+            TRIGGER_CLOSE_OUT = 0;
         }
         else
         {
-            TRIGGER_DOWN_OUT = 0;
+            if(curTemp <= tuneUpTemp - 5)
+            {
+                LCDWriteStringXY(13, 0, "OFF");
+                TRIGGER_OPEN_OUT = 0;
+                TRIGGER_CLOSE_OUT = 1;
+            }
         }
 
-        if(tuneTempDir == 1)
-        {
-            //Clear the LCD
-            LCDClear();
-
-            LCDWriteStringXY(0, 0, "Thermometer:");
-            tuneTempDir = 0;
-        }
+//        if(tuneUpTempDir == 1)
+//        {
+//            tuneUpTempDir = 0;
+//        }
         
         //Print it on the LCD
-        LCDWriteIntXY(0, 1, curTemp, 3);
+        LCDWriteIntXY(4, 0, curTemp, 3);
 
-        //Print the degree symbol and C
-        LCDWriteString("%0C"); 
-
-        //Wait 200ms before taking next reading
-        __delay_ms(200);
+      
+//        //Wait 200ms before taking next reading
+//        __delay_ms(20);
     }
 }
 

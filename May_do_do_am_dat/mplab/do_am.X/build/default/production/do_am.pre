@@ -3294,63 +3294,53 @@ uint16_t ReadADC(uint8_t ch);
 int LM35ReadTemp();
 
 
-# 8 "do_am.c"
-#pragma config FOSC = HS
+# 12 "do_am.c"
+#pragma config FOSC = INTOSC
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
+#pragma config MCLRE = OFF
+#pragma config CP = ON
+#pragma config CPD = ON
 #pragma config BOREN = ON
-#pragma config LVP = ON
-#pragma config CPD = OFF
+#pragma config CLKOUTEN = OFF
+#pragma config IESO = ON
+#pragma config FCMEN = ON
+
+
 #pragma config WRT = OFF
-#pragma config CP = OFF
+#pragma config PLLEN = ON
+#pragma config STVREN = ON
+#pragma config BORV = LO
+#pragma config LVP = ON
 
-# 46
-typedef struct {
-unsigned FOSC0 :1;
-unsigned FOSC1 :1;
-unsigned FOSC2 :1;
-unsigned WDTE0 :1;
-unsigned WDTE1 :1;
-unsigned PWRTE :1;
-unsigned MCLRE :1;
-unsigned CP :1;
-unsigned CPD :1;
-unsigned BOREN0 :1;
-unsigned BOREN1 :1;
-unsigned CLKOUTEN :1;
-unsigned IESO :1;
-unsigned FCMEN :1;
-} CONFIG1bits_t;
-
-extern volatile CONFIG1bits_t CONFIG1bits @ 0x8007;
-
-
-int tuneTemp = 0;
+# 60
+int tuneUpTemp = 26;
 int curTemp = 0;
-char tuneTempDir = 1;
+char tuneUpTempDir = 1;
 
 void TriggerOutInit()
 {
 
-(TRISAbits.TRISA1 = 0);
+(TRISAbits.TRISA4 = 0);
+(TRISAbits.TRISA5 = 0);
 
+ANSELAbits.ANSA4 = 0;
 
-ANSELAbits.ANSA1 = 0;
-
-# 84
+# 78
 }
 void TuneButtonInit()
 {
 
 INTCONbits.IOCIE = 1;
 
-(TRISAbits.TRISA5 = 1);
+(TRISAbits.TRISA1 = 1);
+ANSELAbits.ANSA1 = 0;
 
 
-IOCAPbits.IOCAP5 = 1;
+IOCAPbits.IOCAP1 = 1;
 
 INTCONbits.IOCIF = 0;
-IOCAFbits.IOCAF5 = 0;
+IOCAFbits.IOCAF1 = 0;
 
 
 INTCONbits.PEIE = 1;
@@ -3361,31 +3351,26 @@ void interrupt ISR()
 {
 if(INTCONbits.IOCIF == 1)
 {
-if(IOCAFbits.IOCAF5 == 1)
+if(IOCAFbits.IOCAF1 == 1)
 {
 
-(LCDByte(0b00000001,0));
-
-{ LCDGotoXY(0,0); LCDWriteString("Thermometer set:");};
-
-while(RA5 == 1)
+# 109
+while(RA1 == 1)
 {
-tuneTemp++;
-if(tuneTemp > 150)
+tuneUpTemp++;
+if(tuneUpTemp > 150)
 {
-tuneTemp = 0;
+tuneUpTemp = 0;
 }
-_delay((unsigned long)((50)*(20000000/4000.0)));
 
+{ LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
 
-{ LCDGotoXY(0,1); LCDWriteInt(tuneTemp,3);};
+_delay((unsigned long)((10)*(20000000/4000.0)));
 
-
-LCDWriteString("%0C");
-
+# 127
 }
-tuneTempDir = 1;
-IOCAFbits.IOCAF5 = 0;
+tuneUpTempDir = 1;
+IOCAFbits.IOCAF1 = 0;
 }
 INTCONbits.IOCIF = 0;
 }
@@ -3405,40 +3390,53 @@ TuneButtonInit();
 TriggerOutInit();
 
 
+
+
+RA4 = 0;
+RA5 = 1;
+
+
 (LCDByte(0b00000001,0));
+
+{ LCDGotoXY(0,0); LCDWriteString("Cur:");};
+
+{ LCDGotoXY(7,0); LCDWriteString("%0C");};
+
+{ LCDGotoXY(10,0); LCDWriteString("Wa:");};
+
+{ LCDGotoXY(0,1); LCDWriteString("Max:");};
+
+{ LCDGotoXY(7,1); LCDWriteString("%0C");};
+
+{ LCDGotoXY(13,0); LCDWriteString("OFF");};
 
 while(1)
 {
 
-
 curTemp = LM35ReadTemp();
 
-if(curTemp >= tuneTemp)
+if((tuneUpTemp >= 5) && (curTemp >= tuneUpTemp))
 {
-RA1 = 1;
+{ LCDGotoXY(13,0); LCDWriteString("ON ");};
+RA4 = 1;
+RA5 = 0;
 }
 else
 {
-RA1 = 0;
-}
-
-if(tuneTempDir == 1)
+if(curTemp <= tuneUpTemp - 5)
 {
-
-(LCDByte(0b00000001,0));
-
-{ LCDGotoXY(0,0); LCDWriteString("Thermometer:");};
-tuneTempDir = 0;
+{ LCDGotoXY(13,0); LCDWriteString("OFF");};
+RA4 = 0;
+RA5 = 1;
+}
 }
 
-
-{ LCDGotoXY(0,1); LCDWriteInt(curTemp,3);};
-
-
-LCDWriteString("%0C");
+# 196
+{ LCDGotoXY(4,0); LCDWriteInt(curTemp,3);};
 
 
-_delay((unsigned long)((200)*(20000000/4000.0)));
+
+
 }
 }
 
