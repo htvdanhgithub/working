@@ -1,0 +1,388 @@
+[p LITE_MODE AUTOSTATIC PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F886 ]
+[d frameptr 6 ]
+"7 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\adc_pic16.c
+[v _ADCInit ADCInit `(v  1 e 1 0 ]
+"27
+[v _ReadADC ReadADC `(ui  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+[v i1___awdiv __awdiv `(i  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+[v i1___awmod __awmod `(i  1 e 2 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 3 0 ]
+"44 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+[v ___fttol __fttol `(l  1 e 4 0 ]
+"28 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwtoft.c
+[v ___lwtoft __lwtoft `(f  1 e 3 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\pic\eeprom.c
+[v _eecpymem eecpymem `(v  1 e 1 0 ]
+"39
+[v _memcpyee memcpyee `(v  1 e 1 0 ]
+"104 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+[v _TuneButtonInit TuneButtonInit `(v  1 e 1 0 ]
+"154
+[v _ISR ISR `II(v  1 e 1 0 ]
+"185
+[v _main main `(v  1 e 1 0 ]
+"80 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
+[v _LCDByte LCDByte `(v  1 e 1 0 ]
+[v i1_LCDByte LCDByte `(v  1 e 1 0 ]
+"135
+[v _LCDBusyLoop LCDBusyLoop `(v  1 e 1 0 ]
+[v i1_LCDBusyLoop LCDBusyLoop `(v  1 e 1 0 ]
+"207
+[v _LCDInit LCDInit `(v  1 e 1 0 ]
+"279
+[v _LCDWriteString LCDWriteString `(v  1 e 1 0 ]
+[v i1_LCDWriteString LCDWriteString `(v  1 e 1 0 ]
+"317
+[v _LCDWriteInt LCDWriteInt `(v  1 e 1 0 ]
+[v i1_LCDWriteInt LCDWriteInt `(v  1 e 1 0 ]
+"355
+[v _LCDGotoXY LCDGotoXY `(v  1 e 1 0 ]
+[v i1_LCDGotoXY LCDGotoXY `(v  1 e 1 0 ]
+"282 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+[s S218 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INTF 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INTE 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"392
+[s S227 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 TMR0IE 1 0 :1:5 
+]
+[u S232 . 1 `S218 1 . 1 0 `S227 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES232  1 e 1 @11 ]
+"1126
+[v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
+[s S72 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+`uc 1 ADCS 1 0 :2:6 
+]
+"1163
+[s S77 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 ADCS0 1 0 :1:6 
+`uc 1 ADCS1 1 0 :1:7 
+]
+[s S86 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S89 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[u S92 . 1 `S72 1 . 1 0 `S77 1 . 1 0 `S86 1 . 1 0 `S89 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES92  1 e 1 @31 ]
+[s S160 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 TRISA3 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+`uc 1 TRISA6 1 0 :1:6 
+`uc 1 TRISA7 1 0 :1:7 
+]
+"1318
+[u S169 . 1 `S160 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES169  1 e 1 @133 ]
+[s S19 . 1 `uc 1 TRISB0 1 0 :1:0 
+`uc 1 TRISB1 1 0 :1:1 
+`uc 1 TRISB2 1 0 :1:2 
+`uc 1 TRISB3 1 0 :1:3 
+`uc 1 TRISB4 1 0 :1:4 
+`uc 1 TRISB5 1 0 :1:5 
+`uc 1 TRISB6 1 0 :1:6 
+`uc 1 TRISB7 1 0 :1:7 
+]
+"1379
+[u S28 . 1 `S19 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES28  1 e 1 @134 ]
+"1423
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+[s S369 . 1 `uc 1 TRISC0 1 0 :1:0 
+`uc 1 TRISC1 1 0 :1:1 
+`uc 1 TRISC2 1 0 :1:2 
+`uc 1 TRISC3 1 0 :1:3 
+`uc 1 TRISC4 1 0 :1:4 
+`uc 1 TRISC5 1 0 :1:5 
+`uc 1 TRISC6 1 0 :1:6 
+`uc 1 TRISC7 1 0 :1:7 
+]
+"1440
+[u S378 . 1 `S369 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES378  1 e 1 @135 ]
+[s S275 . 1 `uc 1 IOCB 1 0 :8:0 
+]
+"2227
+[s S277 . 1 `uc 1 IOCB0 1 0 :1:0 
+`uc 1 IOCB1 1 0 :1:1 
+`uc 1 IOCB2 1 0 :1:2 
+`uc 1 IOCB3 1 0 :1:3 
+`uc 1 IOCB4 1 0 :1:4 
+`uc 1 IOCB5 1 0 :1:5 
+`uc 1 IOCB6 1 0 :1:6 
+`uc 1 IOCB7 1 0 :1:7 
+]
+[u S286 . 1 `S275 1 . 1 0 `S277 1 . 1 0 ]
+[v _IOCBbits IOCBbits `VES286  1 e 1 @150 ]
+"2753
+[v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
+[s S57 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 VCFG0 1 0 :1:4 
+`uc 1 VCFG1 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"2773
+[u S63 . 1 `S57 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES63  1 e 1 @159 ]
+[s S191 . 1 `uc 1 ANS0 1 0 :1:0 
+`uc 1 ANS1 1 0 :1:1 
+`uc 1 ANS2 1 0 :1:2 
+`uc 1 ANS3 1 0 :1:3 
+`uc 1 ANS4 1 0 :1:4 
+]
+"3172
+[u S197 . 1 `S191 1 . 1 0 ]
+[v _ANSELbits ANSELbits `VES197  1 e 1 @392 ]
+[s S40 . 1 `uc 1 ANS8 1 0 :1:0 
+`uc 1 ANS9 1 0 :1:1 
+`uc 1 ANS10 1 0 :1:2 
+`uc 1 ANS11 1 0 :1:3 
+`uc 1 ANS12 1 0 :1:4 
+`uc 1 ANS13 1 0 :1:5 
+]
+"3216
+[u S47 . 1 `S40 1 . 1 0 ]
+[v _ANSELHbits ANSELHbits `VES47  1 e 1 @393 ]
+"3648
+[v _RA0 RA0 `VEb  1 e 0 @40 ]
+"3650
+[v _RA1 RA1 `VEb  1 e 0 @41 ]
+"3652
+[v _RA2 RA2 `VEb  1 e 0 @42 ]
+"3654
+[v _RA3 RA3 `VEb  1 e 0 @43 ]
+"3660
+[v _RA6 RA6 `VEb  1 e 0 @46 ]
+"3686
+[v _RC1 RC1 `VEb  1 e 0 @57 ]
+"3688
+[v _RC2 RC2 `VEb  1 e 0 @58 ]
+"3690
+[v _RC3 RC3 `VEb  1 e 0 @59 ]
+"15 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\custom_char.h
+[v ___cgram __cgram `[8]uc  1 e 8 0 ]
+"85 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+[v _tuneUpTemp tuneUpTemp `i  1 e 2 0 ]
+"86
+[v _curTemp curTemp `i  1 e 2 0 ]
+"87
+[v _tuneUpTempDir tuneUpTempDir `uc  1 e 1 0 ]
+"185
+[v _main main `(v  1 e 1 0 ]
+{
+"270
+} 0
+"104
+[v _TuneButtonInit TuneButtonInit `(v  1 e 1 0 ]
+{
+"153
+} 0
+"279 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
+[v _LCDWriteString LCDWriteString `(v  1 e 1 0 ]
+{
+[v LCDWriteString@msg msg `*.24DCCuc  1 a 1 wreg ]
+"287
+[v LCDWriteString@cc cc `c  1 a 1 32 ]
+"279
+[v LCDWriteString@msg msg `*.24DCCuc  1 a 1 wreg ]
+[v LCDWriteString@msg msg `*.24DCCuc  1 a 1 33 ]
+"305
+} 0
+"317
+[v _LCDWriteInt LCDWriteInt `(v  1 e 1 0 ]
+{
+"319
+[v LCDWriteInt@str str `[5]uc  1 a 5 0 ]
+"320
+[v LCDWriteInt@i i `i  1 a 2 7 ]
+[v LCDWriteInt@j j `i  1 a 2 5 ]
+"317
+[v LCDWriteInt@val val `i  1 p 2 31 ]
+[v LCDWriteInt@field_length field_length `c  1 p 1 33 ]
+"318
+[v LCDWriteInt@F1632 F1632 `[5]uc  1 s 5 F1632 ]
+"349
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"11
+[v ___awmod@sign sign `uc  1 a 1 25 ]
+[v ___awmod@counter counter `uc  1 a 1 24 ]
+"6
+[v ___awmod@divisor divisor `i  1 p 2 19 ]
+[v ___awmod@dividend dividend `i  1 p 2 21 ]
+"35
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"11
+[v ___awdiv@quotient quotient `i  1 a 2 26 ]
+"12
+[v ___awdiv@sign sign `uc  1 a 1 25 ]
+[v ___awdiv@counter counter `uc  1 a 1 24 ]
+"6
+[v ___awdiv@divisor divisor `i  1 p 2 19 ]
+[v ___awdiv@dividend dividend `i  1 p 2 21 ]
+"42
+} 0
+"207 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
+[v _LCDInit LCDInit `(v  1 e 1 0 ]
+{
+[v LCDInit@style style `uc  1 a 1 wreg ]
+"245
+[v LCDInit@__i __i `uc  1 a 1 34 ]
+"207
+[v LCDInit@style style `uc  1 a 1 wreg ]
+"209
+[v LCDInit@style style `uc  1 a 1 33 ]
+"250
+} 0
+"355
+[v _LCDGotoXY LCDGotoXY `(v  1 e 1 0 ]
+{
+[v LCDGotoXY@x x `uc  1 a 1 wreg ]
+[v LCDGotoXY@x x `uc  1 a 1 wreg ]
+[v LCDGotoXY@y y `uc  1 p 1 31 ]
+"357
+[v LCDGotoXY@x x `uc  1 a 1 33 ]
+"398
+} 0
+"80
+[v _LCDByte LCDByte `(v  1 e 1 0 ]
+{
+[v LCDByte@c c `uc  1 a 1 wreg ]
+"90
+[v LCDByte@temp temp `uc  1 a 1 30 ]
+"89
+[v LCDByte@ln ln `uc  1 a 1 28 ]
+[v LCDByte@hn hn `uc  1 a 1 27 ]
+"80
+[v LCDByte@c c `uc  1 a 1 wreg ]
+[v LCDByte@isdata isdata `uc  1 p 1 24 ]
+"92
+[v LCDByte@c c `uc  1 a 1 29 ]
+"133
+} 0
+"135
+[v _LCDBusyLoop LCDBusyLoop `(v  1 e 1 0 ]
+{
+"139
+[v LCDBusyLoop@status status `uc  1 a 1 23 ]
+[v LCDBusyLoop@temp temp `uc  1 a 1 22 ]
+[v LCDBusyLoop@busy busy `uc  1 a 1 21 ]
+"191
+} 0
+"7 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\adc_pic16.c
+[v _ADCInit ADCInit `(v  1 e 1 0 ]
+{
+"26
+} 0
+"154 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"184
+} 0
+"279 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
+[v i1_LCDWriteString LCDWriteString `(v  1 e 1 0 ]
+{
+[v i1LCDWriteString@msg msg `*.24DCCuc  1 a 1 wreg ]
+[v i1LCDWriteString@cc LCDWriteString `c  1 a 1 1 ]
+[v i1LCDWriteString@msg msg `*.24DCCuc  1 a 1 wreg ]
+[v i1LCDWriteString@msg msg `*.24DCCuc  1 a 1 0 ]
+"305
+} 0
+"317
+[v i1_LCDWriteInt LCDWriteInt `(v  1 e 1 0 ]
+{
+[v i1LCDWriteInt@str LCDWriteInt `[5]uc  1 a 5 3 ]
+[v i1LCDWriteInt@i LCDWriteInt `i  1 a 2 10 ]
+[v i1LCDWriteInt@j LCDWriteInt `i  1 a 2 8 ]
+[v i1LCDWriteInt@val val `i  1 p 2 0 ]
+[v i1LCDWriteInt@field_length field_length `c  1 p 1 2 ]
+"349
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+[v i1___awmod __awmod `(i  1 e 2 0 ]
+{
+[v i1___awmod@sign __awmod `uc  1 a 1 6 ]
+[v i1___awmod@counter __awmod `uc  1 a 1 5 ]
+[v i1___awmod@divisor divisor `i  1 p 2 0 ]
+[v i1___awmod@dividend dividend `i  1 p 2 2 ]
+"35
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+[v i1___awdiv __awdiv `(i  1 e 2 0 ]
+{
+[v i1___awdiv@quotient __awdiv `i  1 a 2 7 ]
+[v i1___awdiv@sign __awdiv `uc  1 a 1 6 ]
+[v i1___awdiv@counter __awdiv `uc  1 a 1 5 ]
+[v i1___awdiv@divisor divisor `i  1 p 2 0 ]
+[v i1___awdiv@dividend dividend `i  1 p 2 2 ]
+"42
+} 0
+"355 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
+[v i1_LCDGotoXY LCDGotoXY `(v  1 e 1 0 ]
+{
+[v i1LCDGotoXY@x x `uc  1 a 1 wreg ]
+[v i1LCDGotoXY@x x `uc  1 a 1 wreg ]
+[v i1LCDGotoXY@y y `uc  1 p 1 12 ]
+"357
+[v i1LCDGotoXY@x x `uc  1 a 1 0 ]
+"398
+} 0
+"80
+[v i1_LCDByte LCDByte `(v  1 e 1 0 ]
+{
+[v i1LCDByte@c c `uc  1 a 1 wreg ]
+[v i1LCDByte@temp LCDByte `uc  1 a 1 11 ]
+[v i1LCDByte@ln LCDByte `uc  1 a 1 10 ]
+[v i1LCDByte@hn LCDByte `uc  1 a 1 9 ]
+[v i1LCDByte@c c `uc  1 a 1 wreg ]
+[v i1LCDByte@isdata isdata `uc  1 p 1 5 ]
+"92
+[v i1LCDByte@c c `uc  1 a 1 8 ]
+"133
+} 0
+"135
+[v i1_LCDBusyLoop LCDBusyLoop `(v  1 e 1 0 ]
+{
+[v i1LCDBusyLoop@status LCDBusyLoop `uc  1 a 1 4 ]
+[v i1LCDBusyLoop@temp LCDBusyLoop `uc  1 a 1 3 ]
+[v i1LCDBusyLoop@busy LCDBusyLoop `uc  1 a 1 2 ]
+"191
+} 0

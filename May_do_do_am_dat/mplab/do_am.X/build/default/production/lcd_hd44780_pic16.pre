@@ -3484,6 +3484,10 @@ void LCDWriteInt(int val,int8_t field_length)
 char str[5]={-16,-16,-16,-16,-16};
 int i=4,j=0;
 
+if(val == 0)
+{
+str[4] = 0;
+}
 
 if(val<0)
 {
@@ -3509,7 +3513,7 @@ for(i=j;i<5;i++)
 }
 }
 
-# 351
+# 355
 void LCDGotoXY(uint8_t x,uint8_t y)
 {
 if(x>=20) return;
@@ -3531,7 +3535,7 @@ x+=0x54;
 break;
 }
 
-# 392
+# 396
 x|=0b10000000;
 (LCDByte(x,0));
 }

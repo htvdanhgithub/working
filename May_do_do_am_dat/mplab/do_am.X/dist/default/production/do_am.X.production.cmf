@@ -12,43 +12,43 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/production\do_am.X.production.obj
-cinit CODE 0 48 48 19 2
-text1 CODE 0 78E 78E C 2
-text2 CODE 0 7B0 7B0 6 2
-text3 CODE 0 6B9 6B9 28 2
-text4 CODE 0 768 768 14 2
-text5 CODE 0 1C7 1C7 9F 2
-text6 CODE 0 114 114 B3 2
-text7 CODE 0 35E 35E 65 2
-text8 CODE 0 6E1 6E1 27 2
-text9 CODE 0 67C 67C 3D 2
-text10 CODE 0 266 266 7C 2
-text11 CODE 0 5F1 5F1 46 2
-text12 CODE 0 470 470 52 2
-text13 CODE 0 5A8 5A8 49 2
-text14 CODE 0 708 708 23 2
-text15 CODE 0 55E 55E 4A 2
-text16 CODE 0 3C3 3C3 57 2
-text17 CODE 0 77C 77C 12 2
-text19 CODE 0 2E2 2E2 7C 2
-text20 CODE 0 637 637 45 2
-text21 CODE 0 4C2 4C2 51 2
-text22 CODE 0 72B 72B 23 2
-text23 CODE 0 513 513 4B 2
-text24 CODE 0 41A 41A 56 2
-maintext CODE 0 61 61 B3 2
+cinit CODE 0 48 48 1B 2
+text1 CODE 0 7EF 7EF 6 2
+text2 CODE 0 7F5 7F5 6 2
+text3 CODE 0 706 706 28 2
+text4 CODE 0 7B5 7B5 14 2
+text5 CODE 0 20C 20C 9F 2
+text6 CODE 0 159 159 B3 2
+text7 CODE 0 3AB 3AB 65 2
+text8 CODE 0 72E 72E 27 2
+text9 CODE 0 6C9 6C9 3D 2
+text10 CODE 0 2AB 2AB 80 2
+text11 CODE 0 63E 63E 46 2
+text12 CODE 0 4BD 4BD 52 2
+text13 CODE 0 5F5 5F5 49 2
+text14 CODE 0 755 755 23 2
+text15 CODE 0 5AB 5AB 4A 2
+text16 CODE 0 410 410 57 2
+text17 CODE 0 7C9 7C9 12 2
+text19 CODE 0 32B 32B 80 2
+text20 CODE 0 684 684 45 2
+text21 CODE 0 50F 50F 51 2
+text22 CODE 0 778 778 23 2
+text23 CODE 0 560 560 4B 2
+text24 CODE 0 467 467 56 2
+maintext CODE 0 63 63 F6 2
 cstackCOMMON COMMON 1 70 70 E 1
 cstackBANK0 BANK0 1 20 20 37 1
 cstackBANK1 BANK1 1 A0 A0 9 1
-inittext CODE 0 7AA 7AA 6 2
+inittext CODE 0 7E9 7E9 6 2
 intentry CODE 0 4 4 43 2
-bssBANK0 BANK0 1 5F 5F 2 1
-stringtext STRCODE 0 74E 74E 1A 2
-idataBANK0 CODE 0 79A 79A 8 2
-idataBANK1 CODE 0 7A2 7A2 8 2
-dataBANK0 BANK0 1 57 57 8 1
+bssBANK0 BANK0 1 5D 5D 4 1
+stringtext STRCODE 0 79B 79B 1A 2
+idataBANK0 CODE 0 7E3 7E3 6 2
+idataBANK1 CODE 0 7DB 7DB 8 2
+dataBANK0 BANK0 1 57 57 6 1
 dataBANK1 BANK1 1 A9 A9 8 1
-$C:\Users\Admin\AppData\Local\Temp\s358.obj
+$C:\Users\Admin\AppData\Local\Temp\s4co.obj
 reset_vec CODE 0 0 0 1 2
 end_init CODE 0 47 47 1 2
 config CONFIG 0 8007 8007 2 2
@@ -63,9 +63,9 @@ RAM B1-BF 1
 BANK0 61-6F 1
 BANK1 B1-BF 1
 CONST 1-3 2
-CONST 7B6-7FF 2
+CONST 7FB-7FF 2
 ENTRY 1-3 2
-ENTRY 7B6-7FF 2
+ENTRY 7FB-7FF 2
 IDLOC 8000-8003 2
 SFR10 500-56F 1
 SFR11 580-5EF 1
@@ -91,7 +91,7 @@ SFR30 F00-F6F 1
 SFR31 F80-FEF 1
 STACK 2041-204F 1
 CODE 1-3 2
-CODE 7B6-7FF 2
+CODE 7FB-7FF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-16F 1
@@ -105,9 +105,9 @@ SFR9 480-4EF 1
 BIGRAM 2000-206F 1
 EEDATA F000-F0FF 2
 STRCODE 1-3 2
-STRCODE 7B6-7FF 2
+STRCODE 7FB-7FF 2
 STRING 1-3 2
-STRING 7B6-7FF 2
+STRING 7FB-7FF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -122,34 +122,36 @@ STRING 7B6-7FF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\do_am.X.production.obj
-48 cinit CODE >1235:C:\Users\Admin\AppData\Local\Temp\s358.
-48 cinit CODE >1238:C:\Users\Admin\AppData\Local\Temp\s358.
-48 cinit CODE >1278:C:\Users\Admin\AppData\Local\Temp\s358.
-49 cinit CODE >1279:C:\Users\Admin\AppData\Local\Temp\s358.
-4A cinit CODE >1294:C:\Users\Admin\AppData\Local\Temp\s358.
-4B cinit CODE >1295:C:\Users\Admin\AppData\Local\Temp\s358.
-4C cinit CODE >1296:C:\Users\Admin\AppData\Local\Temp\s358.
-4D cinit CODE >1297:C:\Users\Admin\AppData\Local\Temp\s358.
-4E cinit CODE >1298:C:\Users\Admin\AppData\Local\Temp\s358.
-4F cinit CODE >1299:C:\Users\Admin\AppData\Local\Temp\s358.
-50 cinit CODE >1300:C:\Users\Admin\AppData\Local\Temp\s358.
-51 cinit CODE >1301:C:\Users\Admin\AppData\Local\Temp\s358.
-52 cinit CODE >1302:C:\Users\Admin\AppData\Local\Temp\s358.
-53 cinit CODE >1303:C:\Users\Admin\AppData\Local\Temp\s358.
-54 cinit CODE >1307:C:\Users\Admin\AppData\Local\Temp\s358.
-55 cinit CODE >1308:C:\Users\Admin\AppData\Local\Temp\s358.
-56 cinit CODE >1309:C:\Users\Admin\AppData\Local\Temp\s358.
-57 cinit CODE >1310:C:\Users\Admin\AppData\Local\Temp\s358.
-58 cinit CODE >1311:C:\Users\Admin\AppData\Local\Temp\s358.
-59 cinit CODE >1312:C:\Users\Admin\AppData\Local\Temp\s358.
-5A cinit CODE >1313:C:\Users\Admin\AppData\Local\Temp\s358.
-5B cinit CODE >1314:C:\Users\Admin\AppData\Local\Temp\s358.
-5C cinit CODE >1315:C:\Users\Admin\AppData\Local\Temp\s358.
-5D cinit CODE >1316:C:\Users\Admin\AppData\Local\Temp\s358.
-5E cinit CODE >1322:C:\Users\Admin\AppData\Local\Temp\s358.
-5E cinit CODE >1324:C:\Users\Admin\AppData\Local\Temp\s358.
-5F cinit CODE >1325:C:\Users\Admin\AppData\Local\Temp\s358.
-60 cinit CODE >1326:C:\Users\Admin\AppData\Local\Temp\s358.
+48 cinit CODE >1227:C:\Users\Admin\AppData\Local\Temp\s4co.
+48 cinit CODE >1230:C:\Users\Admin\AppData\Local\Temp\s4co.
+48 cinit CODE >1267:C:\Users\Admin\AppData\Local\Temp\s4co.
+49 cinit CODE >1268:C:\Users\Admin\AppData\Local\Temp\s4co.
+4A cinit CODE >1269:C:\Users\Admin\AppData\Local\Temp\s4co.
+4B cinit CODE >1270:C:\Users\Admin\AppData\Local\Temp\s4co.
+4C cinit CODE >1285:C:\Users\Admin\AppData\Local\Temp\s4co.
+4D cinit CODE >1286:C:\Users\Admin\AppData\Local\Temp\s4co.
+4E cinit CODE >1287:C:\Users\Admin\AppData\Local\Temp\s4co.
+4F cinit CODE >1288:C:\Users\Admin\AppData\Local\Temp\s4co.
+50 cinit CODE >1289:C:\Users\Admin\AppData\Local\Temp\s4co.
+51 cinit CODE >1290:C:\Users\Admin\AppData\Local\Temp\s4co.
+52 cinit CODE >1291:C:\Users\Admin\AppData\Local\Temp\s4co.
+53 cinit CODE >1292:C:\Users\Admin\AppData\Local\Temp\s4co.
+54 cinit CODE >1293:C:\Users\Admin\AppData\Local\Temp\s4co.
+55 cinit CODE >1294:C:\Users\Admin\AppData\Local\Temp\s4co.
+56 cinit CODE >1298:C:\Users\Admin\AppData\Local\Temp\s4co.
+57 cinit CODE >1299:C:\Users\Admin\AppData\Local\Temp\s4co.
+58 cinit CODE >1300:C:\Users\Admin\AppData\Local\Temp\s4co.
+59 cinit CODE >1301:C:\Users\Admin\AppData\Local\Temp\s4co.
+5A cinit CODE >1302:C:\Users\Admin\AppData\Local\Temp\s4co.
+5B cinit CODE >1303:C:\Users\Admin\AppData\Local\Temp\s4co.
+5C cinit CODE >1304:C:\Users\Admin\AppData\Local\Temp\s4co.
+5D cinit CODE >1305:C:\Users\Admin\AppData\Local\Temp\s4co.
+5E cinit CODE >1306:C:\Users\Admin\AppData\Local\Temp\s4co.
+5F cinit CODE >1307:C:\Users\Admin\AppData\Local\Temp\s4co.
+60 cinit CODE >1313:C:\Users\Admin\AppData\Local\Temp\s4co.
+60 cinit CODE >1315:C:\Users\Admin\AppData\Local\Temp\s4co.
+61 cinit CODE >1316:C:\Users\Admin\AppData\Local\Temp\s4co.
+62 cinit CODE >1317:C:\Users\Admin\AppData\Local\Temp\s4co.
 4 intentry CODE >98:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
 9 intentry CODE >100:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
 B intentry CODE >102:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
@@ -164,422 +166,427 @@ F intentry CODE >111:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
 41 intentry CODE >130:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
 41 intentry CODE >131:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
 42 intentry CODE >133:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-41A text24 CODE >135:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-41A text24 CODE >139:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-41B text24 CODE >142:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-420 text24 CODE >145:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-422 text24 CODE >146:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-423 text24 CODE >150:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-424 text24 CODE >156:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-426 text24 CODE >159:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-427 text24 CODE >161:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-432 text24 CODE >162:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-43D text24 CODE >164:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-43E text24 CODE >167:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-440 text24 CODE >168:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-443 text24 CODE >170:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-445 text24 CODE >171:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-446 text24 CODE >173:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-451 text24 CODE >174:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-455 text24 CODE >176:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-45A text24 CODE >178:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-45F text24 CODE >180:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-460 text24 CODE >182:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-462 text24 CODE >183:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-465 text24 CODE >184:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-468 text24 CODE >186:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-46A text24 CODE >189:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-46F text24 CODE >191:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-513 text23 CODE >80:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-514 text23 CODE >92:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-51E text23 CODE >93:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-523 text23 CODE >95:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-526 text23 CODE >96:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-529 text23 CODE >97:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-529 text23 CODE >98:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-52B text23 CODE >100:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-52C text23 CODE >102:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-52E text23 CODE >106:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-53A text23 CODE >107:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-53C text23 CODE >109:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-53F text23 CODE >113:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-541 text23 CODE >115:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-544 text23 CODE >118:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-546 text23 CODE >120:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-552 text23 CODE >122:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-554 text23 CODE >124:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-557 text23 CODE >128:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-559 text23 CODE >130:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-55C text23 CODE >132:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-55D text23 CODE >133:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-72B text22 CODE >351:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-72D text22 CODE >353:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-732 text22 CODE >361:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-732 text22 CODE >362:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-733 text22 CODE >363:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-734 text22 CODE >365:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-736 text22 CODE >368:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-73A text22 CODE >370:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-73B text22 CODE >357:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-749 text22 CODE >370:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-749 text22 CODE >392:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-74A text22 CODE >393:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-74D text22 CODE >394:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-4C2 text21 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4C2 text21 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4C3 text21 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4C5 text21 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4CA text21 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4CC text21 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4CE text21 CODE >20:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4D3 text21 CODE >21:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4D7 text21 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4D9 text21 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4DD text21 CODE >25:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4DF text21 CODE >26:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4E1 text21 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4E6 text21 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4EA text21 CODE >26:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4EB text21 CODE >31:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4F0 text21 CODE >32:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4F8 text21 CODE >33:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4FC text21 CODE >34:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4FD text21 CODE >36:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-502 text21 CODE >37:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-506 text21 CODE >39:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-509 text21 CODE >40:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-50E text21 CODE >41:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-637 text20 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-637 text20 CODE >13:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-638 text20 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-63A text20 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-63F text20 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-641 text20 CODE >18:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-643 text20 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-648 text20 CODE >20:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-64C text20 CODE >21:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-64E text20 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-650 text20 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-655 text20 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-659 text20 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-65A text20 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-662 text20 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-666 text20 CODE >29:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-66B text20 CODE >30:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-66F text20 CODE >32:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-672 text20 CODE >33:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-677 text20 CODE >34:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2E2 text19 CODE >317:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-2E2 text19 CODE >319:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-2F0 text19 CODE >320:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-2F7 text19 CODE >323:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-2F9 text19 CODE >325:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-2FD text19 CODE >326:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-303 text19 CODE >329:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-307 text19 CODE >331:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-319 text19 CODE >332:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-327 text19 CODE >333:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-32B text19 CODE >329:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-32C text19 CODE >335:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-32F text19 CODE >338:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-33F text19 CODE >341:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-34E text19 CODE >343:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-358 text19 CODE >341:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-77C text17 CODE >7:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-77C text17 CODE >10:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-77E text17 CODE >11:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-780 text17 CODE >13:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-785 text17 CODE >15:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-787 text17 CODE >17:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-78B text17 CODE >20:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-78C text17 CODE >22:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-78D text17 CODE >39:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-3C3 text16 CODE >135:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3C3 text16 CODE >139:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3C5 text16 CODE >142:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3CA text16 CODE >145:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3CC text16 CODE >146:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3CD text16 CODE >150:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3CE text16 CODE >156:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3D0 text16 CODE >159:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3D1 text16 CODE >161:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3DC text16 CODE >162:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3E7 text16 CODE >164:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3E8 text16 CODE >167:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3EA text16 CODE >168:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3ED text16 CODE >170:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3EF text16 CODE >171:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3F0 text16 CODE >173:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3FB text16 CODE >174:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-3FF text16 CODE >176:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-404 text16 CODE >178:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-409 text16 CODE >180:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-40A text16 CODE >182:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-40C text16 CODE >183:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-40F text16 CODE >184:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-413 text16 CODE >186:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-414 text16 CODE >189:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-419 text16 CODE >191:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-55E text15 CODE >80:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-560 text15 CODE >92:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-56A text15 CODE >93:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-56F text15 CODE >95:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-572 text15 CODE >96:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-574 text15 CODE >97:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-574 text15 CODE >98:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-575 text15 CODE >100:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-576 text15 CODE >102:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-578 text15 CODE >106:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-584 text15 CODE >107:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-586 text15 CODE >109:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-589 text15 CODE >113:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-58B text15 CODE >115:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-58E text15 CODE >118:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-590 text15 CODE >120:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-59C text15 CODE >122:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-59E text15 CODE >124:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5A1 text15 CODE >128:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5A3 text15 CODE >130:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5A6 text15 CODE >132:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5A7 text15 CODE >133:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-708 text14 CODE >351:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-70A text14 CODE >353:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-70F text14 CODE >361:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-70F text14 CODE >362:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-710 text14 CODE >363:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-711 text14 CODE >365:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-713 text14 CODE >368:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-717 text14 CODE >370:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-718 text14 CODE >357:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-726 text14 CODE >370:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-726 text14 CODE >392:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-727 text14 CODE >393:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-72A text14 CODE >394:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5A8 text13 CODE >207:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5AA text13 CODE >209:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5B2 text13 CODE >212:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5B8 text13 CODE >214:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5B9 text13 CODE >215:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5BA text13 CODE >216:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5BB text13 CODE >218:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5C0 text13 CODE >220:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5C1 text13 CODE >221:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5C2 text13 CODE >222:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5C3 text13 CODE >225:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5C4 text13 CODE >227:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5C6 text13 CODE >228:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5C7 text13 CODE >229:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5CA text13 CODE >230:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5CC text13 CODE >231:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5CF text13 CODE >234:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5D0 text13 CODE >239:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5D4 text13 CODE >240:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5D9 text13 CODE >243:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5DD text13 CODE >246:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5E3 text13 CODE >247:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-5EB text13 CODE >246:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-470 text12 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-470 text12 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-472 text12 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-474 text12 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-479 text12 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-47B text12 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-47D text12 CODE >20:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-482 text12 CODE >21:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-486 text12 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-488 text12 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-48C text12 CODE >25:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-48E text12 CODE >26:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-490 text12 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-495 text12 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-499 text12 CODE >26:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-49A text12 CODE >31:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-49F text12 CODE >32:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4A7 text12 CODE >33:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4AB text12 CODE >34:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4AC text12 CODE >36:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4B1 text12 CODE >37:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4B5 text12 CODE >39:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4B8 text12 CODE >40:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-4BD text12 CODE >41:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-5F1 text11 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-5F1 text11 CODE >13:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-5F3 text11 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-5F5 text11 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-5FA text11 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-5FC text11 CODE >18:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-5FE text11 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-603 text11 CODE >20:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-607 text11 CODE >21:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-609 text11 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-60B text11 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-610 text11 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-614 text11 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-615 text11 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-61D text11 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-621 text11 CODE >29:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-626 text11 CODE >30:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-62A text11 CODE >32:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-62D text11 CODE >33:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-632 text11 CODE >34:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-266 text10 CODE >317:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-266 text10 CODE >319:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-275 text10 CODE >320:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-27B text10 CODE >323:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-27D text10 CODE >325:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-281 text10 CODE >326:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-287 text10 CODE >329:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-28B text10 CODE >331:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-29D text10 CODE >332:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-2AB text10 CODE >333:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-2AF text10 CODE >329:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-2B0 text10 CODE >335:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-2B3 text10 CODE >338:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-2C3 text10 CODE >341:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-2D2 text10 CODE >343:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-2DC text10 CODE >341:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-67C text9 CODE >279:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-67C text9 CODE >281:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-684 text9 CODE >284:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-68D text9 CODE >286:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-691 text9 CODE >287:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-69A text9 CODE >289:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-6A1 text9 CODE >291:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-6A5 text9 CODE >295:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-6AA text9 CODE >301:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-6B3 text9 CODE >303:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-6B8 text9 CODE >281:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
-6E1 text8 CODE >40:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-6E3 text8 CODE >42:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-6EA text8 CODE >44:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-6F6 text8 CODE >47:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-6FC text8 CODE >50:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-6FE text8 CODE >53:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-700 text8 CODE >55:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
-35E text7 CODE >62:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-35E text7 CODE >64:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-367 text7 CODE >65:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-36E text7 CODE >67:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-372 text7 CODE >68:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-378 text7 CODE >66:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-37D text7 CODE >71:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-381 text7 CODE >72:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-38B text7 CODE >73:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-391 text7 CODE >70:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-391 text7 CODE >74:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-396 text7 CODE >76:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-398 text7 CODE >77:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-39E text7 CODE >75:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-3A4 text7 CODE >79:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-3A6 text7 CODE >80:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-3AC text7 CODE >81:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-3AE text7 CODE >82:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-3BE text7 CODE >83:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-3C1 text7 CODE >84:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-3C2 text7 CODE >86:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
-114 text6 CODE >62:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-114 text6 CODE >67:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-124 text6 CODE >68:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-12B text6 CODE >69:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-13A text6 CODE >70:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-141 text6 CODE >71:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-146 text6 CODE >72:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-156 text6 CODE >73:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-166 text6 CODE >74:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-16A text6 CODE >75:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-16B text6 CODE >77:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-16C text6 CODE >78:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-172 text6 CODE >79:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-178 text6 CODE >134:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-17C text6 CODE >136:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-17E text6 CODE >137:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-184 text6 CODE >138:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-18A text6 CODE >139:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-190 text6 CODE >140:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-194 text6 CODE >143:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-198 text6 CODE >145:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-19A text6 CODE >146:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-1A0 text6 CODE >147:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-1A6 text6 CODE >148:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-1AC text6 CODE >149:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-1B0 text6 CODE >156:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
-1C7 text5 CODE >44:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-1C7 text5 CODE >49:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-1D8 text5 CODE >50:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-1E2 text5 CODE >51:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-1F4 text5 CODE >52:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-1F6 text5 CODE >53:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-1FC text5 CODE >54:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-208 text5 CODE >55:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-20A text5 CODE >56:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-20C text5 CODE >57:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-211 text5 CODE >58:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-21B text5 CODE >60:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-223 text5 CODE >61:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-22C text5 CODE >63:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-230 text5 CODE >64:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-23A text5 CODE >66:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-242 text5 CODE >67:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-244 text5 CODE >65:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-244 text5 CODE >68:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-248 text5 CODE >70:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-24B text5 CODE >71:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-256 text5 CODE >72:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
-768 text4 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwtoft.c
-768 text4 CODE >30:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwtoft.c
-6B9 text3 CODE >8:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lm35_pic16.c
-6B9 text3 CODE >14:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lm35_pic16.c
-6C0 text3 CODE >28:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lm35_pic16.c
-7B0 text2 CODE >64:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-7B0 text2 CODE >67:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-7B2 text2 CODE >68:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-7B3 text2 CODE >70:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-7B5 text2 CODE >78:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-78E text1 CODE >79:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-78E text1 CODE >82:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-78F text1 CODE >84:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-791 text1 CODE >85:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-793 text1 CODE >88:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-795 text1 CODE >90:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-796 text1 CODE >91:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-797 text1 CODE >94:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-798 text1 CODE >96:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-799 text1 CODE >97:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-61 maintext CODE >134:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-61 maintext CODE >137:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-63 maintext CODE >140:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-64 maintext CODE >143:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-65 maintext CODE >146:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-66 maintext CODE >151:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-68 maintext CODE >152:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-69 maintext CODE >155:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-6C maintext CODE >157:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-76 maintext CODE >159:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-80 maintext CODE >161:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-8A maintext CODE >163:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-95 maintext CODE >165:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-A0 maintext CODE >167:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-AA maintext CODE >172:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-B0 maintext CODE >174:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-CE maintext CODE >176:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-D8 maintext CODE >177:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-DA maintext CODE >178:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-DB maintext CODE >179:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-DC maintext CODE >182:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-F6 maintext CODE >184:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-100 maintext CODE >185:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-102 maintext CODE >186:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-103 maintext CODE >188:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-103 maintext CODE >196:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-113 maintext CODE >169:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
-7AA inittext CODE >1283:C:\Users\Admin\AppData\Local\Temp\s358.
-7AA inittext CODE >1284:C:\Users\Admin\AppData\Local\Temp\s358.
-7AB inittext CODE >1285:C:\Users\Admin\AppData\Local\Temp\s358.
-7AB inittext CODE >1286:C:\Users\Admin\AppData\Local\Temp\s358.
-7AC inittext CODE >1287:C:\Users\Admin\AppData\Local\Temp\s358.
-7AD inittext CODE >1288:C:\Users\Admin\AppData\Local\Temp\s358.
-7AE inittext CODE >1289:C:\Users\Admin\AppData\Local\Temp\s358.
-7AF inittext CODE >1290:C:\Users\Admin\AppData\Local\Temp\s358.
+467 text24 CODE >135:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+467 text24 CODE >139:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+468 text24 CODE >142:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+46D text24 CODE >145:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+46F text24 CODE >146:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+470 text24 CODE >150:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+471 text24 CODE >156:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+473 text24 CODE >159:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+474 text24 CODE >161:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+47F text24 CODE >162:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+48A text24 CODE >164:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+48B text24 CODE >167:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+48D text24 CODE >168:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+490 text24 CODE >170:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+492 text24 CODE >171:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+493 text24 CODE >173:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+49E text24 CODE >174:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+4A2 text24 CODE >176:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+4A7 text24 CODE >178:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+4AC text24 CODE >180:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+4AD text24 CODE >182:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+4AF text24 CODE >183:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+4B2 text24 CODE >184:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+4B5 text24 CODE >186:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+4B7 text24 CODE >189:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+4BC text24 CODE >191:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+560 text23 CODE >80:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+561 text23 CODE >92:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+56B text23 CODE >93:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+570 text23 CODE >95:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+573 text23 CODE >96:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+576 text23 CODE >97:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+576 text23 CODE >98:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+578 text23 CODE >100:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+579 text23 CODE >102:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+57B text23 CODE >106:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+587 text23 CODE >107:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+589 text23 CODE >109:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+58C text23 CODE >113:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+58E text23 CODE >115:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+591 text23 CODE >118:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+593 text23 CODE >120:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+59F text23 CODE >122:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5A1 text23 CODE >124:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5A4 text23 CODE >128:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5A6 text23 CODE >130:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5A9 text23 CODE >132:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5AA text23 CODE >133:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+778 text22 CODE >355:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+77A text22 CODE >357:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+77F text22 CODE >365:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+77F text22 CODE >366:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+780 text22 CODE >367:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+781 text22 CODE >369:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+783 text22 CODE >372:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+787 text22 CODE >374:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+788 text22 CODE >361:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+796 text22 CODE >374:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+796 text22 CODE >396:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+797 text22 CODE >397:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+79A text22 CODE >398:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+50F text21 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+50F text21 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+510 text21 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+512 text21 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+517 text21 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+519 text21 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+51B text21 CODE >20:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+520 text21 CODE >21:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+524 text21 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+526 text21 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+52A text21 CODE >25:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+52C text21 CODE >26:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+52E text21 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+533 text21 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+537 text21 CODE >26:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+538 text21 CODE >31:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+53D text21 CODE >32:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+545 text21 CODE >33:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+549 text21 CODE >34:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+54A text21 CODE >36:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+54F text21 CODE >37:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+553 text21 CODE >39:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+556 text21 CODE >40:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+55B text21 CODE >41:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+684 text20 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+684 text20 CODE >13:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+685 text20 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+687 text20 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+68C text20 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+68E text20 CODE >18:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+690 text20 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+695 text20 CODE >20:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+699 text20 CODE >21:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+69B text20 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+69D text20 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+6A2 text20 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+6A6 text20 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+6A7 text20 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+6AF text20 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+6B3 text20 CODE >29:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+6B8 text20 CODE >30:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+6BC text20 CODE >32:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+6BF text20 CODE >33:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+6C4 text20 CODE >34:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+32B text19 CODE >317:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+32B text19 CODE >319:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+339 text19 CODE >320:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+340 text19 CODE >322:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+343 text19 CODE >324:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+344 text19 CODE >327:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+346 text19 CODE >329:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+34A text19 CODE >330:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+350 text19 CODE >333:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+354 text19 CODE >335:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+366 text19 CODE >336:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+374 text19 CODE >337:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+378 text19 CODE >333:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+379 text19 CODE >339:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+37C text19 CODE >342:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+38C text19 CODE >345:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+39B text19 CODE >347:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+3A5 text19 CODE >345:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+7C9 text17 CODE >7:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+7C9 text17 CODE >10:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+7CB text17 CODE >11:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+7CD text17 CODE >13:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+7D2 text17 CODE >15:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+7D4 text17 CODE >17:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+7D8 text17 CODE >20:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+7D9 text17 CODE >22:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+7DA text17 CODE >39:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+410 text16 CODE >135:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+410 text16 CODE >139:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+412 text16 CODE >142:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+417 text16 CODE >145:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+419 text16 CODE >146:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+41A text16 CODE >150:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+41B text16 CODE >156:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+41D text16 CODE >159:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+41E text16 CODE >161:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+429 text16 CODE >162:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+434 text16 CODE >164:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+435 text16 CODE >167:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+437 text16 CODE >168:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+43A text16 CODE >170:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+43C text16 CODE >171:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+43D text16 CODE >173:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+448 text16 CODE >174:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+44C text16 CODE >176:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+451 text16 CODE >178:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+456 text16 CODE >180:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+457 text16 CODE >182:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+459 text16 CODE >183:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+45C text16 CODE >184:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+460 text16 CODE >186:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+461 text16 CODE >189:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+466 text16 CODE >191:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5AB text15 CODE >80:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5AD text15 CODE >92:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5B7 text15 CODE >93:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5BC text15 CODE >95:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5BF text15 CODE >96:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5C1 text15 CODE >97:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5C1 text15 CODE >98:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5C2 text15 CODE >100:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5C3 text15 CODE >102:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5C5 text15 CODE >106:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5D1 text15 CODE >107:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5D3 text15 CODE >109:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5D6 text15 CODE >113:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5D8 text15 CODE >115:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5DB text15 CODE >118:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5DD text15 CODE >120:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5E9 text15 CODE >122:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5EB text15 CODE >124:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5EE text15 CODE >128:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5F0 text15 CODE >130:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5F3 text15 CODE >132:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5F4 text15 CODE >133:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+755 text14 CODE >355:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+757 text14 CODE >357:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+75C text14 CODE >365:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+75C text14 CODE >366:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+75D text14 CODE >367:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+75E text14 CODE >369:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+760 text14 CODE >372:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+764 text14 CODE >374:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+765 text14 CODE >361:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+773 text14 CODE >374:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+773 text14 CODE >396:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+774 text14 CODE >397:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+777 text14 CODE >398:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5F5 text13 CODE >207:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5F7 text13 CODE >209:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+5FF text13 CODE >212:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+605 text13 CODE >214:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+606 text13 CODE >215:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+607 text13 CODE >216:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+608 text13 CODE >218:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+60D text13 CODE >220:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+60E text13 CODE >221:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+60F text13 CODE >222:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+610 text13 CODE >225:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+611 text13 CODE >227:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+613 text13 CODE >228:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+614 text13 CODE >229:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+617 text13 CODE >230:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+619 text13 CODE >231:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+61C text13 CODE >234:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+61D text13 CODE >239:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+621 text13 CODE >240:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+626 text13 CODE >243:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+62A text13 CODE >246:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+630 text13 CODE >247:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+638 text13 CODE >246:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+4BD text12 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4BD text12 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4BF text12 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4C1 text12 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4C6 text12 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4C8 text12 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4CA text12 CODE >20:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4CF text12 CODE >21:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4D3 text12 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4D5 text12 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4D9 text12 CODE >25:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4DB text12 CODE >26:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4DD text12 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4E2 text12 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4E6 text12 CODE >26:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4E7 text12 CODE >31:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4EC text12 CODE >32:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4F4 text12 CODE >33:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4F8 text12 CODE >34:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4F9 text12 CODE >36:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+4FE text12 CODE >37:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+502 text12 CODE >39:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+505 text12 CODE >40:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+50A text12 CODE >41:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+63E text11 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+63E text11 CODE >13:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+640 text11 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+642 text11 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+647 text11 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+649 text11 CODE >18:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+64B text11 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+650 text11 CODE >20:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+654 text11 CODE >21:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+656 text11 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+658 text11 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+65D text11 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+661 text11 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+662 text11 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+66A text11 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+66E text11 CODE >29:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+673 text11 CODE >30:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+677 text11 CODE >32:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+67A text11 CODE >33:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+67F text11 CODE >34:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+2AB text10 CODE >317:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2AB text10 CODE >319:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2BA text10 CODE >320:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2C0 text10 CODE >322:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2C3 text10 CODE >324:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2C4 text10 CODE >327:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2C6 text10 CODE >329:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2CA text10 CODE >330:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2D0 text10 CODE >333:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2D4 text10 CODE >335:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2E6 text10 CODE >336:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2F4 text10 CODE >337:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2F8 text10 CODE >333:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2F9 text10 CODE >339:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+2FC text10 CODE >342:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+30C text10 CODE >345:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+31B text10 CODE >347:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+325 text10 CODE >345:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+6C9 text9 CODE >279:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+6C9 text9 CODE >281:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+6D1 text9 CODE >284:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+6DA text9 CODE >286:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+6DE text9 CODE >287:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+6E7 text9 CODE >289:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+6EE text9 CODE >291:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+6F2 text9 CODE >295:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+6F7 text9 CODE >301:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+700 text9 CODE >303:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+705 text9 CODE >281:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+72E text8 CODE >40:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+730 text8 CODE >42:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+737 text8 CODE >44:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+743 text8 CODE >47:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+749 text8 CODE >50:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+74B text8 CODE >53:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+74D text8 CODE >55:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+3AB text7 CODE >62:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3AB text7 CODE >64:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3B4 text7 CODE >65:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3BB text7 CODE >67:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3BF text7 CODE >68:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3C5 text7 CODE >66:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3CA text7 CODE >71:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3CE text7 CODE >72:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3D8 text7 CODE >73:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3DE text7 CODE >70:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3DE text7 CODE >74:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3E3 text7 CODE >76:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3E5 text7 CODE >77:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3EB text7 CODE >75:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3F1 text7 CODE >79:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3F3 text7 CODE >80:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3F9 text7 CODE >81:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+3FB text7 CODE >82:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+40B text7 CODE >83:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+40E text7 CODE >84:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+40F text7 CODE >86:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+159 text6 CODE >62:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+159 text6 CODE >67:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+169 text6 CODE >68:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+170 text6 CODE >69:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+17F text6 CODE >70:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+186 text6 CODE >71:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+18B text6 CODE >72:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+19B text6 CODE >73:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1AB text6 CODE >74:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1AF text6 CODE >75:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1B0 text6 CODE >77:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1B1 text6 CODE >78:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1B7 text6 CODE >79:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1BD text6 CODE >134:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1C1 text6 CODE >136:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1C3 text6 CODE >137:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1C9 text6 CODE >138:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1CF text6 CODE >139:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1D5 text6 CODE >140:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1D9 text6 CODE >143:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1DD text6 CODE >145:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1DF text6 CODE >146:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1E5 text6 CODE >147:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1EB text6 CODE >148:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1F1 text6 CODE >149:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+1F5 text6 CODE >156:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+20C text5 CODE >44:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+20C text5 CODE >49:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+21D text5 CODE >50:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+227 text5 CODE >51:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+239 text5 CODE >52:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+23B text5 CODE >53:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+241 text5 CODE >54:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+24D text5 CODE >55:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+24F text5 CODE >56:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+251 text5 CODE >57:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+256 text5 CODE >58:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+260 text5 CODE >60:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+268 text5 CODE >61:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+271 text5 CODE >63:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+275 text5 CODE >64:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+27F text5 CODE >66:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+287 text5 CODE >67:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+289 text5 CODE >65:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+289 text5 CODE >68:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+28D text5 CODE >70:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+290 text5 CODE >71:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+29B text5 CODE >72:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+7B5 text4 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwtoft.c
+7B5 text4 CODE >30:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwtoft.c
+706 text3 CODE >8:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lm35_pic16.c
+706 text3 CODE >14:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lm35_pic16.c
+70D text3 CODE >28:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lm35_pic16.c
+7F5 text2 CODE >64:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+7F5 text2 CODE >67:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+7F7 text2 CODE >68:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+7F8 text2 CODE >70:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+7FA text2 CODE >78:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+7EF text1 CODE >79:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+7EF text1 CODE >82:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+7F0 text1 CODE >84:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+7F2 text1 CODE >85:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+7F4 text1 CODE >97:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+63 maintext CODE >134:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+63 maintext CODE >137:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+65 maintext CODE >140:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+66 maintext CODE >143:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+67 maintext CODE >146:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+68 maintext CODE >151:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+6A maintext CODE >152:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+6B maintext CODE >155:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+6E maintext CODE >157:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+78 maintext CODE >159:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+82 maintext CODE >161:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+8C maintext CODE >163:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+97 maintext CODE >165:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+A2 maintext CODE >167:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+AC maintext CODE >169:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+BD maintext CODE >170:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+CD maintext CODE >174:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+D3 maintext CODE >176:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+F1 maintext CODE >178:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+FB maintext CODE >179:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+FD maintext CODE >180:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+FE maintext CODE >181:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+FF maintext CODE >184:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+119 maintext CODE >186:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+123 maintext CODE >187:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+125 maintext CODE >188:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+126 maintext CODE >191:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+129 maintext CODE >193:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+12D maintext CODE >194:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+13A maintext CODE >196:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+13D maintext CODE >199:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+14E maintext CODE >201:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+158 maintext CODE >191:D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+7E9 inittext CODE >1274:C:\Users\Admin\AppData\Local\Temp\s4co.
+7E9 inittext CODE >1275:C:\Users\Admin\AppData\Local\Temp\s4co.
+7EA inittext CODE >1276:C:\Users\Admin\AppData\Local\Temp\s4co.
+7EA inittext CODE >1277:C:\Users\Admin\AppData\Local\Temp\s4co.
+7EB inittext CODE >1278:C:\Users\Admin\AppData\Local\Temp\s4co.
+7EC inittext CODE >1279:C:\Users\Admin\AppData\Local\Temp\s4co.
+7ED inittext CODE >1280:C:\Users\Admin\AppData\Local\Temp\s4co.
+7EE inittext CODE >1281:C:\Users\Admin\AppData\Local\Temp\s4co.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -602,7 +609,7 @@ __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __HidataBANK0 0 0 ABS 0 idataBANK0 -
 __HidataBANK1 0 0 ABS 0 idataBANK1 -
-_curTemp 5F 0 BANK0 1 bssBANK0 dist/default/production\do_am.X.production.obj
+_curTemp 5D 0 BANK0 1 bssBANK0 dist/default/production\do_am.X.production.obj
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 i1___awdiv@dividend 72 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
 ltemp0 7E 0 ABS 0 - dist/default/production\do_am.X.production.obj
@@ -612,12 +619,12 @@ ltemp3 80 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __Lstringtext 0 0 ABS 0 stringtext -
 __Hstrings 0 0 ABS 0 strings -
 __size_ofi1_LCDWriteInt 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
-___sp 0 0 STACK 2 stack C:\Users\Admin\AppData\Local\Temp\s358.obj
-_main C2 0 CODE 0 maintext dist/default/production\do_am.X.production.obj
+___sp 0 0 STACK 2 stack C:\Users\Admin\AppData\Local\Temp\s4co.obj
+_main C6 0 CODE 0 maintext dist/default/production\do_am.X.production.obj
 btemp 7E 0 ABS 0 - dist/default/production\do_am.X.production.obj
-__end_of_LCDWriteInt 5C4 0 CODE 0 text10 dist/default/production\do_am.X.production.obj
+__end_of_LCDWriteInt 656 0 CODE 0 text10 dist/default/production\do_am.X.production.obj
 ltemp 7E 0 ABS 0 - dist/default/production\do_am.X.production.obj
-start 8E 0 CODE 0 init C:\Users\Admin\AppData\Local\Temp\s358.obj
+start 8E 0 CODE 0 init C:\Users\Admin\AppData\Local\Temp\s4co.obj
 ttemp 7E 0 ABS 0 - dist/default/production\do_am.X.production.obj
 wtemp 7E 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __size_of___awdiv 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
@@ -637,13 +644,13 @@ ttemp1 81 0 ABS 0 - dist/default/production\do_am.X.production.obj
 ttemp2 84 0 ABS 0 - dist/default/production\do_am.X.production.obj
 ttemp3 87 0 ABS 0 - dist/default/production\do_am.X.production.obj
 ttemp4 7F 0 ABS 0 - dist/default/production\do_am.X.production.obj
-intlevel0 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s358.obj
-intlevel1 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s358.obj
-intlevel2 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s358.obj
-intlevel3 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s358.obj
-intlevel4 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s358.obj
-intlevel5 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s358.obj
-__end_ofi1_LCDWriteInt 6BC 0 CODE 0 text19 dist/default/production\do_am.X.production.obj
+intlevel0 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s4co.obj
+intlevel1 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s4co.obj
+intlevel2 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s4co.obj
+intlevel3 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s4co.obj
+intlevel4 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s4co.obj
+intlevel5 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s4co.obj
+__end_ofi1_LCDWriteInt 756 0 CODE 0 text19 dist/default/production\do_am.X.production.obj
 wtemp0 7E 0 ABS 0 - dist/default/production\do_am.X.production.obj
 wtemp1 80 0 ABS 0 - dist/default/production\do_am.X.production.obj
 wtemp2 82 0 ABS 0 - dist/default/production\do_am.X.production.obj
@@ -654,12 +661,12 @@ wtemp6 7F 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __Hfunctab 0 0 CODE 0 functab -
 ___awdiv@sign 35 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __Hclrtext 0 0 ABS 0 clrtext -
-_tuneUpTemp 5C 0 BANK0 1 dataBANK0 dist/default/production\do_am.X.production.obj
+_tuneUpTemp 5F 0 BANK0 1 bssBANK0 dist/default/production\do_am.X.production.obj
 ___ftmul@f1 3B 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 ___ftmul@f2 3E 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 _ADRESH 9C 0 ABS 0 - dist/default/production\do_am.X.production.obj
 _ADRESL 9B 0 ABS 0 - dist/default/production\do_am.X.production.obj
-__end_of_LCDGotoXY E56 0 CODE 0 text14 dist/default/production\do_am.X.production.obj
+__end_of_LCDGotoXY EF0 0 CODE 0 text14 dist/default/production\do_am.X.production.obj
 LCDWriteInt@i 47 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 LCDWriteInt@j 45 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 ___awdiv@dividend 31 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
@@ -670,39 +677,39 @@ i1___awmod@divisor 70 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.pr
 __CFG_CP$ON 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 LCDBusyLoop@status 33 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 ___fttol@f1 4B 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
-__end_ofi1___awdiv A26 0 CODE 0 text21 dist/default/production\do_am.X.production.obj
-__end_ofi1___awmod CF8 0 CODE 0 text20 dist/default/production\do_am.X.production.obj
+__end_ofi1___awdiv AC0 0 CODE 0 text21 dist/default/production\do_am.X.production.obj
+__end_ofi1___awmod D92 0 CODE 0 text20 dist/default/production\do_am.X.production.obj
 __Lmaintext 0 0 ABS 0 maintext -
 ___awdiv@divisor 2F 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __size_ofi1___awdiv 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __size_ofi1___awmod 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
-_LCDGotoXY E10 0 CODE 0 text14 dist/default/production\do_am.X.production.obj
+_LCDGotoXY EAA 0 CODE 0 text14 dist/default/production\do_am.X.production.obj
 __size_of___ftpack 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
-__end_of___awdiv 984 0 CODE 0 text12 dist/default/production\do_am.X.production.obj
-__end_of___awmod C6E 0 CODE 0 text11 dist/default/production\do_am.X.production.obj
-__end_of___ftmul 38E 0 CODE 0 text6 dist/default/production\do_am.X.production.obj
-__end_of___fttol 4CC 0 CODE 0 text5 dist/default/production\do_am.X.production.obj
-__end_ofi1_LCDByte ABC 0 CODE 0 text23 dist/default/production\do_am.X.production.obj
+__end_of___awdiv A1E 0 CODE 0 text12 dist/default/production\do_am.X.production.obj
+__end_of___awmod D08 0 CODE 0 text11 dist/default/production\do_am.X.production.obj
+__end_of___ftmul 418 0 CODE 0 text6 dist/default/production\do_am.X.production.obj
+__end_of___fttol 556 0 CODE 0 text5 dist/default/production\do_am.X.production.obj
+__end_ofi1_LCDByte B56 0 CODE 0 text23 dist/default/production\do_am.X.production.obj
 __size_ofi1_LCDByte 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
-_LCDBusyLoop 786 0 CODE 0 text16 dist/default/production\do_am.X.production.obj
-__end_of_LCDByte B50 0 CODE 0 text15 dist/default/production\do_am.X.production.obj
-__end_of_LCDInit BE2 0 CODE 0 text13 dist/default/production\do_am.X.production.obj
-i1___awdiv 984 0 CODE 0 text21 dist/default/production\do_am.X.production.obj
-i1___awmod C6E 0 CODE 0 text20 dist/default/production\do_am.X.production.obj
+_LCDBusyLoop 820 0 CODE 0 text16 dist/default/production\do_am.X.production.obj
+__end_of_LCDByte BEA 0 CODE 0 text15 dist/default/production\do_am.X.production.obj
+__end_of_LCDInit C7C 0 CODE 0 text13 dist/default/production\do_am.X.production.obj
+i1___awdiv A1E 0 CODE 0 text21 dist/default/production\do_am.X.production.obj
+i1___awmod D08 0 CODE 0 text20 dist/default/production\do_am.X.production.obj
 LCDWriteString@cc 3E 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __size_of___lwtoft 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __CFG_MCLRE$OFF 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 start_initialization 90 0 CODE 0 cinit dist/default/production\do_am.X.production.obj
 i1LCDBusyLoop@busy 72 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
 i1LCDBusyLoop@temp 73 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
-i1_LCDByte A26 0 CODE 0 text23 dist/default/production\do_am.X.production.obj
+i1_LCDByte AC0 0 CODE 0 text23 dist/default/production\do_am.X.production.obj
 LCDWriteInt@str 40 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 LCDWriteInt@val 3B 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __size_of_LCDWriteInt 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 _TRISAbits 8C 0 ABS 0 - dist/default/production\do_am.X.production.obj
 _TRISCbits 8E 0 ABS 0 - dist/default/production\do_am.X.production.obj
-_ADCInit EF8 0 CODE 0 text17 dist/default/production\do_am.X.production.obj
-_TriggerOutInit F60 0 CODE 0 text2 dist/default/production\do_am.X.production.obj
+_ADCInit F92 0 CODE 0 text17 dist/default/production\do_am.X.production.obj
+_TriggerOutInit FEA 0 CODE 0 text2 dist/default/production\do_am.X.production.obj
 __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __pcstackBANK1 A0 0 BANK1 1 cstackBANK1 dist/default/production\do_am.X.production.obj
 ___fttol@exp1 A5 0 BANK1 1 cstackBANK1 dist/default/production\do_am.X.production.obj
@@ -711,15 +718,15 @@ __size_of_TuneButtonInit 0 0 ABS 0 - dist/default/production\do_am.X.production.
 i1LCDByte@hn 78 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
 i1LCDByte@ln 79 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
 LCDByte@temp 3A 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
-___ftpack 6BC 0 CODE 0 text7 dist/default/production\do_am.X.production.obj
-__end_ofi1_LCDGotoXY E9C 0 CODE 0 text22 dist/default/production\do_am.X.production.obj
+___ftpack 756 0 CODE 0 text7 dist/default/production\do_am.X.production.obj
+__end_ofi1_LCDGotoXY F36 0 CODE 0 text22 dist/default/production\do_am.X.production.obj
 ___ftpack@arg 2F 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 ___ftpack@exp 32 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 i1___awdiv@counter 75 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
-__end_of_ReadADC E10 0 CODE 0 text8 dist/default/production\do_am.X.production.obj
-___int_sp 0 0 STACK 2 stack C:\Users\Admin\AppData\Local\Temp\s358.obj
-__end_of___ftpack 786 0 CODE 0 text7 dist/default/production\do_am.X.production.obj
-_LM35ReadTemp D72 0 CODE 0 text3 dist/default/production\do_am.X.production.obj
+__end_of_ReadADC EAA 0 CODE 0 text8 dist/default/production\do_am.X.production.obj
+___int_sp 0 0 STACK 2 stack C:\Users\Admin\AppData\Local\Temp\s4co.obj
+__end_of___ftpack 820 0 CODE 0 text7 dist/default/production\do_am.X.production.obj
+_LM35ReadTemp E0C 0 CODE 0 text3 dist/default/production\do_am.X.production.obj
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 BANK2 1 bank2 -
@@ -730,7 +737,7 @@ __Hbank6 0 0 BANK6 1 bank6 -
 __Hbank7 0 0 BANK7 1 bank7 -
 __Hbank8 0 0 BANK8 1 bank8 -
 __Hbank9 0 0 BANK9 1 bank9 -
-__Hcinit C2 0 CODE 0 cinit -
+__Hcinit C6 0 CODE 0 cinit -
 __Hidloc 0 0 IDLOC 0 idloc -
 __Hsfr10 0 0 ABS 0 sfr10 -
 __Hsfr11 0 0 ABS 0 sfr11 -
@@ -783,7 +790,7 @@ LCDWriteInt@F2516 57 0 BANK0 1 dataBANK0 dist/default/production\do_am.X.product
 __CFG_FOSC$INTOSC 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 10012 0 CONFIG 0 config -
-___lwtoft ED0 0 CODE 0 text4 dist/default/production\do_am.X.production.obj
+___lwtoft F6A 0 CODE 0 text4 dist/default/production\do_am.X.production.obj
 __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 BANK2 1 bank2 -
@@ -820,8 +827,8 @@ __Lsfr29 0 0 ABS 0 sfr29 -
 __Lsfr30 0 0 ABS 0 sfr30 -
 __Lsfr31 0 0 ABS 0 sfr31 -
 __Lstack 0 0 STACK 2 stack -
-init_ram F54 0 CODE 0 inittext dist/default/production\do_am.X.production.obj
-__end_of___lwtoft EF8 0 CODE 0 text4 dist/default/production\do_am.X.production.obj
+init_ram FD2 0 CODE 0 inittext dist/default/production\do_am.X.production.obj
+__end_of___lwtoft F92 0 CODE 0 text4 dist/default/production\do_am.X.production.obj
 __Linittext 0 0 ABS 0 inittext -
 _INTCONbits B 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __Habs1 0 0 ABS 0 abs1 -
@@ -852,8 +859,8 @@ __Lsfr7 0 0 ABS 0 sfr7 -
 __Lsfr8 0 0 ABS 0 sfr8 -
 __Lsfr9 0 0 ABS 0 sfr9 -
 __Ltext 0 0 ABS 0 text -
-i1_LCDBusyLoop 834 0 CODE 0 text24 dist/default/production\do_am.X.production.obj
-__end_of_TriggerOutInit F6C 0 CODE 0 text2 dist/default/production\do_am.X.production.obj
+i1_LCDBusyLoop 8CE 0 CODE 0 text24 dist/default/production\do_am.X.production.obj
+__end_of_TriggerOutInit FF6 0 CODE 0 text2 dist/default/production\do_am.X.production.obj
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __LcstackBANK1 0 0 ABS 0 cstackBANK1 -
 int$flags 7E 0 ABS 0 - dist/default/production\do_am.X.production.obj
@@ -873,12 +880,12 @@ LCDGotoXY@x 3D 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.
 LCDGotoXY@y 3B 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __size_of_LM35ReadTemp 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __CFG_PLLEN$ON 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
-_tuneUpTempDir 5E 0 BANK0 1 dataBANK0 dist/default/production\do_am.X.production.obj
+_tuneUpTempDir 5C 0 BANK0 1 dataBANK0 dist/default/production\do_am.X.production.obj
 __end_of_ISR 8E 0 CODE 0 intentry dist/default/production\do_am.X.production.obj
 __CFG_BOREN$ON 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\Admin\AppData\Local\Temp\s358.obj
-__end_of_LM35ReadTemp DC2 0 CODE 0 text3 dist/default/production\do_am.X.production.obj
+reset_vec 0 0 CODE 0 reset_vec C:\Users\Admin\AppData\Local\Temp\s4co.obj
+__end_of_LM35ReadTemp E5C 0 CODE 0 text3 dist/default/production\do_am.X.production.obj
 i1LCDByte@temp 7B 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
 __pdataBANK0 57 0 BANK0 1 dataBANK0 dist/default/production\do_am.X.production.obj
 __pdataBANK1 A9 0 BANK1 1 dataBANK1 dist/default/production\do_am.X.production.obj
@@ -888,29 +895,28 @@ i1___awdiv@quotient 77 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.p
 _IOCAFbits 393 0 ABS 0 - dist/default/production\do_am.X.production.obj
 LCDWriteInt@field_length 3D 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 ___awmod@counter 34 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
-_IOCAPbits 391 0 ABS 0 - dist/default/production\do_am.X.production.obj
 i1___awmod@sign 76 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
 i1___awmod@dividend 72 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
 ?_LM35ReadTemp 53 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
-__ptext10 4CC 0 CODE 0 text10 dist/default/production\do_am.X.production.obj
-__ptext11 BE2 0 CODE 0 text11 dist/default/production\do_am.X.production.obj
-__ptext12 8E0 0 CODE 0 text12 dist/default/production\do_am.X.production.obj
-__ptext13 B50 0 CODE 0 text13 dist/default/production\do_am.X.production.obj
-__ptext14 E10 0 CODE 0 text14 dist/default/production\do_am.X.production.obj
-__ptext15 ABC 0 CODE 0 text15 dist/default/production\do_am.X.production.obj
-__ptext16 786 0 CODE 0 text16 dist/default/production\do_am.X.production.obj
-__ptext17 EF8 0 CODE 0 text17 dist/default/production\do_am.X.production.obj
-__ptext19 5C4 0 CODE 0 text19 dist/default/production\do_am.X.production.obj
-__ptext20 C6E 0 CODE 0 text20 dist/default/production\do_am.X.production.obj
-__ptext21 984 0 CODE 0 text21 dist/default/production\do_am.X.production.obj
-__ptext22 E56 0 CODE 0 text22 dist/default/production\do_am.X.production.obj
-__ptext23 A26 0 CODE 0 text23 dist/default/production\do_am.X.production.obj
-__ptext24 834 0 CODE 0 text24 dist/default/production\do_am.X.production.obj
-___awdiv 8E0 0 CODE 0 text12 dist/default/production\do_am.X.production.obj
-___awmod BE2 0 CODE 0 text11 dist/default/production\do_am.X.production.obj
+__ptext10 556 0 CODE 0 text10 dist/default/production\do_am.X.production.obj
+__ptext11 C7C 0 CODE 0 text11 dist/default/production\do_am.X.production.obj
+__ptext12 97A 0 CODE 0 text12 dist/default/production\do_am.X.production.obj
+__ptext13 BEA 0 CODE 0 text13 dist/default/production\do_am.X.production.obj
+__ptext14 EAA 0 CODE 0 text14 dist/default/production\do_am.X.production.obj
+__ptext15 B56 0 CODE 0 text15 dist/default/production\do_am.X.production.obj
+__ptext16 820 0 CODE 0 text16 dist/default/production\do_am.X.production.obj
+__ptext17 F92 0 CODE 0 text17 dist/default/production\do_am.X.production.obj
+__ptext19 656 0 CODE 0 text19 dist/default/production\do_am.X.production.obj
+__ptext20 D08 0 CODE 0 text20 dist/default/production\do_am.X.production.obj
+__ptext21 A1E 0 CODE 0 text21 dist/default/production\do_am.X.production.obj
+__ptext22 EF0 0 CODE 0 text22 dist/default/production\do_am.X.production.obj
+__ptext23 AC0 0 CODE 0 text23 dist/default/production\do_am.X.production.obj
+__ptext24 8CE 0 CODE 0 text24 dist/default/production\do_am.X.production.obj
+___awdiv 97A 0 CODE 0 text12 dist/default/production\do_am.X.production.obj
+___awmod C7C 0 CODE 0 text11 dist/default/production\do_am.X.production.obj
 ___cgram A9 0 BANK1 1 dataBANK1 dist/default/production\do_am.X.production.obj
-___ftmul 228 0 CODE 0 text6 dist/default/production\do_am.X.production.obj
-___fttol 38E 0 CODE 0 text5 dist/default/production\do_am.X.production.obj
+___ftmul 2B2 0 CODE 0 text6 dist/default/production\do_am.X.production.obj
+___fttol 418 0 CODE 0 text5 dist/default/production\do_am.X.production.obj
 __Lbank10 0 0 BANK10 1 bank10 -
 __Lbank11 0 0 BANK11 1 bank11 -
 __Lbank12 0 0 BANK12 1 bank12 -
@@ -933,7 +939,7 @@ __Lbank28 0 0 BANK28 1 bank28 -
 __Lbank29 0 0 BANK29 1 bank29 -
 __Lbank30 0 0 BANK30 1 bank30 -
 __Lbank31 0 0 BANK31 1 bank31 -
-__pmaintext C2 0 CODE 0 maintext dist/default/production\do_am.X.production.obj
+__pmaintext C6 0 CODE 0 maintext dist/default/production\do_am.X.production.obj
 __Lbigram 0 0 ABS 0 bigram -
 __CFG_BORV$LO 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __Lcommon 0 0 ABS 0 common -
@@ -946,21 +952,21 @@ __CFG_IESO$ON 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 i1___awdiv@divisor 70 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
 __CFG_WDTE$OFF 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __Hinittext 0 0 ABS 0 inittext -
-_LCDByte ABC 0 CODE 0 text15 dist/default/production\do_am.X.production.obj
-_LCDInit B50 0 CODE 0 text13 dist/default/production\do_am.X.production.obj
+_LCDByte B56 0 CODE 0 text15 dist/default/production\do_am.X.production.obj
+_LCDInit BEA 0 CODE 0 text13 dist/default/production\do_am.X.production.obj
 i1___awdiv@sign 76 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
 __size_ofi1_LCDGotoXY 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 ReadADC@ch 32 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
-_LCDWriteInt 4CC 0 CODE 0 text10 dist/default/production\do_am.X.production.obj
-_LCDWriteString CF8 0 CODE 0 text9 dist/default/production\do_am.X.production.obj
+_LCDWriteInt 556 0 CODE 0 text10 dist/default/production\do_am.X.production.obj
+_LCDWriteString D92 0 CODE 0 text9 dist/default/production\do_am.X.production.obj
 LM35ReadTemp@adc_value 55 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __size_ofi1_LCDBusyLoop 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
-__end_of_LCDBusyLoop 834 0 CODE 0 text16 dist/default/production\do_am.X.production.obj
+__end_of_LCDBusyLoop 8CE 0 CODE 0 text16 dist/default/production\do_am.X.production.obj
 i1LCDWriteInt@i 2A 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 i1LCDWriteInt@j 28 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 ___lwtoft@c 37 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
-stackhi 204F 0 ABS 0 - C:\Users\Admin\AppData\Local\Temp\s358.obj
-stacklo 2041 0 ABS 0 - C:\Users\Admin\AppData\Local\Temp\s358.obj
+stackhi 204F 0 ABS 0 - C:\Users\Admin\AppData\Local\Temp\s4co.obj
+stacklo 2041 0 ABS 0 - C:\Users\Admin\AppData\Local\Temp\s4co.obj
 ?___lwtoft 37 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 _ADCON0bits 9D 0 ABS 0 - dist/default/production\do_am.X.production.obj
 _ADCON1bits 9E 0 ABS 0 - dist/default/production\do_am.X.production.obj
@@ -975,7 +981,7 @@ __HcstackBANK1 0 0 ABS 0 cstackBANK1 -
 __Lend_init 8E 0 CODE 0 end_init -
 __CFG_LVP$ON 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-end_of_initialization BC 0 CODE 0 cinit dist/default/production\do_am.X.production.obj
+end_of_initialization C0 0 CODE 0 cinit dist/default/production\do_am.X.production.obj
 __Hintentry 8E 0 CODE 0 intentry -
 __CFG_STVREN$ON 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __Lstrings 0 0 ABS 0 strings -
@@ -984,28 +990,28 @@ ___awdiv@quotient 36 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.produ
 ?___awmod 2F 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 ?___ftmul 3B 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 ?___fttol 4B 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
-__end_ofi1_LCDBusyLoop 8E0 0 CODE 0 text24 dist/default/production\do_am.X.production.obj
+__end_ofi1_LCDBusyLoop 97A 0 CODE 0 text24 dist/default/production\do_am.X.production.obj
 __Hreset_vec 2 0 CODE 0 reset_vec -
 i1LCDWriteInt@str 23 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 i1LCDWriteInt@val 20 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
-_ReadADC DC2 0 CODE 0 text8 dist/default/production\do_am.X.production.obj
+_ReadADC E5C 0 CODE 0 text8 dist/default/production\do_am.X.production.obj
 ___awmod@dividend 31 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
-__ptext1 F1C 0 CODE 0 text1 dist/default/production\do_am.X.production.obj
-__ptext2 F60 0 CODE 0 text2 dist/default/production\do_am.X.production.obj
-__ptext3 D72 0 CODE 0 text3 dist/default/production\do_am.X.production.obj
-__ptext4 ED0 0 CODE 0 text4 dist/default/production\do_am.X.production.obj
-__ptext5 38E 0 CODE 0 text5 dist/default/production\do_am.X.production.obj
-__ptext6 228 0 CODE 0 text6 dist/default/production\do_am.X.production.obj
-__ptext7 6BC 0 CODE 0 text7 dist/default/production\do_am.X.production.obj
-__ptext8 DC2 0 CODE 0 text8 dist/default/production\do_am.X.production.obj
-__ptext9 CF8 0 CODE 0 text9 dist/default/production\do_am.X.production.obj
-__end_of_LCDWriteString D72 0 CODE 0 text9 dist/default/production\do_am.X.production.obj
+__ptext1 FDE 0 CODE 0 text1 dist/default/production\do_am.X.production.obj
+__ptext2 FEA 0 CODE 0 text2 dist/default/production\do_am.X.production.obj
+__ptext3 E0C 0 CODE 0 text3 dist/default/production\do_am.X.production.obj
+__ptext4 F6A 0 CODE 0 text4 dist/default/production\do_am.X.production.obj
+__ptext5 418 0 CODE 0 text5 dist/default/production\do_am.X.production.obj
+__ptext6 2B2 0 CODE 0 text6 dist/default/production\do_am.X.production.obj
+__ptext7 756 0 CODE 0 text7 dist/default/production\do_am.X.production.obj
+__ptext8 E5C 0 CODE 0 text8 dist/default/production\do_am.X.production.obj
+__ptext9 D92 0 CODE 0 text9 dist/default/production\do_am.X.production.obj
+__end_of_LCDWriteString E0C 0 CODE 0 text9 dist/default/production\do_am.X.production.obj
 __size_of_ADCInit 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-__pstringtext E9C 0 STRCODE 0 stringtext dist/default/production\do_am.X.production.obj
-_TuneButtonInit F1C 0 CODE 0 text1 dist/default/production\do_am.X.production.obj
+__pstringtext F36 0 STRCODE 0 stringtext dist/default/production\do_am.X.production.obj
+_TuneButtonInit FDE 0 CODE 0 text1 dist/default/production\do_am.X.production.obj
 __Lreset_vec 0 0 CODE 0 reset_vec -
 i1LCDWriteInt@field_length 22 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 ?i1___awdiv 70 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
@@ -1013,12 +1019,12 @@ i1LCDWriteInt@field_length 22 0 BANK0 1 cstackBANK0 dist/default/production\do_a
 LCDInit@style 3D 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __CFG_CLKOUTEN$OFF 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 ___ftmul@exp 45 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
-__end_of__initialization BC 0 CODE 0 cinit dist/default/production\do_am.X.production.obj
+__end_of__initialization C0 0 CODE 0 cinit dist/default/production\do_am.X.production.obj
 ___awmod@divisor 2F 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __Lfunctab 0 0 CODE 0 functab -
-__pidataBANK0 F34 0 CODE 0 idataBANK0 dist/default/production\do_am.X.production.obj
-__pidataBANK1 F44 0 CODE 0 idataBANK1 dist/default/production\do_am.X.production.obj
-i1_LCDWriteInt 5C4 0 CODE 0 text19 dist/default/production\do_am.X.production.obj
+__pidataBANK0 FC6 0 CODE 0 idataBANK0 dist/default/production\do_am.X.production.obj
+__pidataBANK1 FB6 0 CODE 0 idataBANK1 dist/default/production\do_am.X.production.obj
+i1_LCDWriteInt 656 0 CODE 0 text19 dist/default/production\do_am.X.production.obj
 LCDWriteString@msg 3B 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __Lclrtext 0 0 ABS 0 clrtext -
 ___ftpack@sign 33 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
@@ -1027,7 +1033,7 @@ i1LCDByte@isdata 75 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.prod
 i1LCDByte@c 7A 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
 ?_ReadADC 2F 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __Hend_init 90 0 CODE 0 end_init -
-__end_of_main 228 0 CODE 0 maintext dist/default/production\do_am.X.production.obj
+__end_of_main 2B2 0 CODE 0 maintext dist/default/production\do_am.X.production.obj
 __size_of_TriggerOutInit 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 _PORTC E 0 ABS 0 - dist/default/production\do_am.X.production.obj
 _TRISC 8E 0 ABS 0 - dist/default/production\do_am.X.production.obj
@@ -1035,7 +1041,7 @@ __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
 LCDBusyLoop@busy 31 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 LCDBusyLoop@temp 32 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
-__end_of_TuneButtonInit F34 0 CODE 0 text1 dist/default/production\do_am.X.production.obj
+__end_of_TuneButtonInit FEA 0 CODE 0 text1 dist/default/production\do_am.X.production.obj
 i1LCDGotoXY@x 20 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 i1LCDGotoXY@y 7C 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
 LCDByte@isdata 34 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
@@ -1048,13 +1054,13 @@ __size_of_LCDBusyLoop 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
 LCDInit@__i 3E 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 __initialization 90 0 CODE 0 cinit dist/default/production\do_am.X.production.obj
 __CFG_PWRTE$OFF 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
-__pbssBANK0 5F 0 BANK0 1 bssBANK0 dist/default/production\do_am.X.production.obj
+__pbssBANK0 5D 0 BANK0 1 bssBANK0 dist/default/production\do_am.X.production.obj
 __Hstringtext 0 0 ABS 0 stringtext -
 __CFG_WRT$OFF 0 0 ABS 0 - dist/default/production\do_am.X.production.obj
-__end_of_ADCInit F1C 0 CODE 0 text17 dist/default/production\do_am.X.production.obj
+__end_of_ADCInit FB6 0 CODE 0 text17 dist/default/production\do_am.X.production.obj
 i1___awmod@counter 75 0 COMMON 1 cstackCOMMON dist/default/production\do_am.X.production.obj
 _ANSELAbits 18C 0 ABS 0 - dist/default/production\do_am.X.production.obj
-i1_LCDGotoXY E56 0 CODE 0 text22 dist/default/production\do_am.X.production.obj
+i1_LCDGotoXY EF0 0 CODE 0 text22 dist/default/production\do_am.X.production.obj
 ___ftmul@f3_as_product 46 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.production.obj
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
@@ -1081,11 +1087,11 @@ ___ftmul@f3_as_product 46 0 BANK0 1 cstackBANK0 dist/default/production\do_am.X.
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-text4 0 768 ED0 4E 2
+text4 0 7B5 F6A 46 2
 cstackCOMMON 1 70 70 E 1
 cstackBANK0 1 20 20 41 1
 cstackBANK1 1 A0 A0 11 1
-intentry 0 4 8 74A 2
+intentry 0 4 8 797 2
 reset_vec 0 0 0 1 2
-stringtext 0 74E E9C 1A 2
+stringtext 0 79B F36 1A 2
 config 0 8007 1000E 2 2

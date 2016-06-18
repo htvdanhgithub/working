@@ -3314,7 +3314,7 @@ int LM35ReadTemp();
 #pragma config LVP = ON
 
 # 60
-int tuneUpTemp = 26;
+int tuneUpTemp = 0;
 int curTemp = 0;
 char tuneUpTempDir = 1;
 
@@ -3336,16 +3336,7 @@ INTCONbits.IOCIE = 1;
 (TRISAbits.TRISA1 = 1);
 ANSELAbits.ANSA1 = 0;
 
-
-IOCAPbits.IOCAP1 = 1;
-
-INTCONbits.IOCIF = 0;
-IOCAFbits.IOCAF1 = 0;
-
-
-INTCONbits.PEIE = 1;
-
-INTCONbits.GIE = 1;
+# 97
 }
 void interrupt ISR()
 {
@@ -3410,6 +3401,8 @@ RA5 = 1;
 
 { LCDGotoXY(13,0); LCDWriteString("OFF");};
 
+{ LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
+{ LCDGotoXY(4,0); LCDWriteInt(curTemp,3);};
 while(1)
 {
 
@@ -3430,8 +3423,22 @@ RA4 = 0;
 RA5 = 1;
 }
 }
+while(RA1 == 1)
+{
+tuneUpTemp++;
+if(tuneUpTemp > 150)
+{
+tuneUpTemp = 0;
+}
 
-# 196
+{ LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
+
+_delay((unsigned long)((5)*(20000000/4000.0)));
+
+# 209
+}
+
+# 217
 { LCDGotoXY(4,0); LCDWriteInt(curTemp,3);};
 
 

@@ -57,7 +57,7 @@
 #define TUNE_BUTTON_IOC_FLAG            IOCFBIT(TUNE_BUTTON_PIN)
 
 
-int tuneUpTemp = 26;
+int tuneUpTemp = 0;
 int curTemp = 0;
 char tuneUpTempDir = 1;
 
@@ -85,15 +85,15 @@ void TuneButtonInit()
     ANSELBIT(TUNE_BUTTON_PIN) = 0;
 
     // 3. Rising and falling edge detection
-    TUNE_BUTTON_RAISING_EDGE = 1;
+//    TUNE_BUTTON_RAISING_EDGE = 1;
     // 4. Individual pin interrupt flags    
-    IOC_FLAG = 0;
-    TUNE_BUTTON_IOC_FLAG = 0;
+//    IOC_FLAG = 0;
+//    TUNE_BUTTON_IOC_FLAG = 0;
     
     // 5 Peripheral interrupt
-    PER_INT_ENABLE = 1;
+//    PER_INT_ENABLE = 1;
     // 6. Global Interrupt Enable
-    GLB_INT_ENABLE = 1;
+//    GLB_INT_ENABLE = 1;
 }
 void interrupt ISR()
 {
@@ -166,6 +166,8 @@ void main (void)
 
     LCDWriteStringXY(13, 0, "OFF");
 
+    LCDWriteIntXY(4, 1, tuneUpTemp, 3);
+    LCDWriteIntXY(4, 0, curTemp, 3);    
     while(1)
     {
         //Read the temperature using LM35
@@ -185,6 +187,25 @@ void main (void)
                 TRIGGER_OPEN_OUT = 0;
                 TRIGGER_CLOSE_OUT = 1;
             }
+        }
+        while(TUNE_BUTTON == 1)
+        {
+            tuneUpTemp++;
+            if(tuneUpTemp > 150)
+            {
+                tuneUpTemp = 0;
+            }
+            //Print it on the LCD
+            LCDWriteIntXY(4, 1, tuneUpTemp, 3);
+
+            __delay_ms(5);
+
+//                //Print it on the LCD
+//                LCDWriteIntXY(0, 1, tuneUpTemp, 3);
+//
+//                //Print the degree symbol and C
+//                LCDWriteString("%0C");
+
         }
 
 //        if(tuneUpTempDir == 1)
