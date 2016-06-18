@@ -2081,6 +2081,18 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
+# 81 "myutils.h"
+typedef struct {
+unsigned B0 :1;
+unsigned B1 :1;
+unsigned B2 :1;
+unsigned B3 :1;
+unsigned B4 :1;
+unsigned B5 :1;
+unsigned B6 :1;
+unsigned B7 :1;
+} BITbits_t;
+
 # 29 "adc_pic16.h"
 void ADCInit();
 uint16_t ReadADC(uint8_t ch);

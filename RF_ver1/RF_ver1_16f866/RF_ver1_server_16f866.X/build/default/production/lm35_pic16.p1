@@ -1448,6 +1448,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 205: typedef uint32_t uintmax_t;
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
+[; ;myutils.h: 81: typedef struct {
+[; ;myutils.h: 82: unsigned B0 :1;
+[; ;myutils.h: 83: unsigned B1 :1;
+[; ;myutils.h: 84: unsigned B2 :1;
+[; ;myutils.h: 85: unsigned B3 :1;
+[; ;myutils.h: 86: unsigned B4 :1;
+[; ;myutils.h: 87: unsigned B5 :1;
+[; ;myutils.h: 88: unsigned B6 :1;
+[; ;myutils.h: 89: unsigned B7 :1;
+[; ;myutils.h: 90: } BITbits_t;
 [; ;adc_pic16.h: 29: void ADCInit();
 [; ;adc_pic16.h: 30: uint16_t ReadADC(uint8_t ch);
 [; ;lm35_pic16.h: 15: int LM35ReadTemp();
@@ -1469,8 +1479,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lm35_pic16.c: 28: return (int)(adc_value*0.4887);
 "28
 [e ) -> * -> _adc_value `d .0.4887 `i ]
-[e $UE 135  ]
+[e $UE 136  ]
 [; ;lm35_pic16.c: 29: }
 "29
-[e :UE 135 ]
+[e :UE 136 ]
 }

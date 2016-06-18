@@ -1495,6 +1495,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 205: typedef uint32_t uintmax_t;
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
+[; ;myutils.h: 81: typedef struct {
+[; ;myutils.h: 82: unsigned B0 :1;
+[; ;myutils.h: 83: unsigned B1 :1;
+[; ;myutils.h: 84: unsigned B2 :1;
+[; ;myutils.h: 85: unsigned B3 :1;
+[; ;myutils.h: 86: unsigned B4 :1;
+[; ;myutils.h: 87: unsigned B5 :1;
+[; ;myutils.h: 88: unsigned B6 :1;
+[; ;myutils.h: 89: unsigned B7 :1;
+[; ;myutils.h: 90: } BITbits_t;
 [; ;adc_pic16.h: 29: void ADCInit();
 [; ;adc_pic16.h: 30: uint16_t ReadADC(uint8_t ch);
 "7 adc_pic16.c
@@ -1525,7 +1535,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
 [; ;adc_pic16.c: 26: }
 "26
-[e :UE 135 ]
+[e :UE 136 ]
 }
 "27
 [v _ReadADC `(ui ~T0 @X0 1 ef1`uc ]
@@ -1549,16 +1559,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
 [; ;adc_pic16.c: 38: while(ADCON0bits.GO);
 "38
-[e $U 137  ]
-[e :U 138 ]
-[e :U 137 ]
-[e $ != -> . . _ADCON0bits 1 1 `i -> -> -> 0 `i `Vuc `i 138  ]
+[e $U 138  ]
 [e :U 139 ]
+[e :U 138 ]
+[e $ != -> . . _ADCON0bits 1 1 `i -> -> -> 0 `i `Vuc `i 139  ]
+[e :U 140 ]
 [; ;adc_pic16.c: 40: return ((ADRESH<<8)|ADRESL);
 "40
 [e ) -> | << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ui ]
-[e $UE 136  ]
+[e $UE 137  ]
 [; ;adc_pic16.c: 42: }
 "42
-[e :UE 136 ]
+[e :UE 137 ]
 }

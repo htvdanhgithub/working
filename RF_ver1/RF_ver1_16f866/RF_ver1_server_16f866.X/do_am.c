@@ -82,10 +82,13 @@
 #define DATA_OUT3           PORTBIT(DATA_OUT3_PIN)
 
 
-int tuneUpTemp = 0;
+char tuneUpTemp = 0;
 int curTemp = 0;
 char tuneUpTempDir = 1;
 
+char msg[32] = "01234";
+BITbits_t *phMsg = (BITbits_t *)msg;
+char count = 0;
 //void TriggerOutInit()
 //{
 //    // 1. Individual pin configuration
@@ -238,19 +241,34 @@ void main (void)
 //            {
 //                tuneUpTemp = 0;
 //            }
-            tuneUpTemp = GET_CHAR_FROM_4_BITS(DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0);
-
-            GET_4_BITS_FROM_CHAR(tuneUpTemp, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0);
-            
-//            DATA_OUT_TRIGGER = 0;
-//            __delay_us(1);
-//            DATA_OUT_TRIGGER = 1;
-            FLASH(DATA_OUT_TRIGGER);
+//            tuneUpTemp = phMsg[count];
+//            for(char i = 0; i < 6; i++)
+//            {
+//                SEND_HALF_BIT(msg[i], 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//                __delay_ms(10);
+//                SEND_HALF_BIT(msg[i], 0, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//                __delay_ms(10);
+//            }
+            SEND_STRING(msg, 6, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//            SEND_HALF_BIT(msg[0], 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//            __delay_ms(200);
+//            SEND_HALF_BIT(msg[0], 0, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//            SEND_STRING(msg, 6, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//             GET_4_BITS_FROM_STRING(tuneUpTemp, phMsg, count);
+//            SEND_HALF_BIT(tuneUpTemp, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//            count++;
+//
+//            GET_4_BITS_FROM_CHAR(tuneUpTemp, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0);
+//            
+////            DATA_OUT_TRIGGER = 0;
+////            __delay_us(1);
+////            DATA_OUT_TRIGGER = 1;
+//            FLASH(DATA_OUT_TRIGGER);
             
             //Print it on the LCD
             LCDWriteIntXY(4, 1, tuneUpTemp, 3);
 
-//            __delay_ms(50);
+            __delay_ms(200);
 
 //                //Print it on the LCD
 //                LCDWriteIntXY(0, 1, tuneUpTemp, 3);
@@ -266,6 +284,8 @@ void main (void)
 //        }
         
         //Print it on the LCD
+        LCDWriteStringXY(10, 1, msg);
+
         LCDWriteIntXY(4, 0, curTemp, 3);
 
       

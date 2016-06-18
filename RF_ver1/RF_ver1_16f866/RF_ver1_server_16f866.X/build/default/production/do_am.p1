@@ -1,4 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"81 myutils.h
+[s S135 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S135 . B0 B1 B2 B3 B4 B5 B6 B7 ]
 "1307 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
 [s S52 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S52 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
@@ -76,14 +79,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LM35ReadTemp `(i ~T0 @X0 0 ef ]
 "3660 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
 [v _RA6 `Vb ~T0 @X0 0 e@46 ]
-"3648
-[v _RA0 `Vb ~T0 @X0 0 e@40 ]
-"3650
-[v _RA1 `Vb ~T0 @X0 0 e@41 ]
-"3652
-[v _RA2 `Vb ~T0 @X0 0 e@42 ]
-"3654
-[v _RA3 `Vb ~T0 @X0 0 e@43 ]
 "3664
 [v _RB0 `Vb ~T0 @X0 0 e@48 ]
 "3666
@@ -1545,6 +1540,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lcd_hd44780_pic16.h: 81: void LCDGotoXY(uint8_t x,uint8_t y);
 [; ;lcd_hd44780_pic16.h: 84: void LCDByte(uint8_t,uint8_t);
 [; ;lcd_hd44780_pic16.h: 88: void LCDBusyLoop();
+[; ;myutils.h: 81: typedef struct {
+[; ;myutils.h: 82: unsigned B0 :1;
+[; ;myutils.h: 83: unsigned B1 :1;
+[; ;myutils.h: 84: unsigned B2 :1;
+[; ;myutils.h: 85: unsigned B3 :1;
+[; ;myutils.h: 86: unsigned B4 :1;
+[; ;myutils.h: 87: unsigned B5 :1;
+[; ;myutils.h: 88: unsigned B6 :1;
+[; ;myutils.h: 89: unsigned B7 :1;
+[; ;myutils.h: 90: } BITbits_t;
 [; ;adc_pic16.h: 29: void ADCInit();
 [; ;adc_pic16.h: 30: uint16_t ReadADC(uint8_t ch);
 [; ;lm35_pic16.h: 15: int LM35ReadTemp();
@@ -1573,11 +1578,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "21
 [p x WRT=OFF ]
 "85
-[v _tuneUpTemp `i ~T0 @X0 1 e ]
+[v _tuneUpTemp `uc ~T0 @X0 1 e ]
 [i _tuneUpTemp
--> 0 `i
+-> -> 0 `i `uc
 ]
-[; ;do_am.c: 85: int tuneUpTemp = 0;
+[; ;do_am.c: 85: char tuneUpTemp = 0;
 "86
 [v _curTemp `i ~T0 @X0 1 e ]
 [i _curTemp
@@ -1590,322 +1595,404 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 ]
 [; ;do_am.c: 87: char tuneUpTempDir = 1;
-"104
+"89
+[v _msg `uc ~T0 @X0 -> 32 `i e ]
+[i _msg
+:U ..
+-> 48 `c
+-> 49 `c
+-> 50 `c
+-> 51 `c
+-> 52 `c
+-> 0 `c
+..
+]
+[; ;do_am.c: 89: char msg[32] = "01234";
+"90
+[v _phMsg `*S135 ~T0 @X0 1 e ]
+[i _phMsg
+-> &U _msg `*S135
+]
+[; ;do_am.c: 90: BITbits_t *phMsg = (BITbits_t *)msg;
+"91
+[v _count `uc ~T0 @X0 1 e ]
+[i _count
+-> -> 0 `i `uc
+]
+[; ;do_am.c: 91: char count = 0;
+"107
 [v _TuneButtonInit `(v ~T0 @X0 1 ef ]
-"105
+"108
 {
-[; ;do_am.c: 104: void TuneButtonInit()
-[; ;do_am.c: 105: {
+[; ;do_am.c: 107: void TuneButtonInit()
+[; ;do_am.c: 108: {
 [e :U _TuneButtonInit ]
 [f ]
-[; ;do_am.c: 107: (TRISAbits.TRISA6 = 1);
-"107
-[e = . . _TRISAbits 0 6 -> -> 1 `i `uc ]
-[; ;do_am.c: 108: ANSELHbits.ANS11 = 0;
-"108
-[e = . . _ANSELHbits 0 3 -> -> 0 `i `uc ]
-[; ;do_am.c: 110: (TRISAbits.TRISA0 = 1);
+[; ;do_am.c: 110: (TRISAbits.TRISA6 = 1);
 "110
-[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
-[; ;do_am.c: 111: ANSELbits.ANS0 = 0;
+[e = . . _TRISAbits 0 6 -> -> 1 `i `uc ]
+[; ;do_am.c: 111: ANSELHbits.ANS11 = 0;
 "111
-[e = . . _ANSELbits 0 0 -> -> 0 `i `uc ]
-[; ;do_am.c: 113: (TRISAbits.TRISA1 = 1);
+[e = . . _ANSELHbits 0 3 -> -> 0 `i `uc ]
+[; ;do_am.c: 113: (TRISAbits.TRISA0 = 1);
 "113
-[e = . . _TRISAbits 0 1 -> -> 1 `i `uc ]
-[; ;do_am.c: 114: ANSELbits.ANS1 = 0;
+[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
+[; ;do_am.c: 114: ANSELbits.ANS0 = 0;
 "114
-[e = . . _ANSELbits 0 1 -> -> 0 `i `uc ]
-[; ;do_am.c: 115: (TRISAbits.TRISA2 = 1);
-"115
-[e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
-[; ;do_am.c: 116: ANSELbits.ANS2 = 0;
+[e = . . _ANSELbits 0 0 -> -> 0 `i `uc ]
+[; ;do_am.c: 116: (TRISAbits.TRISA1 = 1);
 "116
-[e = . . _ANSELbits 0 2 -> -> 0 `i `uc ]
-[; ;do_am.c: 117: (TRISAbits.TRISA3 = 1);
+[e = . . _TRISAbits 0 1 -> -> 1 `i `uc ]
+[; ;do_am.c: 117: ANSELbits.ANS1 = 0;
 "117
-[e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
-[; ;do_am.c: 118: ANSELbits.ANS3 = 0;
+[e = . . _ANSELbits 0 1 -> -> 0 `i `uc ]
+[; ;do_am.c: 118: (TRISAbits.TRISA2 = 1);
 "118
-[e = . . _ANSELbits 0 3 -> -> 0 `i `uc ]
-[; ;do_am.c: 120: (TRISAbits.TRISA7 = 0);
+[e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
+[; ;do_am.c: 119: ANSELbits.ANS2 = 0;
+"119
+[e = . . _ANSELbits 0 2 -> -> 0 `i `uc ]
+[; ;do_am.c: 120: (TRISAbits.TRISA3 = 1);
 "120
-[e = . . _TRISAbits 0 7 -> -> 0 `i `uc ]
-[; ;do_am.c: 122: (TRISBbits.TRISB0 = 0);
-"122
-[e = . . _TRISBbits 0 0 -> -> 0 `i `uc ]
-[; ;do_am.c: 123: ANSELHbits.ANS12 = 0;
+[e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
+[; ;do_am.c: 121: ANSELbits.ANS3 = 0;
+"121
+[e = . . _ANSELbits 0 3 -> -> 0 `i `uc ]
+[; ;do_am.c: 123: (TRISAbits.TRISA7 = 0);
 "123
-[e = . . _ANSELHbits 0 4 -> -> 0 `i `uc ]
-[; ;do_am.c: 125: (TRISBbits.TRISB1 = 0);
+[e = . . _TRISAbits 0 7 -> -> 0 `i `uc ]
+[; ;do_am.c: 125: (TRISBbits.TRISB0 = 0);
 "125
-[e = . . _TRISBbits 0 1 -> -> 0 `i `uc ]
-[; ;do_am.c: 126: ANSELHbits.ANS10 = 0;
+[e = . . _TRISBbits 0 0 -> -> 0 `i `uc ]
+[; ;do_am.c: 126: ANSELHbits.ANS12 = 0;
 "126
-[e = . . _ANSELHbits 0 2 -> -> 0 `i `uc ]
-[; ;do_am.c: 128: (TRISBbits.TRISB2 = 0);
+[e = . . _ANSELHbits 0 4 -> -> 0 `i `uc ]
+[; ;do_am.c: 128: (TRISBbits.TRISB1 = 0);
 "128
-[e = . . _TRISBbits 0 2 -> -> 0 `i `uc ]
-[; ;do_am.c: 129: ANSELHbits.ANS8 = 0;
+[e = . . _TRISBbits 0 1 -> -> 0 `i `uc ]
+[; ;do_am.c: 129: ANSELHbits.ANS10 = 0;
 "129
-[e = . . _ANSELHbits 0 0 -> -> 0 `i `uc ]
-[; ;do_am.c: 131: (TRISBbits.TRISB3 = 0);
+[e = . . _ANSELHbits 0 2 -> -> 0 `i `uc ]
+[; ;do_am.c: 131: (TRISBbits.TRISB2 = 0);
 "131
-[e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
-[; ;do_am.c: 132: ANSELHbits.ANS9 = 0;
+[e = . . _TRISBbits 0 2 -> -> 0 `i `uc ]
+[; ;do_am.c: 132: ANSELHbits.ANS8 = 0;
 "132
-[e = . . _ANSELHbits 0 1 -> -> 0 `i `uc ]
-[; ;do_am.c: 134: RA7 = 1;
+[e = . . _ANSELHbits 0 0 -> -> 0 `i `uc ]
+[; ;do_am.c: 134: (TRISBbits.TRISB3 = 0);
 "134
+[e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
+[; ;do_am.c: 135: ANSELHbits.ANS9 = 0;
+"135
+[e = . . _ANSELHbits 0 1 -> -> 0 `i `uc ]
+[; ;do_am.c: 137: RA7 = 1;
+"137
 [e = _RA7 -> -> 1 `i `b ]
-[; ;do_am.c: 155: }
-"155
-[e :UE 135 ]
+[; ;do_am.c: 158: }
+"158
+[e :UE 136 ]
 }
-[v F1609 `(v ~T0 @X0 1 tf ]
-"156
-[v _ISR `IF1609 ~T0 @X0 1 e ]
-"157
+[v F1623 `(v ~T0 @X0 1 tf ]
+"159
+[v _ISR `IF1623 ~T0 @X0 1 e ]
+"160
 {
-[; ;do_am.c: 156: void interrupt ISR()
-[; ;do_am.c: 157: {
+[; ;do_am.c: 159: void interrupt ISR()
+[; ;do_am.c: 160: {
 [e :U _ISR ]
 [f ]
-[; ;do_am.c: 158: if(INTCONbits.RBIF == 1)
-"158
-[e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 137  ]
-[; ;do_am.c: 159: {
-"159
-{
-[; ;do_am.c: 161: {
+[; ;do_am.c: 161: if(INTCONbits.RBIF == 1)
 "161
+[e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 138  ]
+[; ;do_am.c: 162: {
+"162
 {
-[; ;do_am.c: 163: (LCDByte(0b00000001,0));
-"163
+[; ;do_am.c: 164: {
+"164
+{
+[; ;do_am.c: 166: (LCDByte(0b00000001,0));
+"166
 [e ( _LCDByte (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;do_am.c: 165: { LCDGotoXY(0,0); LCDWriteString("Thermometer set:");};
-"165
+[; ;do_am.c: 168: { LCDGotoXY(0,0); LCDWriteString("Thermometer set:");};
+"168
 {
 [e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
 [e ( _LCDWriteString (1 :s 1C ]
 }
-[; ;do_am.c: 167: tuneUpTemp++;
-"167
-[e ++ _tuneUpTemp -> 1 `i ]
-[; ;do_am.c: 168: if(tuneUpTemp > 150)
-"168
-[e $ ! > _tuneUpTemp -> 150 `i 138  ]
-[; ;do_am.c: 169: {
-"169
-{
-[; ;do_am.c: 170: tuneUpTemp = 0;
+[; ;do_am.c: 170: tuneUpTemp++;
 "170
-[e = _tuneUpTemp -> 0 `i ]
+[e ++ _tuneUpTemp -> -> 1 `i `uc ]
+[; ;do_am.c: 171: if(tuneUpTemp > 150)
 "171
-}
-[e :U 138 ]
-[; ;do_am.c: 171: }
-[; ;do_am.c: 174: { LCDGotoXY(0,1); LCDWriteInt(tuneUpTemp,3);};
+[e $ ! > -> _tuneUpTemp `i -> 150 `i 139  ]
+[; ;do_am.c: 172: {
+"172
+{
+[; ;do_am.c: 173: tuneUpTemp = 0;
+"173
+[e = _tuneUpTemp -> -> 0 `i `uc ]
 "174
+}
+[e :U 139 ]
+[; ;do_am.c: 174: }
+[; ;do_am.c: 177: { LCDGotoXY(0,1); LCDWriteInt(tuneUpTemp,3);};
+"177
 {
 [e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteInt (2 , _tuneUpTemp -> -> 3 `i `c ]
+[e ( _LCDWriteInt (2 , -> _tuneUpTemp `i -> -> 3 `i `c ]
 }
-[; ;do_am.c: 177: LCDWriteString("%0C");
-"177
-[e ( _LCDWriteString (1 :s 2C ]
-[; ;do_am.c: 179: _delay((unsigned long)((500)*(20000000/4000.0)));
-"179
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-[; ;do_am.c: 180: tuneUpTempDir = 1;
+[; ;do_am.c: 180: LCDWriteString("%0C");
 "180
-[e = _tuneUpTempDir -> -> 1 `i `uc ]
+[e ( _LCDWriteString (1 :s 2C ]
+[; ;do_am.c: 182: _delay((unsigned long)((500)*(20000000/4000.0)));
 "182
-}
-[; ;do_am.c: 182: }
-[; ;do_am.c: 183: INTCONbits.RBIF = 0;
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[; ;do_am.c: 183: tuneUpTempDir = 1;
 "183
-[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
-"184
-}
-[e :U 137 ]
-[; ;do_am.c: 184: }
-[; ;do_am.c: 185: IOCBbits.IOCB4 = 0;
+[e = _tuneUpTempDir -> -> 1 `i `uc ]
 "185
-[e = . . _IOCBbits 1 4 -> -> 0 `i `uc ]
-[; ;do_am.c: 186: }
-"186
-[e :UE 136 ]
 }
+[; ;do_am.c: 185: }
+[; ;do_am.c: 186: INTCONbits.RBIF = 0;
+"186
+[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
 "187
-[v _main `(v ~T0 @X0 1 ef ]
+}
+[e :U 138 ]
+[; ;do_am.c: 187: }
+[; ;do_am.c: 188: IOCBbits.IOCB4 = 0;
 "188
+[e = . . _IOCBbits 1 4 -> -> 0 `i `uc ]
+[; ;do_am.c: 189: }
+"189
+[e :UE 137 ]
+}
+"190
+[v _main `(v ~T0 @X0 1 ef ]
+"191
 {
-[; ;do_am.c: 187: void main (void)
-[; ;do_am.c: 188: {
+[; ;do_am.c: 190: void main (void)
+[; ;do_am.c: 191: {
 [e :U _main ]
 [f ]
-[; ;do_am.c: 190: LCDInit(0B00000000);
-"190
-[e ( _LCDInit (1 -> -> 0 `i `uc ]
-[; ;do_am.c: 193: ADCInit();
+[; ;do_am.c: 193: LCDInit(0B00000000);
 "193
-[e ( _ADCInit ..  ]
-[; ;do_am.c: 196: TuneButtonInit();
+[e ( _LCDInit (1 -> -> 0 `i `uc ]
+[; ;do_am.c: 196: ADCInit();
 "196
+[e ( _ADCInit ..  ]
+[; ;do_am.c: 199: TuneButtonInit();
+"199
 [e ( _TuneButtonInit ..  ]
-[; ;do_am.c: 202: (LCDByte(0b00000001,0));
-"202
+[; ;do_am.c: 205: (LCDByte(0b00000001,0));
+"205
 [e ( _LCDByte (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;do_am.c: 204: { LCDGotoXY(0,0); LCDWriteString("Cur:");};
-"204
+[; ;do_am.c: 207: { LCDGotoXY(0,0); LCDWriteString("Cur:");};
+"207
 {
 [e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
 [e ( _LCDWriteString (1 :s 3C ]
 }
-[; ;do_am.c: 206: { LCDGotoXY(7,0); LCDWriteString("%0C");};
-"206
+[; ;do_am.c: 209: { LCDGotoXY(7,0); LCDWriteString("%0C");};
+"209
 {
 [e ( _LCDGotoXY (2 , -> -> 7 `i `uc -> -> 0 `i `uc ]
 [e ( _LCDWriteString (1 :s 4C ]
 }
-[; ;do_am.c: 208: { LCDGotoXY(10,0); LCDWriteString("Wa:");};
-"208
+[; ;do_am.c: 211: { LCDGotoXY(10,0); LCDWriteString("Wa:");};
+"211
 {
 [e ( _LCDGotoXY (2 , -> -> 10 `i `uc -> -> 0 `i `uc ]
 [e ( _LCDWriteString (1 :s 5C ]
 }
-[; ;do_am.c: 210: { LCDGotoXY(0,1); LCDWriteString("Max:");};
-"210
+[; ;do_am.c: 213: { LCDGotoXY(0,1); LCDWriteString("Max:");};
+"213
 {
 [e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
 [e ( _LCDWriteString (1 :s 6C ]
 }
-[; ;do_am.c: 212: { LCDGotoXY(7,1); LCDWriteString("%0C");};
-"212
+[; ;do_am.c: 215: { LCDGotoXY(7,1); LCDWriteString("%0C");};
+"215
 {
 [e ( _LCDGotoXY (2 , -> -> 7 `i `uc -> -> 1 `i `uc ]
 [e ( _LCDWriteString (1 :s 7C ]
 }
-[; ;do_am.c: 214: { LCDGotoXY(13,0); LCDWriteString("OFF");};
-"214
+[; ;do_am.c: 217: { LCDGotoXY(13,0); LCDWriteString("OFF");};
+"217
 {
 [e ( _LCDGotoXY (2 , -> -> 13 `i `uc -> -> 0 `i `uc ]
 [e ( _LCDWriteString (1 :s 8C ]
 }
-[; ;do_am.c: 216: { LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
-"216
+[; ;do_am.c: 219: { LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
+"219
 {
 [e ( _LCDGotoXY (2 , -> -> 4 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteInt (2 , _tuneUpTemp -> -> 3 `i `c ]
+[e ( _LCDWriteInt (2 , -> _tuneUpTemp `i -> -> 3 `i `c ]
 }
-[; ;do_am.c: 217: { LCDGotoXY(4,0); LCDWriteInt(curTemp,3);};
-"217
+[; ;do_am.c: 220: { LCDGotoXY(4,0); LCDWriteInt(curTemp,3);};
+"220
 {
 [e ( _LCDGotoXY (2 , -> -> 4 `i `uc -> -> 0 `i `uc ]
 [e ( _LCDWriteInt (2 , _curTemp -> -> 3 `i `c ]
 }
-[; ;do_am.c: 218: while(1)
-"218
-[e :U 141 ]
-[; ;do_am.c: 219: {
-"219
-{
-[; ;do_am.c: 221: curTemp = LM35ReadTemp();
+[; ;do_am.c: 221: while(1)
 "221
-[e = _curTemp ( _LM35ReadTemp ..  ]
-[; ;do_am.c: 223: if((tuneUpTemp >= 5) && (curTemp >= tuneUpTemp))
-"223
-[e $ ! && >= _tuneUpTemp -> 5 `i >= _curTemp _tuneUpTemp 143  ]
-[; ;do_am.c: 224: {
-"224
+[e :U 142 ]
+[; ;do_am.c: 222: {
+"222
 {
-[; ;do_am.c: 225: { LCDGotoXY(13,0); LCDWriteString("ON ");};
-"225
+[; ;do_am.c: 224: curTemp = LM35ReadTemp();
+"224
+[e = _curTemp ( _LM35ReadTemp ..  ]
+[; ;do_am.c: 226: if((tuneUpTemp >= 5) && (curTemp >= tuneUpTemp))
+"226
+[e $ ! && >= -> _tuneUpTemp `i -> 5 `i >= _curTemp -> _tuneUpTemp `i 144  ]
+[; ;do_am.c: 227: {
+"227
+{
+[; ;do_am.c: 228: { LCDGotoXY(13,0); LCDWriteString("ON ");};
+"228
 {
 [e ( _LCDGotoXY (2 , -> -> 13 `i `uc -> -> 0 `i `uc ]
 [e ( _LCDWriteString (1 :s 9C ]
 }
-"226
-}
-[; ;do_am.c: 226: }
-[e $U 144  ]
-"227
-[e :U 143 ]
-[; ;do_am.c: 227: else
-[; ;do_am.c: 228: {
-"228
-{
-[; ;do_am.c: 229: if(curTemp <= tuneUpTemp - 5)
 "229
-[e $ ! <= _curTemp - _tuneUpTemp -> 5 `i 145  ]
-[; ;do_am.c: 230: {
+}
+[; ;do_am.c: 229: }
+[e $U 145  ]
 "230
-{
-[; ;do_am.c: 231: { LCDGotoXY(13,0); LCDWriteString("OFF");};
+[e :U 144 ]
+[; ;do_am.c: 230: else
+[; ;do_am.c: 231: {
 "231
+{
+[; ;do_am.c: 232: if(curTemp <= tuneUpTemp - 5)
+"232
+[e $ ! <= _curTemp - -> _tuneUpTemp `i -> 5 `i 146  ]
+[; ;do_am.c: 233: {
+"233
+{
+[; ;do_am.c: 234: { LCDGotoXY(13,0); LCDWriteString("OFF");};
+"234
 {
 [e ( _LCDGotoXY (2 , -> -> 13 `i `uc -> -> 0 `i `uc ]
 [e ( _LCDWriteString (1 :s 10C ]
 }
-"232
+"235
+}
+[e :U 146 ]
+"236
 }
 [e :U 145 ]
-"233
-}
-[e :U 144 ]
-[; ;do_am.c: 232: }
-[; ;do_am.c: 233: }
-[; ;do_am.c: 234: if(RA6 == 0)
-"234
-[e $ ! == -> _RA6 `i -> 0 `i 146  ]
-[; ;do_am.c: 235: {
-"235
+[; ;do_am.c: 235: }
+[; ;do_am.c: 236: }
+[; ;do_am.c: 237: if(RA6 == 0)
+"237
+[e $ ! == -> _RA6 `i -> 0 `i 147  ]
+[; ;do_am.c: 238: {
+"238
 {
-[; ;do_am.c: 241: tuneUpTemp = (RA0 | (RA1 << 1) | (RA2 << 2) | (RA3 << 3));
-"241
-[e = _tuneUpTemp | | | -> _RA0 `i << -> _RA1 `i -> 1 `i << -> _RA2 `i -> 2 `i << -> _RA3 `i -> 3 `i ]
-[; ;do_am.c: 243: {RB0 = tuneUpTemp & 0b0001; RB1 = (tuneUpTemp & 0b0010) >> 1; RB2 = (tuneUpTemp & 0b0100) >> 2; RB3 = (tuneUpTemp & 0b1000) >> 3;};
-"243
+[; ;do_am.c: 252: { for(char i = 0; i < 6; i++) { { { char t; if(1 == 0) { t = msg[i] >> 4; } else { t = msg[i]; } RB0 = t & 0b0001; RB1 = (t & 0b0010) >> 1; RB2 = (t & 0b0100) >> 2; RB3 = (t & 0b1000) >> 3; }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000
+"252
 {
-[e = _RB0 -> & _tuneUpTemp -> 1 `i `b ]
-[e = _RB1 -> >> & _tuneUpTemp -> 2 `i -> 1 `i `b ]
-[e = _RB2 -> >> & _tuneUpTemp -> 4 `i -> 2 `i `b ]
-[e = _RB3 -> >> & _tuneUpTemp -> 8 `i -> 3 `i `b ]
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 6 `i 148  ]
+[e $U 149  ]
+[e :U 148 ]
+{
+{
+{
+[v _t `uc ~T0 @X0 1 a ]
+[e $ ! == -> 1 `i -> 0 `i 151  ]
+{
+[e = _t -> >> -> *U + &U _msg * -> _i `ux -> -> # *U &U _msg `ui `ux `i -> 4 `i `uc ]
 }
-[; ;do_am.c: 248: {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;};
-"248
+[e $U 152  ]
+[e :U 151 ]
+{
+[e = _t *U + &U _msg * -> _i `ux -> -> # *U &U _msg `ui `ux ]
+}
+[e :U 152 ]
+[e = _RB0 -> & -> _t `i -> 1 `i `b ]
+[e = _RB1 -> >> & -> _t `i -> 2 `i -> 1 `i `b ]
+[e = _RB2 -> >> & -> _t `i -> 4 `i -> 2 `i `b ]
+[e = _RB3 -> >> & -> _t `i -> 8 `i -> 3 `i `b ]
+}
 {
 [e = _RA7 -> ~ -> _RA7 `ui `b ]
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
 [e = _RA7 -> ~ -> _RA7 `ui `b ]
 }
-[; ;do_am.c: 251: { LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
-"251
+}
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+{
+{
+[v _t `uc ~T0 @X0 1 a ]
+[e $ ! == -> 0 `i -> 0 `i 153  ]
+{
+[e = _t -> >> -> *U + &U _msg * -> _i `ux -> -> # *U &U _msg `ui `ux `i -> 4 `i `uc ]
+}
+[e $U 154  ]
+[e :U 153 ]
+{
+[e = _t *U + &U _msg * -> _i `ux -> -> # *U &U _msg `ui `ux ]
+}
+[e :U 154 ]
+[e = _RB0 -> & -> _t `i -> 1 `i `b ]
+[e = _RB1 -> >> & -> _t `i -> 2 `i -> 1 `i `b ]
+[e = _RB2 -> >> & -> _t `i -> 4 `i -> 2 `i `b ]
+[e = _RB3 -> >> & -> _t `i -> 8 `i -> 3 `i `b ]
+}
+{
+[e = _RA7 -> ~ -> _RA7 `ui `b ]
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
+[e = _RA7 -> ~ -> _RA7 `ui `b ]
+}
+}
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 148  ]
+[e :U 149 ]
+}
+}
+[; ;do_am.c: 269: { LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
+"269
 {
 [e ( _LCDGotoXY (2 , -> -> 4 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteInt (2 , _tuneUpTemp -> -> 3 `i `c ]
+[e ( _LCDWriteInt (2 , -> _tuneUpTemp `i -> -> 3 `i `c ]
 }
-"261
+[; ;do_am.c: 271: _delay((unsigned long)((200)*(20000000/4000.0)));
+"271
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+"279
 }
-[e :U 146 ]
-[; ;do_am.c: 261: }
-[; ;do_am.c: 269: { LCDGotoXY(4,0); LCDWriteInt(curTemp,3);};
-"269
+[e :U 147 ]
+[; ;do_am.c: 279: }
+[; ;do_am.c: 287: { LCDGotoXY(10,1); LCDWriteString(msg);};
+"287
+{
+[e ( _LCDGotoXY (2 , -> -> 10 `i `uc -> -> 1 `i `uc ]
+[e ( _LCDWriteString (1 -> &U _msg `*Cuc ]
+}
+[; ;do_am.c: 289: { LCDGotoXY(4,0); LCDWriteInt(curTemp,3);};
+"289
 {
 [e ( _LCDGotoXY (2 , -> -> 4 `i `uc -> -> 0 `i `uc ]
 [e ( _LCDWriteInt (2 , _curTemp -> -> 3 `i `c ]
 }
-"274
+"294
 }
-[e :U 140 ]
-"218
-[e $U 141  ]
-[e :U 142 ]
-[; ;do_am.c: 274: }
-[; ;do_am.c: 275: }
-"275
-[e :UE 139 ]
+[e :U 141 ]
+"221
+[e $U 142  ]
+[e :U 143 ]
+[; ;do_am.c: 294: }
+[; ;do_am.c: 295: }
+"295
+[e :UE 140 ]
 }
 [a 8C 79 70 70 0 ]
 [a 10C 79 70 70 0 ]

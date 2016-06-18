@@ -2094,6 +2094,18 @@ void LCDByte(uint8_t,uint8_t);
 
 void LCDBusyLoop();
 
+# 81 "myutils.h"
+typedef struct {
+unsigned B0 :1;
+unsigned B1 :1;
+unsigned B2 :1;
+unsigned B3 :1;
+unsigned B4 :1;
+unsigned B5 :1;
+unsigned B6 :1;
+unsigned B7 :1;
+} BITbits_t;
+
 # 29 "adc_pic16.h"
 void ADCInit();
 uint16_t ReadADC(uint8_t ch);
@@ -2119,11 +2131,15 @@ int LM35ReadTemp();
 #pragma config WRT = OFF
 
 # 85
-int tuneUpTemp = 0;
+char tuneUpTemp = 0;
 int curTemp = 0;
 char tuneUpTempDir = 1;
 
-# 104
+char msg[32] = "01234";
+BITbits_t *phMsg = (BITbits_t *)msg;
+char count = 0;
+
+# 107
 void TuneButtonInit()
 {
 
@@ -2156,7 +2172,7 @@ ANSELHbits.ANS9 = 0;
 
 RA7 = 1;
 
-# 155
+# 158
 }
 void interrupt ISR()
 {
@@ -2200,7 +2216,7 @@ ADCInit();
 
 TuneButtonInit();
 
-# 202
+# 205
 (LCDByte(0b00000001,0));
 
 { LCDGotoXY(0,0); LCDWriteString("Cur:");};
@@ -2236,23 +2252,20 @@ if(curTemp <= tuneUpTemp - 5)
 if(RA6 == 0)
 {
 
-# 241
-tuneUpTemp = (RA0 | (RA1 << 1) | (RA2 << 2) | (RA3 << 3));
-
-{RB0 = tuneUpTemp & 0b0001; RB1 = (tuneUpTemp & 0b0010) >> 1; RB2 = (tuneUpTemp & 0b0100) >> 2; RB3 = (tuneUpTemp & 0b1000) >> 3;};
-
-
-
-
-{RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;};
-
-
-{ LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
-
-# 261
-}
+# 252
+{ for(char i = 0; i < 6; i++) { { { char t; if(1 == 0) { t = msg[i] >> 4; } else { t = msg[i]; } RB0 = t & 0b0001; RB1 = (t & 0b0010) >> 1; RB2 = (t & 0b0100) >> 2; RB3 = (t & 0b1000) >> 3; }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((10)*(20000000/4000.0))); { { char t; if(0 == 0) { t = msg[i] >> 4; } else { t = msg[i]; } RB0 = t & 0b0001; RB1 = (t & 0b0010) >> 1; RB2 = (t & 0b0100) >> 2; RB3 = (t & 0b1000) >> 3; }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((10)*(20000000/4000.0))); } };
 
 # 269
+{ LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
+
+_delay((unsigned long)((200)*(20000000/4000.0)));
+
+# 279
+}
+
+# 287
+{ LCDGotoXY(10,1); LCDWriteString(msg);};
+
 { LCDGotoXY(4,0); LCDWriteInt(curTemp,3);};
 
 

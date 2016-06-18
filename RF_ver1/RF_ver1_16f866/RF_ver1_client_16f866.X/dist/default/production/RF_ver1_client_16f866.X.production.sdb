@@ -27,11 +27,11 @@
 [v _eecpymem eecpymem `(v  1 e 1 0 ]
 "39
 [v _memcpyee memcpyee `(v  1 e 1 0 ]
-"104 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+"107 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
 [v _TuneButtonInit TuneButtonInit `(v  1 e 1 0 ]
-"154
+"157
 [v _ISR ISR `II(v  1 e 1 0 ]
-"185
+"188
 [v _main main `(v  1 e 1 0 ]
 "80 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
 [v _LCDByte LCDByte `(v  1 e 1 0 ]
@@ -52,7 +52,7 @@
 [v i1_LCDGotoXY LCDGotoXY `(v  1 e 1 0 ]
 "282 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
-[s S218 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S227 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -62,13 +62,13 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "392
-[s S227 . 1 `uc 1 . 1 0 :2:0 
+[s S236 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S232 . 1 `S218 1 . 1 0 `S227 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES232  1 e 1 @11 ]
+[u S241 . 1 `S227 1 . 1 0 `S236 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES241  1 e 1 @11 ]
 "1126
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
 [s S72 . 1 `uc 1 ADON 1 0 :1:0 
@@ -94,7 +94,7 @@
 ]
 [u S92 . 1 `S72 1 . 1 0 `S77 1 . 1 0 `S86 1 . 1 0 `S89 1 . 1 0 ]
 [v _ADCON0bits ADCON0bits `VES92  1 e 1 @31 ]
-[s S160 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S169 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -104,8 +104,8 @@
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "1318
-[u S169 . 1 `S160 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES169  1 e 1 @133 ]
+[u S178 . 1 `S169 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES178  1 e 1 @133 ]
 [s S19 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
@@ -120,7 +120,7 @@
 [v _TRISBbits TRISBbits `VES28  1 e 1 @134 ]
 "1423
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
-[s S369 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S392 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -130,12 +130,12 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1440
-[u S378 . 1 `S369 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES378  1 e 1 @135 ]
-[s S275 . 1 `uc 1 IOCB 1 0 :8:0 
+[u S401 . 1 `S392 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES401  1 e 1 @135 ]
+[s S284 . 1 `uc 1 IOCB 1 0 :8:0 
 ]
 "2227
-[s S277 . 1 `uc 1 IOCB0 1 0 :1:0 
+[s S286 . 1 `uc 1 IOCB0 1 0 :1:0 
 `uc 1 IOCB1 1 0 :1:1 
 `uc 1 IOCB2 1 0 :1:2 
 `uc 1 IOCB3 1 0 :1:3 
@@ -144,8 +144,8 @@
 `uc 1 IOCB6 1 0 :1:6 
 `uc 1 IOCB7 1 0 :1:7 
 ]
-[u S286 . 1 `S275 1 . 1 0 `S277 1 . 1 0 ]
-[v _IOCBbits IOCBbits `VES286  1 e 1 @150 ]
+[u S295 . 1 `S284 1 . 1 0 `S286 1 . 1 0 ]
+[v _IOCBbits IOCBbits `VES295  1 e 1 @150 ]
 "2753
 [v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
 [s S57 . 1 `uc 1 . 1 0 :4:0 
@@ -157,15 +157,15 @@
 "2773
 [u S63 . 1 `S57 1 . 1 0 ]
 [v _ADCON1bits ADCON1bits `VES63  1 e 1 @159 ]
-[s S191 . 1 `uc 1 ANS0 1 0 :1:0 
+[s S200 . 1 `uc 1 ANS0 1 0 :1:0 
 `uc 1 ANS1 1 0 :1:1 
 `uc 1 ANS2 1 0 :1:2 
 `uc 1 ANS3 1 0 :1:3 
 `uc 1 ANS4 1 0 :1:4 
 ]
 "3172
-[u S197 . 1 `S191 1 . 1 0 ]
-[v _ANSELbits ANSELbits `VES197  1 e 1 @392 ]
+[u S206 . 1 `S200 1 . 1 0 ]
+[v _ANSELbits ANSELbits `VES206  1 e 1 @392 ]
 [s S40 . 1 `uc 1 ANS8 1 0 :1:0 
 `uc 1 ANS9 1 0 :1:1 
 `uc 1 ANS10 1 0 :1:2 
@@ -195,30 +195,47 @@
 "15 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\custom_char.h
 [v ___cgram __cgram `[8]uc  1 e 8 0 ]
 "85 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
-[v _tuneUpTemp tuneUpTemp `i  1 e 2 0 ]
+[v _tuneUpTemp tuneUpTemp `uc  1 e 1 0 ]
 "86
 [v _curTemp curTemp `i  1 e 2 0 ]
 "87
 [v _tuneUpTempDir tuneUpTempDir `uc  1 e 1 0 ]
-"185
+"89
+[v _msg msg `[32]uc  1 e 32 0 ]
+[s S160 . 1 `uc 1 B0 1 0 :1:0 
+`uc 1 B1 1 0 :1:1 
+`uc 1 B2 1 0 :1:2 
+`uc 1 B3 1 0 :1:3 
+`uc 1 B4 1 0 :1:4 
+`uc 1 B5 1 0 :1:5 
+`uc 1 B6 1 0 :1:6 
+`uc 1 B7 1 0 :1:7 
+]
+"90
+[v _phMsg phMsg `*.4S160  1 e 1 0 ]
+"91
+[v _count count `uc  1 e 1 0 ]
+"188
 [v _main main `(v  1 e 1 0 ]
 {
-"270
+"243
+[v main@t_380 t `uc  1 a 1 40 ]
+[v main@t t `uc  1 a 1 39 ]
+[v main@index index `uc  1 a 1 41 ]
+"277
 } 0
-"104
+"107
 [v _TuneButtonInit TuneButtonInit `(v  1 e 1 0 ]
 {
-"153
+"156
 } 0
 "279 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
 [v _LCDWriteString LCDWriteString `(v  1 e 1 0 ]
 {
-[v LCDWriteString@msg msg `*.24DCCuc  1 a 1 wreg ]
 "287
-[v LCDWriteString@cc cc `c  1 a 1 32 ]
+[v LCDWriteString@cc cc `c  1 a 1 34 ]
 "279
-[v LCDWriteString@msg msg `*.24DCCuc  1 a 1 wreg ]
-[v LCDWriteString@msg msg `*.24DCCuc  1 a 1 33 ]
+[v LCDWriteString@msg msg `*.26DCCuc  1 p 2 31 ]
 "305
 } 0
 "317
@@ -233,7 +250,7 @@
 [v LCDWriteInt@val val `i  1 p 2 31 ]
 [v LCDWriteInt@field_length field_length `c  1 p 1 33 ]
 "318
-[v LCDWriteInt@F1632 F1632 `[5]uc  1 s 5 F1632 ]
+[v LCDWriteInt@F1642 F1642 `[5]uc  1 s 5 F1642 ]
 "349
 } 0
 "6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
@@ -312,18 +329,16 @@
 {
 "26
 } 0
-"154 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+"157 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"184
+"187
 } 0
 "279 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
 [v i1_LCDWriteString LCDWriteString `(v  1 e 1 0 ]
 {
-[v i1LCDWriteString@msg msg `*.24DCCuc  1 a 1 wreg ]
 [v i1LCDWriteString@cc LCDWriteString `c  1 a 1 1 ]
-[v i1LCDWriteString@msg msg `*.24DCCuc  1 a 1 wreg ]
-[v i1LCDWriteString@msg msg `*.24DCCuc  1 a 1 0 ]
+[v i1LCDWriteString@msg msg `*.26DCCuc  1 p 2 12 ]
 "305
 } 0
 "317

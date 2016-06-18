@@ -2094,6 +2094,18 @@ void LCDByte(uint8_t,uint8_t);
 
 void LCDBusyLoop();
 
+# 81 "myutils.h"
+typedef struct {
+unsigned B0 :1;
+unsigned B1 :1;
+unsigned B2 :1;
+unsigned B3 :1;
+unsigned B4 :1;
+unsigned B5 :1;
+unsigned B6 :1;
+unsigned B7 :1;
+} BITbits_t;
+
 # 29 "adc_pic16.h"
 void ADCInit();
 uint16_t ReadADC(uint8_t ch);
@@ -2119,11 +2131,15 @@ int LM35ReadTemp();
 #pragma config WRT = OFF
 
 # 85
-int tuneUpTemp = 0;
+char tuneUpTemp = 0;
 int curTemp = 0;
 char tuneUpTempDir = 1;
 
-# 104
+char msg[32] = "aaaaa";
+BITbits_t *phMsg = (BITbits_t *)msg;
+char count = 0;
+
+# 107
 void TuneButtonInit()
 {
 
@@ -2154,7 +2170,7 @@ ANSELHbits.ANS8 = 0;
 (TRISBbits.TRISB3 = 0);
 ANSELHbits.ANS9 = 0;
 
-# 153
+# 156
 }
 void interrupt ISR()
 {
@@ -2198,7 +2214,7 @@ ADCInit();
 
 TuneButtonInit();
 
-# 200
+# 203
 (LCDByte(0b00000001,0));
 
 { LCDGotoXY(0,0); LCDWriteString("Cur:");};
@@ -2218,20 +2234,24 @@ TuneButtonInit();
 while(1)
 {
 
-# 232
+# 235
 if(RA6 == 0)
 {
 
-# 239
+# 242
 tuneUpTemp = (RA0 | (RA1 << 1) | (RA2 << 2) | (RA3 << 3));
+{ unsigned char index = count/2; if(count % 2 == 0) { { char t; if(1 == 0) { t = tuneUpTemp >> 4; } else { t = tuneUpTemp; } phMsg[index].B0 = t & 0b0001; phMsg[index].B1 = (t & 0b0010) >> 1; phMsg[index].B2 = (t & 0b0100) >> 2; phMsg[index].B3 = (t & 0b1000) >> 3; }; } else { { char t; if(1 == 0) { t = tuneUpTemp >> 4; } else { t = tuneUpTemp; } phMsg[index].B4 = t & 0b0001; phMsg[index].B5 = (t & 0b0010) >> 1; phMsg[index].B6 = (t & 0b0100) >> 2; phMsg[index].B7 = (t & 0b1000) >> 3; }; }; };
 
-# 246
-{ LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
+count++;
 
-# 256
+# 252
+{ LCDGotoXY(10,1); LCDWriteString(msg);};
+{ LCDGotoXY(4,1); LCDWriteInt(count,3);};
+
+# 263
 }
 
-# 269
+# 276
 }
 }
 

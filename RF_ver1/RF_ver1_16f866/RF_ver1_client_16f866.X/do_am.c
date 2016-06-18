@@ -82,10 +82,13 @@
 #define DATA_OUT3           PORTBIT(DATA_OUT3_PIN)
 
 
-int tuneUpTemp = 0;
+char tuneUpTemp = 0;
 int curTemp = 0;
 char tuneUpTempDir = 1;
 
+char msg[32] = "aaaaa";
+BITbits_t *phMsg = (BITbits_t *)msg;
+char count = 0;
 //void TriggerOutInit()
 //{
 //    // 1. Individual pin configuration
@@ -237,13 +240,17 @@ void main (void)
 //                tuneUpTemp = 0;
 //            }
             tuneUpTemp = GET_CHAR_FROM_4_BITS(DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0);
+            SET_4_BITS_TO_STRING(tuneUpTemp, phMsg, count);
+////              CLONE_4_BITS(phMsg[count].B3, phMsg[count].B2, phMsg[count].B1, phMsg[count].B0, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0);
+              count++;
 
 //            GET_4_BITS_FROM_CHAR(tuneUpTemp, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0);
 //            
 //            FLASH(DATA_OUT_TRIGGER);
 //            
             //Print it on the LCD
-            LCDWriteIntXY(4, 1, tuneUpTemp, 3);
+            LCDWriteStringXY(10, 1, msg);            
+            LCDWriteIntXY(4, 1, count, 3);
 
 //            __delay_ms(50);
 
