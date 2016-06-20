@@ -76,8 +76,9 @@ Uncomment Just one of them
 
 
 void LCDInit(uint8_t style);
-void LCDWriteString(const char *msg);
-void LCDWriteInt(int val,int8_t field_length);
+void LCDSetStyle(uint8_t style);
+int8_t LCDWriteString(const char *msg);
+int8_t LCDWriteInt(int val,int8_t field_length);
 void LCDGotoXY(uint8_t x,uint8_t y);
 
 //Low level
@@ -103,10 +104,30 @@ void LCDBusyLoop();
  LCDWriteString(msg);\
 }
 
+#define LCDWriteStringXYCLEAR(x,y,msg) {\
+    LCDGotoXY(x,y);\
+    int8_t count = LCDWriteString(msg);\
+    for(int8_t i = count + x; i < 16; i++) \
+    { \
+       LCDData(' '); \
+    } \
+}
+
 #define LCDWriteIntXY(x,y,val,fl) {\
  LCDGotoXY(x,y);\
  LCDWriteInt(val,fl);\
 }
+
+#define LCDWriteIntXYCLEAR(x,y,val,fl) {\
+    LCDWriteIntXY(x,y,val,fl);\
+    for(int8_t i = fl + x; i < 16; i++) \
+    { \
+       LCDData(' '); \
+    } \
+}
+
+#define LCDClearLine(x) {LCDWriteStringXY(0, x, "", 1);}
+
 /***************************************************/
 
 

@@ -204,6 +204,10 @@ LS_ULINE : Cursor is "underline" type else "block" type
 
 //After power on Wait for LCD to Initialize
 
+void LCDSetStyle(uint8_t style)
+{
+    LCDCmd(0b00001100|style);
+}
 void LCDInit(uint8_t style)
 {
 	__delay_ms(30);
@@ -276,32 +280,39 @@ In the same way you can insert any symbols numbered 0-7
 
 
 *****************************************************************/
-void LCDWriteString(const char *msg)
+int8_t LCDWriteString(const char *msg)
 {
- while(*msg!='\0')
- {
- 	//Custom Char Support
-	if(*msg=='%')
-	{
-		msg++;
-		int8_t cc=*msg-'0';
+    int8_t count = 0;
+    while(*msg!='\0')
+    {
+       //Custom Char Support
+       if(*msg=='%')
+       {
+           msg++;
+           int8_t cc=*msg-'0';
 
-		if(cc>=0 && cc<=7)
-		{
-			LCDData(cc);
-		}
-		else
-		{
-			LCDData('%');
-			LCDData(*msg);
-		}
-	}
-	else
-	{
-		LCDData(*msg);
-	}
-	msg++;
- }
+           if(cc>=0 && cc<=7)
+           {
+               LCDData(cc);
+               count++;
+           }
+           else
+           {
+               LCDData('%');
+               count++;
+               LCDData(*msg);
+               count++;
+           }
+       }
+       else
+       {
+           LCDData(*msg);
+           count++;
+       }
+       msg++;
+    }
+    
+    return count;
 }
 /***************************************************************
 This function writes a integer type value to LCD module
@@ -314,7 +325,7 @@ must be between 1-5 if it is -1 the field length is no of digits in the val
 
 ****************************************************************/
 
-void LCDWriteInt(int val,int8_t field_length)
+int8_t LCDWriteInt(int val,int8_t field_length)
 {
 	char str[5]={-16,-16,-16,-16,-16};
 	int i=4,j=0;
@@ -346,6 +357,7 @@ void LCDWriteInt(int val,int8_t field_length)
 	{
 	LCDData(48+str[i]);
 	}
+    return field_length;
 }
 /********************************************************************
 

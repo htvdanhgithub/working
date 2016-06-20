@@ -4,4 +4,6 @@
 lm35_pic16.h  \
 adc_pic16.h  \
 lcd_hd44780_pic16.h  \
-myutils.h 
+menu.h  \
+myutils.h  \
+packet.h 

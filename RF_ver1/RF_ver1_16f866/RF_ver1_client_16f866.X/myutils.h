@@ -89,19 +89,12 @@ typedef struct {
         unsigned B7                    :1;
 } BITbits_t;    
     
-#define SEND_HALF_BIT(value, low, d3, d2, d1, d0, trigger) { \
-                                            GET_4_BITS_FROM_CHAR(value, low, d3, d2, d1, d0); \
-                                            FLASH(trigger); }
-#define SEND_STRING(str, len, d3, d2, d1, d0, trigger) \
-{ \
-    for(char i = 0; i < len; i++) \
-    { \
-        SEND_HALF_BIT(str[i], 1, d3, d2, d1, d0, trigger); \
-        __delay_ms(10); \
-        SEND_HALF_BIT(str[i], 0, d3, d2, d1, d0, trigger); \
-        __delay_ms(10); \
-    } \
-}
+
+
+
+
+
+#define DEBUG(msg) {LCDWriteStringXYCLEAR(0, 1, msg);}
 
 #ifdef	__cplusplus
 }

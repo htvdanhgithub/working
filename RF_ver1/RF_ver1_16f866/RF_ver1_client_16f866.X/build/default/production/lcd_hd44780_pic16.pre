@@ -2083,8 +2083,9 @@ typedef uint16_t uintptr_t;
 
 # 78 "lcd_hd44780_pic16.h"
 void LCDInit(uint8_t style);
-void LCDWriteString(const char *msg);
-void LCDWriteInt(int val,int8_t field_length);
+void LCDSetStyle(uint8_t style);
+int8_t LCDWriteString(const char *msg);
+int8_t LCDWriteInt(int val,int8_t field_length);
 void LCDGotoXY(uint8_t x,uint8_t y);
 
 
@@ -2224,6 +2225,10 @@ TRISC&=(~(0x0F<<4));
 }
 
 # 207
+void LCDSetStyle(uint8_t style)
+{
+(LCDByte(0b00001100|style,0));
+}
 void LCDInit(uint8_t style)
 {
 _delay((unsigned long)((30)*(20000000/4000.0)));
@@ -2269,9 +2274,10 @@ for(__i=0;__i<sizeof(__cgram);__i++)
 
 }
 
-# 279
-void LCDWriteString(const char *msg)
+# 283
+int8_t LCDWriteString(const char *msg)
 {
+int8_t count = 0;
 while(*msg!='\0')
 {
 
@@ -2283,23 +2289,29 @@ int8_t cc=*msg-'0';
 if(cc>=0 && cc<=7)
 {
 (LCDByte(cc,1));
+count++;
 }
 else
 {
 (LCDByte('%',1));
+count++;
 (LCDByte(*msg,1));
+count++;
 }
 }
 else
 {
 (LCDByte(*msg,1));
+count++;
 }
 msg++;
 }
+
+return count;
 }
 
-# 317
-void LCDWriteInt(int val,int8_t field_length)
+# 328
+int8_t LCDWriteInt(int val,int8_t field_length)
 {
 char str[5]={-16,-16,-16,-16,-16};
 int i=4,j=0;
@@ -2331,9 +2343,10 @@ for(i=j;i<5;i++)
 {
 (LCDByte(48+str[i],1));
 }
+return field_length;
 }
 
-# 355
+# 367
 void LCDGotoXY(uint8_t x,uint8_t y)
 {
 if(x>=20) return;
@@ -2355,7 +2368,7 @@ x+=0x54;
 break;
 }
 
-# 396
+# 408
 x|=0b10000000;
 (LCDByte(x,0));
 }

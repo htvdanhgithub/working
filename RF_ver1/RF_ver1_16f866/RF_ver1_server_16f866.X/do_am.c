@@ -3,6 +3,9 @@
 #include "lcd_hd44780_pic16.h"
 #include "adc_pic16.h"
 #include "lm35_pic16.h"
+#include "menu.h"
+#include "packet.h"
+#include "msg.h"
 
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
@@ -30,11 +33,6 @@
 #define GLB_INT_ENABLE   INTCONbits.GIE
 
 //LM35 is connected to Port A bit 2
-
-#define DATA_IN_TRIGGER_PORT      A
-#define DATA_IN_TRIGGER_POS       6
-#define DATA_IN_TRIGGER_PIN       PIN(DATA_IN_TRIGGER_PORT, DATA_IN_TRIGGER_POS)
-#define DATA_IN_TRIGGER           PORTBIT(DATA_IN_TRIGGER_PIN)
 
 #define DATA_IN0_PORT      A
 #define DATA_IN0_POS       0
@@ -81,34 +79,41 @@
 #define DATA_OUT3_PIN       PIN(DATA_OUT3_PORT, DATA_OUT3_POS)
 #define DATA_OUT3           PORTBIT(DATA_OUT3_PIN)
 
+#define DATA_IN_TRIGGER_PORT      A
+#define DATA_IN_TRIGGER_POS       6
+#define DATA_IN_TRIGGER_PIN       PIN(DATA_IN_TRIGGER_PORT, DATA_IN_TRIGGER_POS)
+#define DATA_IN_TRIGGER           PORTBIT(DATA_IN_TRIGGER_PIN)
 
-char tuneUpTemp = 0;
-int curTemp = 0;
-char tuneUpTempDir = 1;
+#define MENU_IN_PORT      B
+#define MENU_IN_POS       4
+#define MENU_IN_PIN       PIN(MENU_IN_PORT, MENU_IN_POS)
+#define MENU_IN           PORTBIT(MENU_IN_PIN)
 
-char msg[32] = "01234";
-BITbits_t *phMsg = (BITbits_t *)msg;
-char count = 0;
-//void TriggerOutInit()
-//{
-//    // 1. Individual pin configuration
-//    IO_OUTPUT(TRIGGER_DOWN_OUT_PIN);
-////    IO_OUTPUT(TRIGGER_UP_OUT_PIN);
-//    // 2. Digital I/O
-//    ANSELBIT(TRIGGER_DOWN_OUT_PIN) = 0;
-////    ANSELBIT(TRIGGER_UP_OUT_PIN) = 0;
-//    
-////    APFCONbits.SDOSEL = 0;
-////    APFCONbits.T1GSEL = 0;
-////    APFCONbits.TXCKSEL = 0;
-////    CONFIG1bits.MCLRE = 0;
-////    APFCONbits.SSSEL = 0;
-//}
-void TuneButtonInit()
+#define MENU_OUT_PORT      B
+#define MENU_OUT_POS       6
+#define MENU_OUT_PIN       PIN(MENU_OUT_PORT, MENU_OUT_POS)
+#define MENU_OUT           PORTBIT(MENU_OUT_PIN)
+
+#define UP_PORT      B
+#define UP_POS       5
+#define UP_PIN       PIN(UP_PORT, UP_POS)
+#define UP           PORTBIT(UP_PIN)
+
+#define DOWN_PORT      B
+#define DOWN_POS       7
+#define DOWN_PIN       PIN(DOWN_PORT, DOWN_POS)
+#define DOWN           PORTBIT(DOWN_PIN)
+
+E_operation_mode mode = NORMAL;
+E_operation_submode submode = NOTEDIT;
+
+Msg_t msg;
+
+void IOInit()
 {
     // 2. Individual pin configuration
     IO_INPUT(DATA_IN_TRIGGER_PIN);
-    ANSELHbits.ANS11 = 0;
+//    ANSELHbits.ANS11 = 0;
     
     IO_INPUT(DATA_IN0_PIN);
     ANSELbits.ANS0 = 0;
@@ -136,7 +141,18 @@ void TuneButtonInit()
     
     DATA_OUT_TRIGGER = 1;
     
-//    ANSELHbits.ANS11 = 0;
+    
+    IO_INPUT(MENU_IN_PIN);
+    ANSELHbits.ANS11 = 0;
+    
+    IO_INPUT(MENU_OUT_PIN);
+    
+    IO_INPUT(UP_PIN);
+    ANSELHbits.ANS13 = 0;
+    
+    IO_INPUT(DOWN_PIN);
+
+    //    ANSELHbits.ANS11 = 0;
 
 //    OPTION_REGbits.INTEDG = 1;
 //    INTCONbits.PEIE = 1;
@@ -158,34 +174,6 @@ void TuneButtonInit()
 }
 void interrupt ISR()
 {
-    if(INTB_FLAG == 1)
-    {
-//        if(DATA_IN_TRIGGER == 1)
-        {
-            //Clear the LCD
-            LCDClear();
-
-            LCDWriteStringXY(0, 0, "Thermometer set:");
-
-            tuneUpTemp++;
-            if(tuneUpTemp > 150)
-            {
-                tuneUpTemp = 0;
-            }
-
-            //Print it on the LCD
-            LCDWriteIntXY(0, 1, tuneUpTemp, 3);
-
-            //Print the degree symbol and C
-            LCDWriteString("%0C");
-
-            __delay_ms(500);
-            tuneUpTempDir = 1;
-            
-        }
-        INTB_FLAG = 0;
-    }
-    IOCB_CLEAR;
 }
 void main (void)
 {
@@ -196,7 +184,9 @@ void main (void)
     ADCInit();
 
     //Initialize Tune button
-    TuneButtonInit();
+    IOInit();
+    
+    MenuInit();
 //    
 //    //Initialize Trigger out
 //    TriggerOutInit();
@@ -204,93 +194,90 @@ void main (void)
     //Clear the LCD
     LCDClear();
 
-    LCDWriteStringXY(0, 0, "Cur:");
-    //Print the degree symbol and C
-    LCDWriteStringXY(7, 0, "%0C"); 
-
-    LCDWriteStringXY(10, 0, "Wa:");
-
-    LCDWriteStringXY(0, 1, "Max:");
-    //Print the degree symbol and C
-    LCDWriteStringXY(7, 1, "%0C"); 
-
-    LCDWriteStringXY(13, 0, "OFF");
-
-    LCDWriteIntXY(4, 1, tuneUpTemp, 3);
-    LCDWriteIntXY(4, 0, curTemp, 3);    
     while(1)
     {
-        //Read the temperature using LM35
-        curTemp = LM35ReadTemp();
-
-        if((tuneUpTemp >= 5) && (curTemp >= tuneUpTemp))
-        {
-            LCDWriteStringXY(13, 0, "ON ");
-        }
-        else
-        {
-            if(curTemp <= tuneUpTemp - 5)
-            {
-                LCDWriteStringXY(13, 0, "OFF");
-            }
-        }
         if(DATA_IN_TRIGGER == 0)
         {
-//            tuneUpTemp++;
-//            if(tuneUpTemp > 150)
-//            {
-//                tuneUpTemp = 0;
-//            }
-//            tuneUpTemp = phMsg[count];
-//            for(char i = 0; i < 6; i++)
-//            {
-//                SEND_HALF_BIT(msg[i], 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-//                __delay_ms(10);
-//                SEND_HALF_BIT(msg[i], 0, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-//                __delay_ms(10);
-//            }
-            SEND_STRING(msg, 6, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-//            SEND_HALF_BIT(msg[0], 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-//            __delay_ms(200);
-//            SEND_HALF_BIT(msg[0], 0, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-//            SEND_STRING(msg, 6, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-//             GET_4_BITS_FROM_STRING(tuneUpTemp, phMsg, count);
-//            SEND_HALF_BIT(tuneUpTemp, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-//            count++;
-//
-//            GET_4_BITS_FROM_CHAR(tuneUpTemp, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0);
-//            
-////            DATA_OUT_TRIGGER = 0;
-////            __delay_us(1);
-////            DATA_OUT_TRIGGER = 1;
-//            FLASH(DATA_OUT_TRIGGER);
-            
-            //Print it on the LCD
-            LCDWriteIntXY(4, 1, tuneUpTemp, 3);
+            SEND_MSG(&msg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+            __delay_ms(200);
+        }
+        else
+        if(MENU_IN == 0)
+        {
+            if(mode == NORMAL)
+            {
+                DEBUG("MENU MODE");
+                mode = MENU;
+                ShowMenu();
+            }
+            else
+            {
+                DEBUG("EDIT MODE");
+                submode = EDIT;
+                ShowMenu();
+                LCDSetStyle(LS_BLINK);
+            }
 
             __delay_ms(200);
-
-//                //Print it on the LCD
-//                LCDWriteIntXY(0, 1, tuneUpTemp, 3);
-//
-//                //Print the degree symbol and C
-//                LCDWriteString("%0C");
-
         }
+        else
+        if(MENU_OUT == 0)
+        {
+            if(mode == MENU)
+            {
+                if(submode == EDIT)
+                {
+                    DEBUG("NOTEDIT MODE");
+                    submode = NOTEDIT;
+                    LCDSetStyle(LS_NONE);
+                }
+                else
+                {
+                    DEBUG("NORMAL MODE");
+                    mode = NORMAL;
+                    ClearMenu();
+                }
+            }
 
-//        if(tuneUpTempDir == 1)
-//        {
-//            tuneUpTempDir = 0;
-//        }
-        
-        //Print it on the LCD
-        LCDWriteStringXY(10, 1, msg);
-
-        LCDWriteIntXY(4, 0, curTemp, 3);
-
-      
-//        //Wait 200ms before taking next reading
-//        __delay_ms(20);
+            __delay_ms(200);
+        }
+        else
+        if(UP == 0)
+        {
+            DEBUG("UP");
+            if(mode == MENU)
+            {
+                if(submode == EDIT)
+                {
+                    ValueInc();
+                }            
+                else
+                {
+                    MenuUp();
+                }
+                ShowMenu();                
+            }
+            __delay_ms(200);
+        }
+        else
+        if(DOWN == 0)
+        {
+            DEBUG("DOWN");
+            if(mode == MENU)
+            {
+                if(submode == EDIT)
+                {
+                    ValueDec();
+                }            
+                else
+                {
+                    MenuDown();
+                }
+                ShowMenu();
+            }
+            __delay_ms(200);
+        }
+            
     }
 }
 

@@ -1,88 +1,24 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"106 do_am.c
-[c E1616 0 1 .. ]
-[n E1616 . MENU NORMAL  ]
-"107
-[c E1620 0 1 .. ]
-[n E1620 . EDIT NOTEDIT  ]
-"81 myutils.h
-[s S135 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S135 . B0 B1 B2 B3 B4 B5 B6 B7 ]
-"1307 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
-[s S52 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S52 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
-"1306
-[u S51 `S52 1 ]
-[n S51 . . ]
-"1318
-[v _TRISAbits `VS51 ~T0 @X0 0 e@133 ]
-"3164
-[s S130 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S130 . ANS0 ANS1 ANS2 ANS3 ANS4 ]
-"3163
-[u S129 `S130 1 ]
-[n S129 . . ]
-"3172
-[v _ANSELbits `VS129 ~T0 @X0 0 e@392 ]
-"1368
-[s S54 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S54 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
-"1367
-[u S53 `S54 1 ]
-[n S53 . . ]
-"1379
-[v _TRISBbits `VS53 ~T0 @X0 0 e@134 ]
-"3207
-[s S132 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S132 . ANS8 ANS9 ANS10 ANS11 ANS12 ANS13 ]
-"3206
-[u S131 `S132 1 ]
-[n S131 . . ]
-"3216
-[v _ANSELHbits `VS131 ~T0 @X0 0 e@393 ]
-"3662
-[v _RA7 `Vb ~T0 @X0 0 e@47 ]
-[p mainexit ]
-"78 lcd_hd44780_pic16.h
-[v _LCDInit `(v ~T0 @X0 0 ef1`uc ]
-"29 adc_pic16.h
-[v _ADCInit `(v ~T0 @X0 0 ef ]
-"36 menu.h
-[v _MenuInit `(v ~T0 @X0 0 ef ]
-"85 lcd_hd44780_pic16.h
-[v _LCDByte `(v ~T0 @X0 0 ef2`uc`uc ]
-"82
+"26 menu.h
+[s S136 `uc 1 `*uc 1 ]
+[n S136 . value name ]
+"31
+[s S137 `S136 -> 4 `i `uc 1 ]
+[n S137 . items index ]
+"44
+[v _LoadMenuItem `(uc ~T0 @X0 0 ef1`uc ]
+"82 lcd_hd44780_pic16.h
 [v _LCDGotoXY `(v ~T0 @X0 0 ef2`uc`uc ]
 "80
 [v _LCDWriteString `(c ~T0 @X0 0 ef1`*Cuc ]
-"3660 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
-[v _RA6 `Vb ~T0 @X0 0 e@46 ]
-"3672
-[v _RB4 `Vb ~T0 @X0 0 e@52 ]
-"37 menu.h
-[v _ShowMenu `(v ~T0 @X0 0 ef ]
-"79 lcd_hd44780_pic16.h
-[v _LCDSetStyle `(v ~T0 @X0 0 ef1`uc ]
-[v F1554 `(v ~T0 @X0 1 tf1`ul ]
-"152 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
-[v __delay `JF1554 ~T0 @X0 0 e ]
-[p i __delay ]
-"3676 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
-[v _RB6 `Vb ~T0 @X0 0 e@54 ]
-"38 menu.h
-[v _ClearMenu `(v ~T0 @X0 0 ef ]
-"3674 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
-[v _RB5 `Vb ~T0 @X0 0 e@53 ]
-"41 menu.h
-[v _ValueInc `(v ~T0 @X0 0 ef ]
-"39
-[v _MenuUp `(v ~T0 @X0 0 ef ]
-"3678 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
-[v _RB7 `Vb ~T0 @X0 0 e@55 ]
-"288 do_am.c
-[v _ValueDec `(i ~T0 @X0 0 ef ]
-"40 menu.h
-[v _MenuDown `(v ~T0 @X0 0 ef ]
+"85
+[v _LCDByte `(v ~T0 @X0 0 ef2`uc`uc ]
+"81
+[v _LCDWriteInt `(c ~T0 @X0 0 ef2`i`c ]
+"114 C:\Program Files (x86)\Microchip\xc8\v1.37\include\eeprom_routines.h
+[v _eeprom_write `(v ~T0 @X0 0 ef2`uc`uc ]
+"115
+[v _eeprom_read `(uc ~T0 @X0 0 ef1`uc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1547,9 +1483,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;myutils.h: 88: unsigned B6 :1;
 [; ;myutils.h: 89: unsigned B7 :1;
 [; ;myutils.h: 90: } BITbits_t;
-[; ;adc_pic16.h: 29: void ADCInit();
-[; ;adc_pic16.h: 30: uint16_t ReadADC(uint8_t ch);
-[; ;lm35_pic16.h: 15: int LM35ReadTemp();
 [; ;menu.h: 13: typedef enum
 [; ;menu.h: 14: {
 [; ;menu.h: 15: MENU,
@@ -1577,628 +1510,268 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;menu.h: 42: void Valuedec();
 [; ;menu.h: 43: void SaveMenuItem(uint8_t item);
 [; ;menu.h: 44: uint8_t LoadMenuItem(uint8_t item);
-[; ;packet.h: 28: typedef struct {
-[; ;packet.h: 29: unsigned char cmd;
-[; ;packet.h: 30: unsigned char size;
-[; ;packet.h: 31: unsigned char *data;
-[; ;packet.h: 32: } Packet_t;
-"10 do_am.c
-[p x FOSC=INTRC_NOCLKOUT ]
-"11
-[p x WDTE=ON ]
+"5 menu.c
+[v _g_menu `S137 ~T0 @X0 1 e ]
+[; ;menu.c: 5: Menu_t g_menu;
+"7
+[v _MenuInit `(v ~T0 @X0 1 ef ]
+"8
+{
+[; ;menu.c: 7: void MenuInit()
+[; ;menu.c: 8: {
+[e :U _MenuInit ]
+[f ]
+[; ;menu.c: 9: g_menu.items[0].name = "ID1:";
+"9
+[e = . *U + &U . _g_menu 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 1 -> :s 1C `*uc ]
+[; ;menu.c: 10: g_menu.items[0].value = LoadMenuItem(0);
+"10
+[e = . *U + &U . _g_menu 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 ( _LoadMenuItem (1 -> -> 0 `i `uc ]
+[; ;menu.c: 12: g_menu.items[1].name = "ID2:";
 "12
-[p x PWRTE=OFF ]
+[e = . *U + &U . _g_menu 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 1 -> :s 2C `*uc ]
+[; ;menu.c: 13: g_menu.items[1].value = LoadMenuItem(1);
 "13
-[p x MCLRE=ON ]
-"14
-[p x CP=ON ]
+[e = . *U + &U . _g_menu 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 ( _LoadMenuItem (1 -> -> 1 `i `uc ]
+[; ;menu.c: 15: g_menu.items[2].name = "ID3:";
 "15
-[p x CPD=ON ]
+[e = . *U + &U . _g_menu 0 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 1 -> :s 3C `*uc ]
+[; ;menu.c: 16: g_menu.items[2].value = LoadMenuItem(2);
 "16
-[p x BOREN=ON ]
-"17
-[p x IESO=ON ]
+[e = . *U + &U . _g_menu 0 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 ( _LoadMenuItem (1 -> -> 2 `i `uc ]
+[; ;menu.c: 18: g_menu.items[3].name = "ID4:";
 "18
-[p x FCMEN=ON ]
+[e = . *U + &U . _g_menu 0 * -> -> -> 3 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 1 -> :s 4C `*uc ]
+[; ;menu.c: 19: g_menu.items[3].value = LoadMenuItem(3);
 "19
-[p x LVP=ON ]
+[e = . *U + &U . _g_menu 0 * -> -> -> 3 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 ( _LoadMenuItem (1 -> -> 3 `i `uc ]
+[; ;menu.c: 21: g_menu.index = 0;
+"21
+[e = . _g_menu 1 -> -> 0 `i `uc ]
+[; ;menu.c: 22: }
 "22
-[p x BOR4V=BOR21V ]
+[e :UE 138 ]
+}
 "23
-[p x WRT=OFF ]
-"106
-[v _mode `E1616 ~T0 @X0 1 e ]
-[i _mode
-. `E1616 1
-]
-[; ;do_am.c: 106: E_operation_mode mode = NORMAL;
-"107
-[v _submode `E1620 ~T0 @X0 1 e ]
-[i _submode
-. `E1620 1
-]
-[; ;do_am.c: 107: E_operation_submode submode = NOTEDIT;
-"108
-[v _tuneUpTempDir `uc ~T0 @X0 1 e ]
-[i _tuneUpTempDir
--> -> 1 `i `uc
-]
-[; ;do_am.c: 108: char tuneUpTempDir = 1;
-"110
-[v _msg `uc ~T0 @X0 -> 32 `i e ]
-[i _msg
-:U ..
--> 97 `c
--> 97 `c
--> 97 `c
--> 97 `c
--> 97 `c
--> 0 `c
-..
-]
-[; ;do_am.c: 110: char msg[32] = "aaaaa";
-"111
-[v _phMsg `*S135 ~T0 @X0 1 e ]
-[i _phMsg
--> &U _msg `*S135
-]
-[; ;do_am.c: 111: BITbits_t *phMsg = (BITbits_t *)msg;
-"112
-[v _count `uc ~T0 @X0 1 e ]
-[i _count
--> -> 0 `i `uc
-]
-[; ;do_am.c: 112: char count = 0;
-"114
-[v _IOInit `(v ~T0 @X0 1 ef ]
-"115
+[v _ShowMenu `(v ~T0 @X0 1 ef ]
+"24
 {
-[; ;do_am.c: 114: void IOInit()
-[; ;do_am.c: 115: {
-[e :U _IOInit ]
+[; ;menu.c: 23: void ShowMenu()
+[; ;menu.c: 24: {
+[e :U _ShowMenu ]
 [f ]
-[; ;do_am.c: 117: (TRISAbits.TRISA6 = 1);
-"117
-[e = . . _TRISAbits 0 6 -> -> 1 `i `uc ]
-[; ;do_am.c: 120: (TRISAbits.TRISA0 = 1);
-"120
-[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
-[; ;do_am.c: 121: ANSELbits.ANS0 = 0;
-"121
-[e = . . _ANSELbits 0 0 -> -> 0 `i `uc ]
-[; ;do_am.c: 123: (TRISAbits.TRISA1 = 1);
-"123
-[e = . . _TRISAbits 0 1 -> -> 1 `i `uc ]
-[; ;do_am.c: 124: ANSELbits.ANS1 = 0;
-"124
-[e = . . _ANSELbits 0 1 -> -> 0 `i `uc ]
-[; ;do_am.c: 125: (TRISAbits.TRISA2 = 1);
-"125
-[e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
-[; ;do_am.c: 126: ANSELbits.ANS2 = 0;
-"126
-[e = . . _ANSELbits 0 2 -> -> 0 `i `uc ]
-[; ;do_am.c: 127: (TRISAbits.TRISA3 = 1);
-"127
-[e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
-[; ;do_am.c: 128: ANSELbits.ANS3 = 0;
-"128
-[e = . . _ANSELbits 0 3 -> -> 0 `i `uc ]
-[; ;do_am.c: 130: (TRISAbits.TRISA7 = 0);
-"130
-[e = . . _TRISAbits 0 7 -> -> 0 `i `uc ]
-[; ;do_am.c: 132: (TRISBbits.TRISB0 = 0);
-"132
-[e = . . _TRISBbits 0 0 -> -> 0 `i `uc ]
-[; ;do_am.c: 133: ANSELHbits.ANS12 = 0;
-"133
-[e = . . _ANSELHbits 0 4 -> -> 0 `i `uc ]
-[; ;do_am.c: 135: (TRISBbits.TRISB1 = 0);
-"135
-[e = . . _TRISBbits 0 1 -> -> 0 `i `uc ]
-[; ;do_am.c: 136: ANSELHbits.ANS10 = 0;
-"136
-[e = . . _ANSELHbits 0 2 -> -> 0 `i `uc ]
-[; ;do_am.c: 138: (TRISBbits.TRISB2 = 0);
-"138
-[e = . . _TRISBbits 0 2 -> -> 0 `i `uc ]
-[; ;do_am.c: 139: ANSELHbits.ANS8 = 0;
-"139
-[e = . . _ANSELHbits 0 0 -> -> 0 `i `uc ]
-[; ;do_am.c: 141: (TRISBbits.TRISB3 = 0);
-"141
-[e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
-[; ;do_am.c: 142: ANSELHbits.ANS9 = 0;
-"142
-[e = . . _ANSELHbits 0 1 -> -> 0 `i `uc ]
-[; ;do_am.c: 144: RA7 = 1;
-"144
-[e = _RA7 -> -> 1 `i `b ]
-[; ;do_am.c: 147: (TRISBbits.TRISB4 = 1);
-"147
-[e = . . _TRISBbits 0 4 -> -> 1 `i `uc ]
-[; ;do_am.c: 148: ANSELHbits.ANS11 = 0;
-"148
-[e = . . _ANSELHbits 0 3 -> -> 0 `i `uc ]
-[; ;do_am.c: 150: (TRISBbits.TRISB6 = 1);
-"150
-[e = . . _TRISBbits 0 6 -> -> 1 `i `uc ]
-[; ;do_am.c: 152: (TRISBbits.TRISB5 = 1);
-"152
-[e = . . _TRISBbits 0 5 -> -> 1 `i `uc ]
-[; ;do_am.c: 153: ANSELHbits.ANS13 = 0;
-"153
-[e = . . _ANSELHbits 0 5 -> -> 0 `i `uc ]
-[; ;do_am.c: 155: (TRISBbits.TRISB7 = 1);
-"155
-[e = . . _TRISBbits 0 7 -> -> 1 `i `uc ]
-[; ;do_am.c: 176: }
-"176
-[e :UE 139 ]
-}
-[v F1657 `(v ~T0 @X0 1 tf ]
-"177
-[v _ISR `IF1657 ~T0 @X0 1 e ]
-"178
-{
-[; ;do_am.c: 177: void interrupt ISR()
-[; ;do_am.c: 178: {
-[e :U _ISR ]
-[f ]
-[; ;do_am.c: 179: }
-"179
-[e :UE 140 ]
-}
-"180
-[v _main `(v ~T0 @X0 1 ef ]
-"181
-{
-[; ;do_am.c: 180: void main (void)
-[; ;do_am.c: 181: {
-[e :U _main ]
-[f ]
-[; ;do_am.c: 183: LCDInit(0B00000000);
-"183
-[e ( _LCDInit (1 -> -> 0 `i `uc ]
-[; ;do_am.c: 186: ADCInit();
-"186
-[e ( _ADCInit ..  ]
-[; ;do_am.c: 189: IOInit();
-"189
-[e ( _IOInit ..  ]
-[; ;do_am.c: 191: MenuInit();
-"191
-[e ( _MenuInit ..  ]
-[; ;do_am.c: 197: (LCDByte(0b00000001,0));
-"197
-[e ( _LCDByte (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;do_am.c: 199: { LCDGotoXY(0,0); LCDWriteString("Cur:");};
-"199
+[; ;menu.c: 25: { LCDGotoXY(0,0); int8_t count = LCDWriteString(g_menu.items[g_menu.index].name); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };
+"25
 {
 [e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteString (1 :s 1C ]
-}
-[; ;do_am.c: 201: { LCDGotoXY(7,0); LCDWriteString("%0C");};
-"201
-{
-[e ( _LCDGotoXY (2 , -> -> 7 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteString (1 :s 2C ]
-}
-[; ;do_am.c: 203: { LCDGotoXY(10,0); LCDWriteString("Wa:");};
-"203
-{
-[e ( _LCDGotoXY (2 , -> -> 10 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteString (1 :s 3C ]
-}
-[; ;do_am.c: 205: { LCDGotoXY(0,1); LCDWriteString("Max:");};
-"205
-{
-[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteString (1 :s 4C ]
-}
-[; ;do_am.c: 207: { LCDGotoXY(7,1); LCDWriteString("%0C");};
-"207
-{
-[e ( _LCDGotoXY (2 , -> -> 7 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteString (1 :s 5C ]
-}
-[; ;do_am.c: 209: { LCDGotoXY(13,0); LCDWriteString("OFF");};
-"209
-{
-[e ( _LCDGotoXY (2 , -> -> 13 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteString (1 :s 6C ]
-}
-[; ;do_am.c: 211: while(1)
-"211
-[e :U 143 ]
-[; ;do_am.c: 212: {
-"212
-{
-[; ;do_am.c: 213: if(RA6 == 0)
-"213
-[e $ ! == -> _RA6 `i -> 0 `i 145  ]
-[; ;do_am.c: 214: {
-"214
-{
-"221
-}
-[; ;do_am.c: 221: }
-[e $U 146  ]
-"222
-[e :U 145 ]
-[; ;do_am.c: 222: else
-[; ;do_am.c: 223: if(RB4 == 0)
-"223
-[e $ ! == -> _RB4 `i -> 0 `i 147  ]
-[; ;do_am.c: 224: {
-"224
-{
-[; ;do_am.c: 225: if(mode == NORMAL)
-"225
-[e $ ! == -> _mode `i -> . `E1616 1 `i 148  ]
-[; ;do_am.c: 226: {
-"226
-{
-[; ;do_am.c: 227: {{ LCDGotoXY(0,1); int8_t count = LCDWriteString("MENU MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
-"227
-{
-{
-[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
 [v _count `c ~T0 @X0 1 a ]
-[e = _count ( _LCDWriteString (1 :s 7C ]
+[e = _count ( _LCDWriteString (1 -> . *U + &U . _g_menu 0 * -> . _g_menu 1 `ux -> -> # *U &U . _g_menu 0 `ui `ux 1 `*Cuc ]
 {
 [v _i `c ~T0 @X0 1 a ]
 [e = _i -> + -> _count `i -> 0 `i `c ]
-[e $ < -> _i `i -> 16 `i 149  ]
-[e $U 150  ]
-[e :U 149 ]
+[e $ < -> _i `i -> 16 `i 140  ]
+[e $U 141  ]
+[e :U 140 ]
 {
 [e ( _LCDByte (2 , -> -> 32 `ui `uc -> -> 1 `i `uc ]
 }
 [e ++ _i -> -> 1 `i `c ]
-[e $ < -> _i `i -> 16 `i 149  ]
-[e :U 150 ]
+[e $ < -> _i `i -> 16 `i 140  ]
+[e :U 141 ]
 }
 }
-}
-[; ;do_am.c: 228: mode = MENU;
-"228
-[e = _mode . `E1616 0 ]
-[; ;do_am.c: 229: ShowMenu();
-"229
-[e ( _ShowMenu ..  ]
-"230
-}
-[; ;do_am.c: 230: }
-[e $U 152  ]
-"231
-[e :U 148 ]
-[; ;do_am.c: 231: else
-[; ;do_am.c: 232: {
-"232
+[; ;menu.c: 26: { LCDGotoXY(4,0); LCDWriteInt(g_menu.items[g_menu.index].value,3);};
+"26
 {
-[; ;do_am.c: 233: {{ LCDGotoXY(0,1); int8_t count = LCDWriteString("EDIT MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
-"233
+[e ( _LCDGotoXY (2 , -> -> 4 `i `uc -> -> 0 `i `uc ]
+[e ( _LCDWriteInt (2 , -> . *U + &U . _g_menu 0 * -> . _g_menu 1 `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 `i -> -> 3 `i `c ]
+}
+[; ;menu.c: 27: }
+"27
+[e :UE 139 ]
+}
+"28
+[v _ClearMenu `(v ~T0 @X0 1 ef ]
+"29
 {
+[; ;menu.c: 28: void ClearMenu()
+[; ;menu.c: 29: {
+[e :U _ClearMenu ]
+[f ]
+[; ;menu.c: 30: { LCDGotoXY(0,0); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };
+"30
 {
-[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
+[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
 [v _count `c ~T0 @X0 1 a ]
-[e = _count ( _LCDWriteString (1 :s 8C ]
+[e = _count ( _LCDWriteString (1 :s 5C ]
 {
 [v _i `c ~T0 @X0 1 a ]
 [e = _i -> + -> _count `i -> 0 `i `c ]
-[e $ < -> _i `i -> 16 `i 153  ]
-[e $U 154  ]
-[e :U 153 ]
-{
-[e ( _LCDByte (2 , -> -> 32 `ui `uc -> -> 1 `i `uc ]
-}
-[e ++ _i -> -> 1 `i `c ]
-[e $ < -> _i `i -> 16 `i 153  ]
-[e :U 154 ]
-}
-}
-}
-[; ;do_am.c: 234: submode = EDIT;
-"234
-[e = _submode . `E1620 0 ]
-[; ;do_am.c: 235: ShowMenu();
-"235
-[e ( _ShowMenu ..  ]
-[; ;do_am.c: 236: LCDSetStyle(0B00000001);
-"236
-[e ( _LCDSetStyle (1 -> -> 1 `i `uc ]
-"237
-}
-[e :U 152 ]
-[; ;do_am.c: 237: }
-[; ;do_am.c: 239: _delay((unsigned long)((200)*(20000000/4000.0)));
-"239
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"240
-}
-[; ;do_am.c: 240: }
-[e $U 156  ]
-"241
-[e :U 147 ]
-[; ;do_am.c: 241: else
-[; ;do_am.c: 242: if(RB6 == 0)
-"242
-[e $ ! == -> _RB6 `i -> 0 `i 157  ]
-[; ;do_am.c: 243: {
-"243
-{
-[; ;do_am.c: 244: if(mode == MENU)
-"244
-[e $ ! == -> _mode `i -> . `E1616 0 `i 158  ]
-[; ;do_am.c: 245: {
-"245
-{
-[; ;do_am.c: 246: if(submode == EDIT)
-"246
-[e $ ! == -> _submode `i -> . `E1620 0 `i 159  ]
-[; ;do_am.c: 247: {
-"247
-{
-[; ;do_am.c: 248: {{ LCDGotoXY(0,1); int8_t count = LCDWriteString("NOTEDIT MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
-"248
-{
-{
-[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-[v _count `c ~T0 @X0 1 a ]
-[e = _count ( _LCDWriteString (1 :s 9C ]
-{
-[v _i `c ~T0 @X0 1 a ]
-[e = _i -> + -> _count `i -> 0 `i `c ]
-[e $ < -> _i `i -> 16 `i 160  ]
-[e $U 161  ]
-[e :U 160 ]
-{
-[e ( _LCDByte (2 , -> -> 32 `ui `uc -> -> 1 `i `uc ]
-}
-[e ++ _i -> -> 1 `i `c ]
-[e $ < -> _i `i -> 16 `i 160  ]
-[e :U 161 ]
-}
-}
-}
-[; ;do_am.c: 249: submode = NOTEDIT;
-"249
-[e = _submode . `E1620 1 ]
-[; ;do_am.c: 250: LCDSetStyle(0B00000000);
-"250
-[e ( _LCDSetStyle (1 -> -> 0 `i `uc ]
-"251
-}
-[; ;do_am.c: 251: }
-[e $U 163  ]
-"252
-[e :U 159 ]
-[; ;do_am.c: 252: else
-[; ;do_am.c: 253: {
-"253
-{
-[; ;do_am.c: 254: {{ LCDGotoXY(0,1); int8_t count = LCDWriteString("NORMAL MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
-"254
-{
-{
-[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-[v _count `c ~T0 @X0 1 a ]
-[e = _count ( _LCDWriteString (1 :s 10C ]
-{
-[v _i `c ~T0 @X0 1 a ]
-[e = _i -> + -> _count `i -> 0 `i `c ]
-[e $ < -> _i `i -> 16 `i 164  ]
-[e $U 165  ]
-[e :U 164 ]
-{
-[e ( _LCDByte (2 , -> -> 32 `ui `uc -> -> 1 `i `uc ]
-}
-[e ++ _i -> -> 1 `i `c ]
-[e $ < -> _i `i -> 16 `i 164  ]
-[e :U 165 ]
-}
-}
-}
-[; ;do_am.c: 255: mode = NORMAL;
-"255
-[e = _mode . `E1616 1 ]
-[; ;do_am.c: 256: ClearMenu();
-"256
-[e ( _ClearMenu ..  ]
-"257
-}
-[e :U 163 ]
-"258
-}
-[e :U 158 ]
-[; ;do_am.c: 257: }
-[; ;do_am.c: 258: }
-[; ;do_am.c: 260: _delay((unsigned long)((200)*(20000000/4000.0)));
-"260
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"261
-}
-[; ;do_am.c: 261: }
-[e $U 167  ]
-"262
-[e :U 157 ]
-[; ;do_am.c: 262: else
-[; ;do_am.c: 263: if(RB5 == 0)
-"263
-[e $ ! == -> _RB5 `i -> 0 `i 168  ]
-[; ;do_am.c: 264: {
-"264
-{
-[; ;do_am.c: 265: {{ LCDGotoXY(0,1); int8_t count = LCDWriteString("UP"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
-"265
-{
-{
-[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-[v _count `c ~T0 @X0 1 a ]
-[e = _count ( _LCDWriteString (1 :s 11C ]
-{
-[v _i `c ~T0 @X0 1 a ]
-[e = _i -> + -> _count `i -> 0 `i `c ]
-[e $ < -> _i `i -> 16 `i 169  ]
-[e $U 170  ]
-[e :U 169 ]
-{
-[e ( _LCDByte (2 , -> -> 32 `ui `uc -> -> 1 `i `uc ]
-}
-[e ++ _i -> -> 1 `i `c ]
-[e $ < -> _i `i -> 16 `i 169  ]
-[e :U 170 ]
-}
-}
-}
-[; ;do_am.c: 266: if(mode == MENU)
-"266
-[e $ ! == -> _mode `i -> . `E1616 0 `i 172  ]
-[; ;do_am.c: 267: {
-"267
-{
-[; ;do_am.c: 268: if(submode == EDIT)
-"268
-[e $ ! == -> _submode `i -> . `E1620 0 `i 173  ]
-[; ;do_am.c: 269: {
-"269
-{
-[; ;do_am.c: 270: ValueInc();
-"270
-[e ( _ValueInc ..  ]
-"271
-}
-[; ;do_am.c: 271: }
-[e $U 174  ]
-"272
-[e :U 173 ]
-[; ;do_am.c: 272: else
-[; ;do_am.c: 273: {
-"273
-{
-[; ;do_am.c: 274: MenuUp();
-"274
-[e ( _MenuUp ..  ]
-"275
-}
-[e :U 174 ]
-[; ;do_am.c: 275: }
-[; ;do_am.c: 276: ShowMenu();
-"276
-[e ( _ShowMenu ..  ]
-"277
-}
-[e :U 172 ]
-[; ;do_am.c: 277: }
-[; ;do_am.c: 278: _delay((unsigned long)((200)*(20000000/4000.0)));
-"278
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"279
-}
-[; ;do_am.c: 279: }
-[e $U 175  ]
-"280
-[e :U 168 ]
-[; ;do_am.c: 280: else
-[; ;do_am.c: 281: if(RB7 == 0)
-"281
-[e $ ! == -> _RB7 `i -> 0 `i 176  ]
-[; ;do_am.c: 282: {
-"282
-{
-[; ;do_am.c: 283: {{ LCDGotoXY(0,1); int8_t count = LCDWriteString("DOWN"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
-"283
-{
-{
-[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-[v _count `c ~T0 @X0 1 a ]
-[e = _count ( _LCDWriteString (1 :s 12C ]
-{
-[v _i `c ~T0 @X0 1 a ]
-[e = _i -> + -> _count `i -> 0 `i `c ]
-[e $ < -> _i `i -> 16 `i 177  ]
-[e $U 178  ]
-[e :U 177 ]
-{
-[e ( _LCDByte (2 , -> -> 32 `ui `uc -> -> 1 `i `uc ]
-}
-[e ++ _i -> -> 1 `i `c ]
-[e $ < -> _i `i -> 16 `i 177  ]
-[e :U 178 ]
-}
-}
-}
-[; ;do_am.c: 284: if(mode == MENU)
-"284
-[e $ ! == -> _mode `i -> . `E1616 0 `i 180  ]
-[; ;do_am.c: 285: {
-"285
-{
-[; ;do_am.c: 286: if(submode == EDIT)
-"286
-[e $ ! == -> _submode `i -> . `E1620 0 `i 181  ]
-[; ;do_am.c: 287: {
-"287
-{
-[; ;do_am.c: 288: ValueDec();
-"288
-[e ( _ValueDec ..  ]
-"289
-}
-[; ;do_am.c: 289: }
-[e $U 182  ]
-"290
-[e :U 181 ]
-[; ;do_am.c: 290: else
-[; ;do_am.c: 291: {
-"291
-{
-[; ;do_am.c: 292: MenuDown();
-"292
-[e ( _MenuDown ..  ]
-"293
-}
-[e :U 182 ]
-[; ;do_am.c: 293: }
-[; ;do_am.c: 294: ShowMenu();
-"294
-[e ( _ShowMenu ..  ]
-"295
-}
-[e :U 180 ]
-[; ;do_am.c: 295: }
-[; ;do_am.c: 296: _delay((unsigned long)((200)*(20000000/4000.0)));
-"296
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"297
-}
-[e :U 176 ]
-"299
-[e :U 175 ]
-[e :U 167 ]
-[e :U 156 ]
-[e :U 146 ]
-}
-[e :U 142 ]
-"211
-[e $U 143  ]
+[e $ < -> _i `i -> 16 `i 144  ]
+[e $U 145  ]
 [e :U 144 ]
-[; ;do_am.c: 297: }
-[; ;do_am.c: 299: }
-[; ;do_am.c: 300: }
-"300
-[e :UE 141 ]
+{
+[e ( _LCDByte (2 , -> -> 32 `ui `uc -> -> 1 `i `uc ]
 }
-[a 11C 85 80 0 ]
-[a 12C 68 79 87 78 0 ]
-[a 6C 79 70 70 0 ]
-[a 7C 77 69 78 85 32 77 79 68 69 0 ]
-[a 9C 78 79 84 69 68 73 84 32 77 79 68 69 0 ]
-[a 8C 69 68 73 84 32 77 79 68 69 0 ]
-[a 10C 78 79 82 77 65 76 32 77 79 68 69 0 ]
-[a 2C 37 48 67 0 ]
-[a 5C 37 48 67 0 ]
-[a 4C 77 97 120 58 0 ]
-[a 1C 67 117 114 58 0 ]
-[a 3C 87 97 58 0 ]
+[e ++ _i -> -> 1 `i `c ]
+[e $ < -> _i `i -> 16 `i 144  ]
+[e :U 145 ]
+}
+}
+[; ;menu.c: 31: }
+"31
+[e :UE 143 ]
+}
+"32
+[v _SaveMenuItem `(v ~T0 @X0 1 ef1`uc ]
+"33
+{
+[; ;menu.c: 32: void SaveMenuItem(uint8_t item)
+[; ;menu.c: 33: {
+[e :U _SaveMenuItem ]
+"32
+[v _item `uc ~T0 @X0 1 r1 ]
+"33
+[f ]
+[; ;menu.c: 34: eeprom_write(item, g_menu.items[item].value);
+"34
+[e ( _eeprom_write (2 , _item . *U + &U . _g_menu 0 * -> _item `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 ]
+[; ;menu.c: 35: }
+"35
+[e :UE 147 ]
+}
+"36
+[v _LoadMenuItem `(uc ~T0 @X0 1 ef1`uc ]
+"37
+{
+[; ;menu.c: 36: uint8_t LoadMenuItem(uint8_t item)
+[; ;menu.c: 37: {
+[e :U _LoadMenuItem ]
+"36
+[v _item `uc ~T0 @X0 1 r1 ]
+"37
+[f ]
+[; ;menu.c: 38: g_menu.items[item].value = eeprom_read(item);
+"38
+[e = . *U + &U . _g_menu 0 * -> _item `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 ( _eeprom_read (1 _item ]
+[; ;menu.c: 39: }
+"39
+[e :UE 148 ]
+}
+"40
+[v _MenuUp `(v ~T0 @X0 1 ef ]
+"41
+{
+[; ;menu.c: 40: void MenuUp()
+[; ;menu.c: 41: {
+[e :U _MenuUp ]
+[f ]
+[; ;menu.c: 42: if(g_menu.index == 0)
+"42
+[e $ ! == -> . _g_menu 1 `i -> 0 `i 150  ]
+[; ;menu.c: 43: {
+"43
+{
+[; ;menu.c: 44: g_menu.index = 4 - 1;
+"44
+[e = . _g_menu 1 -> - -> 4 `i -> 1 `i `uc ]
+"45
+}
+[; ;menu.c: 45: }
+[e $U 151  ]
+"46
+[e :U 150 ]
+[; ;menu.c: 46: else
+[; ;menu.c: 47: {
+"47
+{
+[; ;menu.c: 48: g_menu.index--;
+"48
+[e -- . _g_menu 1 -> -> 1 `i `uc ]
+"49
+}
+[e :U 151 ]
+[; ;menu.c: 49: }
+[; ;menu.c: 50: }
+"50
+[e :UE 149 ]
+}
+"51
+[v _MenuDown `(v ~T0 @X0 1 ef ]
+"52
+{
+[; ;menu.c: 51: void MenuDown()
+[; ;menu.c: 52: {
+[e :U _MenuDown ]
+[f ]
+[; ;menu.c: 53: if(g_menu.index == 4 - 1)
+"53
+[e $ ! == -> . _g_menu 1 `i - -> 4 `i -> 1 `i 153  ]
+[; ;menu.c: 54: {
+"54
+{
+[; ;menu.c: 55: g_menu.index = 0;
+"55
+[e = . _g_menu 1 -> -> 0 `i `uc ]
+"56
+}
+[; ;menu.c: 56: }
+[e $U 154  ]
+"57
+[e :U 153 ]
+[; ;menu.c: 57: else
+[; ;menu.c: 58: {
+"58
+{
+[; ;menu.c: 59: g_menu.index++;
+"59
+[e ++ . _g_menu 1 -> -> 1 `i `uc ]
+"60
+}
+[e :U 154 ]
+[; ;menu.c: 60: }
+[; ;menu.c: 61: }
+"61
+[e :UE 152 ]
+}
+"62
+[v _ValueInc `(v ~T0 @X0 1 ef ]
+"63
+{
+[; ;menu.c: 62: void ValueInc()
+[; ;menu.c: 63: {
+[e :U _ValueInc ]
+[f ]
+[; ;menu.c: 64: g_menu.items[g_menu.index].value++;
+"64
+[e ++ . *U + &U . _g_menu 0 * -> . _g_menu 1 `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 -> -> 1 `i `uc ]
+[; ;menu.c: 65: SaveMenuItem(g_menu.index);
+"65
+[e ( _SaveMenuItem (1 . _g_menu 1 ]
+[; ;menu.c: 66: }
+"66
+[e :UE 155 ]
+}
+"67
+[v _ValueDec `(v ~T0 @X0 1 ef ]
+"68
+{
+[; ;menu.c: 67: void ValueDec()
+[; ;menu.c: 68: {
+[e :U _ValueDec ]
+[f ]
+[; ;menu.c: 69: g_menu.items[g_menu.index].value--;
+"69
+[e -- . *U + &U . _g_menu 0 * -> . _g_menu 1 `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 -> -> 1 `i `uc ]
+[; ;menu.c: 70: SaveMenuItem(g_menu.index);
+"70
+[e ( _SaveMenuItem (1 . _g_menu 1 ]
+[; ;menu.c: 71: }
+"71
+[e :UE 156 ]
+}
+[a 4C 73 68 52 58 0 ]
+[a 3C 73 68 51 58 0 ]
+[a 2C 73 68 50 58 0 ]
+[a 1C 73 68 49 58 0 ]
+[a 5C 0 ]

@@ -36,45 +36,45 @@ extern "C" {
 #define ANSELBIT(__port,__pos) _CONCAT7(__port,__pos)
     
     
-#define GET_CHAR_FROM_4_BITS(b3, b2, b1, b0)    (b0 | (b1 << 1) | (b2 << 2) | (b3 << 3))
-#define GET_4_BITS_FROM_CHAR(c, low, b3, b2, b1, b0)    \
+#define GET_CHAR_FROM_4_BITS(c, low, b3, b2, b1, b0) \
 { \
-    char t; \
-    if(low == 0) \
+    BITbits_t byte = (BITbits_t)c; \
+    if(low == 1) \
     { \
-        t = c >> 4; \
+        byte.B0 = b0; \
+        byte.B1 = b1; \
+        byte.B2 = b2; \
+        byte.B3 = b3; \
     } \
     else \
     { \
-        t = c; \
+        byte.B4 = b0; \
+        byte.B5 = b1; \
+        byte.B6 = b2; \
+        byte.B7 = b3; \
     } \
-    b0 = t & 0b0001; b1 = (t & 0b0010) >> 1; b2 = (t & 0b0100) >> 2; b3 = (t & 0b1000) >> 3; \
+}
+
+#define GET_4_BITS_FROM_CHAR(c, low, b3, b2, b1, b0)    \
+{ \
+    BITbits_t byte = (BITbits_t)c; \
+    if(low == 1) \
+    { \
+        b0 = byte.B0; \
+        b1 = byte.B1; \
+        b2 = byte.B2; \
+        b3 = byte.B3; \
+    } \
+    else \
+    { \
+        b0 = byte.B4; \
+        b1 = byte.B5; \
+        b2 = byte.B6; \
+        b3 = byte.B7; \
+    } \
 }
 #define CLONE_4_BITS(a3, a2, a1, a0, b3, b2, b1, b0)    {a3 = b3; a2 = b2; a1 = b1; a0 = b0;}
-#define GET_4_BITS_FROM_STRING(ret, str, half_index)    { \
-                                unsigned char index = half_index/2; \
-                                if(half_index % 2 == 0) \
-                                { \
-                                    ret = GET_CHAR_FROM_4_BITS(str[index].B3, str[index].B2, str[index].B1, str[index].B0); \
-                                } \
-                                else \
-                                { \
-                                    ret = GET_CHAR_FROM_4_BITS(str[index].B7, str[index].B6, str[index].B5, str[index].B4); \
-                                }; \
-                            }
-    
-#define SET_4_BITS_TO_STRING(val, str, half_index)    { \
-                                unsigned char index = half_index/2; \
-                                if(half_index % 2 == 0) \
-                                { \
-                                    GET_4_BITS_FROM_CHAR(val, 1, str[index].B3, str[index].B2, str[index].B1, str[index].B0); \
-                                } \
-                                else \
-                                { \
-                                    GET_4_BITS_FROM_CHAR(val, 1, str[index].B7, str[index].B6, str[index].B5, str[index].B4); \
-                                }; \
-                            }
-    
+   
 #define FLASH(x)    {x = ~x; __delay_us(1); x = ~x;}
     
     
@@ -89,19 +89,12 @@ typedef struct {
         unsigned B7                    :1;
 } BITbits_t;    
     
-#define SEND_HALF_BIT(value, low, d3, d2, d1, d0, trigger) { \
-                                            GET_4_BITS_FROM_CHAR(value, low, d3, d2, d1, d0); \
-                                            FLASH(trigger); }
-#define SEND_STRING(str, len, d3, d2, d1, d0, trigger) \
-{ \
-    for(char i = 0; i < len; i++) \
-    { \
-        SEND_HALF_BIT(str[i], 1, d3, d2, d1, d0, trigger); \
-        __delay_ms(10); \
-        SEND_HALF_BIT(str[i], 0, d3, d2, d1, d0, trigger); \
-        __delay_ms(10); \
-    } \
-}
+
+
+
+
+
+#define DEBUG(msg) {LCDWriteStringXYCLEAR(0, 1, msg);}
 
 #ifdef	__cplusplus
 }

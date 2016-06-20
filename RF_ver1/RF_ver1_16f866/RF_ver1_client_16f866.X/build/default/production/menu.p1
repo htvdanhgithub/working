@@ -1,92 +1,24 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"81 myutils.h
-[s S135 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S135 . B0 B1 B2 B3 B4 B5 B6 B7 ]
-"1307 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
-[s S52 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S52 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
-"1306
-[u S51 `S52 1 ]
-[n S51 . . ]
-"1318
-[v _TRISAbits `VS51 ~T0 @X0 0 e@133 ]
-"3207
-[s S132 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S132 . ANS8 ANS9 ANS10 ANS11 ANS12 ANS13 ]
-"3206
-[u S131 `S132 1 ]
-[n S131 . . ]
-"3216
-[v _ANSELHbits `VS131 ~T0 @X0 0 e@393 ]
-"3164
-[s S130 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S130 . ANS0 ANS1 ANS2 ANS3 ANS4 ]
-"3163
-[u S129 `S130 1 ]
-[n S129 . . ]
-"3172
-[v _ANSELbits `VS129 ~T0 @X0 0 e@392 ]
-"1368
-[s S54 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S54 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
-"1367
-[u S53 `S54 1 ]
-[n S53 . . ]
-"1379
-[v _TRISBbits `VS53 ~T0 @X0 0 e@134 ]
-"3662
-[v _RA7 `Vb ~T0 @X0 0 e@47 ]
-"375
-[s S15 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S15 . RBIF INTF T0IF RBIE INTE T0IE PEIE GIE ]
-"385
-[s S16 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S16 . . TMR0IF . TMR0IE ]
-"374
-[u S14 `S15 1 `S16 1 ]
-[n S14 . . . ]
-"392
-[v _INTCONbits `VS14 ~T0 @X0 0 e@11 ]
-"84 lcd_hd44780_pic16.h
+"26 menu.h
+[s S136 `uc 1 `*uc 1 ]
+[n S136 . value name ]
+"31
+[s S137 `S136 -> 4 `i `uc 1 ]
+[n S137 . items index ]
+"44
+[v _LoadMenuItem `(uc ~T0 @X0 0 ef1`uc ]
+"82 lcd_hd44780_pic16.h
+[v _LCDGotoXY `(v ~T0 @X0 0 ef2`uc`uc ]
+"80
+[v _LCDWriteString `(c ~T0 @X0 0 ef1`*Cuc ]
+"85
 [v _LCDByte `(v ~T0 @X0 0 ef2`uc`uc ]
 "81
-[v _LCDGotoXY `(v ~T0 @X0 0 ef2`uc`uc ]
-"79
-[v _LCDWriteString `(v ~T0 @X0 0 ef1`*Cuc ]
-"80
-[v _LCDWriteInt `(v ~T0 @X0 0 ef2`i`c ]
-[v F1554 `(v ~T0 @X0 1 tf1`ul ]
-"152 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
-[v __delay `JF1554 ~T0 @X0 0 e ]
-[p i __delay ]
-"2213 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
-[s S90 :8 `uc 1 ]
-[n S90 . IOCB ]
-"2216
-[s S91 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S91 . IOCB0 IOCB1 IOCB2 IOCB3 IOCB4 IOCB5 IOCB6 IOCB7 ]
-"2212
-[u S89 `S90 1 `S91 1 ]
-[n S89 . . . ]
-"2227
-[v _IOCBbits `VS89 ~T0 @X0 0 e@150 ]
-[p mainexit ]
-"78 lcd_hd44780_pic16.h
-[v _LCDInit `(v ~T0 @X0 0 ef1`uc ]
-"29 adc_pic16.h
-[v _ADCInit `(v ~T0 @X0 0 ef ]
-"15 lm35_pic16.h
-[v _LM35ReadTemp `(i ~T0 @X0 0 ef ]
-"3660 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
-[v _RA6 `Vb ~T0 @X0 0 e@46 ]
-"3664
-[v _RB0 `Vb ~T0 @X0 0 e@48 ]
-"3666
-[v _RB1 `Vb ~T0 @X0 0 e@49 ]
-"3668
-[v _RB2 `Vb ~T0 @X0 0 e@50 ]
-"3670
-[v _RB3 `Vb ~T0 @X0 0 e@51 ]
+[v _LCDWriteInt `(c ~T0 @X0 0 ef2`i`c ]
+"114 C:\Program Files (x86)\Microchip\xc8\v1.37\include\eeprom_routines.h
+[v _eeprom_write `(v ~T0 @X0 0 ef2`uc`uc ]
+"115
+[v _eeprom_read `(uc ~T0 @X0 0 ef1`uc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1535,11 +1467,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;lcd_hd44780_pic16.h: 78: void LCDInit(uint8_t style);
-[; ;lcd_hd44780_pic16.h: 79: void LCDWriteString(const char *msg);
-[; ;lcd_hd44780_pic16.h: 80: void LCDWriteInt(int val,int8_t field_length);
-[; ;lcd_hd44780_pic16.h: 81: void LCDGotoXY(uint8_t x,uint8_t y);
-[; ;lcd_hd44780_pic16.h: 84: void LCDByte(uint8_t,uint8_t);
-[; ;lcd_hd44780_pic16.h: 88: void LCDBusyLoop();
+[; ;lcd_hd44780_pic16.h: 79: void LCDSetStyle(uint8_t style);
+[; ;lcd_hd44780_pic16.h: 80: int8_t LCDWriteString(const char *msg);
+[; ;lcd_hd44780_pic16.h: 81: int8_t LCDWriteInt(int val,int8_t field_length);
+[; ;lcd_hd44780_pic16.h: 82: void LCDGotoXY(uint8_t x,uint8_t y);
+[; ;lcd_hd44780_pic16.h: 85: void LCDByte(uint8_t,uint8_t);
+[; ;lcd_hd44780_pic16.h: 89: void LCDBusyLoop();
 [; ;myutils.h: 81: typedef struct {
 [; ;myutils.h: 82: unsigned B0 :1;
 [; ;myutils.h: 83: unsigned B1 :1;
@@ -1550,457 +1483,295 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;myutils.h: 88: unsigned B6 :1;
 [; ;myutils.h: 89: unsigned B7 :1;
 [; ;myutils.h: 90: } BITbits_t;
-[; ;adc_pic16.h: 29: void ADCInit();
-[; ;adc_pic16.h: 30: uint16_t ReadADC(uint8_t ch);
-[; ;lm35_pic16.h: 15: int LM35ReadTemp();
-"8 do_am.c
-[p x FOSC=INTRC_NOCLKOUT ]
+[; ;menu.h: 13: typedef enum
+[; ;menu.h: 14: {
+[; ;menu.h: 15: MENU,
+[; ;menu.h: 16: NORMAL,
+[; ;menu.h: 17: } E_operation_mode;
+[; ;menu.h: 18: typedef enum
+[; ;menu.h: 19: {
+[; ;menu.h: 20: EDIT,
+[; ;menu.h: 21: NOTEDIT
+[; ;menu.h: 22: } E_operation_submode;
+[; ;menu.h: 26: typedef struct {
+[; ;menu.h: 27: uint8_t value;
+[; ;menu.h: 28: char *name;
+[; ;menu.h: 29: } MenuItem_t;
+[; ;menu.h: 31: typedef struct {
+[; ;menu.h: 32: MenuItem_t items[4];
+[; ;menu.h: 33: uint8_t index;
+[; ;menu.h: 34: } Menu_t;
+[; ;menu.h: 36: void MenuInit();
+[; ;menu.h: 37: void ShowMenu();
+[; ;menu.h: 38: void ClearMenu();
+[; ;menu.h: 39: void MenuUp();
+[; ;menu.h: 40: void MenuDown();
+[; ;menu.h: 41: void ValueInc();
+[; ;menu.h: 42: void Valuedec();
+[; ;menu.h: 43: void SaveMenuItem(uint8_t item);
+[; ;menu.h: 44: uint8_t LoadMenuItem(uint8_t item);
+"5 menu.c
+[v _g_menu `S137 ~T0 @X0 1 e ]
+[; ;menu.c: 5: Menu_t g_menu;
+"7
+[v _MenuInit `(v ~T0 @X0 1 ef ]
+"8
+{
+[; ;menu.c: 7: void MenuInit()
+[; ;menu.c: 8: {
+[e :U _MenuInit ]
+[f ]
+[; ;menu.c: 9: g_menu.items[0].name = "ID1:";
 "9
-[p x WDTE=ON ]
+[e = . *U + &U . _g_menu 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 1 -> :s 1C `*uc ]
+[; ;menu.c: 10: g_menu.items[0].value = LoadMenuItem(0);
 "10
-[p x PWRTE=OFF ]
-"11
-[p x MCLRE=ON ]
+[e = . *U + &U . _g_menu 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 ( _LoadMenuItem (1 -> -> 0 `i `uc ]
+[; ;menu.c: 12: g_menu.items[1].name = "ID2:";
 "12
-[p x CP=ON ]
+[e = . *U + &U . _g_menu 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 1 -> :s 2C `*uc ]
+[; ;menu.c: 13: g_menu.items[1].value = LoadMenuItem(1);
 "13
-[p x CPD=ON ]
-"14
-[p x BOREN=ON ]
+[e = . *U + &U . _g_menu 0 * -> -> -> 1 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 ( _LoadMenuItem (1 -> -> 1 `i `uc ]
+[; ;menu.c: 15: g_menu.items[2].name = "ID3:";
 "15
-[p x IESO=ON ]
+[e = . *U + &U . _g_menu 0 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 1 -> :s 3C `*uc ]
+[; ;menu.c: 16: g_menu.items[2].value = LoadMenuItem(2);
 "16
-[p x FCMEN=ON ]
-"17
-[p x LVP=ON ]
-"20
-[p x BOR4V=BOR21V ]
+[e = . *U + &U . _g_menu 0 * -> -> -> 2 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 ( _LoadMenuItem (1 -> -> 2 `i `uc ]
+[; ;menu.c: 18: g_menu.items[3].name = "ID4:";
+"18
+[e = . *U + &U . _g_menu 0 * -> -> -> 3 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 1 -> :s 4C `*uc ]
+[; ;menu.c: 19: g_menu.items[3].value = LoadMenuItem(3);
+"19
+[e = . *U + &U . _g_menu 0 * -> -> -> 3 `i `ui `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 ( _LoadMenuItem (1 -> -> 3 `i `uc ]
+[; ;menu.c: 21: g_menu.index = 0;
 "21
-[p x WRT=OFF ]
-"85
-[v _tuneUpTemp `uc ~T0 @X0 1 e ]
-[i _tuneUpTemp
--> -> 0 `i `uc
-]
-[; ;do_am.c: 85: char tuneUpTemp = 0;
-"86
-[v _curTemp `i ~T0 @X0 1 e ]
-[i _curTemp
--> 0 `i
-]
-[; ;do_am.c: 86: int curTemp = 0;
-"87
-[v _tuneUpTempDir `uc ~T0 @X0 1 e ]
-[i _tuneUpTempDir
--> -> 1 `i `uc
-]
-[; ;do_am.c: 87: char tuneUpTempDir = 1;
-"89
-[v _msg `uc ~T0 @X0 -> 32 `i e ]
-[i _msg
-:U ..
--> 48 `c
--> 49 `c
--> 50 `c
--> 51 `c
--> 52 `c
--> 0 `c
-..
-]
-[; ;do_am.c: 89: char msg[32] = "01234";
-"90
-[v _phMsg `*S135 ~T0 @X0 1 e ]
-[i _phMsg
--> &U _msg `*S135
-]
-[; ;do_am.c: 90: BITbits_t *phMsg = (BITbits_t *)msg;
-"91
-[v _count `uc ~T0 @X0 1 e ]
-[i _count
--> -> 0 `i `uc
-]
-[; ;do_am.c: 91: char count = 0;
-"107
-[v _TuneButtonInit `(v ~T0 @X0 1 ef ]
-"108
-{
-[; ;do_am.c: 107: void TuneButtonInit()
-[; ;do_am.c: 108: {
-[e :U _TuneButtonInit ]
-[f ]
-[; ;do_am.c: 110: (TRISAbits.TRISA6 = 1);
-"110
-[e = . . _TRISAbits 0 6 -> -> 1 `i `uc ]
-[; ;do_am.c: 111: ANSELHbits.ANS11 = 0;
-"111
-[e = . . _ANSELHbits 0 3 -> -> 0 `i `uc ]
-[; ;do_am.c: 113: (TRISAbits.TRISA0 = 1);
-"113
-[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
-[; ;do_am.c: 114: ANSELbits.ANS0 = 0;
-"114
-[e = . . _ANSELbits 0 0 -> -> 0 `i `uc ]
-[; ;do_am.c: 116: (TRISAbits.TRISA1 = 1);
-"116
-[e = . . _TRISAbits 0 1 -> -> 1 `i `uc ]
-[; ;do_am.c: 117: ANSELbits.ANS1 = 0;
-"117
-[e = . . _ANSELbits 0 1 -> -> 0 `i `uc ]
-[; ;do_am.c: 118: (TRISAbits.TRISA2 = 1);
-"118
-[e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
-[; ;do_am.c: 119: ANSELbits.ANS2 = 0;
-"119
-[e = . . _ANSELbits 0 2 -> -> 0 `i `uc ]
-[; ;do_am.c: 120: (TRISAbits.TRISA3 = 1);
-"120
-[e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
-[; ;do_am.c: 121: ANSELbits.ANS3 = 0;
-"121
-[e = . . _ANSELbits 0 3 -> -> 0 `i `uc ]
-[; ;do_am.c: 123: (TRISAbits.TRISA7 = 0);
-"123
-[e = . . _TRISAbits 0 7 -> -> 0 `i `uc ]
-[; ;do_am.c: 125: (TRISBbits.TRISB0 = 0);
-"125
-[e = . . _TRISBbits 0 0 -> -> 0 `i `uc ]
-[; ;do_am.c: 126: ANSELHbits.ANS12 = 0;
-"126
-[e = . . _ANSELHbits 0 4 -> -> 0 `i `uc ]
-[; ;do_am.c: 128: (TRISBbits.TRISB1 = 0);
-"128
-[e = . . _TRISBbits 0 1 -> -> 0 `i `uc ]
-[; ;do_am.c: 129: ANSELHbits.ANS10 = 0;
-"129
-[e = . . _ANSELHbits 0 2 -> -> 0 `i `uc ]
-[; ;do_am.c: 131: (TRISBbits.TRISB2 = 0);
-"131
-[e = . . _TRISBbits 0 2 -> -> 0 `i `uc ]
-[; ;do_am.c: 132: ANSELHbits.ANS8 = 0;
-"132
-[e = . . _ANSELHbits 0 0 -> -> 0 `i `uc ]
-[; ;do_am.c: 134: (TRISBbits.TRISB3 = 0);
-"134
-[e = . . _TRISBbits 0 3 -> -> 0 `i `uc ]
-[; ;do_am.c: 135: ANSELHbits.ANS9 = 0;
-"135
-[e = . . _ANSELHbits 0 1 -> -> 0 `i `uc ]
-[; ;do_am.c: 137: RA7 = 1;
-"137
-[e = _RA7 -> -> 1 `i `b ]
-[; ;do_am.c: 158: }
-"158
-[e :UE 136 ]
+[e = . _g_menu 1 -> -> 0 `i `uc ]
+[; ;menu.c: 22: }
+"22
+[e :UE 138 ]
 }
-[v F1623 `(v ~T0 @X0 1 tf ]
-"159
-[v _ISR `IF1623 ~T0 @X0 1 e ]
-"160
+"23
+[v _ShowMenu `(v ~T0 @X0 1 ef ]
+"24
 {
-[; ;do_am.c: 159: void interrupt ISR()
-[; ;do_am.c: 160: {
-[e :U _ISR ]
+[; ;menu.c: 23: void ShowMenu()
+[; ;menu.c: 24: {
+[e :U _ShowMenu ]
 [f ]
-[; ;do_am.c: 161: if(INTCONbits.RBIF == 1)
-"161
-[e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 138  ]
-[; ;do_am.c: 162: {
-"162
-{
-[; ;do_am.c: 164: {
-"164
-{
-[; ;do_am.c: 166: (LCDByte(0b00000001,0));
-"166
-[e ( _LCDByte (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;do_am.c: 168: { LCDGotoXY(0,0); LCDWriteString("Thermometer set:");};
-"168
+[; ;menu.c: 25: { LCDGotoXY(0,0); int8_t count = LCDWriteString(g_menu.items[g_menu.index].name); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };
+"25
 {
 [e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteString (1 :s 1C ]
-}
-[; ;do_am.c: 170: tuneUpTemp++;
-"170
-[e ++ _tuneUpTemp -> -> 1 `i `uc ]
-[; ;do_am.c: 171: if(tuneUpTemp > 150)
-"171
-[e $ ! > -> _tuneUpTemp `i -> 150 `i 139  ]
-[; ;do_am.c: 172: {
-"172
+[v _count `c ~T0 @X0 1 a ]
+[e = _count ( _LCDWriteString (1 -> . *U + &U . _g_menu 0 * -> . _g_menu 1 `ux -> -> # *U &U . _g_menu 0 `ui `ux 1 `*Cuc ]
 {
-[; ;do_am.c: 173: tuneUpTemp = 0;
-"173
-[e = _tuneUpTemp -> -> 0 `i `uc ]
-"174
-}
-[e :U 139 ]
-[; ;do_am.c: 174: }
-[; ;do_am.c: 177: { LCDGotoXY(0,1); LCDWriteInt(tuneUpTemp,3);};
-"177
+[v _i `c ~T0 @X0 1 a ]
+[e = _i -> + -> _count `i -> 0 `i `c ]
+[e $ < -> _i `i -> 16 `i 140  ]
+[e $U 141  ]
+[e :U 140 ]
 {
-[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteInt (2 , -> _tuneUpTemp `i -> -> 3 `i `c ]
+[e ( _LCDByte (2 , -> -> 32 `ui `uc -> -> 1 `i `uc ]
 }
-[; ;do_am.c: 180: LCDWriteString("%0C");
-"180
-[e ( _LCDWriteString (1 :s 2C ]
-[; ;do_am.c: 182: _delay((unsigned long)((500)*(20000000/4000.0)));
-"182
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-[; ;do_am.c: 183: tuneUpTempDir = 1;
-"183
-[e = _tuneUpTempDir -> -> 1 `i `uc ]
-"185
+[e ++ _i -> -> 1 `i `c ]
+[e $ < -> _i `i -> 16 `i 140  ]
+[e :U 141 ]
 }
-[; ;do_am.c: 185: }
-[; ;do_am.c: 186: INTCONbits.RBIF = 0;
-"186
-[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
-"187
 }
-[e :U 138 ]
-[; ;do_am.c: 187: }
-[; ;do_am.c: 188: IOCBbits.IOCB4 = 0;
-"188
-[e = . . _IOCBbits 1 4 -> -> 0 `i `uc ]
-[; ;do_am.c: 189: }
-"189
-[e :UE 137 ]
-}
-"190
-[v _main `(v ~T0 @X0 1 ef ]
-"191
-{
-[; ;do_am.c: 190: void main (void)
-[; ;do_am.c: 191: {
-[e :U _main ]
-[f ]
-[; ;do_am.c: 193: LCDInit(0B00000000);
-"193
-[e ( _LCDInit (1 -> -> 0 `i `uc ]
-[; ;do_am.c: 196: ADCInit();
-"196
-[e ( _ADCInit ..  ]
-[; ;do_am.c: 199: TuneButtonInit();
-"199
-[e ( _TuneButtonInit ..  ]
-[; ;do_am.c: 205: (LCDByte(0b00000001,0));
-"205
-[e ( _LCDByte (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;do_am.c: 207: { LCDGotoXY(0,0); LCDWriteString("Cur:");};
-"207
-{
-[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteString (1 :s 3C ]
-}
-[; ;do_am.c: 209: { LCDGotoXY(7,0); LCDWriteString("%0C");};
-"209
-{
-[e ( _LCDGotoXY (2 , -> -> 7 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteString (1 :s 4C ]
-}
-[; ;do_am.c: 211: { LCDGotoXY(10,0); LCDWriteString("Wa:");};
-"211
-{
-[e ( _LCDGotoXY (2 , -> -> 10 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteString (1 :s 5C ]
-}
-[; ;do_am.c: 213: { LCDGotoXY(0,1); LCDWriteString("Max:");};
-"213
-{
-[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteString (1 :s 6C ]
-}
-[; ;do_am.c: 215: { LCDGotoXY(7,1); LCDWriteString("%0C");};
-"215
-{
-[e ( _LCDGotoXY (2 , -> -> 7 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteString (1 :s 7C ]
-}
-[; ;do_am.c: 217: { LCDGotoXY(13,0); LCDWriteString("OFF");};
-"217
-{
-[e ( _LCDGotoXY (2 , -> -> 13 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteString (1 :s 8C ]
-}
-[; ;do_am.c: 219: { LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
-"219
-{
-[e ( _LCDGotoXY (2 , -> -> 4 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteInt (2 , -> _tuneUpTemp `i -> -> 3 `i `c ]
-}
-[; ;do_am.c: 220: { LCDGotoXY(4,0); LCDWriteInt(curTemp,3);};
-"220
+[; ;menu.c: 26: { LCDGotoXY(4,0); LCDWriteInt(g_menu.items[g_menu.index].value,3);};
+"26
 {
 [e ( _LCDGotoXY (2 , -> -> 4 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteInt (2 , _curTemp -> -> 3 `i `c ]
+[e ( _LCDWriteInt (2 , -> . *U + &U . _g_menu 0 * -> . _g_menu 1 `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 `i -> -> 3 `i `c ]
 }
-[; ;do_am.c: 221: while(1)
-"221
-[e :U 142 ]
-[; ;do_am.c: 222: {
-"222
-{
-[; ;do_am.c: 224: curTemp = LM35ReadTemp();
-"224
-[e = _curTemp ( _LM35ReadTemp ..  ]
-[; ;do_am.c: 226: if((tuneUpTemp >= 5) && (curTemp >= tuneUpTemp))
-"226
-[e $ ! && >= -> _tuneUpTemp `i -> 5 `i >= _curTemp -> _tuneUpTemp `i 144  ]
-[; ;do_am.c: 227: {
-"227
-{
-[; ;do_am.c: 228: { LCDGotoXY(13,0); LCDWriteString("ON ");};
-"228
-{
-[e ( _LCDGotoXY (2 , -> -> 13 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteString (1 :s 9C ]
+[; ;menu.c: 27: }
+"27
+[e :UE 139 ]
 }
-"229
-}
-[; ;do_am.c: 229: }
+"28
+[v _ClearMenu `(v ~T0 @X0 1 ef ]
+"29
+{
+[; ;menu.c: 28: void ClearMenu()
+[; ;menu.c: 29: {
+[e :U _ClearMenu ]
+[f ]
+[; ;menu.c: 30: { LCDGotoXY(0,0); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };
+"30
+{
+[e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
+[v _count `c ~T0 @X0 1 a ]
+[e = _count ( _LCDWriteString (1 :s 5C ]
+{
+[v _i `c ~T0 @X0 1 a ]
+[e = _i -> + -> _count `i -> 0 `i `c ]
+[e $ < -> _i `i -> 16 `i 144  ]
 [e $U 145  ]
-"230
 [e :U 144 ]
-[; ;do_am.c: 230: else
-[; ;do_am.c: 231: {
-"231
 {
-[; ;do_am.c: 232: if(curTemp <= tuneUpTemp - 5)
-"232
-[e $ ! <= _curTemp - -> _tuneUpTemp `i -> 5 `i 146  ]
-[; ;do_am.c: 233: {
-"233
-{
-[; ;do_am.c: 234: { LCDGotoXY(13,0); LCDWriteString("OFF");};
-"234
-{
-[e ( _LCDGotoXY (2 , -> -> 13 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteString (1 :s 10C ]
+[e ( _LCDByte (2 , -> -> 32 `ui `uc -> -> 1 `i `uc ]
 }
-"235
-}
-[e :U 146 ]
-"236
-}
+[e ++ _i -> -> 1 `i `c ]
+[e $ < -> _i `i -> 16 `i 144  ]
 [e :U 145 ]
-[; ;do_am.c: 235: }
-[; ;do_am.c: 236: }
-[; ;do_am.c: 237: if(RA6 == 0)
-"237
-[e $ ! == -> _RA6 `i -> 0 `i 147  ]
-[; ;do_am.c: 238: {
-"238
-{
-[; ;do_am.c: 252: { for(char i = 0; i < 6; i++) { { { char t; if(1 == 0) { t = msg[i] >> 4; } else { t = msg[i]; } RB0 = t & 0b0001; RB1 = (t & 0b0010) >> 1; RB2 = (t & 0b0100) >> 2; RB3 = (t & 0b1000) >> 3; }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000
-"252
-{
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 6 `i 148  ]
-[e $U 149  ]
-[e :U 148 ]
-{
-{
-{
-[v _t `uc ~T0 @X0 1 a ]
-[e $ ! == -> 1 `i -> 0 `i 151  ]
-{
-[e = _t -> >> -> *U + &U _msg * -> _i `ux -> -> # *U &U _msg `ui `ux `i -> 4 `i `uc ]
 }
-[e $U 152  ]
+}
+[; ;menu.c: 31: }
+"31
+[e :UE 143 ]
+}
+"32
+[v _SaveMenuItem `(v ~T0 @X0 1 ef1`uc ]
+"33
+{
+[; ;menu.c: 32: void SaveMenuItem(uint8_t item)
+[; ;menu.c: 33: {
+[e :U _SaveMenuItem ]
+"32
+[v _item `uc ~T0 @X0 1 r1 ]
+"33
+[f ]
+[; ;menu.c: 34: eeprom_write(item, g_menu.items[item].value);
+"34
+[e ( _eeprom_write (2 , _item . *U + &U . _g_menu 0 * -> _item `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 ]
+[; ;menu.c: 35: }
+"35
+[e :UE 147 ]
+}
+"36
+[v _LoadMenuItem `(uc ~T0 @X0 1 ef1`uc ]
+"37
+{
+[; ;menu.c: 36: uint8_t LoadMenuItem(uint8_t item)
+[; ;menu.c: 37: {
+[e :U _LoadMenuItem ]
+"36
+[v _item `uc ~T0 @X0 1 r1 ]
+"37
+[f ]
+[; ;menu.c: 38: g_menu.items[item].value = eeprom_read(item);
+"38
+[e = . *U + &U . _g_menu 0 * -> _item `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 ( _eeprom_read (1 _item ]
+[; ;menu.c: 39: }
+"39
+[e :UE 148 ]
+}
+"40
+[v _MenuUp `(v ~T0 @X0 1 ef ]
+"41
+{
+[; ;menu.c: 40: void MenuUp()
+[; ;menu.c: 41: {
+[e :U _MenuUp ]
+[f ]
+[; ;menu.c: 42: if(g_menu.index == 0)
+"42
+[e $ ! == -> . _g_menu 1 `i -> 0 `i 150  ]
+[; ;menu.c: 43: {
+"43
+{
+[; ;menu.c: 44: g_menu.index = 4 - 1;
+"44
+[e = . _g_menu 1 -> - -> 4 `i -> 1 `i `uc ]
+"45
+}
+[; ;menu.c: 45: }
+[e $U 151  ]
+"46
+[e :U 150 ]
+[; ;menu.c: 46: else
+[; ;menu.c: 47: {
+"47
+{
+[; ;menu.c: 48: g_menu.index--;
+"48
+[e -- . _g_menu 1 -> -> 1 `i `uc ]
+"49
+}
 [e :U 151 ]
-{
-[e = _t *U + &U _msg * -> _i `ux -> -> # *U &U _msg `ui `ux ]
+[; ;menu.c: 49: }
+[; ;menu.c: 50: }
+"50
+[e :UE 149 ]
 }
-[e :U 152 ]
-[e = _RB0 -> & -> _t `i -> 1 `i `b ]
-[e = _RB1 -> >> & -> _t `i -> 2 `i -> 1 `i `b ]
-[e = _RB2 -> >> & -> _t `i -> 4 `i -> 2 `i `b ]
-[e = _RB3 -> >> & -> _t `i -> 8 `i -> 3 `i `b ]
-}
+"51
+[v _MenuDown `(v ~T0 @X0 1 ef ]
+"52
 {
-[e = _RA7 -> ~ -> _RA7 `ui `b ]
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-[e = _RA7 -> ~ -> _RA7 `ui `b ]
-}
-}
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[; ;menu.c: 51: void MenuDown()
+[; ;menu.c: 52: {
+[e :U _MenuDown ]
+[f ]
+[; ;menu.c: 53: if(g_menu.index == 4 - 1)
+"53
+[e $ ! == -> . _g_menu 1 `i - -> 4 `i -> 1 `i 153  ]
+[; ;menu.c: 54: {
+"54
 {
-{
-[v _t `uc ~T0 @X0 1 a ]
-[e $ ! == -> 0 `i -> 0 `i 153  ]
-{
-[e = _t -> >> -> *U + &U _msg * -> _i `ux -> -> # *U &U _msg `ui `ux `i -> 4 `i `uc ]
+[; ;menu.c: 55: g_menu.index = 0;
+"55
+[e = . _g_menu 1 -> -> 0 `i `uc ]
+"56
 }
+[; ;menu.c: 56: }
 [e $U 154  ]
+"57
 [e :U 153 ]
+[; ;menu.c: 57: else
+[; ;menu.c: 58: {
+"58
 {
-[e = _t *U + &U _msg * -> _i `ux -> -> # *U &U _msg `ui `ux ]
+[; ;menu.c: 59: g_menu.index++;
+"59
+[e ++ . _g_menu 1 -> -> 1 `i `uc ]
+"60
 }
 [e :U 154 ]
-[e = _RB0 -> & -> _t `i -> 1 `i `b ]
-[e = _RB1 -> >> & -> _t `i -> 2 `i -> 1 `i `b ]
-[e = _RB2 -> >> & -> _t `i -> 4 `i -> 2 `i `b ]
-[e = _RB3 -> >> & -> _t `i -> 8 `i -> 3 `i `b ]
+[; ;menu.c: 60: }
+[; ;menu.c: 61: }
+"61
+[e :UE 152 ]
 }
+"62
+[v _ValueInc `(v ~T0 @X0 1 ef ]
+"63
 {
-[e = _RA7 -> ~ -> _RA7 `ui `b ]
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-[e = _RA7 -> ~ -> _RA7 `ui `b ]
+[; ;menu.c: 62: void ValueInc()
+[; ;menu.c: 63: {
+[e :U _ValueInc ]
+[f ]
+[; ;menu.c: 64: g_menu.items[g_menu.index].value++;
+"64
+[e ++ . *U + &U . _g_menu 0 * -> . _g_menu 1 `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 -> -> 1 `i `uc ]
+[; ;menu.c: 65: SaveMenuItem(g_menu.index);
+"65
+[e ( _SaveMenuItem (1 . _g_menu 1 ]
+[; ;menu.c: 66: }
+"66
+[e :UE 155 ]
 }
-}
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 6 `i 148  ]
-[e :U 149 ]
-}
-}
-[; ;do_am.c: 269: { LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
-"269
+"67
+[v _ValueDec `(v ~T0 @X0 1 ef ]
+"68
 {
-[e ( _LCDGotoXY (2 , -> -> 4 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteInt (2 , -> _tuneUpTemp `i -> -> 3 `i `c ]
+[; ;menu.c: 67: void ValueDec()
+[; ;menu.c: 68: {
+[e :U _ValueDec ]
+[f ]
+[; ;menu.c: 69: g_menu.items[g_menu.index].value--;
+"69
+[e -- . *U + &U . _g_menu 0 * -> . _g_menu 1 `ux -> -> # *U &U . _g_menu 0 `ui `ux 0 -> -> 1 `i `uc ]
+[; ;menu.c: 70: SaveMenuItem(g_menu.index);
+"70
+[e ( _SaveMenuItem (1 . _g_menu 1 ]
+[; ;menu.c: 71: }
+"71
+[e :UE 156 ]
 }
-[; ;do_am.c: 271: _delay((unsigned long)((200)*(20000000/4000.0)));
-"271
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"279
-}
-[e :U 147 ]
-[; ;do_am.c: 279: }
-[; ;do_am.c: 287: { LCDGotoXY(10,1); LCDWriteString(msg);};
-"287
-{
-[e ( _LCDGotoXY (2 , -> -> 10 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteString (1 -> &U _msg `*Cuc ]
-}
-[; ;do_am.c: 289: { LCDGotoXY(4,0); LCDWriteInt(curTemp,3);};
-"289
-{
-[e ( _LCDGotoXY (2 , -> -> 4 `i `uc -> -> 0 `i `uc ]
-[e ( _LCDWriteInt (2 , _curTemp -> -> 3 `i `c ]
-}
-"294
-}
-[e :U 141 ]
-"221
-[e $U 142  ]
-[e :U 143 ]
-[; ;do_am.c: 294: }
-[; ;do_am.c: 295: }
-"295
-[e :UE 140 ]
-}
-[a 8C 79 70 70 0 ]
-[a 10C 79 70 70 0 ]
-[a 2C 37 48 67 0 ]
-[a 4C 37 48 67 0 ]
-[a 7C 37 48 67 0 ]
-[a 6C 77 97 120 58 0 ]
-[a 1C 84 104 101 114 109 111 109 101 116 101 114 32 115 101 116 58 0 ]
-[a 3C 67 117 114 58 0 ]
-[a 5C 87 97 58 0 ]
-[a 9C 79 78 32 0 ]
+[a 4C 73 68 52 58 0 ]
+[a 3C 73 68 51 58 0 ]
+[a 2C 73 68 50 58 0 ]
+[a 1C 73 68 49 58 0 ]
+[a 5C 0 ]

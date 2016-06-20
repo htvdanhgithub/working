@@ -2083,8 +2083,9 @@ typedef uint16_t uintptr_t;
 
 # 78 "lcd_hd44780_pic16.h"
 void LCDInit(uint8_t style);
-void LCDWriteString(const char *msg);
-void LCDWriteInt(int val,int8_t field_length);
+void LCDSetStyle(uint8_t style);
+int8_t LCDWriteString(const char *msg);
+int8_t LCDWriteInt(int val,int8_t field_length);
 void LCDGotoXY(uint8_t x,uint8_t y);
 
 
@@ -2113,8 +2114,60 @@ uint16_t ReadADC(uint8_t ch);
 # 15 "lm35_pic16.h"
 int LM35ReadTemp();
 
+# 13 "menu.h"
+typedef enum
+{
+MENU,
+NORMAL,
+} E_operation_mode;
+typedef enum
+{
+EDIT,
+NOTEDIT
+} E_operation_submode;
 
-# 8 "do_am.c"
+
+
+typedef struct {
+uint8_t value;
+char *name;
+} MenuItem_t;
+
+typedef struct {
+MenuItem_t items[4];
+uint8_t index;
+} Menu_t;
+
+void MenuInit();
+void ShowMenu();
+void ClearMenu();
+void MenuUp();
+void MenuDown();
+void ValueInc();
+void Valuedec();
+void SaveMenuItem(uint8_t item);
+uint8_t LoadMenuItem(uint8_t item);
+
+# 14 "msg.h"
+typedef enum E_cmd
+{
+REG_ID,
+CMD_MAX
+};
+
+
+
+typedef struct {
+uint8_t msglen;
+uint8_t from;
+uint8_t to;
+uint8_t msgid;
+uint8_t cmd;
+uint8_t data[256];
+} Msg_t;
+
+
+# 11 "do_am.c"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = ON
 #pragma config PWRTE = OFF
@@ -2130,21 +2183,17 @@ int LM35ReadTemp();
 #pragma config BOR4V = BOR21V
 #pragma config WRT = OFF
 
-# 85
-char tuneUpTemp = 0;
-int curTemp = 0;
-char tuneUpTempDir = 1;
-
-char msg[32] = "01234";
-BITbits_t *phMsg = (BITbits_t *)msg;
-char count = 0;
-
 # 107
-void TuneButtonInit()
+E_operation_mode mode = NORMAL;
+E_operation_submode submode = NOTEDIT;
+
+Msg_t msg;
+
+void IOInit()
 {
 
 (TRISAbits.TRISA6 = 1);
-ANSELHbits.ANS11 = 0;
+
 
 (TRISAbits.TRISA0 = 1);
 ANSELbits.ANS0 = 0;
@@ -2172,38 +2221,21 @@ ANSELHbits.ANS9 = 0;
 
 RA7 = 1;
 
-# 158
+
+(TRISBbits.TRISB4 = 1);
+ANSELHbits.ANS11 = 0;
+
+(TRISBbits.TRISB6 = 1);
+
+(TRISBbits.TRISB5 = 1);
+ANSELHbits.ANS13 = 0;
+
+(TRISBbits.TRISB7 = 1);
+
+# 174
 }
 void interrupt ISR()
 {
-if(INTCONbits.RBIF == 1)
-{
-
-{
-
-(LCDByte(0b00000001,0));
-
-{ LCDGotoXY(0,0); LCDWriteString("Thermometer set:");};
-
-tuneUpTemp++;
-if(tuneUpTemp > 150)
-{
-tuneUpTemp = 0;
-}
-
-
-{ LCDGotoXY(0,1); LCDWriteInt(tuneUpTemp,3);};
-
-
-LCDWriteString("%0C");
-
-_delay((unsigned long)((500)*(20000000/4000.0)));
-tuneUpTempDir = 1;
-
-}
-INTCONbits.RBIF = 0;
-}
-IOCBbits.IOCB4 = 0;
 }
 void main (void)
 {
@@ -2214,62 +2246,96 @@ LCDInit(0B00000000);
 ADCInit();
 
 
-TuneButtonInit();
+IOInit();
 
-# 205
+MenuInit();
+
+# 195
 (LCDByte(0b00000001,0));
 
-{ LCDGotoXY(0,0); LCDWriteString("Cur:");};
-
-{ LCDGotoXY(7,0); LCDWriteString("%0C");};
-
-{ LCDGotoXY(10,0); LCDWriteString("Wa:");};
-
-{ LCDGotoXY(0,1); LCDWriteString("Max:");};
-
-{ LCDGotoXY(7,1); LCDWriteString("%0C");};
-
-{ LCDGotoXY(13,0); LCDWriteString("OFF");};
-
-{ LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
-{ LCDGotoXY(4,0); LCDWriteInt(curTemp,3);};
 while(1)
 {
-
-curTemp = LM35ReadTemp();
-
-if((tuneUpTemp >= 5) && (curTemp >= tuneUpTemp))
+if(RA6 == 0)
 {
-{ LCDGotoXY(13,0); LCDWriteString("ON ");};
+{ for(char i = 0; i < &msg->msglen; i++) { { { { BITbits_t byte = (BITbits_t)(uint8_t *)&msg[i]; if(1 == 1) { RB0 = byte.B0; RB1 = byte.B1; RB2 = byte.B2; RB3 = byte.B3; } else { RB0 = byte.B4; RB1 = byte.B5; RB2 = byte.B6; RB3 = byte.B7; } }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((10)*(20000000/4000.0))); { { BITbits_t byte = (BITbits_t)(uint8_t *)&msg[i]; if(0 == 1) { RB0 = byte.B0; RB1 = byte.B1; RB2 = byte.B2; RB3 = byte.B3; } else { RB0 = byte.B4; RB1 = byte.B5; RB2 = byte.B6; RB3 = byte.B7; } }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((10)*(20000000/4000.0))); }; } };
+_delay((unsigned long)((200)*(20000000/4000.0)));
+}
+else
+if(RB4 == 0)
+{
+if(mode == NORMAL)
+{
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("MENU MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
+mode = MENU;
+ShowMenu();
 }
 else
 {
-if(curTemp <= tuneUpTemp - 5)
-{
-{ LCDGotoXY(13,0); LCDWriteString("OFF");};
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("EDIT MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
+submode = EDIT;
+ShowMenu();
+LCDSetStyle(0B00000001);
 }
-}
-if(RA6 == 0)
-{
-
-# 252
-{ for(char i = 0; i < 6; i++) { { { char t; if(1 == 0) { t = msg[i] >> 4; } else { t = msg[i]; } RB0 = t & 0b0001; RB1 = (t & 0b0010) >> 1; RB2 = (t & 0b0100) >> 2; RB3 = (t & 0b1000) >> 3; }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((10)*(20000000/4000.0))); { { char t; if(0 == 0) { t = msg[i] >> 4; } else { t = msg[i]; } RB0 = t & 0b0001; RB1 = (t & 0b0010) >> 1; RB2 = (t & 0b0100) >> 2; RB3 = (t & 0b1000) >> 3; }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((10)*(20000000/4000.0))); } };
-
-# 269
-{ LCDGotoXY(4,1); LCDWriteInt(tuneUpTemp,3);};
 
 _delay((unsigned long)((200)*(20000000/4000.0)));
-
-# 279
+}
+else
+if(RB6 == 0)
+{
+if(mode == MENU)
+{
+if(submode == EDIT)
+{
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("NOTEDIT MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
+submode = NOTEDIT;
+LCDSetStyle(0B00000000);
+}
+else
+{
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("NORMAL MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
+mode = NORMAL;
+ClearMenu();
+}
 }
 
-# 287
-{ LCDGotoXY(10,1); LCDWriteString(msg);};
-
-{ LCDGotoXY(4,0); LCDWriteInt(curTemp,3);};
-
-
-
+_delay((unsigned long)((200)*(20000000/4000.0)));
+}
+else
+if(RB5 == 0)
+{
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("UP"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
+if(mode == MENU)
+{
+if(submode == EDIT)
+{
+ValueInc();
+}
+else
+{
+MenuUp();
+}
+ShowMenu();
+}
+_delay((unsigned long)((200)*(20000000/4000.0)));
+}
+else
+if(RB7 == 0)
+{
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("DOWN"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
+if(mode == MENU)
+{
+if(submode == EDIT)
+{
+ValueDec();
+}
+else
+{
+MenuDown();
+}
+ShowMenu();
+}
+_delay((unsigned long)((200)*(20000000/4000.0)));
+}
 
 }
 }
