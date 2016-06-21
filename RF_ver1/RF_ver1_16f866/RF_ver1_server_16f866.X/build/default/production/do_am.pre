@@ -2148,7 +2148,42 @@ void Valuedec();
 void SaveMenuItem(uint8_t item);
 uint8_t LoadMenuItem(uint8_t item);
 
-# 14 "msg.h"
+# 4 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\__size_t.h"
+typedef unsigned size_t;
+
+# 14 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+# 34
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
+# 15 "msg.h"
 typedef enum E_cmd
 {
 REG_ID,
@@ -2163,11 +2198,31 @@ uint8_t from;
 uint8_t to;
 uint8_t msgid;
 uint8_t cmd;
-uint8_t data[256];
+uint8_t data[16];
 } Msg_t;
 
 
-# 11 "do_am.c"
+
+
+void compose(Msg_t *pmsg,
+uint8_t from,
+uint8_t to,
+uint8_t msgid,
+uint8_t cmd,
+uint8_t *data,
+uint8_t datalen)
+{
+register size_t len = datalen;
+pmsg->from = from;
+pmsg->to = to;
+pmsg->msgid = msgid;
+pmsg->cmd = cmd;
+memcpy((void *)pmsg->data, (void *)data, len);
+pmsg->msglen = datalen + 5;
+}
+
+
+# 12 "do_am.c"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = ON
 #pragma config PWRTE = OFF
@@ -2183,11 +2238,12 @@ uint8_t data[256];
 #pragma config BOR4V = BOR21V
 #pragma config WRT = OFF
 
-# 107
+# 108
 E_operation_mode mode = NORMAL;
 E_operation_submode submode = NOTEDIT;
 
 Msg_t msg;
+Msg_t *pmsg = &msg;
 
 void IOInit()
 {
@@ -2232,7 +2288,7 @@ ANSELHbits.ANS13 = 0;
 
 (TRISBbits.TRISB7 = 1);
 
-# 174
+# 176
 }
 void interrupt ISR()
 {
@@ -2250,14 +2306,19 @@ IOInit();
 
 MenuInit();
 
-# 195
+# 197
 (LCDByte(0b00000001,0));
 
+compose(pmsg, 123, 456, 789, 012, "abc", 3);
+uint8_t count = 0;
 while(1)
 {
 if(RA6 == 0)
 {
-{ for(char i = 0; i < &msg->msglen; i++) { { { { BITbits_t byte = (BITbits_t)(uint8_t *)&msg[i]; if(1 == 1) { RB0 = byte.B0; RB1 = byte.B1; RB2 = byte.B2; RB3 = byte.B3; } else { RB0 = byte.B4; RB1 = byte.B5; RB2 = byte.B6; RB3 = byte.B7; } }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((10)*(20000000/4000.0))); { { BITbits_t byte = (BITbits_t)(uint8_t *)&msg[i]; if(0 == 1) { RB0 = byte.B0; RB1 = byte.B1; RB2 = byte.B2; RB3 = byte.B3; } else { RB0 = byte.B4; RB1 = byte.B5; RB2 = byte.B6; RB3 = byte.B7; } }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((10)*(20000000/4000.0))); }; } };
+{uint8_t *s = (uint8_t *)pmsg; { for(char i = 0; i < pmsg->msglen; i++) { { { { BITbits_t *byte = (BITbits_t *)&s[i]; if(1 == 1) { RB0 = byte->B0; RB1 = byte->B1; RB2 = byte->B2; RB3 = byte->B3; } else { RB0 = byte->B4; RB1 = byte->B5; RB2 = byte->B6; RB3 = byte->B7; } }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((2)*(20000000/4000.0))); { { BITbits_t *byte = (BITbits_t *)&s[i]; if(0 == 1) { RB0 = byte->B0; RB1 = byte->B1; RB2 = byte->B2; RB3 = byte->B3; } else { RB0 = byte->B4; RB1 = byte->B5; RB2 = byte->B6; RB3 = byte->B7; } }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((2)*(20000000/4000.0))); }; } };};
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString("SND:");};}; {LCDWriteInt(pmsg->msglen, 3);};
+
+
 _delay((unsigned long)((200)*(20000000/4000.0)));
 }
 else
@@ -2265,13 +2326,13 @@ if(RB4 == 0)
 {
 if(mode == NORMAL)
 {
-{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("MENU MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
+{{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("MENU MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};};
 mode = MENU;
 ShowMenu();
 }
 else
 {
-{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("EDIT MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
+{{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("EDIT MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};};
 submode = EDIT;
 ShowMenu();
 LCDSetStyle(0B00000001);
@@ -2286,13 +2347,13 @@ if(mode == MENU)
 {
 if(submode == EDIT)
 {
-{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("NOTEDIT MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
+{{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("NOTEDIT MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};};
 submode = NOTEDIT;
 LCDSetStyle(0B00000000);
 }
 else
 {
-{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("NORMAL MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
+{{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("NORMAL MODE"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};};
 mode = NORMAL;
 ClearMenu();
 }
@@ -2303,7 +2364,7 @@ _delay((unsigned long)((200)*(20000000/4000.0)));
 else
 if(RB5 == 0)
 {
-{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("UP"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
+{{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("UP"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};};
 if(mode == MENU)
 {
 if(submode == EDIT)
@@ -2321,7 +2382,7 @@ _delay((unsigned long)((200)*(20000000/4000.0)));
 else
 if(RB7 == 0)
 {
-{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("DOWN"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};
+{{{ LCDGotoXY(0,1); int8_t count = LCDWriteString("DOWN"); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };};};
 if(mode == MENU)
 {
 if(submode == EDIT)

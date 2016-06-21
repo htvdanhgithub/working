@@ -17,9 +17,9 @@ extern "C" {
 #define SEND_BYTE(c, d3, d2, d1, d0, trigger) \
 { \
     SEND_HALF_BIT(c, 1, d3, d2, d1, d0, trigger); \
-    __delay_ms(10); \
+    __delay_ms(2); \
     SEND_HALF_BIT(c, 0, d3, d2, d1, d0, trigger); \
-    __delay_ms(10); \
+    __delay_ms(2); \
 }
 
 #define SEND_STRING(str, len, d3, d2, d1, d0, trigger) \
@@ -32,15 +32,21 @@ extern "C" {
 
 #define RECEIVE_BYTE(c, d3, d2, d1, d0, trigger) \
 { \
-    while(trigger == 0) \
+    while(1) \
     { \
-        GET_CHAR_FROM_4_BITS(c, 1, d3, d2, d1, d0); \
-        __delay_ms(1); \
+        if(trigger == 0) \
+        { \
+            GET_CHAR_FROM_4_BITS(c, 1, d3, d2, d1, d0); \
+            break; \
+        } \
     } \
-    while(trigger == 0) \
+    while(1) \
     { \
-        GET_CHAR_FROM_4_BITS(c, 0, d3, d2, d1, d0); \
-        __delay_ms(1); \
+        if(trigger == 0) \
+        { \
+            GET_CHAR_FROM_4_BITS(c, 0, d3, d2, d1, d0); \
+            break; \
+        } \
     } \
 }
 #define RECEIVE_STRING(str, d3, d2, d1, d0, trigger) \
@@ -51,7 +57,6 @@ extern "C" {
         RECEIVE_BYTE(str[i], d3, d2, d1, d0, trigger); \
     } \
 }
-
     
 #ifdef	__cplusplus
 }

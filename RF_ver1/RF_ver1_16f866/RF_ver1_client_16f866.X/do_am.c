@@ -5,6 +5,8 @@
 #include "lm35_pic16.h"
 #include "menu.h"
 #include "packet.h"
+#include "msg.h"
+#include "debug.h"
 
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
@@ -105,11 +107,9 @@
 
 E_operation_mode mode = NORMAL;
 E_operation_submode submode = NOTEDIT;
-char tuneUpTempDir = 1;
 
-char msg[32] = "aaaaa";
-BITbits_t *phMsg = (BITbits_t *)msg;
-char count = 0;
+Msg_t msg;
+Msg_t *pmsg = &msg;
 
 void IOInit()
 {
@@ -195,97 +195,95 @@ void main (void)
     
     //Clear the LCD
     LCDClear();
-
-    LCDWriteStringXY(0, 0, "Cur:");
-    //Print the degree symbol and C
-    LCDWriteStringXY(7, 0, "%0C"); 
-
-    LCDWriteStringXY(10, 0, "Wa:");
-
-    LCDWriteStringXY(0, 1, "Max:");
-    //Print the degree symbol and C
-    LCDWriteStringXY(7, 1, "%0C"); 
-
-    LCDWriteStringXY(13, 0, "OFF");
-
+    uint8_t count = 0;
     while(1)
     {
-      RECEIVE_MSG(&msg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-      if(MENU_IN == 0)
-        {
-            if(mode == NORMAL)
-            {
-                DEBUG("MENU MODE");
-                mode = MENU;
-                ShowMenu();
-            }
-            else
-            {
-                DEBUG("EDIT MODE");
-                submode = EDIT;
-                ShowMenu();
-                LCDSetStyle(LS_BLINK);
-            }
+//        if(DATA_IN_TRIGGER == 0)
+//        {
+////            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "FLASHED...");
+//            DEBUG_LINE_CLEAR; DEBUG_INT_X(0, count++, 3);
+//
+//        }
 
-            __delay_ms(200);
-        }
-        else
-        if(MENU_OUT == 0)
-        {
-            if(mode == MENU)
-            {
-                if(submode == EDIT)
-                {
-                    DEBUG("NOTEDIT MODE");
-                    submode = NOTEDIT;
-                    LCDSetStyle(LS_NONE);
-                }
-                else
-                {
-                    DEBUG("NORMAL MODE");
-                    mode = NORMAL;
-                    ClearMenu();
-                }
-            }
+        DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "Start...");
+        RECEIVE_MSG(pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
+        DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(pmsg->msglen, 3);
 
-            __delay_ms(200);
-        }
-        else
-        if(UP == 0)
-        {
-            DEBUG("UP");
-            if(mode == MENU)
-            {
-                if(submode == EDIT)
-                {
-                    ValueInc();
-                }            
-                else
-                {
-                    MenuUp();
-                }
-                ShowMenu();                
-            }
-            __delay_ms(200);
-        }
-        else
-        if(DOWN == 0)
-        {
-            DEBUG("DOWN");
-            if(mode == MENU)
-            {
-                if(submode == EDIT)
-                {
-                    ValueDec();
-                }            
-                else
-                {
-                    MenuDown();
-                }
-                ShowMenu();
-            }
-            __delay_ms(200);
-        }
+//        if(MENU_IN == 0)
+//        {
+//            if(mode == NORMAL)
+//            {
+//                DEBUG_STRING_CLEAR("MENU MODE");
+//                mode = MENU;
+//                ShowMenu();
+//            }
+//            else
+//            {
+//                DEBUG_STRING_CLEAR("EDIT MODE");
+//                submode = EDIT;
+//                ShowMenu();
+//                LCDSetStyle(LS_BLINK);
+//            }
+//
+//            __delay_ms(200);
+//        }
+//        else
+//        if(MENU_OUT == 0)
+//        {
+//            if(mode == MENU)
+//            {
+//                if(submode == EDIT)
+//                {
+//                    DEBUG_STRING_CLEAR("NOTEDIT MODE");
+//                    submode = NOTEDIT;
+//                    LCDSetStyle(LS_NONE);
+//                }
+//                else
+//                {
+//                    DEBUG_STRING_CLEAR("NORMAL MODE");
+//                    mode = NORMAL;
+//                    ClearMenu();
+//                }
+//            }
+//
+//            __delay_ms(200);
+//        }
+//        else
+//        if(UP == 0)
+//        {
+//            DEBUG_STRING_CLEAR("UP");
+//            if(mode == MENU)
+//            {
+//                if(submode == EDIT)
+//                {
+//                    ValueInc();
+//                }            
+//                else
+//                {
+//                    MenuUp();
+//                }
+//                ShowMenu();                
+//            }
+//            __delay_ms(200);
+//        }
+//        else
+//        if(DOWN == 0)
+//        {
+//            DEBUG_STRING_CLEAR("DOWN");
+//            if(mode == MENU)
+//            {
+//                if(submode == EDIT)
+//                {
+//                    ValueDec();
+//                }            
+//                else
+//                {
+//                    MenuDown();
+//                }
+//                ShowMenu();
+//            }
+//            __delay_ms(200);
+//        }
             
     }
 }

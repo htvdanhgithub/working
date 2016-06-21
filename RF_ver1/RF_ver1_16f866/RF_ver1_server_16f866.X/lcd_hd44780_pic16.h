@@ -126,7 +126,7 @@ void LCDBusyLoop();
     } \
 }
 
-#define LCDClearLine(x) {LCDWriteStringXY(0, x, "", 1);}
+#define LCDClearLine(x) {LCDWriteStringXYCLEAR(0, x, "", 1);}
 
 /***************************************************/
 

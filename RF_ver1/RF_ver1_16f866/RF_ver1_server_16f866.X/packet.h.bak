@@ -37,6 +37,7 @@ extern "C" {
         if(trigger == 0) \
         { \
             GET_CHAR_FROM_4_BITS(c, 1, d3, d2, d1, d0); \
+            __delay_ms(2); \
             break; \
         } \
     } \
@@ -45,6 +46,7 @@ extern "C" {
         if(trigger == 0) \
         { \
             GET_CHAR_FROM_4_BITS(c, 0, d3, d2, d1, d0); \
+            __delay_ms(2); \
             break; \
         } \
     } \
@@ -57,6 +59,7 @@ extern "C" {
         RECEIVE_BYTE(str[i], d3, d2, d1, d0, trigger); \
     } \
 }
+
     
 #ifdef	__cplusplus
 }

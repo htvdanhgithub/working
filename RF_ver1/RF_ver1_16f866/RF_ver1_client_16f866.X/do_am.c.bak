@@ -195,20 +195,12 @@ void main (void)
     
     //Clear the LCD
     LCDClear();
-    
-    compose(pmsg, 123, 456, 789, 012, "abc", 3);
-    uint8_t count = 0;
+
     while(1)
     {
-        if(DATA_IN_TRIGGER == 0)
-        {
-            SEND_MSG(pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "SND:"); DEBUG_INT(pmsg->msglen, 3);
-//            DEBUG_LINE_CLEAR; DEBUG_INT_X(0, count++, 3);
-//            FLASH(DATA_OUT_TRIGGER);
-            __delay_ms(200);
-        }
-        else
+        RECEIVE_MSG(pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+        DEBUG_STRING_X(0, "RCV:");
+        DEBUG_INT_CLEAR(pmsg->msglen, 3);
         if(MENU_IN == 0)
         {
             if(mode == NORMAL)

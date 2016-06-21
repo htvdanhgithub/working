@@ -36,45 +36,45 @@ extern "C" {
 #define ANSELBIT(__port,__pos) _CONCAT7(__port,__pos)
     
     
-#define GET_CHAR_FROM_4_BITS(c, low, b3, b2, b1, b0) \
-{ \
-    BITbits_t *byte = (BITbits_t *)&c; \
-    if(low == 1) \
-    { \
-        byte->B0 = b0; \
-        byte->B1 = b1; \
-        byte->B2 = b2; \
-        byte->B3 = b3; \
-    } \
-    else \
-    { \
-        byte->B4 = b0; \
-        byte->B5 = b1; \
-        byte->B6 = b2; \
-        byte->B7 = b3; \
-    } \
-}
-
+#define GET_CHAR_FROM_4_BITS(b3, b2, b1, b0)    (b0 | (b1 << 1) | (b2 << 2) | (b3 << 3))
 #define GET_4_BITS_FROM_CHAR(c, low, b3, b2, b1, b0)    \
 { \
-    BITbits_t *byte = (BITbits_t *)&c; \
-    if(low == 1) \
+    char t; \
+    if(low == 0) \
     { \
-        b0 = byte->B0; \
-        b1 = byte->B1; \
-        b2 = byte->B2; \
-        b3 = byte->B3; \
+        t = c >> 4; \
     } \
     else \
     { \
-        b0 = byte->B4; \
-        b1 = byte->B5; \
-        b2 = byte->B6; \
-        b3 = byte->B7; \
+        t = c; \
     } \
+    b0 = t & 0b0001; b1 = (t & 0b0010) >> 1; b2 = (t & 0b0100) >> 2; b3 = (t & 0b1000) >> 3; \
 }
 #define CLONE_4_BITS(a3, a2, a1, a0, b3, b2, b1, b0)    {a3 = b3; a2 = b2; a1 = b1; a0 = b0;}
-   
+#define GET_4_BITS_FROM_STRING(ret, str, half_index)    { \
+                                unsigned char index = half_index/2; \
+                                if(half_index % 2 == 0) \
+                                { \
+                                    ret = GET_CHAR_FROM_4_BITS(str[index].B3, str[index].B2, str[index].B1, str[index].B0); \
+                                } \
+                                else \
+                                { \
+                                    ret = GET_CHAR_FROM_4_BITS(str[index].B7, str[index].B6, str[index].B5, str[index].B4); \
+                                }; \
+                            }
+    
+#define SET_4_BITS_TO_STRING(val, str, half_index)    { \
+                                unsigned char index = half_index/2; \
+                                if(half_index % 2 == 0) \
+                                { \
+                                    GET_4_BITS_FROM_CHAR(val, 1, str[index].B3, str[index].B2, str[index].B1, str[index].B0); \
+                                } \
+                                else \
+                                { \
+                                    GET_4_BITS_FROM_CHAR(val, 1, str[index].B7, str[index].B6, str[index].B5, str[index].B4); \
+                                }; \
+                            }
+    
 #define FLASH(x)    {x = ~x; __delay_us(1); x = ~x;}
     
     

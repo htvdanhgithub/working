@@ -38,39 +38,39 @@ extern "C" {
     
 #define GET_CHAR_FROM_4_BITS(c, low, b3, b2, b1, b0) \
 { \
-    BITbits_t byte = (BITbits_t)c; \
+    BITbits_t *byte = (BITbits_t *)&c; \
     if(low == 1) \
     { \
-        byte.B0 = b0; \
-        byte.B1 = b1; \
-        byte.B2 = b2; \
-        byte.B3 = b3; \
+        byte->B0 = b0; \
+        byte->B1 = b1; \
+        byte->B2 = b2; \
+        byte->B3 = b3; \
     } \
     else \
     { \
-        byte.B4 = b0; \
-        byte.B5 = b1; \
-        byte.B6 = b2; \
-        byte.B7 = b3; \
+        byte->B4 = b0; \
+        byte->B5 = b1; \
+        byte->B6 = b2; \
+        byte->B7 = b3; \
     } \
 }
 
 #define GET_4_BITS_FROM_CHAR(c, low, b3, b2, b1, b0)    \
 { \
-    BITbits_t byte = (BITbits_t)c; \
+    BITbits_t *byte = (BITbits_t *)&c; \
     if(low == 1) \
     { \
-        b0 = byte.B0; \
-        b1 = byte.B1; \
-        b2 = byte.B2; \
-        b3 = byte.B3; \
+        b0 = byte->B0; \
+        b1 = byte->B1; \
+        b2 = byte->B2; \
+        b3 = byte->B3; \
     } \
     else \
     { \
-        b0 = byte.B4; \
-        b1 = byte.B5; \
-        b2 = byte.B6; \
-        b3 = byte.B7; \
+        b0 = byte->B4; \
+        b1 = byte->B5; \
+        b2 = byte->B6; \
+        b3 = byte->B7; \
     } \
 }
 #define CLONE_4_BITS(a3, a2, a1, a0, b3, b2, b1, b0)    {a3 = b3; a2 = b2; a1 = b1; a0 = b0;}
