@@ -2183,7 +2183,7 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 15 "msg.h"
+# 16 "msg.h"
 typedef enum E_cmd
 {
 REG_ID,
@@ -2194,6 +2194,7 @@ CMD_MAX
 
 typedef struct {
 uint8_t msglen;
+uint16_t crc;
 uint8_t from;
 uint8_t to;
 uint8_t msgid;
@@ -2201,9 +2202,27 @@ uint8_t cmd;
 uint8_t data[16];
 } Msg_t;
 
+# 40
+uint16_t crc_calculate(Msg_t *pmsg)
+{
+uint16_t crc;
+crc = (uint8_t)pmsg->msglen;
+crc += (uint8_t)pmsg->from;
+crc += (uint8_t)pmsg->to;
+crc += (uint8_t)pmsg->msgid;
+crc += (uint8_t)pmsg->cmd;
 
+for(uint8_t i = 0; i < pmsg->msglen - 7; i++)
+{
+crc += (uint8_t)pmsg->data[i];
+}
 
-
+return crc;
+}
+uint8_t crc_verify(Msg_t *pmsg)
+{
+return ((crc_calculate(pmsg) == pmsg->crc) ? 1 : 0);
+}
 void compose(Msg_t *pmsg,
 uint8_t from,
 uint8_t to,
@@ -2218,7 +2237,9 @@ pmsg->to = to;
 pmsg->msgid = msgid;
 pmsg->cmd = cmd;
 memcpy((void *)pmsg->data, (void *)data, len);
-pmsg->msglen = datalen + 5;
+pmsg->msglen = datalen + 7;
+
+pmsg->crc = crc_calculate(pmsg);
 }
 
 
@@ -2288,7 +2309,6 @@ ANSELHbits.ANS13 = 0;
 
 (TRISBbits.TRISB7 = 1);
 
-# 176
 }
 void interrupt ISR()
 {
@@ -2306,18 +2326,19 @@ IOInit();
 
 MenuInit();
 
-# 197
+# 178
 (LCDByte(0b00000001,0));
-uint8_t count = 0;
+
+uint8_t revc = 0;
 while(1)
 {
 
-# 208
-{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString("Start...");};};
-{uint8_t *s = (uint8_t *)pmsg; { { while(1) { if(RA6 == 0) { { BITbits_t *byte = (BITbits_t *)&s[0]; if(1 == 1) { byte->B0 = RA0; byte->B1 = RA1; byte->B2 = RA2; byte->B3 = RA3; } else { byte->B4 = RA0; byte->B5 = RA1; byte->B6 = RA2; byte->B7 = RA3; } }; break; } _delay((unsigned long)((1)*(20000000/4000.0))); } while(1) { if(RA6 == 0) { { BITbits_t *byte = (BITbits_t *)&s[0]; if(0 == 1) { byte->B0 = RA0; byte->B1 = RA1; byte->B2 = RA2; byte->B3 = RA3; } else { byte->B4 = RA0; byte->B5 = RA1; byte->B6 = RA2; byte->B7 = RA3; } }; break; } _delay((unsigned long)((1)*(20000000/4000.0))); } }; for(uint8_t i = 1; i < s[0]; i++) { { while(1) { if(RA6 == 0) { { BITbits_t *byte = (BITbits_t *)&s[i]; if(1 == 1) { byte->B0 = RA0; byte->B1 = RA1; byte->B2 = RA2; byte->B3 = RA3; } else { byte->B4 = RA0; byte->B5 = RA1; byte->B6 = RA2; byte->B7 = RA3; } }; break; } _delay((unsigned long)((1)*(20000000/4000.0))); } while(1) { if(RA6 == 0) { { BITbits_t *byte = (BITbits_t *)&s[i]; if(0 == 1) { byte->B0 = RA0; byte->B1 = RA1; byte->B2 = RA2; byte->B3 = RA3; } else { byte->B4 = RA0; byte->B5 = RA1; byte->B6 = RA2; byte->B7 = RA3; } }; break; } _delay((unsigned long)((1)*(20000000/4000.0))); } }; } };};
-{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString("RCV:");};}; {LCDWriteInt(pmsg->msglen, 3);};
 
-# 288
+
+{uint8_t *smsg = (uint8_t *)&msg; { uint8_t count = 0; uint8_t low = 1; while(1) { if(RA6 == 0) { { BITbits_t *byte = (BITbits_t *)&smsg[count]; if(low == 1) { byte->B0 = RA0; byte->B1 = RA1; byte->B2 = RA2; byte->B3 = RA3; } else { byte->B4 = RA0; byte->B5 = RA1; byte->B6 = RA2; byte->B7 = RA3; } }; low = ((low == 1) ? 0 : 1); if(low == 1) { count++; if(count == smsg[0]) { break; count = 0; } } } } };};
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString("RCV:");};}; {LCDWriteInt(crc_verify(pmsg), 3);};
+
+# 283
 }
 }
 

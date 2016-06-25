@@ -13,6 +13,9 @@
       <itemPath>packet.h</itemPath>
       <itemPath>msg.h</itemPath>
       <itemPath>debug.h</itemPath>
+      <itemPath>common.h</itemPath>
+      <itemPath>connection.h</itemPath>
+      <itemPath>cmd.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

@@ -154,25 +154,6 @@ void IOInit()
     
     IO_INPUT(DOWN_PIN);
 
-    //    ANSELHbits.ANS11 = 0;
-
-//    OPTION_REGbits.INTEDG = 1;
-//    INTCONbits.PEIE = 1;
-    // 5 Peripheral interrupt
-
-    // 1. Interrupt-on-Change enable (Master Switch)
-//    IOCB_ENABLE;
-//    INTB_ENABLE;
-//    INT_ENABLE;
-    
-    // 3. Rising and falling edge detection
-//    DATA_IN_TRIGGER_RAISING_EDGE = 1;
-    // 4. Individual pin interrupt flags    
-//    INTB_FLAG = 0;
-//    DATA_IN_TRIGGER_IOC_FLAG = 0;
-    
-    // 6. Global Interrupt Enable
-//    GLB_INT_ENABLE = 1;
 }
 void interrupt ISR()
 {
@@ -195,19 +176,33 @@ void main (void)
     
     //Clear the LCD
     LCDClear();
-    uint8_t count = 0;
+    
+    uint8_t revc = 0;
     while(1)
     {
+//        RECEIVE_HALF_BIT(revc, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
+//        SEND_HALF_BIT(revc, 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+        
+          RECEIVE_MSG(pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
+          DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(crc_verify(pmsg), 3);
+
 //        if(DATA_IN_TRIGGER == 0)
 //        {
-////            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "FLASHED...");
-//            DEBUG_LINE_CLEAR; DEBUG_INT_X(0, count++, 3);
-//
+//            GET_CHAR_FROM_4_BITS(smsg[count], low, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0);
+//            low = ((low == 1) ? 0 : 1);
+//            if(low == 1)
+//            {
+//                count++;
+//                if(count == smsg[0])
+//                {
+//                    count = 0;
+//                }
+//            }
+//            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(pmsg->data[2], 3);
 //        }
 
-        DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "Start...");
-        RECEIVE_MSG(pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
-        DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(pmsg->msglen, 3);
+//        RECEIVE_MSG(pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
+//        DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(count, 3);
 
 //        if(MENU_IN == 0)
 //        {

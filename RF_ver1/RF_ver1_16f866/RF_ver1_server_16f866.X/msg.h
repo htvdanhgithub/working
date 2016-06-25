@@ -7,46 +7,67 @@
 #include "lcd_hd44780_pic16.h"
 #include "myutils.h"
 #include "packet.h"
+#include "debug.h"
 
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
-typedef enum E_cmd
-{
-    REG_ID,
-    CMD_MAX    
-};
-
 #define MAX_DATA_LEN 16
 
 typedef struct {
-    uint8_t msglen;
-    uint8_t from;
-    uint8_t to;
-    uint8_t msgid;
-    uint8_t cmd;
-    uint8_t data[MAX_DATA_LEN];
+    uint8_t     msglen;
+    uint16_t    crc;
+    uint8_t     from;
+    uint8_t     to;
+    uint8_t     msgid;
+    uint8_t     cmd;
+    uint8_t     data[MAX_DATA_LEN];
 } Msg_t; 
 
-#define SEND_MSG(msg, d3, d2, d1, d0, trigger) {uint8_t *s = (uint8_t *)msg; SEND_STRING(s, msg->msglen, d3, d2, d1, d0, trigger);}
-#define RECEIVE_MSG(msg, d3, d2, d1, d0, trigger) {uint8_t *s = (uint8_t *)msg; RECEIVE_STRING(s, d3, d2, d1, d0, trigger);}
+#define SEND_MSG(pmsg, d3, d2, d1, d0, trigger) {uint8_t *s = (uint8_t *)pmsg; SEND_STRING(s, pmsg->msglen, d3, d2, d1, d0, trigger);}
+#define RECEIVE_MSG(pmsg, d3, d2, d1, d0, trigger) {uint8_t *smsg = (uint8_t *)pmsg; RECEIVE_STRING(smsg, d3, d2, d1, d0, trigger);}
 
+#define SEND_MSG_ACK(msg, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero) {uint8_t *s = (uint8_t *)msg; SEND_STRING_ACK(s, msg->msglen, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero);}
+#define RECEIVE_MSG_ACK(msg, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero) {uint8_t *smsg = (uint8_t *)&msg; RECEIVE_STRING_ACK(smsg, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero);}
+
+uint16_t crc_calculate(Msg_t *pmsg)
+{
+    uint16_t crc;
+    crc  = (uint8_t)pmsg->msglen;
+    crc += (uint8_t)pmsg->from;
+    crc += (uint8_t)pmsg->to;
+    crc += (uint8_t)pmsg->msgid;
+    crc += (uint8_t)pmsg->cmd;
+    
+    for(uint8_t i = 0; i < pmsg->msglen - 7; i++)
+    {
+        crc += (uint8_t)pmsg->data[i];
+    }
+    
+    return crc;
+}
+uint8_t crc_verify(Msg_t *pmsg)
+{
+    return ((crc_calculate(pmsg) == pmsg->crc) ? 1 : 0);
+}
 void compose(Msg_t *pmsg, 
-        uint8_t from,
-        uint8_t to,
-        uint8_t msgid,
-        uint8_t cmd,
-        uint8_t *data,
-        uint8_t datalen)
+        uint8_t     from,
+        uint8_t     to,
+        uint8_t     msgid,
+        uint8_t     cmd,
+        uint8_t     *data,
+        uint8_t     datalen)
 {
     register size_t len = datalen;
-    pmsg->from = from;
-    pmsg->to = to;
+    pmsg->from  = from;
+    pmsg->to    = to;
     pmsg->msgid = msgid;
-    pmsg->cmd = cmd;
+    pmsg->cmd   = cmd;
     memcpy((void *)pmsg->data, (void *)data, len);
-    pmsg->msglen = datalen + 5;
+    pmsg->msglen = datalen + 7;
+    // Must be at last
+    pmsg->crc  = crc_calculate(pmsg);
 }
 #ifdef	__cplusplus
 }

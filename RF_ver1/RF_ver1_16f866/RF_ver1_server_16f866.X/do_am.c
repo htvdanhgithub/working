@@ -35,6 +35,11 @@
 
 //LM35 is connected to Port A bit 2
 
+#define KICK_OFF_TRIGGER_PORT      A
+#define KICK_OFF_TRIGGER_POS       5
+#define KICK_OFF_TRIGGER_PIN       PIN(KICK_OFF_TRIGGER_PORT, KICK_OFF_TRIGGER_POS)
+#define KICK_OFF_TRIGGER           PORTBIT(KICK_OFF_TRIGGER_PIN)
+
 #define DATA_IN0_PORT      A
 #define DATA_IN0_POS       0
 #define DATA_IN0_PIN       PIN(DATA_IN0_PORT, DATA_IN0_POS)
@@ -114,6 +119,9 @@ Msg_t *pmsg = &msg;
 void IOInit()
 {
     // 2. Individual pin configuration
+    IO_INPUT(KICK_OFF_TRIGGER_PIN);
+    ANSELbits.ANS4 = 0;
+
     IO_INPUT(DATA_IN_TRIGGER_PIN);
 //    ANSELHbits.ANS11 = 0;
     
@@ -154,25 +162,6 @@ void IOInit()
     
     IO_INPUT(DOWN_PIN);
 
-    //    ANSELHbits.ANS11 = 0;
-
-//    OPTION_REGbits.INTEDG = 1;
-//    INTCONbits.PEIE = 1;
-    // 5 Peripheral interrupt
-
-    // 1. Interrupt-on-Change enable (Master Switch)
-//    IOCB_ENABLE;
-//    INTB_ENABLE;
-//    INT_ENABLE;
-    
-    // 3. Rising and falling edge detection
-//    DATA_IN_TRIGGER_RAISING_EDGE = 1;
-    // 4. Individual pin interrupt flags    
-//    INTB_FLAG = 0;
-//    DATA_IN_TRIGGER_IOC_FLAG = 0;
-    
-    // 6. Global Interrupt Enable
-//    GLB_INT_ENABLE = 1;
 }
 void interrupt ISR()
 {
@@ -196,14 +185,17 @@ void main (void)
     //Clear the LCD
     LCDClear();
     
-    compose(pmsg, 123, 456, 789, 012, "abc", 3);
-    uint8_t count = 0;
+    compose(pmsg, 11, 22, 33, 44, "abc", 3);
+    uint8_t sendc = 0x78;
+    uint8_t revc = 0;
     while(1)
     {
-        if(DATA_IN_TRIGGER == 0)
+        if(KICK_OFF_TRIGGER == 0)
         {
+//            SEND_HALF_BIT(sendc, 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//            RECEIVE_HALF_BIT(revc, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
             SEND_MSG(pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "SND:"); DEBUG_INT(pmsg->msglen, 3);
+            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "SND:"); DEBUG_INT(pmsg->crc, 3);
 //            DEBUG_LINE_CLEAR; DEBUG_INT_X(0, count++, 3);
 //            FLASH(DATA_OUT_TRIGGER);
             __delay_ms(200);

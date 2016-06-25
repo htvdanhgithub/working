@@ -45,9 +45,9 @@ NOTEDIT 1
 [v _eeprom_write eeprom_write `(v  1 e 1 0 ]
 "114 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
 [v _IOInit IOInit `(v  1 e 1 0 ]
-"177
+"158
 [v _ISR ISR `II(v  1 e 1 0 ]
-"180
+"161
 [v _main main `(v  1 e 1 0 ]
 "80 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
 [v _LCDByte LCDByte `(v  1 e 1 0 ]
@@ -67,6 +67,10 @@ NOTEDIT 1
 [v _SaveMenuItem SaveMenuItem `(v  1 e 1 0 ]
 "36
 [v _LoadMenuItem LoadMenuItem `(uc  1 e 1 0 ]
+"40 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\msg.h
+[v _crc_calculate crc_calculate `(ui  1 e 2 0 ]
+"56
+[v _crc_verify crc_verify `(uc  1 e 1 0 ]
 "282 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "1126
@@ -94,7 +98,7 @@ NOTEDIT 1
 ]
 [u S92 . 1 `S72 1 . 1 0 `S77 1 . 1 0 `S86 1 . 1 0 `S89 1 . 1 0 ]
 [v _ADCON0bits ADCON0bits `VES92  1 e 1 @31 ]
-[s S180 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S181 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -104,8 +108,8 @@ NOTEDIT 1
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "1318
-[u S189 . 1 `S180 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES189  1 e 1 @133 ]
+[u S190 . 1 `S181 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES190  1 e 1 @133 ]
 [s S19 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
@@ -120,7 +124,7 @@ NOTEDIT 1
 [v _TRISBbits TRISBbits `VES28  1 e 1 @134 ]
 "1423
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
-[s S402 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S390 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -130,8 +134,8 @@ NOTEDIT 1
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1440
-[u S411 . 1 `S402 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES411  1 e 1 @135 ]
+[u S399 . 1 `S390 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES399  1 e 1 @135 ]
 "2753
 [v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
 [s S57 . 1 `uc 1 . 1 0 :4:0 
@@ -147,15 +151,15 @@ NOTEDIT 1
 [v _EEDATA EEDATA `VEuc  1 e 1 @268 ]
 "3033
 [v _EEADR EEADR `VEuc  1 e 1 @269 ]
-[s S201 . 1 `uc 1 ANS0 1 0 :1:0 
+[s S202 . 1 `uc 1 ANS0 1 0 :1:0 
 `uc 1 ANS1 1 0 :1:1 
 `uc 1 ANS2 1 0 :1:2 
 `uc 1 ANS3 1 0 :1:3 
 `uc 1 ANS4 1 0 :1:4 
 ]
 "3172
-[u S207 . 1 `S201 1 . 1 0 ]
-[v _ANSELbits ANSELbits `VES207  1 e 1 @392 ]
+[u S208 . 1 `S202 1 . 1 0 ]
+[v _ANSELbits ANSELbits `VES208  1 e 1 @392 ]
 [s S40 . 1 `uc 1 ANS8 1 0 :1:0 
 `uc 1 ANS9 1 0 :1:1 
 `uc 1 ANS10 1 0 :1:2 
@@ -200,19 +204,19 @@ NOTEDIT 1
 [v _WREN WREN `VEb  1 e 0 @3170 ]
 "15 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\custom_char.h
 [v ___cgram __cgram `[8]uc  1 e 8 0 ]
-[s S160 . 21 `uc 1 msglen 1 0 `uc 1 from 1 1 `uc 1 to 1 2 `uc 1 msgid 1 3 `uc 1 cmd 1 4 `[16]uc 1 data 16 5 ]
+[s S160 . 23 `uc 1 msglen 1 0 `ui 1 crc 2 1 `uc 1 from 1 3 `uc 1 to 1 4 `uc 1 msgid 1 5 `uc 1 cmd 1 6 `[16]uc 1 data 16 7 ]
 "111 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
-[v _msg msg `S160  1 e 21 0 ]
+[v _msg msg `S160  1 e 23 0 ]
 "112
 [v _pmsg pmsg `*.4S160  1 e 1 0 ]
-[s S466 . 2 `uc 1 value 1 0 `*.24uc 1 name 1 1 ]
+[s S454 . 2 `uc 1 value 1 0 `*.24uc 1 name 1 1 ]
 "5 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\menu.c
-[s S469 . 9 `[4]S466 1 items 8 0 `uc 1 index 1 8 ]
-[v _g_menu g_menu `S469  1 e 9 0 ]
-"180 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+[s S457 . 9 `[4]S454 1 items 8 0 `uc 1 index 1 8 ]
+[v _g_menu g_menu `S457  1 e 9 0 ]
+"161 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
 [v _main main `(v  1 e 1 0 ]
 {
-[s S267 . 1 `uc 1 B0 1 0 :1:0 
+[s S257 . 1 `uc 1 B0 1 0 :1:0 
 `uc 1 B1 1 0 :1:1 
 `uc 1 B2 1 0 :1:2 
 `uc 1 B3 1 0 :1:3 
@@ -221,35 +225,45 @@ NOTEDIT 1
 `uc 1 B6 1 0 :1:6 
 `uc 1 B7 1 0 :1:7 
 ]
-"209
-[v main@byte_372 byte `*.4S267  1 a 1 10 ]
-[v main@byte_363 byte `*.4S267  1 a 1 9 ]
-[s S267 . 1 `uc 1 B0 1 0 :1:0 
-`uc 1 B1 1 0 :1:1 
-`uc 1 B2 1 0 :1:2 
-`uc 1 B3 1 0 :1:3 
-`uc 1 B4 1 0 :1:4 
-`uc 1 B5 1 0 :1:5 
-`uc 1 B6 1 0 :1:6 
-`uc 1 B7 1 0 :1:7 
-]
-[v main@byte_353 byte `*.4S267  1 a 1 8 ]
-[v main@byte byte `*.4S267  1 a 1 7 ]
-"210
-[v main@i_383 i `c  1 a 1 4 ]
-"209
-[v main@i_362 i `uc  1 a 1 5 ]
-"208
-[v main@i i `c  1 a 1 3 ]
-"210
-[v main@count_381 count `c  1 a 1 2 ]
-"208
-[v main@count_333 count `c  1 a 1 1 ]
-"209
-[v main@s s `*.4uc  1 a 1 6 ]
-"198
-[v main@count count `uc  1 a 1 0 ]
-"289
+"186
+[v main@byte byte `*.4S257  1 a 1 32 ]
+"187
+[v main@i i `c  1 a 1 29 ]
+[v main@count_374 count `c  1 a 1 27 ]
+"186
+[v main@low low `uc  1 a 1 31 ]
+[v main@count count `uc  1 a 1 30 ]
+[v main@smsg smsg `*.4uc  1 a 1 28 ]
+"180
+[v main@revc revc `uc  1 a 1 26 ]
+"284
+} 0
+"56 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\msg.h
+[v _crc_verify crc_verify `(uc  1 e 1 0 ]
+{
+[s S160 . 23 `uc 1 msglen 1 0 `ui 1 crc 2 1 `uc 1 from 1 3 `uc 1 to 1 4 `uc 1 msgid 1 5 `uc 1 cmd 1 6 `[16]uc 1 data 16 7 ]
+[v crc_verify@pmsg pmsg `*.4S160  1 a 1 wreg ]
+[v crc_verify@pmsg pmsg `*.4S160  1 a 1 wreg ]
+"58
+"56
+[v crc_verify@pmsg pmsg `*.4S160  1 a 1 7 ]
+"59
+} 0
+"40
+[v _crc_calculate crc_calculate `(ui  1 e 2 0 ]
+{
+[s S160 . 23 `uc 1 msglen 1 0 `ui 1 crc 2 1 `uc 1 from 1 3 `uc 1 to 1 4 `uc 1 msgid 1 5 `uc 1 cmd 1 6 `[16]uc 1 data 16 7 ]
+[v crc_calculate@pmsg pmsg `*.4S160  1 a 1 wreg ]
+"49
+[v crc_calculate@i i `uc  1 a 1 5 ]
+"42
+[v crc_calculate@crc crc `ui  1 a 2 3 ]
+"40
+[v crc_calculate@pmsg pmsg `*.4S160  1 a 1 wreg ]
+"43
+"40
+[v crc_calculate@pmsg pmsg `*.4S160  1 a 1 6 ]
+"55
 } 0
 "7 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\menu.c
 [v _MenuInit MenuInit `(v  1 e 1 0 ]
@@ -377,15 +391,15 @@ NOTEDIT 1
 "114 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
 [v _IOInit IOInit `(v  1 e 1 0 ]
 {
-"176
+"157
 } 0
 "7 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\adc_pic16.c
 [v _ADCInit ADCInit `(v  1 e 1 0 ]
 {
 "26
 } 0
-"177 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+"158 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"179
+"160
 } 0
