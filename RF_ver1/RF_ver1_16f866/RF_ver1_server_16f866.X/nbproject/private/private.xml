@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="3">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="5">
         <file>
             <url>do_am.c</url>
+            <bookmark id="4">
+                <name/>
+                <line>9</line>
+                <key/>
+            </bookmark>
             <bookmark id="1">
                 <name/>
-                <line>187</line>
+                <line>200</line>
+                <key/>
+            </bookmark>
+            <bookmark id="5">
+                <name/>
+                <line>212</line>
                 <key/>
             </bookmark>
             <bookmark id="3">
                 <name/>
-                <line>257</line>
+                <line>285</line>
                 <key/>
             </bookmark>
         </file>
@@ -19,7 +29,12 @@
         <group>
             <file>file:/D:/Working/working/RF_ver1/RF_ver1_16f866/RF_ver1_server_16f866.X/cmd.h</file>
             <file>file:/D:/Working/working/RF_ver1/RF_ver1_16f866/RF_ver1_server_16f866.X/common.h</file>
+            <file>file:/D:/Working/working/RF_ver1/RF_ver1_16f866/RF_ver1_server_16f866.X/reg_id.h</file>
+            <file>file:/D:/Working/working/RF_ver1/RF_ver1_16f866/RF_ver1_server_16f866.X/do_am.c</file>
+            <file>file:/D:/Working/working/RF_ver1/RF_ver1_16f866/RF_ver1_server_16f866.X/debug.h</file>
             <file>file:/D:/Working/working/RF_ver1/RF_ver1_16f866/RF_ver1_server_16f866.X/connection.h</file>
+            <file>file:/D:/Working/working/RF_ver1/RF_ver1_16f866/RF_ver1_server_16f866.X/packet.h</file>
+            <file>file:/D:/Working/working/RF_ver1/RF_ver1_16f866/RF_ver1_server_16f866.X/menu.c</file>
             <file>file:/D:/Working/working/RF_ver1/RF_ver1_16f866/RF_ver1_server_16f866.X/msg.h</file>
         </group>
     </open-files>

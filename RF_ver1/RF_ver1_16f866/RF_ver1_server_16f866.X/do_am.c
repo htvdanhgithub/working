@@ -7,6 +7,8 @@
 #include "packet.h"
 #include "msg.h"
 #include "debug.h"
+#include "connection.h"
+#include "reg_id.h"
 
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
@@ -113,9 +115,21 @@
 E_operation_mode mode = NORMAL;
 E_operation_submode submode = NOTEDIT;
 
+Connection_t client_conn[MAX_CLIENT_CONNECTION];
+
 Msg_t msg;
 Msg_t *pmsg = &msg;
 
+void ConnInit()
+{
+    for(uint8_t i = 0; i < MAX_CLIENT_CONNECTION; i++)
+    {
+        client_conn[i].from         = SERVER_ID;
+        client_conn[i].to           = i;
+        client_conn[i].msgid        = 0;
+        client_conn[i].available    = NO;
+    }
+}
 void IOInit()
 {
     // 2. Individual pin configuration
@@ -178,9 +192,8 @@ void main (void)
     IOInit();
     
     MenuInit();
-//    
-//    //Initialize Trigger out
-//    TriggerOutInit();
+    
+    ConnInit();
     
     //Clear the LCD
     LCDClear();
@@ -188,14 +201,29 @@ void main (void)
     compose(pmsg, 11, 22, 33, 44, "abc", 3);
     uint8_t sendc = 0x78;
     uint8_t revc = 0;
+    REG_ID_RQT_CMD_t rqt;
+    REG_ID_RQT_CMD_t *prqt = &rqt;
+    REG_ID_RSP_CMD_t rsp;
+    REG_ID_RSP_CMD_t *prsp = &rsp;
+    Connection_t *pconn = NULL;
+
     while(1)
     {
         if(KICK_OFF_TRIGGER == 0)
         {
+            for(uint8_t i = 0; i < 1; i++)
+            {
+                rqt.id = i;
+                pconn = (Connection_t *)&client_conn[i];
+                SERVER_REG_ID(pmsg, pconn, prqt, prsp, 
+                              DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
+                              pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+                
+            }
 //            SEND_HALF_BIT(sendc, 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
 //            RECEIVE_HALF_BIT(revc, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
-            SEND_MSG(pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "SND:"); DEBUG_INT(pmsg->crc, 3);
+//            SEND_MSG(pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "SND:"); DEBUG_INT(pmsg->crc, 3);
 //            DEBUG_LINE_CLEAR; DEBUG_INT_X(0, count++, 3);
 //            FLASH(DATA_OUT_TRIGGER);
             __delay_ms(200);

@@ -3,12 +3,18 @@
 [d edition pro ]
 [d chip 16F886 ]
 [d frameptr 6 ]
-"108 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+"36 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\reg_id.h
+[e E1840 E_cmd `uc
+REG_ID_RQT 0
+REG_ID_RSP 1
+CMD_MAX 2
+]
+"110 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
 [e E1616 . `uc
 MENU 0
 NORMAL 1
 ]
-"109
+"111
 [e E1620 . `uc
 EDIT 0
 NOTEDIT 1
@@ -21,6 +27,8 @@ NOTEDIT 1
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
+"492 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
 "62 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
 "86 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftadd.c
@@ -29,10 +37,14 @@ NOTEDIT 1
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
 "44 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
 [v ___fttol __fttol `(l  1 e 4 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
 "28 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwtoft.c
 [v ___lwtoft __lwtoft `(f  1 e 3 0 ]
 "11 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memcpy.c
-[v _memcpy memcpy `(*.1v  1 e 1 0 ]
+[v _memcpy memcpy `(*.4v  1 e 1 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\pic\eeprom.c
@@ -43,16 +55,22 @@ NOTEDIT 1
 [v _eeprom_read eeprom_read `(uc  1 e 1 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\pic\eewrite.c
 [v _eeprom_write eeprom_write `(v  1 e 1 0 ]
-"114 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+"34 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\connection.h
+[v _dum_conn dum_conn `(v  1 e 1 0 ]
+"117 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+[v _ConnInit ConnInit `(v  1 e 1 0 ]
+"125
 [v _IOInit IOInit `(v  1 e 1 0 ]
-"158
+"169
 [v _ISR ISR `II(v  1 e 1 0 ]
-"161
+"172
 [v _main main `(v  1 e 1 0 ]
 "80 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
 [v _LCDByte LCDByte `(v  1 e 1 0 ]
 "135
 [v _LCDBusyLoop LCDBusyLoop `(v  1 e 1 0 ]
+"207
+[v _LCDSetStyle LCDSetStyle `(v  1 e 1 0 ]
 "211
 [v _LCDInit LCDInit `(v  1 e 1 0 ]
 "283
@@ -63,14 +81,30 @@ NOTEDIT 1
 [v _LCDGotoXY LCDGotoXY `(v  1 e 1 0 ]
 "7 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\menu.c
 [v _MenuInit MenuInit `(v  1 e 1 0 ]
+"23
+[v _ShowMenu ShowMenu `(v  1 e 1 0 ]
+"28
+[v _ClearMenu ClearMenu `(v  1 e 1 0 ]
 "32
 [v _SaveMenuItem SaveMenuItem `(v  1 e 1 0 ]
 "36
 [v _LoadMenuItem LoadMenuItem `(uc  1 e 1 0 ]
-"40 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\msg.h
+"40
+[v _MenuUp MenuUp `(v  1 e 1 0 ]
+"51
+[v _MenuDown MenuDown `(v  1 e 1 0 ]
+"62
+[v _ValueInc ValueInc `(v  1 e 1 0 ]
+"67
+[v _ValueDec ValueDec `(i  1 e 2 0 ]
+"34 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\msg.h
 [v _crc_calculate crc_calculate `(ui  1 e 2 0 ]
-"56
-[v _crc_verify crc_verify `(uc  1 e 1 0 ]
+"54
+[v _compose compose `(v  1 e 1 0 ]
+"72
+[v _dum_msg dum_msg `(v  1 e 1 0 ]
+"48 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\reg_id.h
+[v _extract_REG_ID_RQT_CMD extract_REG_ID_RQT_CMD `(v  1 e 1 0 ]
 "282 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f886.h
 [v _PORTC PORTC `VEuc  1 e 1 @7 ]
 "1126
@@ -98,7 +132,7 @@ NOTEDIT 1
 ]
 [u S92 . 1 `S72 1 . 1 0 `S77 1 . 1 0 `S86 1 . 1 0 `S89 1 . 1 0 ]
 [v _ADCON0bits ADCON0bits `VES92  1 e 1 @31 ]
-[s S181 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S222 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -108,8 +142,8 @@ NOTEDIT 1
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "1318
-[u S190 . 1 `S181 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES190  1 e 1 @133 ]
+[u S231 . 1 `S222 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES231  1 e 1 @133 ]
 [s S19 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
@@ -124,7 +158,7 @@ NOTEDIT 1
 [v _TRISBbits TRISBbits `VES28  1 e 1 @134 ]
 "1423
 [v _TRISC TRISC `VEuc  1 e 1 @135 ]
-[s S390 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S570 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -134,8 +168,8 @@ NOTEDIT 1
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1440
-[u S399 . 1 `S390 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES399  1 e 1 @135 ]
+[u S579 . 1 `S570 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES579  1 e 1 @135 ]
 "2753
 [v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
 [s S57 . 1 `uc 1 . 1 0 :4:0 
@@ -151,15 +185,15 @@ NOTEDIT 1
 [v _EEDATA EEDATA `VEuc  1 e 1 @268 ]
 "3033
 [v _EEADR EEADR `VEuc  1 e 1 @269 ]
-[s S202 . 1 `uc 1 ANS0 1 0 :1:0 
+[s S243 . 1 `uc 1 ANS0 1 0 :1:0 
 `uc 1 ANS1 1 0 :1:1 
 `uc 1 ANS2 1 0 :1:2 
 `uc 1 ANS3 1 0 :1:3 
 `uc 1 ANS4 1 0 :1:4 
 ]
 "3172
-[u S208 . 1 `S202 1 . 1 0 ]
-[v _ANSELbits ANSELbits `VES208  1 e 1 @392 ]
+[u S249 . 1 `S243 1 . 1 0 ]
+[v _ANSELbits ANSELbits `VES249  1 e 1 @392 ]
 [s S40 . 1 `uc 1 ANS8 1 0 :1:0 
 `uc 1 ANS9 1 0 :1:1 
 `uc 1 ANS10 1 0 :1:2 
@@ -190,6 +224,14 @@ NOTEDIT 1
 [v _RA6 RA6 `VEb  1 e 0 @46 ]
 "3662
 [v _RA7 RA7 `VEb  1 e 0 @47 ]
+"3672
+[v _RB4 RB4 `VEb  1 e 0 @52 ]
+"3674
+[v _RB5 RB5 `VEb  1 e 0 @53 ]
+"3676
+[v _RB6 RB6 `VEb  1 e 0 @54 ]
+"3678
+[v _RB7 RB7 `VEb  1 e 0 @55 ]
 "3686
 [v _RC1 RC1 `VEb  1 e 0 @57 ]
 "3688
@@ -202,21 +244,42 @@ NOTEDIT 1
 [v _WR WR `VEb  1 e 0 @3169 ]
 "3972
 [v _WREN WREN `VEb  1 e 0 @3170 ]
+"354 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+[v _dpowers dpowers `DCC[5]ui  1 s 10 dpowers ]
 "15 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\custom_char.h
 [v ___cgram __cgram `[8]uc  1 e 8 0 ]
+"110 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+[v _mode mode `E1616  1 e 1 0 ]
+"111
+[v _submode submode `E1620  1 e 1 0 ]
 [s S160 . 23 `uc 1 msglen 1 0 `ui 1 crc 2 1 `uc 1 from 1 3 `uc 1 to 1 4 `uc 1 msgid 1 5 `uc 1 cmd 1 6 `[16]uc 1 data 16 7 ]
-"111 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+"113
 [v _msg msg `S160  1 e 23 0 ]
-"112
+"114
 [v _pmsg pmsg `*.4S160  1 e 1 0 ]
-[s S454 . 2 `uc 1 value 1 0 `*.24uc 1 name 1 1 ]
+[s S198 . 4 `uc 1 from 1 0 `uc 1 to 1 1 `uc 1 msgid 1 2 `uc 1 available 1 3 ]
+"115
+[v _server_conn server_conn `S198  1 e 4 0 ]
+[s S634 . 2 `uc 1 value 1 0 `*.24uc 1 name 1 1 ]
 "5 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\menu.c
-[s S457 . 9 `[4]S454 1 items 8 0 `uc 1 index 1 8 ]
-[v _g_menu g_menu `S457  1 e 9 0 ]
-"161 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+[s S637 . 9 `[4]S634 1 items 8 0 `uc 1 index 1 8 ]
+[v _g_menu g_menu `S637  1 e 9 0 ]
+"172 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
 [v _main main `(v  1 e 1 0 ]
 {
-[s S257 . 1 `uc 1 B0 1 0 :1:0 
+"240
+[v main@i_552 i `c  1 a 1 15 ]
+"234
+[v main@i_549 i `c  1 a 1 14 ]
+"240
+[v main@count_550 count `c  1 a 1 8 ]
+"234
+[v main@count_547 count `c  1 a 1 7 ]
+"220
+[v main@i_546 i `c  1 a 1 13 ]
+"214
+[v main@i i `c  1 a 1 12 ]
+[s S292 . 1 `uc 1 B0 1 0 :1:0 
 `uc 1 B1 1 0 :1:1 
 `uc 1 B2 1 0 :1:2 
 `uc 1 B3 1 0 :1:3 
@@ -225,58 +288,272 @@ NOTEDIT 1
 `uc 1 B6 1 0 :1:6 
 `uc 1 B7 1 0 :1:7 
 ]
-"186
-[v main@byte byte `*.4S257  1 a 1 32 ]
-"187
-[v main@i i `c  1 a 1 29 ]
-[v main@count_374 count `c  1 a 1 27 ]
-"186
-[v main@low low `uc  1 a 1 31 ]
-[v main@count count `uc  1 a 1 30 ]
-[v main@smsg smsg `*.4uc  1 a 1 28 ]
-"180
-[v main@revc revc `uc  1 a 1 26 ]
+"205
+[v main@byte_526 byte `*.4S292  1 a 1 22 ]
+"267
+[v main@i_558 i `c  1 a 1 17 ]
+"250
+[v main@i_555 i `c  1 a 1 16 ]
+"220
+[v main@count_544 count `c  1 a 1 6 ]
+"214
+[v main@count_541 count `c  1 a 1 5 ]
+"267
+[v main@count_556 count `c  1 a 1 10 ]
+"250
+[v main@count_553 count `c  1 a 1 9 ]
+[s S292 . 1 `uc 1 B0 1 0 :1:0 
+`uc 1 B1 1 0 :1:1 
+`uc 1 B2 1 0 :1:2 
+`uc 1 B3 1 0 :1:3 
+`uc 1 B4 1 0 :1:4 
+`uc 1 B5 1 0 :1:5 
+`uc 1 B6 1 0 :1:6 
+`uc 1 B7 1 0 :1:7 
+]
+"205
+[v main@byte byte `*.4S292  1 a 1 21 ]
+[v main@low low `uc  1 a 1 20 ]
+[v main@count count `uc  1 a 1 19 ]
+[v main@smsg smsg `*.4uc  1 a 1 18 ]
+[s S203 . 1 `uc 1 id 1 0 ]
+[v main@rqt rqt `S203  1 a 1 11 ]
+[v main@rsp rsp `S203  1 a 1 4 ]
+"190
+[v main@revc revc `uc  1 a 1 3 ]
 "284
 } 0
-"56 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\msg.h
-[v _crc_verify crc_verify `(uc  1 e 1 0 ]
+"48 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\reg_id.h
+[v _extract_REG_ID_RQT_CMD extract_REG_ID_RQT_CMD `(v  1 e 1 0 ]
 {
 [s S160 . 23 `uc 1 msglen 1 0 `ui 1 crc 2 1 `uc 1 from 1 3 `uc 1 to 1 4 `uc 1 msgid 1 5 `uc 1 cmd 1 6 `[16]uc 1 data 16 7 ]
-[v crc_verify@pmsg pmsg `*.4S160  1 a 1 wreg ]
-[v crc_verify@pmsg pmsg `*.4S160  1 a 1 wreg ]
-"58
-"56
-[v crc_verify@pmsg pmsg `*.4S160  1 a 1 7 ]
-"59
+[v extract_REG_ID_RQT_CMD@pmsg pmsg `*.4DCCS160  1 a 1 wreg ]
+[v extract_REG_ID_RQT_CMD@pmsg pmsg `*.4DCCS160  1 a 1 wreg ]
+[s S203 . 1 `uc 1 id 1 0 ]
+[v extract_REG_ID_RQT_CMD@prqt prqt `*.4S203  1 p 1 5 ]
+"50
+"48
+[v extract_REG_ID_RQT_CMD@pmsg pmsg `*.4DCCS160  1 a 1 7 ]
+"51
 } 0
-"40
-[v _crc_calculate crc_calculate `(ui  1 e 2 0 ]
+"11 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memcpy.c
+[v _memcpy memcpy `(*.4v  1 e 1 0 ]
+{
+[v memcpy@d1 d1 `*.4v  1 a 1 wreg ]
+"20
+[v memcpy@s s `*.4DCCuc  1 a 1 4 ]
+"18
+[v memcpy@d d `*.4uc  1 a 1 3 ]
+"11
+[v memcpy@d1 d1 `*.4v  1 a 1 wreg ]
+[v memcpy@s1 s1 `*.4DCCv  1 p 1 0 ]
+[v memcpy@n n `ui  1 p 2 1 ]
+"24
+[v memcpy@d1 d1 `*.4v  1 a 1 5 ]
+"32
+} 0
+"72 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\msg.h
+[v _dum_msg dum_msg `(v  1 e 1 0 ]
 {
 [s S160 . 23 `uc 1 msglen 1 0 `ui 1 crc 2 1 `uc 1 from 1 3 `uc 1 to 1 4 `uc 1 msgid 1 5 `uc 1 cmd 1 6 `[16]uc 1 data 16 7 ]
-[v crc_calculate@pmsg pmsg `*.4S160  1 a 1 wreg ]
-"49
-[v crc_calculate@i i `uc  1 a 1 5 ]
+[v dum_msg@pmsg pmsg `*.4S160  1 a 1 wreg ]
+"76
+[v dum_msg@i i `c  1 a 1 33 ]
+[v dum_msg@count count `c  1 a 1 32 ]
+"74
+[v dum_msg@s s `[32]uc  1 a 32 0 ]
+"72
+[v dum_msg@pmsg pmsg `*.4S160  1 a 1 wreg ]
+"75
+"72
+[v dum_msg@pmsg pmsg `*.4S160  1 a 1 34 ]
+"77
+} 0
+"34 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\connection.h
+[v _dum_conn dum_conn `(v  1 e 1 0 ]
+{
+[s S198 . 4 `uc 1 from 1 0 `uc 1 to 1 1 `uc 1 msgid 1 2 `uc 1 available 1 3 ]
+[v dum_conn@pconn pconn `*.1S198  1 a 1 wreg ]
+"38
+[v dum_conn@i i `c  1 a 1 78 ]
+[v dum_conn@count count `c  1 a 1 77 ]
+"36
+[v dum_conn@s s `[32]uc  1 a 32 45 ]
+"34
+[v dum_conn@pconn pconn `*.1S198  1 a 1 wreg ]
+"37
+"34
+[v dum_conn@pconn pconn `*.1S198  1 a 1 79 ]
+"39
+} 0
+"492 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+{
+"528
+[v sprintf@val val `ui  1 a 2 33 ]
+"499
+[v sprintf@c c `c  1 a 1 35 ]
+"506
+[v sprintf@prec prec `c  1 a 1 32 ]
+"508
+[v sprintf@flag flag `uc  1 a 1 31 ]
+"494
+[v sprintf@ap ap `[1]*.4v  1 a 1 30 ]
+"492
+[v sprintf@sp sp `*.39uc  1 p 2 12 ]
+[v sprintf@f f `*.24DCCuc  1 p 1 14 ]
+"1541
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwmod@counter counter `uc  1 a 1 11 ]
+"6
+[v ___lwmod@divisor divisor `ui  1 p 2 7 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 9 ]
+"26
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwdiv@quotient quotient `ui  1 a 2 5 ]
+"12
+[v ___lwdiv@counter counter `uc  1 a 1 4 ]
+"6
+[v ___lwdiv@divisor divisor `ui  1 p 2 0 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 2 ]
+"31
+} 0
+"62 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\menu.c
+[v _ValueInc ValueInc `(v  1 e 1 0 ]
+{
+"66
+} 0
+"67
+[v _ValueDec ValueDec `(i  1 e 2 0 ]
+{
+"71
+} 0
+"32
+[v _SaveMenuItem SaveMenuItem `(v  1 e 1 0 ]
+{
+[v SaveMenuItem@item item `uc  1 a 1 wreg ]
+[v SaveMenuItem@item item `uc  1 a 1 wreg ]
+"34
+[v SaveMenuItem@item item `uc  1 a 1 3 ]
+"35
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\pic\eewrite.c
+[v _eeprom_write eeprom_write `(v  1 e 1 0 ]
+{
+[v eeprom_write@addr addr `uc  1 a 1 wreg ]
+[v eeprom_write@addr addr `uc  1 a 1 wreg ]
+[v eeprom_write@value value `uc  1 p 1 4 ]
+[v eeprom_write@addr addr `uc  1 a 1 0 ]
+"9
+} 0
+"23 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\menu.c
+[v _ShowMenu ShowMenu `(v  1 e 1 0 ]
+{
+"25
+[v ShowMenu@i i `c  1 a 1 29 ]
+[v ShowMenu@count count `c  1 a 1 28 ]
+"27
+} 0
+"328 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
+[v _LCDWriteInt LCDWriteInt `(c  1 e 1 0 ]
+{
+"330
+[v LCDWriteInt@str str `[5]uc  1 a 5 15 ]
+"331
+[v LCDWriteInt@i i `i  1 a 2 22 ]
+[v LCDWriteInt@j j `i  1 a 2 20 ]
+"328
+[v LCDWriteInt@val val `i  1 p 2 10 ]
+[v LCDWriteInt@field_length field_length `c  1 p 1 12 ]
+"329
+[v LCDWriteInt@F1646 F1646 `[5]uc  1 s 5 F1646 ]
+"361
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"11
+[v ___awmod@sign sign `uc  1 a 1 5 ]
+[v ___awmod@counter counter `uc  1 a 1 4 ]
+"6
+[v ___awmod@divisor divisor `i  1 p 2 0 ]
+[v ___awmod@dividend dividend `i  1 p 2 2 ]
+"35
+} 0
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"11
+[v ___awdiv@quotient quotient `i  1 a 2 6 ]
+"12
+[v ___awdiv@sign sign `uc  1 a 1 5 ]
+[v ___awdiv@counter counter `uc  1 a 1 4 ]
+"6
+[v ___awdiv@divisor divisor `i  1 p 2 0 ]
+[v ___awdiv@dividend dividend `i  1 p 2 2 ]
 "42
-[v crc_calculate@crc crc `ui  1 a 2 3 ]
-"40
-[v crc_calculate@pmsg pmsg `*.4S160  1 a 1 wreg ]
-"43
-"40
-[v crc_calculate@pmsg pmsg `*.4S160  1 a 1 6 ]
-"55
 } 0
-"7 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\menu.c
+"40 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\menu.c
+[v _MenuUp MenuUp `(v  1 e 1 0 ]
+{
+"50
+} 0
+"7
 [v _MenuInit MenuInit `(v  1 e 1 0 ]
 {
 "22
 } 0
-"36
+"51
+[v _MenuDown MenuDown `(v  1 e 1 0 ]
+{
+"61
+} 0
+"207 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
+[v _LCDSetStyle LCDSetStyle `(v  1 e 1 0 ]
+{
+[v LCDSetStyle@style style `uc  1 a 1 wreg ]
+[v LCDSetStyle@style style `uc  1 a 1 wreg ]
+"209
+[v LCDSetStyle@style style `uc  1 a 1 10 ]
+"210
+} 0
+"211
+[v _LCDInit LCDInit `(v  1 e 1 0 ]
+{
+[v LCDInit@style style `uc  1 a 1 wreg ]
+"249
+[v LCDInit@__i __i `uc  1 a 1 13 ]
+"211
+[v LCDInit@style style `uc  1 a 1 wreg ]
+"213
+[v LCDInit@style style `uc  1 a 1 12 ]
+"254
+} 0
+"125 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+[v _IOInit IOInit `(v  1 e 1 0 ]
+{
+"168
+} 0
+"117
+[v _ConnInit ConnInit `(v  1 e 1 0 ]
+{
+"123
+} 0
+"36 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\menu.c
 [v _LoadMenuItem LoadMenuItem `(uc  1 e 1 0 ]
 {
 [v LoadMenuItem@item item `uc  1 a 1 wreg ]
 [v LoadMenuItem@item item `uc  1 a 1 wreg ]
 "38
-[v LoadMenuItem@item item `uc  1 a 1 0 ]
+[v LoadMenuItem@item item `uc  1 a 1 2 ]
 "39
 } 0
 "6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\pic\eeread.c
@@ -288,79 +565,33 @@ NOTEDIT 1
 [v eeprom_read@addr addr `uc  1 a 1 5 ]
 "12
 } 0
+"28 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\menu.c
+[v _ClearMenu ClearMenu `(v  1 e 1 0 ]
+{
+"30
+[v ClearMenu@i i `c  1 a 1 17 ]
+[v ClearMenu@count count `c  1 a 1 16 ]
+"31
+} 0
 "283 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
 [v _LCDWriteString LCDWriteString `(c  1 e 1 0 ]
 {
-[v LCDWriteString@msg msg `*.24DCCuc  1 a 1 wreg ]
 "292
-[v LCDWriteString@cc cc `c  1 a 1 10 ]
+[v LCDWriteString@cc cc `c  1 a 1 14 ]
 "285
-[v LCDWriteString@count count `c  1 a 1 9 ]
+[v LCDWriteString@count count `c  1 a 1 13 ]
 "283
-[v LCDWriteString@msg msg `*.24DCCuc  1 a 1 wreg ]
-"285
-[v LCDWriteString@msg msg `*.24DCCuc  1 a 1 11 ]
+[v LCDWriteString@msg msg `*.26DCCuc  1 p 2 10 ]
 "316
-} 0
-"328
-[v _LCDWriteInt LCDWriteInt `(c  1 e 1 0 ]
-{
-"330
-[v LCDWriteInt@str str `[5]uc  1 a 5 14 ]
-"331
-[v LCDWriteInt@i i `i  1 a 2 21 ]
-[v LCDWriteInt@j j `i  1 a 2 19 ]
-"328
-[v LCDWriteInt@val val `i  1 p 2 9 ]
-[v LCDWriteInt@field_length field_length `c  1 p 1 11 ]
-"329
-[v LCDWriteInt@F1646 F1646 `[5]uc  1 s 5 F1646 ]
-"361
-} 0
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-[v ___awmod __awmod `(i  1 e 2 0 ]
-{
-"11
-[v ___awmod@sign sign `uc  1 a 1 2 ]
-[v ___awmod@counter counter `uc  1 a 1 1 ]
-"6
-[v ___awmod@divisor divisor `i  1 p 2 4 ]
-[v ___awmod@dividend dividend `i  1 p 2 6 ]
-"35
-} 0
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-[v ___awdiv __awdiv `(i  1 e 2 0 ]
-{
-"11
-[v ___awdiv@quotient quotient `i  1 a 2 3 ]
-"12
-[v ___awdiv@sign sign `uc  1 a 1 2 ]
-[v ___awdiv@counter counter `uc  1 a 1 1 ]
-"6
-[v ___awdiv@divisor divisor `i  1 p 2 4 ]
-[v ___awdiv@dividend dividend `i  1 p 2 6 ]
-"42
-} 0
-"211 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\lcd_hd44780_pic16.c
-[v _LCDInit LCDInit `(v  1 e 1 0 ]
-{
-[v LCDInit@style style `uc  1 a 1 wreg ]
-"249
-[v LCDInit@__i __i `uc  1 a 1 12 ]
-"211
-[v LCDInit@style style `uc  1 a 1 wreg ]
-"213
-[v LCDInit@style style `uc  1 a 1 11 ]
-"254
 } 0
 "367
 [v _LCDGotoXY LCDGotoXY `(v  1 e 1 0 ]
 {
 [v LCDGotoXY@x x `uc  1 a 1 wreg ]
 [v LCDGotoXY@x x `uc  1 a 1 wreg ]
-[v LCDGotoXY@y y `uc  1 p 1 9 ]
+[v LCDGotoXY@y y `uc  1 p 1 10 ]
 "369
-[v LCDGotoXY@x x `uc  1 a 1 10 ]
+[v LCDGotoXY@x x `uc  1 a 1 12 ]
 "410
 } 0
 "80
@@ -368,15 +599,15 @@ NOTEDIT 1
 {
 [v LCDByte@c c `uc  1 a 1 wreg ]
 "90
-[v LCDByte@temp temp `uc  1 a 1 8 ]
+[v LCDByte@temp temp `uc  1 a 1 9 ]
 "89
-[v LCDByte@ln ln `uc  1 a 1 6 ]
-[v LCDByte@hn hn `uc  1 a 1 5 ]
+[v LCDByte@ln ln `uc  1 a 1 7 ]
+[v LCDByte@hn hn `uc  1 a 1 6 ]
 "80
 [v LCDByte@c c `uc  1 a 1 wreg ]
-[v LCDByte@isdata isdata `uc  1 p 1 6 ]
+[v LCDByte@isdata isdata `uc  1 p 1 3 ]
 "92
-[v LCDByte@c c `uc  1 a 1 7 ]
+[v LCDByte@c c `uc  1 a 1 8 ]
 "133
 } 0
 "135
@@ -388,18 +619,13 @@ NOTEDIT 1
 [v LCDBusyLoop@busy busy `uc  1 a 1 0 ]
 "191
 } 0
-"114 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
-[v _IOInit IOInit `(v  1 e 1 0 ]
-{
-"157
-} 0
 "7 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\adc_pic16.c
 [v _ADCInit ADCInit `(v  1 e 1 0 ]
 {
 "26
 } 0
-"158 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
+"169 D:\Working\working\RF_ver1\RF_ver1_16f866\RF_ver1_client_16f866.X\do_am.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"160
+"171
 } 0

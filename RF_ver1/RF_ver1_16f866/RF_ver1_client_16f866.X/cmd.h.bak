@@ -20,11 +20,6 @@ typedef enum E_cmd
     CMD_MAX    
 };
 
-uint8_t is_right_addr(Connection_t *pconn, Msg_t *pmsg)
-{
-    
-    return ((pconn->from == pmsg->to) && (pconn->to == pmsg->from));
-}
 
 #ifdef	__cplusplus
 }

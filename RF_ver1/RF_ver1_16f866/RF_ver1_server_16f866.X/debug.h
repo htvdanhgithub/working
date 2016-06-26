@@ -1,6 +1,9 @@
 #ifndef DEBUG_H
 #define	DEBUG_H
 
+#include	<stdio.h>
+#include	<stdarg.h>
+
 #include "lcd_hd44780_pic16.h"
 #ifdef	__cplusplus
 extern "C" {

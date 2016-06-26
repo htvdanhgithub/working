@@ -65,6 +65,16 @@ extern "C" {
 { \
     uint8_t count = 0; \
     uint8_t low = 1; \
+    GET_CHAR_FROM_4_BITS(str[count], low, d3, d2, d1, d0); \
+    low = ((low == 1) ? 0 : 1); \
+    if(low == 1) \
+    { \
+        count++; \
+        if(count == str[0]) \
+        { \
+            break; \
+        } \
+    } \
     while(1) \
     { \
         if(trigger == 0) \
@@ -77,7 +87,6 @@ extern "C" {
                 if(count == str[0]) \
                 { \
                     break; \
-                    count = 0; \
                 } \
             } \
         } \

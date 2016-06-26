@@ -7,6 +7,8 @@
 #include "packet.h"
 #include "msg.h"
 #include "debug.h"
+#include "connection.h"
+#include "reg_id.h"
 
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
@@ -110,6 +112,15 @@ E_operation_submode submode = NOTEDIT;
 
 Msg_t msg;
 Msg_t *pmsg = &msg;
+Connection_t server_conn;
+
+void ConnInit()
+{
+    server_conn.from         = LoadMenuItem(0);
+    server_conn.to           = SERVER_ID;
+    server_conn.msgid        = 0;
+    server_conn.available    = NO;
+}
 
 void IOInit()
 {
@@ -170,116 +181,105 @@ void main (void)
     IOInit();
     
     MenuInit();
-//    
-//    //Initialize Trigger out
-//    TriggerOutInit();
+    
+    ConnInit();
     
     //Clear the LCD
     LCDClear();
     
     uint8_t revc = 0;
+    
+    dum_conn(&server_conn);
     while(1)
     {
 //        RECEIVE_HALF_BIT(revc, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
 //        SEND_HALF_BIT(revc, 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-        
-          RECEIVE_MSG(pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
-          DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(crc_verify(pmsg), 3);
 
-//        if(DATA_IN_TRIGGER == 0)
-//        {
-//            GET_CHAR_FROM_4_BITS(smsg[count], low, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0);
-//            low = ((low == 1) ? 0 : 1);
-//            if(low == 1)
-//            {
-//                count++;
-//                if(count == smsg[0])
-//                {
-//                    count = 0;
-//                }
-//            }
-//            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(pmsg->data[2], 3);
-//        }
+//            CLIENT_REG_ID(pmsg, &server_conn, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
+//                          pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);        
+//          RECEIVE_MSG(pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
+//          DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(crc_verify(pmsg), 3);
 
-//        RECEIVE_MSG(pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
-//        DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(count, 3);
+        if(DATA_IN_TRIGGER == 0)
+        {
+            CLIENT_REG_ID(pmsg, &server_conn, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
+                          pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);        
+        }
+        else
+        {
+            if(MENU_IN == 0)
+            {
+                if(mode == NORMAL)
+                {
+                    DEBUG_STRING_CLEAR("MENU MODE");
+                    mode = MENU;
+                    ShowMenu();
+                }
+                else
+                {
+                    DEBUG_STRING_CLEAR("EDIT MODE");
+                    submode = EDIT;
+                    ShowMenu();
+                    LCDSetStyle(LS_BLINK);
+                }
 
-//        if(MENU_IN == 0)
-//        {
-//            if(mode == NORMAL)
-//            {
-//                DEBUG_STRING_CLEAR("MENU MODE");
-//                mode = MENU;
-//                ShowMenu();
-//            }
-//            else
-//            {
-//                DEBUG_STRING_CLEAR("EDIT MODE");
-//                submode = EDIT;
-//                ShowMenu();
-//                LCDSetStyle(LS_BLINK);
-//            }
-//
-//            __delay_ms(200);
-//        }
-//        else
-//        if(MENU_OUT == 0)
-//        {
-//            if(mode == MENU)
-//            {
-//                if(submode == EDIT)
-//                {
-//                    DEBUG_STRING_CLEAR("NOTEDIT MODE");
-//                    submode = NOTEDIT;
-//                    LCDSetStyle(LS_NONE);
-//                }
-//                else
-//                {
-//                    DEBUG_STRING_CLEAR("NORMAL MODE");
-//                    mode = NORMAL;
-//                    ClearMenu();
-//                }
-//            }
-//
-//            __delay_ms(200);
-//        }
-//        else
-//        if(UP == 0)
-//        {
-//            DEBUG_STRING_CLEAR("UP");
-//            if(mode == MENU)
-//            {
-//                if(submode == EDIT)
-//                {
-//                    ValueInc();
-//                }            
-//                else
-//                {
-//                    MenuUp();
-//                }
-//                ShowMenu();                
-//            }
-//            __delay_ms(200);
-//        }
-//        else
-//        if(DOWN == 0)
-//        {
-//            DEBUG_STRING_CLEAR("DOWN");
-//            if(mode == MENU)
-//            {
-//                if(submode == EDIT)
-//                {
-//                    ValueDec();
-//                }            
-//                else
-//                {
-//                    MenuDown();
-//                }
-//                ShowMenu();
-//            }
-//            __delay_ms(200);
-//        }
-            
+                __delay_ms(200);
+            }
+            else if(MENU_OUT == 0)
+            {
+                if(mode == MENU)
+                {
+                    if(submode == EDIT)
+                    {
+                        DEBUG_STRING_CLEAR("NOTEDIT MODE");
+                        submode = NOTEDIT;
+                        LCDSetStyle(LS_NONE);
+                    }
+                    else
+                    {
+                        DEBUG_STRING_CLEAR("NORMAL MODE");
+                        mode = NORMAL;
+                        ClearMenu();
+                    }
+                }
+
+                __delay_ms(200);
+            }
+            else if(UP == 0)
+            {
+                DEBUG_STRING_CLEAR("UP");
+                if(mode == MENU)
+                {
+                    if(submode == EDIT)
+                    {
+                        ValueInc();
+                    }            
+                    else
+                    {
+                        MenuUp();
+                    }
+                    ShowMenu();                
+                }
+                __delay_ms(200);
+            }
+            else if(DOWN == 0)
+            {
+                DEBUG_STRING_CLEAR("DOWN");
+                if(mode == MENU)
+                {
+                    if(submode == EDIT)
+                    {
+                        ValueDec();
+                    }            
+                    else
+                    {
+                        MenuDown();
+                    }
+                    ShowMenu();
+                }
+                __delay_ms(200);
+            }
+        }
     }
 }
 

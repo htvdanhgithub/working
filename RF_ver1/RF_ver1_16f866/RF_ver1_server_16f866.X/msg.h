@@ -69,6 +69,12 @@ void compose(Msg_t *pmsg,
     // Must be at last
     pmsg->crc  = crc_calculate(pmsg);
 }
+void dum_msg(Msg_t *pmsg)
+{
+    char s[32];
+    sprintf(s, "M:%d,%d,%d,%d,%d,%d", pmsg->msglen, pmsg->crc, pmsg->from, pmsg->to, pmsg->msgid, pmsg->cmd);
+    DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, s);
+}
 #ifdef	__cplusplus
 }
 #endif

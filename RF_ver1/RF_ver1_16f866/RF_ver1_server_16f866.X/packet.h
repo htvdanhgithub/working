@@ -77,7 +77,6 @@ extern "C" {
                 if(count == str[0]) \
                 { \
                     break; \
-                    count = 0; \
                 } \
             } \
         } \

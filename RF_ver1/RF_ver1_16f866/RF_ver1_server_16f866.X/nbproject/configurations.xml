@@ -16,6 +16,7 @@
       <itemPath>common.h</itemPath>
       <itemPath>connection.h</itemPath>
       <itemPath>cmd.h</itemPath>
+      <itemPath>reg_id.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

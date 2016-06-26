@@ -2183,15 +2183,67 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 16 "msg.h"
-typedef enum E_cmd
+# 7 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\stdarg.h"
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+
+# 43 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\stdio.h"
+struct __prbuf
 {
-REG_ID,
-CMD_MAX
+char * ptr;
+void (* func)(char);
 };
 
+# 29 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\errno.h"
+extern int errno;
+
+# 12 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\conio.h"
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+# 23
+extern char * cgets(char *);
+extern void cputs(const char *);
+
+# 88 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\stdio.h"
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
 
 
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+
+
+# 180
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+
+# 18 "msg.h"
 typedef struct {
 uint8_t msglen;
 uint16_t crc;
@@ -2202,7 +2254,7 @@ uint8_t cmd;
 uint8_t data[16];
 } Msg_t;
 
-# 40
+# 34
 uint16_t crc_calculate(Msg_t *pmsg)
 {
 uint16_t crc;
@@ -2241,9 +2293,88 @@ pmsg->msglen = datalen + 7;
 
 pmsg->crc = crc_calculate(pmsg);
 }
+void dum_msg(Msg_t *pmsg)
+{
+char s[32];
+sprintf(s, "M:%d,%d,%d,%d,%d,%d", pmsg->msglen, pmsg->crc, pmsg->from, pmsg->to, pmsg->msgid, pmsg->cmd);
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(s);};};
+}
+
+# 21 "connection.h"
+typedef struct {
+uint8_t from;
+uint8_t to;
+uint8_t msgid;
+uint8_t available;
+} Connection_t;
+
+void create_msg_header(Connection_t *pconn, Msg_t *pmsg)
+{
+pmsg->from = pconn->from;
+pmsg->to = pconn->to;
+pmsg->msgid = pconn->msgid++;
+}
+void dum_conn(Connection_t *pconn)
+{
+char s[32];
+sprintf(s, "C:%d,%d,%d,%d", pconn->from, pconn->to, pconn->msgid, pconn->available);
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(s);};};
+}
+
+# 16 "cmd.h"
+typedef enum E_cmd
+{
+REG_ID_RQT,
+REG_ID_RSP,
+CMD_MAX
+};
+
+uint8_t is_right_addr(Connection_t *pconn, Msg_t *pmsg)
+{
+
+return ((pconn->from == pmsg->to) && (pconn->to == pmsg->from));
+}
+
+# 20 "reg_id.h"
+typedef struct {
+uint8_t id;
+} REG_ID_RQT_CMD_t;
+
+typedef struct {
+uint8_t id;
+} REG_ID_RSP_CMD_t;
+
+void create_REG_ID_RQT_CMD(Connection_t *pconn, const REG_ID_RQT_CMD_t *prqt, Msg_t *pmsg)
+{
+compose(pmsg,
+pconn->from,
+pconn->to,
+pconn->msgid++,
+REG_ID_RQT,
+(uint8_t *)prqt,
+1);
+}
+void create_REG_ID_RSP_CMD(Connection_t *pconn, const REG_ID_RSP_CMD_t *prsp, Msg_t *pmsg)
+{
+compose(pmsg,
+pconn->from,
+pconn->to,
+pconn->msgid++,
+REG_ID_RSP,
+(uint8_t *)prsp,
+1);
+}
+void extract_REG_ID_RQT_CMD(const Msg_t *pmsg, REG_ID_RQT_CMD_t *prqt)
+{
+memcpy((void *)prqt, (void *)pmsg->data, 1);
+}
+void extract_REG_ID_RSP_CMD(const Msg_t *pmsg, REG_ID_RSP_CMD_t *prsp)
+{
+memcpy((void *)prsp, (void *)pmsg->data, 1);
+}
 
 
-# 12 "do_am.c"
+# 14 "do_am.c"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = ON
 #pragma config PWRTE = OFF
@@ -2259,13 +2390,25 @@ pmsg->crc = crc_calculate(pmsg);
 #pragma config BOR4V = BOR21V
 #pragma config WRT = OFF
 
-# 113
+# 115
 E_operation_mode mode = NORMAL;
 E_operation_submode submode = NOTEDIT;
+
+Connection_t client_conn[16];
 
 Msg_t msg;
 Msg_t *pmsg = &msg;
 
+void ConnInit()
+{
+for(uint8_t i = 0; i < 16; i++)
+{
+client_conn[i].from = 16;
+client_conn[i].to = i;
+client_conn[i].msgid = 0;
+client_conn[i].available = 0;
+}
+}
 void IOInit()
 {
 
@@ -2329,22 +2472,34 @@ IOInit();
 
 MenuInit();
 
-# 186
+ConnInit();
+
+
 (LCDByte(0b00000001,0));
 
 compose(pmsg, 11, 22, 33, 44, "abc", 3);
 uint8_t sendc = 0x78;
 uint8_t revc = 0;
+REG_ID_RQT_CMD_t rqt;
+REG_ID_RQT_CMD_t *prqt = &rqt;
+REG_ID_RSP_CMD_t rsp;
+REG_ID_RSP_CMD_t *prsp = &rsp;
+Connection_t *pconn = (0);
+
 while(1)
 {
 if(RA5 == 0)
 {
+for(uint8_t i = 0; i < 1; i++)
+{
+rqt.id = i;
+pconn = (Connection_t *)&client_conn[i];
+{ create_REG_ID_RQT_CMD(pconn, prqt, pmsg); {uint8_t *s = (uint8_t *)pmsg; { for(uint8_t i = 0; i < pmsg->msglen; i++) { { { { BITbits_t *byte = (BITbits_t *)&s[i]; if(1 == 1) { RB0 = byte->B0; RB1 = byte->B1; RB2 = byte->B2; RB3 = byte->B3; } else { RB0 = byte->B4; RB1 = byte->B5; RB2 = byte->B6; RB3 = byte->B7; } }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((5)*(20000000/4000.0))); { { BITbits_t *byte = (BITbits_t *)&s[i]; if(0 == 1) { RB0 = byte->B0; RB1 = byte->B1; RB2 = byte->B2; RB3 = byte->B3; } else { RB0 = byte->B4; RB1 = byte->B5; RB2 = byte->B6; RB3 = byte->B7; } }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((5)*(20000000/4000.0))); }; } };}; dum_msg(pmsg); };
 
+# 222
+}
 
-{uint8_t *s = (uint8_t *)pmsg; { for(uint8_t i = 0; i < pmsg->msglen; i++) { { { { BITbits_t *byte = (BITbits_t *)&s[i]; if(1 == 1) { RB0 = byte->B0; RB1 = byte->B1; RB2 = byte->B2; RB3 = byte->B3; } else { RB0 = byte->B4; RB1 = byte->B5; RB2 = byte->B6; RB3 = byte->B7; } }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((5)*(20000000/4000.0))); { { BITbits_t *byte = (BITbits_t *)&s[i]; if(0 == 1) { RB0 = byte->B0; RB1 = byte->B1; RB2 = byte->B2; RB3 = byte->B3; } else { RB0 = byte->B4; RB1 = byte->B5; RB2 = byte->B6; RB3 = byte->B7; } }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((5)*(20000000/4000.0))); }; } };};
-{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString("SND:");};}; {LCDWriteInt(pmsg->crc, 3);};
-
-
+# 229
 _delay((unsigned long)((200)*(20000000/4000.0)));
 }
 else
