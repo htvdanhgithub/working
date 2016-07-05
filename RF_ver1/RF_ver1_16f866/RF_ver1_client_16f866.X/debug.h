@@ -23,6 +23,34 @@ extern "C" {
 
 #define DEBUG_LINE_CLEAR LCDClearLine(DEBUG_LINE)
             
+char sdebug[32];    
+#define debug_print DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, sdebug);
+
+void debug_1(uint8_t v1)
+{
+    sprintf(sdebug, "%d", v1);
+    debug_print;
+}
+void debug_2(uint8_t v1, uint8_t v2)
+{
+    sprintf(sdebug, "%d,%d", v1, v2);
+    debug_print;
+}
+void debug_3(uint8_t v1, uint8_t v2, uint8_t v3)
+{
+    sprintf(sdebug, "%d,%d,%d", v1, v2, v3);
+    debug_print;
+}
+void debug_4(uint8_t v1, uint8_t v2, uint8_t v3, uint8_t v4)
+{
+    sprintf(sdebug, "%d,%d,%d,%d", v1, v2, v3, v4);
+    debug_print;
+}
+void debug_5(uint8_t v1, uint8_t v2, uint8_t v3, uint8_t v4, uint8_t v5)
+{
+    sprintf(sdebug, "%d,%d,%d,%d,%d", v1, v2, v3, v4, v5);
+    debug_print;
+}
 #ifdef	__cplusplus
 }
 #endif

@@ -4,7 +4,6 @@
 #include <xc.h>
 #include <string.h>
 #include <stdint.h>
-#include "lcd_hd44780_pic16.h"
 #include "myutils.h"
 #include "msg.h"
 #include "debug.h"
@@ -15,7 +14,7 @@
 extern "C" {
 #endif
 
-#define MAX_CLIENT_CONNECTION   16
+#define MAX_CLIENT_CONNECTION   8
 #define SERVER_ID                MAX_CLIENT_CONNECTION
 
 typedef struct {
@@ -31,7 +30,7 @@ void create_msg_header(Connection_t *pconn, Msg_t *pmsg)
     pmsg->to = pconn->to;
     pmsg->msgid = pconn->msgid++;
 }
-void dum_conn(Connection_t *pconn)
+void dump_conn(Connection_t *pconn)
 {
     char s[32];
     sprintf(s, "C:%d,%d,%d,%d", pconn->from, pconn->to, pconn->msgid, pconn->available);

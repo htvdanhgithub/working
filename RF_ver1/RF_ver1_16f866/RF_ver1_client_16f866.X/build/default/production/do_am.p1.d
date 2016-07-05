@@ -5,8 +5,10 @@ reg_id.h  \
 lm35_pic16.h  \
 debug.h  \
 adc_pic16.h  \
+io_define.h  \
 lcd_hd44780_pic16.h  \
 menu.h  \
+circle_buffer.h  \
 myutils.h  \
 msg.h  \
 common.h  \

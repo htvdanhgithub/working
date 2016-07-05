@@ -17,6 +17,8 @@
       <itemPath>connection.h</itemPath>
       <itemPath>cmd.h</itemPath>
       <itemPath>reg_id.h</itemPath>
+      <itemPath>circle_buffer.h</itemPath>
+      <itemPath>io_define.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -30,6 +32,7 @@
       <itemPath>lcd_hd44780_pic16.c</itemPath>
       <itemPath>lm35_pic16.c</itemPath>
       <itemPath>menu.c</itemPath>
+      <itemPath>myutils.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

@@ -94,9 +94,7 @@ void extract_REG_ID_RSP_CMD(const Msg_t *pmsg, REG_ID_RSP_CMD_t *prsp)
         REG_ID_RSP_CMD_t rsp; \
         extract_REG_ID_RQT_CMD(pmsgi, &rqt); \
         rsp.id = rqt.id; \
-        char s[32]; \
-        sprintf(s, "RCV:%d,%d", pmsgi->from, pmsgi->to); \
-        DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, s); \
+        dum_msg(pmsgi); \
     } \
 }
 

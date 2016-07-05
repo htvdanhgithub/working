@@ -1,11 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"26 menu.h
+"25 menu.h
 [s S136 `uc 1 `*uc 1 ]
 [n S136 . value name ]
-"31
+"30
 [s S137 `S136 -> 4 `i `uc 1 ]
 [n S137 . items index ]
-"44
+"43
 [v _LoadMenuItem `(uc ~T0 @X0 0 ef1`uc ]
 "82 lcd_hd44780_pic16.h
 [v _LCDGotoXY `(v ~T0 @X0 0 ef2`uc`uc ]
@@ -1466,6 +1466,44 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 205: typedef uint32_t uintmax_t;
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
+[; ;myutils.h: 95: typedef struct {
+[; ;myutils.h: 96: unsigned B0 :1;
+[; ;myutils.h: 97: unsigned B1 :1;
+[; ;myutils.h: 98: unsigned B2 :1;
+[; ;myutils.h: 99: unsigned B3 :1;
+[; ;myutils.h: 100: unsigned B4 :1;
+[; ;myutils.h: 101: unsigned B5 :1;
+[; ;myutils.h: 102: unsigned B6 :1;
+[; ;myutils.h: 103: unsigned B7 :1;
+[; ;myutils.h: 104: } BITbits_t;
+[; ;myutils.h: 113: extern int8_t compare_4_bits(uint8_t byte1, uint8_t byte2, uint8_t low);
+[; ;menu.h: 12: typedef enum
+[; ;menu.h: 13: {
+[; ;menu.h: 14: MENU,
+[; ;menu.h: 15: NORMAL,
+[; ;menu.h: 16: } E_operation_mode;
+[; ;menu.h: 17: typedef enum
+[; ;menu.h: 18: {
+[; ;menu.h: 19: EDIT,
+[; ;menu.h: 20: NOTEDIT
+[; ;menu.h: 21: } E_operation_submode;
+[; ;menu.h: 25: typedef struct {
+[; ;menu.h: 26: uint8_t value;
+[; ;menu.h: 27: char *name;
+[; ;menu.h: 28: } MenuItem_t;
+[; ;menu.h: 30: typedef struct {
+[; ;menu.h: 31: MenuItem_t items[4];
+[; ;menu.h: 32: uint8_t index;
+[; ;menu.h: 33: } Menu_t;
+[; ;menu.h: 35: void MenuInit();
+[; ;menu.h: 36: void ShowMenu();
+[; ;menu.h: 37: void ClearMenu();
+[; ;menu.h: 38: void MenuUp();
+[; ;menu.h: 39: void MenuDown();
+[; ;menu.h: 40: void ValueInc();
+[; ;menu.h: 41: void Valuedec();
+[; ;menu.h: 42: void SaveMenuItem(uint8_t item);
+[; ;menu.h: 43: uint8_t LoadMenuItem(uint8_t item);
 [; ;lcd_hd44780_pic16.h: 78: void LCDInit(uint8_t style);
 [; ;lcd_hd44780_pic16.h: 79: void LCDSetStyle(uint8_t style);
 [; ;lcd_hd44780_pic16.h: 80: int8_t LCDWriteString(const char *msg);
@@ -1473,43 +1511,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lcd_hd44780_pic16.h: 82: void LCDGotoXY(uint8_t x,uint8_t y);
 [; ;lcd_hd44780_pic16.h: 85: void LCDByte(uint8_t,uint8_t);
 [; ;lcd_hd44780_pic16.h: 89: void LCDBusyLoop();
-[; ;myutils.h: 81: typedef struct {
-[; ;myutils.h: 82: unsigned B0 :1;
-[; ;myutils.h: 83: unsigned B1 :1;
-[; ;myutils.h: 84: unsigned B2 :1;
-[; ;myutils.h: 85: unsigned B3 :1;
-[; ;myutils.h: 86: unsigned B4 :1;
-[; ;myutils.h: 87: unsigned B5 :1;
-[; ;myutils.h: 88: unsigned B6 :1;
-[; ;myutils.h: 89: unsigned B7 :1;
-[; ;myutils.h: 90: } BITbits_t;
-[; ;menu.h: 13: typedef enum
-[; ;menu.h: 14: {
-[; ;menu.h: 15: MENU,
-[; ;menu.h: 16: NORMAL,
-[; ;menu.h: 17: } E_operation_mode;
-[; ;menu.h: 18: typedef enum
-[; ;menu.h: 19: {
-[; ;menu.h: 20: EDIT,
-[; ;menu.h: 21: NOTEDIT
-[; ;menu.h: 22: } E_operation_submode;
-[; ;menu.h: 26: typedef struct {
-[; ;menu.h: 27: uint8_t value;
-[; ;menu.h: 28: char *name;
-[; ;menu.h: 29: } MenuItem_t;
-[; ;menu.h: 31: typedef struct {
-[; ;menu.h: 32: MenuItem_t items[4];
-[; ;menu.h: 33: uint8_t index;
-[; ;menu.h: 34: } Menu_t;
-[; ;menu.h: 36: void MenuInit();
-[; ;menu.h: 37: void ShowMenu();
-[; ;menu.h: 38: void ClearMenu();
-[; ;menu.h: 39: void MenuUp();
-[; ;menu.h: 40: void MenuDown();
-[; ;menu.h: 41: void ValueInc();
-[; ;menu.h: 42: void Valuedec();
-[; ;menu.h: 43: void SaveMenuItem(uint8_t item);
-[; ;menu.h: 44: uint8_t LoadMenuItem(uint8_t item);
 "5 menu.c
 [v _g_menu `S137 ~T0 @X0 1 e ]
 [; ;menu.c: 5: Menu_t g_menu;

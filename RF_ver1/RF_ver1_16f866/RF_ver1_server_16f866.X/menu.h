@@ -3,7 +3,6 @@
 
 #include <xc.h>
 #include <stdint.h>
-#include "lcd_hd44780_pic16.h"
 #include "myutils.h"
 
 #ifdef	__cplusplus

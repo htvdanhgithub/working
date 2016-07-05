@@ -7,6 +7,9 @@
 #include "packet.h"
 #include "msg.h"
 #include "debug.h"
+#include "connection.h"
+#include "reg_id.h"
+#include "circle_buffer.h"
 
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
@@ -35,8 +38,8 @@
 
 //LM35 is connected to Port A bit 2
 
-#define KICK_OFF_TRIGGER_PORT      A
-#define KICK_OFF_TRIGGER_POS       5
+#define KICK_OFF_TRIGGER_PORT      B
+#define KICK_OFF_TRIGGER_POS       2
 #define KICK_OFF_TRIGGER_PIN       PIN(KICK_OFF_TRIGGER_PORT, KICK_OFF_TRIGGER_POS)
 #define KICK_OFF_TRIGGER           PORTBIT(KICK_OFF_TRIGGER_PIN)
 
@@ -60,33 +63,33 @@
 #define DATA_IN3_PIN       PIN(DATA_IN3_PORT, DATA_IN3_POS)
 #define DATA_IN3           PORTBIT(DATA_IN3_PIN)
 
-#define DATA_OUT_TRIGGER_PORT      A
-#define DATA_OUT_TRIGGER_POS       7
+#define DATA_OUT_TRIGGER_PORT      B
+#define DATA_OUT_TRIGGER_POS       1
 #define DATA_OUT_TRIGGER_PIN       PIN(DATA_OUT_TRIGGER_PORT, DATA_OUT_TRIGGER_POS)
 #define DATA_OUT_TRIGGER           PORTBIT(DATA_OUT_TRIGGER_PIN)
 
-#define DATA_OUT0_PORT      B
-#define DATA_OUT0_POS       0
+#define DATA_OUT0_PORT      A
+#define DATA_OUT0_POS       4
 #define DATA_OUT0_PIN       PIN(DATA_OUT0_PORT, DATA_OUT0_POS)
 #define DATA_OUT0           PORTBIT(DATA_OUT0_PIN)
 
-#define DATA_OUT1_PORT      B
-#define DATA_OUT1_POS       1
+#define DATA_OUT1_PORT      A
+#define DATA_OUT1_POS       5
 #define DATA_OUT1_PIN       PIN(DATA_OUT1_PORT, DATA_OUT1_POS)
 #define DATA_OUT1           PORTBIT(DATA_OUT1_PIN)
 
-#define DATA_OUT2_PORT      B
-#define DATA_OUT2_POS       2
+#define DATA_OUT2_PORT      A
+#define DATA_OUT2_POS       6
 #define DATA_OUT2_PIN       PIN(DATA_OUT2_PORT, DATA_OUT2_POS)
 #define DATA_OUT2           PORTBIT(DATA_OUT2_PIN)
 
-#define DATA_OUT3_PORT      B
-#define DATA_OUT3_POS       3
+#define DATA_OUT3_PORT      A
+#define DATA_OUT3_POS       7
 #define DATA_OUT3_PIN       PIN(DATA_OUT3_PORT, DATA_OUT3_POS)
 #define DATA_OUT3           PORTBIT(DATA_OUT3_PIN)
 
-#define DATA_IN_TRIGGER_PORT      A
-#define DATA_IN_TRIGGER_POS       6
+#define DATA_IN_TRIGGER_PORT      B
+#define DATA_IN_TRIGGER_POS       0
 #define DATA_IN_TRIGGER_PIN       PIN(DATA_IN_TRIGGER_PORT, DATA_IN_TRIGGER_POS)
 #define DATA_IN_TRIGGER           PORTBIT(DATA_IN_TRIGGER_PIN)
 
@@ -113,17 +116,34 @@
 E_operation_mode mode = NORMAL;
 E_operation_submode submode = NOTEDIT;
 
+Connection_t client_conn[MAX_CLIENT_CONNECTION];
+
 Msg_t msg;
 Msg_t *pmsg = &msg;
 
+void ConnInit()
+{
+    for(uint8_t i = 0; i < MAX_CLIENT_CONNECTION; i++)
+    {
+        client_conn[i].from         = SERVER_ID;
+        client_conn[i].to           = i;
+        client_conn[i].msgid        = 0;
+        client_conn[i].available    = NO;
+    }
+}
 void IOInit()
 {
     // 2. Individual pin configuration
     IO_INPUT(KICK_OFF_TRIGGER_PIN);
-    ANSELbits.ANS4 = 0;
+    ANSELHbits.ANS8 = 0;
 
     IO_INPUT(DATA_IN_TRIGGER_PIN);
-//    ANSELHbits.ANS11 = 0;
+    ANSELHbits.ANS12 = 0;
+    
+    INTCONbits.GIE = 1;
+    INTCONbits.INTE = 1;
+    INTCONbits.INTF = 0;
+    OPTION_REGbits.INTEDG = 0;
     
     IO_INPUT(DATA_IN0_PIN);
     ANSELbits.ANS0 = 0;
@@ -136,18 +156,16 @@ void IOInit()
     ANSELbits.ANS3 = 0;
     
     IO_OUTPUT(DATA_OUT_TRIGGER_PIN);
-
-    IO_OUTPUT(DATA_OUT0_PIN);
-    ANSELHbits.ANS12 = 0;
-	
-    IO_OUTPUT(DATA_OUT1_PIN);
     ANSELHbits.ANS10 = 0;
 
+    IO_OUTPUT(DATA_OUT0_PIN);
+	
+    IO_OUTPUT(DATA_OUT1_PIN);
+    ANSELbits.ANS4 = 0;
+
     IO_OUTPUT(DATA_OUT2_PIN);
-    ANSELHbits.ANS8 = 0;
 
     IO_OUTPUT(DATA_OUT3_PIN);
-    ANSELHbits.ANS9 = 0;
     
     DATA_OUT_TRIGGER = 1;
     
@@ -162,28 +180,15 @@ void IOInit()
     
     IO_INPUT(DOWN_PIN);
 
-    //    ANSELHbits.ANS11 = 0;
-
-//    OPTION_REGbits.INTEDG = 1;
-//    INTCONbits.PEIE = 1;
-    // 5 Peripheral interrupt
-
-    // 1. Interrupt-on-Change enable (Master Switch)
-//    IOCB_ENABLE;
-//    INTB_ENABLE;
-//    INT_ENABLE;
-    
-    // 3. Rising and falling edge detection
-//    DATA_IN_TRIGGER_RAISING_EDGE = 1;
-    // 4. Individual pin interrupt flags    
-//    INTB_FLAG = 0;
-//    DATA_IN_TRIGGER_IOC_FLAG = 0;
-    
-    // 6. Global Interrupt Enable
-//    GLB_INT_ENABLE = 1;
 }
+int count = 0;
 void interrupt ISR()
 {
+    if(INTCONbits.INTF == 1)
+    {
+        DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "SND:"); DEBUG_INT(count++, 3);
+        INTCONbits.INTF = 0;
+    }
 }
 void main (void)
 {
@@ -197,26 +202,63 @@ void main (void)
     IOInit();
     
     MenuInit();
-//    
-//    //Initialize Trigger out
-//    TriggerOutInit();
+    
+    ConnInit();
     
     //Clear the LCD
     LCDClear();
     
     compose(pmsg, 11, 22, 33, 44, "abc", 3);
+    uint8_t ret = NO;
+    uint8_t value = 0x99;
     uint8_t sendc = 0x78;
     uint8_t revc = 0;
+    REG_ID_RQT_CMD_t rqt;
+    REG_ID_RQT_CMD_t *prqt = &rqt;
+    REG_ID_RSP_CMD_t rsp;
+    REG_ID_RSP_CMD_t *prsp = &rsp;
+    Connection_t *pconn = NULL;
+
+    uint8_t start_index, end_index;
     while(1)
     {
         if(KICK_OFF_TRIGGER == 0)
         {
-//            SEND_HALF_BIT(sendc, 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-//            RECEIVE_HALF_BIT(revc, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
+//            if(get_msg(pmsg) == YES)
+//            {
+//                dump_msg(pmsg);
+//            }
+//            debug_1(get_distance(9, 1));
+//              get_msg_index(&start_index, &end_index);
+//            RECEIVE_INPUT(DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0);
+//            SEND_MSG_ACK(ret, pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER,
+//                                DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
             SEND_MSG(pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "SND:"); DEBUG_INT(pmsg->crc, 3);
+            dump_msg(pmsg);
+////            while(ret == NO)
+//            {
+//                SEND_HALF_BYTE_ACK(ret, value, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
+//                                                   DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER, SEND_HALF_BYTE_TIMEOUT);
+//                __delay_ms(1);
+//            }
+//            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "ret:"); DEBUG_INT(ret, 3);
+//            for(uint8_t i = 1; i < 2; i++)
+//            {
+//                rqt.id = i;
+//                pconn = (Connection_t *)&client_conn[i];
+//                SERVER_REG_ID(pmsg, pconn, prqt, prsp, 
+//                              DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
+//                              pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//                
+//            }
+//            SEND_HALF_BYTE(sendc, 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//            RECEIVE_HALF_BYTE(revc, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
+//            SEND_MSG_ACK(ret, pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER,
+//                                DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+////            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "SND:"); DEBUG_INT(pmsg->crc, 3);
 //            DEBUG_LINE_CLEAR; DEBUG_INT_X(0, count++, 3);
-//            FLASH(DATA_OUT_TRIGGER);
+//            FLASH_DOWN(DATA_OUT_TRIGGER);
+//              DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "Kick off:"); DEBUG_INT(DATA_OUT_TRIGGER, 3);
             __delay_ms(200);
         }
         else

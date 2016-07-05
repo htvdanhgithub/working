@@ -1,6 +1,5 @@
 #include <xc.h>
 #include <pic16f886.h>
-#include "lcd_hd44780_pic16.h"
 #include "adc_pic16.h"
 #include "lm35_pic16.h"
 #include "menu.h"
@@ -9,6 +8,7 @@
 #include "debug.h"
 #include "connection.h"
 #include "reg_id.h"
+#include "io_define.h"
 
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
@@ -28,89 +28,7 @@
 
 
 
-#define IOCB_ENABLE      IOCBbits.IOCB4 = 1
-#define IOCB_CLEAR       IOCBbits.IOCB4 = 0
-#define INTB_ENABLE      INTCONbits.RBIE = 1
-#define INTB_FLAG        INTCONbits.RBIF
-#define INT_ENABLE       INTCONbits.INTE = 1
-#define GLB_INT_ENABLE   INTCONbits.GIE
-
 //LM35 is connected to Port A bit 2
-
-#define KICK_OFF_TRIGGER_PORT      A
-#define KICK_OFF_TRIGGER_POS       5
-#define KICK_OFF_TRIGGER_PIN       PIN(KICK_OFF_TRIGGER_PORT, KICK_OFF_TRIGGER_POS)
-#define KICK_OFF_TRIGGER           PORTBIT(KICK_OFF_TRIGGER_PIN)
-
-#define DATA_IN0_PORT      A
-#define DATA_IN0_POS       0
-#define DATA_IN0_PIN       PIN(DATA_IN0_PORT, DATA_IN0_POS)
-#define DATA_IN0           PORTBIT(DATA_IN0_PIN)
-
-#define DATA_IN1_PORT      A
-#define DATA_IN1_POS       1
-#define DATA_IN1_PIN       PIN(DATA_IN1_PORT, DATA_IN1_POS)
-#define DATA_IN1           PORTBIT(DATA_IN1_PIN)
-
-#define DATA_IN2_PORT      A
-#define DATA_IN2_POS       2
-#define DATA_IN2_PIN       PIN(DATA_IN2_PORT, DATA_IN2_POS)
-#define DATA_IN2           PORTBIT(DATA_IN2_PIN)
-
-#define DATA_IN3_PORT      A
-#define DATA_IN3_POS       3
-#define DATA_IN3_PIN       PIN(DATA_IN3_PORT, DATA_IN3_POS)
-#define DATA_IN3           PORTBIT(DATA_IN3_PIN)
-
-#define DATA_OUT_TRIGGER_PORT      A
-#define DATA_OUT_TRIGGER_POS       7
-#define DATA_OUT_TRIGGER_PIN       PIN(DATA_OUT_TRIGGER_PORT, DATA_OUT_TRIGGER_POS)
-#define DATA_OUT_TRIGGER           PORTBIT(DATA_OUT_TRIGGER_PIN)
-
-#define DATA_OUT0_PORT      B
-#define DATA_OUT0_POS       0
-#define DATA_OUT0_PIN       PIN(DATA_OUT0_PORT, DATA_OUT0_POS)
-#define DATA_OUT0           PORTBIT(DATA_OUT0_PIN)
-
-#define DATA_OUT1_PORT      B
-#define DATA_OUT1_POS       1
-#define DATA_OUT1_PIN       PIN(DATA_OUT1_PORT, DATA_OUT1_POS)
-#define DATA_OUT1           PORTBIT(DATA_OUT1_PIN)
-
-#define DATA_OUT2_PORT      B
-#define DATA_OUT2_POS       2
-#define DATA_OUT2_PIN       PIN(DATA_OUT2_PORT, DATA_OUT2_POS)
-#define DATA_OUT2           PORTBIT(DATA_OUT2_PIN)
-
-#define DATA_OUT3_PORT      B
-#define DATA_OUT3_POS       3
-#define DATA_OUT3_PIN       PIN(DATA_OUT3_PORT, DATA_OUT3_POS)
-#define DATA_OUT3           PORTBIT(DATA_OUT3_PIN)
-
-#define DATA_IN_TRIGGER_PORT      A
-#define DATA_IN_TRIGGER_POS       6
-#define DATA_IN_TRIGGER_PIN       PIN(DATA_IN_TRIGGER_PORT, DATA_IN_TRIGGER_POS)
-#define DATA_IN_TRIGGER           PORTBIT(DATA_IN_TRIGGER_PIN)
-
-#define MENU_IN_PORT      B
-#define MENU_IN_POS       4
-#define MENU_IN_PIN       PIN(MENU_IN_PORT, MENU_IN_POS)
-#define MENU_IN           PORTBIT(MENU_IN_PIN)
-
-#define MENU_OUT_PORT      B
-#define MENU_OUT_POS       6
-#define MENU_OUT_PIN       PIN(MENU_OUT_PORT, MENU_OUT_POS)
-#define MENU_OUT           PORTBIT(MENU_OUT_PIN)
-
-#define UP_PORT      B
-#define UP_POS       5
-#define UP_PIN       PIN(UP_PORT, UP_POS)
-#define UP           PORTBIT(UP_PIN)
-
-#define DOWN_PORT      B
-#define DOWN_POS       7
-#define DOWN_PIN       PIN(DOWN_PORT, DOWN_POS)
-#define DOWN           PORTBIT(DOWN_PIN)
 
 E_operation_mode mode = NORMAL;
 E_operation_submode submode = NOTEDIT;
@@ -134,10 +52,15 @@ void IOInit()
 {
     // 2. Individual pin configuration
     IO_INPUT(KICK_OFF_TRIGGER_PIN);
-    ANSELbits.ANS4 = 0;
+    ANSELHbits.ANS8 = 0;
 
     IO_INPUT(DATA_IN_TRIGGER_PIN);
-//    ANSELHbits.ANS11 = 0;
+    ANSELHbits.ANS12 = 0;
+    
+    INTCONbits.GIE = 1;
+    INTCONbits.INTE = 1;
+    INTCONbits.INTF = 0;
+    OPTION_REGbits.INTEDG = 0;
     
     IO_INPUT(DATA_IN0_PIN);
     ANSELbits.ANS0 = 0;
@@ -150,18 +73,16 @@ void IOInit()
     ANSELbits.ANS3 = 0;
     
     IO_OUTPUT(DATA_OUT_TRIGGER_PIN);
-
-    IO_OUTPUT(DATA_OUT0_PIN);
-    ANSELHbits.ANS12 = 0;
-	
-    IO_OUTPUT(DATA_OUT1_PIN);
     ANSELHbits.ANS10 = 0;
 
+    IO_OUTPUT(DATA_OUT0_PIN);
+	
+    IO_OUTPUT(DATA_OUT1_PIN);
+    ANSELbits.ANS4 = 0;
+
     IO_OUTPUT(DATA_OUT2_PIN);
-    ANSELHbits.ANS8 = 0;
 
     IO_OUTPUT(DATA_OUT3_PIN);
-    ANSELHbits.ANS9 = 0;
     
     DATA_OUT_TRIGGER = 1;
     
@@ -177,8 +98,14 @@ void IOInit()
     IO_INPUT(DOWN_PIN);
 
 }
+int count = 0;
 void interrupt ISR()
 {
+    if(INTCONbits.INTF == 1)
+    {
+        RECEIVE_INPUT(DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0);
+        INTCONbits.INTF = 0;
+    }
 }
 void main (void)
 {
@@ -198,7 +125,8 @@ void main (void)
     //Clear the LCD
     LCDClear();
     
-    compose(pmsg, 11, 22, 33, 44, "abc", 3);
+    uint8_t ret = NO;
+    uint8_t value = 0x99;
     uint8_t sendc = 0x78;
     uint8_t revc = 0;
     REG_ID_RQT_CMD_t rqt;
@@ -207,25 +135,48 @@ void main (void)
     REG_ID_RSP_CMD_t *prsp = &rsp;
     Connection_t *pconn = NULL;
 
+    uint8_t start_index, end_index;
     while(1)
     {
         if(KICK_OFF_TRIGGER == 0)
         {
-            for(uint8_t i = 0; i < 1; i++)
-            {
-                rqt.id = i;
-                pconn = (Connection_t *)&client_conn[i];
-                SERVER_REG_ID(pmsg, pconn, prqt, prsp, 
-                              DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
-                              pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-                
-            }
-//            SEND_HALF_BIT(sendc, 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-//            RECEIVE_HALF_BIT(revc, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
-//            SEND_MSG(pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-//            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "SND:"); DEBUG_INT(pmsg->crc, 3);
+//            if(get_msg(pmsg) == YES)
+//            {
+//                dump_msg(pmsg);
+//            }
+//            debug_1(get_distance(9, 1));
+//              get_msg_index(&start_index, &end_index);
+//            RECEIVE_INPUT(DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0);
+//            SEND_MSG_ACK(ret, pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER,
+//                                DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+            count++;
+            compose(pmsg, 11 + count, 22 + count, 33 + count, 44 + count, "abc", 3);
+            send_msg(pmsg);
+            dump_msg(pmsg);
+////            while(ret == NO)
+//            {
+//                SEND_HALF_BYTE_ACK(ret, value, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
+//                                                   DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER, SEND_HALF_BYTE_TIMEOUT);
+//                __delay_ms(1);
+//            }
+//            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "ret:"); DEBUG_INT(ret, 3);
+//            for(uint8_t i = 1; i < 2; i++)
+//            {
+//                rqt.id = i;
+//                pconn = (Connection_t *)&client_conn[i];
+//                SERVER_REG_ID(pmsg, pconn, prqt, prsp, 
+//                              DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
+//                              pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//                
+//            }
+//            SEND_HALF_BYTE(sendc, 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//            RECEIVE_HALF_BYTE(revc, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
+//            SEND_MSG_ACK(ret, pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER,
+//                                DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+////            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "SND:"); DEBUG_INT(pmsg->crc, 3);
 //            DEBUG_LINE_CLEAR; DEBUG_INT_X(0, count++, 3);
-//            FLASH(DATA_OUT_TRIGGER);
+//            FLASH_DOWN(DATA_OUT_TRIGGER);
+//              DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "Kick off:"); DEBUG_INT(DATA_OUT_TRIGGER, 3);
             __delay_ms(200);
         }
         else

@@ -2081,21 +2081,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 78 "lcd_hd44780_pic16.h"
-void LCDInit(uint8_t style);
-void LCDSetStyle(uint8_t style);
-int8_t LCDWriteString(const char *msg);
-int8_t LCDWriteInt(int val,int8_t field_length);
-void LCDGotoXY(uint8_t x,uint8_t y);
-
-
-void LCDByte(uint8_t,uint8_t);
-
-
-
-void LCDBusyLoop();
-
-# 81 "myutils.h"
+# 95 "myutils.h"
 typedef struct {
 unsigned B0 :1;
 unsigned B1 :1;
@@ -2107,6 +2093,9 @@ unsigned B6 :1;
 unsigned B7 :1;
 } BITbits_t;
 
+# 113
+extern int8_t compare_4_bits(uint8_t byte1, uint8_t byte2, uint8_t low);
+
 # 29 "adc_pic16.h"
 void ADCInit();
 uint16_t ReadADC(uint8_t ch);
@@ -2114,7 +2103,7 @@ uint16_t ReadADC(uint8_t ch);
 # 15 "lm35_pic16.h"
 int LM35ReadTemp();
 
-# 13 "menu.h"
+# 12 "menu.h"
 typedef enum
 {
 MENU,
@@ -2147,6 +2136,30 @@ void ValueInc();
 void Valuedec();
 void SaveMenuItem(uint8_t item);
 uint8_t LoadMenuItem(uint8_t item);
+
+# 14 "packet.h"
+void send_half_byte(uint8_t value, uint8_t low)
+{
+{ BITbits_t *byte = (BITbits_t *)&value; if(low == 1) { RA4 = byte->B0; RA5 = byte->B1; RA6 = byte->B2; RA7 = byte->B3; } else { RA4 = byte->B4; RA5 = byte->B5; RA6 = byte->B6; RA7 = byte->B7; } };
+{RB1 = 0; _delay((unsigned long)((1)*(20000000/4000000.0))); RB1 = 1;};
+}
+
+void send_byte(uint8_t c)
+{
+send_half_byte(c, 1);
+_delay((unsigned long)((5)*(20000000/4000.0)));
+send_half_byte(c, 0);
+_delay((unsigned long)((5)*(20000000/4000.0)));
+}
+
+
+void send_string(uint8_t *str, uint8_t len)
+{
+for(uint8_t i = 0; i < len; i++)
+{
+send_byte(str[i]);
+}
+}
 
 # 4 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\__size_t.h"
 typedef unsigned size_t;
@@ -2243,7 +2256,163 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 18 "msg.h"
+# 78 "lcd_hd44780_pic16.h"
+void LCDInit(uint8_t style);
+void LCDSetStyle(uint8_t style);
+int8_t LCDWriteString(const char *msg);
+int8_t LCDWriteInt(int val,int8_t field_length);
+void LCDGotoXY(uint8_t x,uint8_t y);
+
+
+void LCDByte(uint8_t,uint8_t);
+
+
+
+void LCDBusyLoop();
+
+# 26 "debug.h"
+char sdebug[32];
+
+
+void debug_1(uint8_t v1)
+{
+sprintf(sdebug, "%d", v1);
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(sdebug);};};;
+}
+void debug_2(uint8_t v1, uint8_t v2)
+{
+sprintf(sdebug, "%d,%d", v1, v2);
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(sdebug);};};;
+}
+void debug_3(uint8_t v1, uint8_t v2, uint8_t v3)
+{
+sprintf(sdebug, "%d,%d,%d", v1, v2, v3);
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(sdebug);};};;
+}
+void debug_4(uint8_t v1, uint8_t v2, uint8_t v3, uint8_t v4)
+{
+sprintf(sdebug, "%d,%d,%d,%d", v1, v2, v3, v4);
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(sdebug);};};;
+}
+void debug_5(uint8_t v1, uint8_t v2, uint8_t v3, uint8_t v4, uint8_t v5)
+{
+sprintf(sdebug, "%d,%d,%d,%d,%d", v1, v2, v3, v4, v5);
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(sdebug);};};;
+}
+
+# 14 "circle_buffer.h"
+uint8_t buffer_rcv[32];
+uint8_t end_index_rcv = 0;
+uint8_t start_index_rcv = 0;
+uint8_t low_half_rcv = 1;
+
+const char start_mark[4] = {222, 223, 224, 225};
+const char stop_mark[4] = {225, 224, 223, 222};
+
+# 30
+uint8_t get_next_index(uint8_t index)
+{
+if(index == 32 - 1)
+{
+return 0;
+}
+else
+{
+return (index + 1);
+}
+}
+void receive_input(uint8_t value)
+{
+{ BITbits_t *byte1 = (BITbits_t *)&buffer_rcv[end_index_rcv]; BITbits_t *byte2 = (BITbits_t *)&value; if(low_half_rcv == 1) { byte1->B0 = byte2->B0; byte1->B1 = byte2->B1; byte1->B2 = byte2->B2; byte1->B3 = byte2->B3; } else { byte1->B4 = byte2->B0; byte1->B5 = byte2->B1; byte1->B6 = byte2->B2; byte1->B7 = byte2->B3; } };
+if(low_half_rcv == 1)
+{
+low_half_rcv = 0;
+}
+else
+{
+low_half_rcv = 1;
+end_index_rcv = get_next_index(end_index_rcv);
+}
+
+}
+uint8_t get_plus_index(uint8_t index, uint8_t add)
+{
+index += add;
+if(index >= 32)
+{
+index -= 32;
+}
+return index;
+}
+uint8_t get_minus_index(uint8_t index, uint8_t sub)
+{
+if(index < sub)
+{
+return index + 32 - sub;
+}
+return index - sub;
+}
+uint8_t get_distance(uint8_t start_index, uint8_t end_index)
+{
+if(end_index < start_index)
+{
+return end_index + 32 - start_index;
+}
+else
+{
+return (end_index - start_index);
+}
+}
+uint8_t get_msg_index(uint8_t *start_index, uint8_t *end_index)
+{
+
+# 105
+uint8_t i;
+*start_index = 0xFF;
+*end_index = 0xFF;
+
+if(low_half_rcv == 0)
+{
+return 0;
+}
+if(get_distance(start_index_rcv, end_index_rcv) <= 7)
+{
+return 0;
+}
+i = start_index_rcv;
+while(get_distance(i, end_index_rcv) >= 3)
+{
+
+
+if((buffer_rcv[i] == start_mark[0]) && (buffer_rcv[get_plus_index(i, 1)] == start_mark[1])
+&& (buffer_rcv[get_plus_index(i, 2)] == start_mark[2]) && (buffer_rcv[get_plus_index(i, 3)] == start_mark[3]))
+{
+if(*start_index != -1)
+{
+*start_index = get_plus_index(i, 4);
+}
+}
+else if((buffer_rcv[i] == stop_mark[0]) && (buffer_rcv[get_plus_index(i, 1)] == stop_mark[1])
+&& (buffer_rcv[get_plus_index(i, 2)] == stop_mark[2]) && (buffer_rcv[get_plus_index(i, 3)] == stop_mark[3]))
+{
+if(*end_index != -1)
+{
+*end_index = get_minus_index(i, 1);
+}
+}
+
+i = get_next_index(i);
+}
+
+if(((*start_index != 0xFF) && (*end_index != 0xFF)) == 1)
+{
+start_index_rcv = get_plus_index(*end_index, 5);
+return 1;
+}
+return 0;
+}
+
+# 19 "msg.h"
 typedef struct {
 uint8_t msglen;
 uint16_t crc;
@@ -2254,7 +2423,14 @@ uint8_t cmd;
 uint8_t data[16];
 } Msg_t;
 
-# 34
+void send_msg(Msg_t *pmsg)
+{
+send_string(start_mark, 4);
+uint8_t *s = (uint8_t *)pmsg;
+send_string(s, pmsg->msglen);
+send_string(stop_mark, 4);
+}
+
 uint16_t crc_calculate(Msg_t *pmsg)
 {
 uint16_t crc;
@@ -2293,14 +2469,57 @@ pmsg->msglen = datalen + 7;
 
 pmsg->crc = crc_calculate(pmsg);
 }
-void dum_msg(Msg_t *pmsg)
+void dump_msg(Msg_t *pmsg)
 {
 char s[32];
 sprintf(s, "M:%d,%d,%d,%d,%d,%d", pmsg->msglen, pmsg->crc, pmsg->from, pmsg->to, pmsg->msgid, pmsg->cmd);
 {{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(s);};};
 }
 
-# 21 "connection.h"
+Msg_t msg_rcv;
+Msg_t *pmsg_rcv = &msg_rcv;
+uint8_t *pstr_rcv = (uint8_t *)&msg_rcv;
+uint8_t low_rcv = 1;
+uint8_t count_rcv = 0;;
+
+uint8_t reveive_finished()
+{
+return ((count_rcv > 0) && (count_rcv == pstr_rcv[0]));
+}
+void reveive_reset()
+{
+low_rcv = 1;
+count_rcv = 0;
+}
+
+# 103
+uint8_t get_msg(Msg_t* pmsg)
+{
+uint8_t *pstr = (uint8_t *)pmsg;
+uint8_t start_index, end_index;
+uint8_t i = 0;
+uint8_t temp;
+if(get_msg_index(&start_index, &end_index) == 1)
+{
+temp = start_index;
+while(1)
+{
+pstr[i++] = buffer_rcv[temp];
+buffer_rcv[temp] = 0;
+if(get_distance(temp, end_index) == 0)
+{
+break;
+}
+temp = get_next_index(temp);
+}
+
+return 1;
+}
+
+return 0;
+}
+
+# 20 "connection.h"
 typedef struct {
 uint8_t from;
 uint8_t to;
@@ -2314,7 +2533,7 @@ pmsg->from = pconn->from;
 pmsg->to = pconn->to;
 pmsg->msgid = pconn->msgid++;
 }
-void dum_conn(Connection_t *pconn)
+void dump_conn(Connection_t *pconn)
 {
 char s[32];
 sprintf(s, "C:%d,%d,%d,%d", pconn->from, pconn->to, pconn->msgid, pconn->available);
@@ -2354,16 +2573,6 @@ REG_ID_RQT,
 (uint8_t *)prqt,
 1);
 }
-void create_REG_ID_RSP_CMD(Connection_t *pconn, const REG_ID_RSP_CMD_t *prsp, Msg_t *pmsg)
-{
-compose(pmsg,
-pconn->from,
-pconn->to,
-pconn->msgid++,
-REG_ID_RSP,
-(uint8_t *)prsp,
-1);
-}
 void extract_REG_ID_RQT_CMD(const Msg_t *pmsg, REG_ID_RQT_CMD_t *prqt)
 {
 memcpy((void *)prqt, (void *)pmsg->data, 1);
@@ -2371,6 +2580,40 @@ memcpy((void *)prqt, (void *)pmsg->data, 1);
 void extract_REG_ID_RSP_CMD(const Msg_t *pmsg, REG_ID_RSP_CMD_t *prsp)
 {
 memcpy((void *)prsp, (void *)pmsg->data, 1);
+}
+void create_REG_ID_RSP_CMD(Connection_t *pconn, Msg_t *pmsgi, Msg_t *pmsgo)
+{
+REG_ID_RSP_CMD_t rsp;
+REG_ID_RQT_CMD_t rqt;
+
+extract_REG_ID_RQT_CMD(pmsgi, &rqt);
+rsp.id = rqt.id;
+
+compose(pmsgo,
+pconn->from,
+pconn->to,
+pmsgi->msgid,
+REG_ID_RSP,
+(uint8_t *)&rsp,
+1);
+}
+uint8_t send_REG_ID_RQT_CMD_and_wait(Connection_t *pconn, const REG_ID_RQT_CMD_t *prqt, Msg_t *pmsg)
+{
+create_REG_ID_RQT_CMD(pconn, prqt, pmsg);
+send_msg(pmsg);
+_delay((unsigned long)((50)*(20000000/4000.0)));
+
+if((get_msg(pmsg_rcv) == 1) && (pmsg_rcv->cmd == REG_ID_RSP) && (pmsg->msgid == pmsg_rcv->msgid))
+{
+return 1;
+}
+return 0;
+}
+void handle_REG_ID_RQT_CMD(Connection_t *pconn, Msg_t *pmsgi)
+{
+Msg_t msgo;
+create_REG_ID_RSP_CMD(pconn, pmsgi, &msgo);
+send_msg(&msgo);
 }
 
 
@@ -2390,20 +2633,20 @@ memcpy((void *)prsp, (void *)pmsg->data, 1);
 #pragma config BOR4V = BOR21V
 #pragma config WRT = OFF
 
-# 115
+# 33
 E_operation_mode mode = NORMAL;
 E_operation_submode submode = NOTEDIT;
 
-Connection_t client_conn[16];
+Connection_t client_conn[8];
 
 Msg_t msg;
 Msg_t *pmsg = &msg;
 
 void ConnInit()
 {
-for(uint8_t i = 0; i < 16; i++)
+for(uint8_t i = 0; i < 8; i++)
 {
-client_conn[i].from = 16;
+client_conn[i].from = 8;
 client_conn[i].to = i;
 client_conn[i].msgid = 0;
 client_conn[i].available = 0;
@@ -2412,11 +2655,16 @@ client_conn[i].available = 0;
 void IOInit()
 {
 
-(TRISAbits.TRISA5 = 1);
-ANSELbits.ANS4 = 0;
+(TRISBbits.TRISB2 = 1);
+ANSELHbits.ANS8 = 0;
 
-(TRISAbits.TRISA6 = 1);
+(TRISBbits.TRISB0 = 1);
+ANSELHbits.ANS12 = 0;
 
+INTCONbits.GIE = 1;
+INTCONbits.INTE = 1;
+INTCONbits.INTF = 0;
+OPTION_REGbits.INTEDG = 0;
 
 (TRISAbits.TRISA0 = 1);
 ANSELbits.ANS0 = 0;
@@ -2428,21 +2676,19 @@ ANSELbits.ANS2 = 0;
 (TRISAbits.TRISA3 = 1);
 ANSELbits.ANS3 = 0;
 
-(TRISAbits.TRISA7 = 0);
-
-(TRISBbits.TRISB0 = 0);
-ANSELHbits.ANS12 = 0;
-
 (TRISBbits.TRISB1 = 0);
 ANSELHbits.ANS10 = 0;
 
-(TRISBbits.TRISB2 = 0);
-ANSELHbits.ANS8 = 0;
+(TRISAbits.TRISA4 = 0);
 
-(TRISBbits.TRISB3 = 0);
-ANSELHbits.ANS9 = 0;
+(TRISAbits.TRISA5 = 0);
+ANSELbits.ANS4 = 0;
 
-RA7 = 1;
+(TRISAbits.TRISA6 = 0);
+
+(TRISAbits.TRISA7 = 0);
+
+RB1 = 1;
 
 
 (TRISBbits.TRISB4 = 1);
@@ -2456,8 +2702,14 @@ ANSELHbits.ANS13 = 0;
 (TRISBbits.TRISB7 = 1);
 
 }
+int count = 0;
 void interrupt ISR()
 {
+if(INTCONbits.INTF == 1)
+{
+{ uint8_t value; { value = 0; BITbits_t *byte = (BITbits_t *)&value; byte->B0 = RA0; byte->B1 = RA1; byte->B2 = RA2; byte->B3 = RA3; }; receive_input(value); };
+INTCONbits.INTF = 0;
+}
 }
 void main (void)
 {
@@ -2477,7 +2729,8 @@ ConnInit();
 
 (LCDByte(0b00000001,0));
 
-compose(pmsg, 11, 22, 33, 44, "abc", 3);
+uint8_t ret = 0;
+uint8_t value = 0x99;
 uint8_t sendc = 0x78;
 uint8_t revc = 0;
 REG_ID_RQT_CMD_t rqt;
@@ -2486,20 +2739,19 @@ REG_ID_RSP_CMD_t rsp;
 REG_ID_RSP_CMD_t *prsp = &rsp;
 Connection_t *pconn = (0);
 
+uint8_t start_index, end_index;
 while(1)
 {
-if(RA5 == 0)
+if(RB2 == 0)
 {
-for(uint8_t i = 0; i < 1; i++)
-{
-rqt.id = i;
-pconn = (Connection_t *)&client_conn[i];
-{ create_REG_ID_RQT_CMD(pconn, prqt, pmsg); {uint8_t *s = (uint8_t *)pmsg; { for(uint8_t i = 0; i < pmsg->msglen; i++) { { { { BITbits_t *byte = (BITbits_t *)&s[i]; if(1 == 1) { RB0 = byte->B0; RB1 = byte->B1; RB2 = byte->B2; RB3 = byte->B3; } else { RB0 = byte->B4; RB1 = byte->B5; RB2 = byte->B6; RB3 = byte->B7; } }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((5)*(20000000/4000.0))); { { BITbits_t *byte = (BITbits_t *)&s[i]; if(0 == 1) { RB0 = byte->B0; RB1 = byte->B1; RB2 = byte->B2; RB3 = byte->B3; } else { RB0 = byte->B4; RB1 = byte->B5; RB2 = byte->B6; RB3 = byte->B7; } }; {RA7 = ~RA7; _delay((unsigned long)((1)*(20000000/4000000.0))); RA7 = ~RA7;}; }; _delay((unsigned long)((5)*(20000000/4000.0))); }; } };}; dum_msg(pmsg); };
 
-# 222
-}
+# 152
+count++;
+compose(pmsg, 11 + count, 22 + count, 33 + count, 44 + count, "abc", 3);
+send_msg(pmsg);
+dump_msg(pmsg);
 
-# 229
+# 180
 _delay((unsigned long)((200)*(20000000/4000.0)));
 }
 else

@@ -1477,16 +1477,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;lcd_hd44780_pic16.h: 82: void LCDGotoXY(uint8_t x,uint8_t y);
 [; ;lcd_hd44780_pic16.h: 85: void LCDByte(uint8_t,uint8_t);
 [; ;lcd_hd44780_pic16.h: 89: void LCDBusyLoop();
-[; ;myutils.h: 81: typedef struct {
-[; ;myutils.h: 82: unsigned B0 :1;
-[; ;myutils.h: 83: unsigned B1 :1;
-[; ;myutils.h: 84: unsigned B2 :1;
-[; ;myutils.h: 85: unsigned B3 :1;
-[; ;myutils.h: 86: unsigned B4 :1;
-[; ;myutils.h: 87: unsigned B5 :1;
-[; ;myutils.h: 88: unsigned B6 :1;
-[; ;myutils.h: 89: unsigned B7 :1;
-[; ;myutils.h: 90: } BITbits_t;
+[; ;myutils.h: 95: typedef struct {
+[; ;myutils.h: 96: unsigned B0 :1;
+[; ;myutils.h: 97: unsigned B1 :1;
+[; ;myutils.h: 98: unsigned B2 :1;
+[; ;myutils.h: 99: unsigned B3 :1;
+[; ;myutils.h: 100: unsigned B4 :1;
+[; ;myutils.h: 101: unsigned B5 :1;
+[; ;myutils.h: 102: unsigned B6 :1;
+[; ;myutils.h: 103: unsigned B7 :1;
+[; ;myutils.h: 104: } BITbits_t;
+[; ;myutils.h: 113: extern int8_t compare_4_bits(uint8_t byte1, uint8_t byte2, uint8_t low);
 "15 custom_char.h
 [v ___cgram `uc ~T0 @X0 -> 0 `x e ]
 [i ___cgram
@@ -1918,8 +1919,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _field_length `c ~T0 @X0 1 r2 ]
 "329
 [f ]
-[v F1646 `uc ~T0 @X0 -> 5 `i s ]
-[i F1646
+[v F1650 `uc ~T0 @X0 -> 5 `i s ]
+[i F1650
 :U ..
 "330
 -> -U -> 16 `i `uc
@@ -1931,7 +1932,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _str `uc ~T0 @X0 -> 5 `i a ]
 [; ;lcd_hd44780_pic16.c: 330: char str[5]={-16,-16,-16,-16,-16};
-[e = _str F1646 ]
+[e = _str F1650 ]
 "331
 [v _i `i ~T0 @X0 1 a ]
 [; ;lcd_hd44780_pic16.c: 331: int i=4,j=0;

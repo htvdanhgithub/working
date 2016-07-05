@@ -2081,21 +2081,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 78 "lcd_hd44780_pic16.h"
-void LCDInit(uint8_t style);
-void LCDSetStyle(uint8_t style);
-int8_t LCDWriteString(const char *msg);
-int8_t LCDWriteInt(int val,int8_t field_length);
-void LCDGotoXY(uint8_t x,uint8_t y);
-
-
-void LCDByte(uint8_t,uint8_t);
-
-
-
-void LCDBusyLoop();
-
-# 81 "myutils.h"
+# 95 "myutils.h"
 typedef struct {
 unsigned B0 :1;
 unsigned B1 :1;
@@ -2107,7 +2093,10 @@ unsigned B6 :1;
 unsigned B7 :1;
 } BITbits_t;
 
-# 13 "menu.h"
+# 113
+extern int8_t compare_4_bits(uint8_t byte1, uint8_t byte2, uint8_t low);
+
+# 12 "menu.h"
 typedef enum
 {
 MENU,
@@ -2140,6 +2129,20 @@ void ValueInc();
 void Valuedec();
 void SaveMenuItem(uint8_t item);
 uint8_t LoadMenuItem(uint8_t item);
+
+# 78 "lcd_hd44780_pic16.h"
+void LCDInit(uint8_t style);
+void LCDSetStyle(uint8_t style);
+int8_t LCDWriteString(const char *msg);
+int8_t LCDWriteInt(int val,int8_t field_length);
+void LCDGotoXY(uint8_t x,uint8_t y);
+
+
+void LCDByte(uint8_t,uint8_t);
+
+
+
+void LCDBusyLoop();
 
 # 5 "menu.c"
 Menu_t g_menu;

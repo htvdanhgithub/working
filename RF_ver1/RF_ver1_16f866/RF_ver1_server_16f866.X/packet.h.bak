@@ -10,42 +10,103 @@
 extern "C" {
 #endif
 
-
-#define SEND_HALF_BIT(value, low, d3, d2, d1, d0, trigger) { \
+#define SEND_HALF_BYTE_TIMEOUT  5
+#define SEND_HALF_BYTE(value, low, d3, d2, d1, d0, trigger) { \
                                             GET_4_BITS_FROM_CHAR(value, low, d3, d2, d1, d0); \
-                                            FLASH(trigger); }
-#define RECEIVE_HALF_BIT(value, low, d3, d2, d1, d0, trigger) \
+                                            FLASH_DOWN(trigger); }
+
+#define SEND_HALF_BYTE_ACK(ret, value, low, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero, ntimeout) \
 { \
-    while(1) \
+    ret = NO; \
+    GET_4_BITS_FROM_CHAR(value, low, do3, do2, do1, do0); \
+    FLASH_DOWN(triggero); \
+    ret = YES; \
+}
+
+//#define SEND_HALF_BYTE_ACK(ret, value, low, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero, ntimeout) \
+{ \
+    ret = NO; \
+    for(uint8_t i = 0; i < ntimeout; i++) \
     { \
-        if(trigger == 0) \
+        uint8_t temp; \
+        GET_4_BITS_FROM_CHAR(value, low, do3, do2, do1, do0); \
+        FLASH_DOWN(triggero); \
+        __delay_ms(1); \
+        GET_CHAR_FROM_4_BITS(temp, low, di3, di2, di1, di0); \
+        if(compare_4_bits(value, temp, low) == 0) \
         { \
-            GET_CHAR_FROM_4_BITS(value, low, d3, d2, d1, d0); \
-            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "rcv:"); DEBUG_INT(value, 3); \
+            ret = YES; \
             break; \
         } \
     } \
+    DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "rcv:"); DEBUG_INT(ret, 3); \
 }
 
+#define SEND_BYTE_ACK(ret, c, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero) \
+{ \
+    SEND_HALF_BYTE_ACK(ret, c, 1, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero, SEND_HALF_BYTE_TIMEOUT); \
+    __delay_ms(5); \
+    if(ret == YES) \
+    { \
+        SEND_HALF_BYTE_ACK(ret, c, 0, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero, SEND_HALF_BYTE_TIMEOUT); \ 
+        __delay_ms(5); \
+    } \
+}
+
+#define SEND_STRING_ACK(ret, str, len, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero) \
+{ \
+    uint8_t i; \
+    for(i = 0; i < len; i++) \
+    { \
+        SEND_BYTE_ACK(ret, str[i], di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero); \
+        if(ret == NO) \
+        { \
+            break; \
+        } \
+    } \
+    sprintf(sdebug, "m:%d, l:%d, r:%d", len, i + 1, ret); debug_print;\
+}
+#define RECEIVE_HALF_BYTE_ACK(value, low, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero) \
+{ \
+    GET_CHAR_FROM_4_BITS(value, low, di3, di2, di1, di0); \
+    GET_4_BITS_FROM_CHAR(value, low, do3, do2, do1, do0); \
+    FLASH_DOWN(triggero); \
+}
+
+#define RECEIVE_STRING_ACK(str, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero) \
+{ \
+    uint8_t real = 0; \
+    uint8_t count = 0; \
+    uint8_t low = 1; \
+    while(1) \
+    { \
+        if(triggeri == 0) \
+        { \
+            RECEIVE_HALF_BYTE_ACK(str[count], low, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero); \
+            real++; \
+            low = ((low == 1) ? 0 : 1); \
+            if(low == 1) \
+            { \
+                count++; \
+                if(count == str[0]) \
+                { \
+                    break; \
+                } \
+            } \
+            sprintf(sdebug, "c:%d,s:%d,r:%d", count, str[0], real); debug_print;\
+        } \
+    } \
+}    
 
 #define SEND_BYTE(c, d3, d2, d1, d0, trigger) \
 { \
-    SEND_HALF_BIT(c, 1, d3, d2, d1, d0, trigger); \
+    SEND_HALF_BYTE(c, 1, d3, d2, d1, d0, trigger); \
     __delay_ms(5); \
-    SEND_HALF_BIT(c, 0, d3, d2, d1, d0, trigger); \
-    __delay_ms(5); \
-}
-
-#define SEND_BYTE_ACK(c, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero) \
-{ \
-    SEND_HALF_BIT(c, 1, do3, do2, do1, do0, triggero); \
-    RECEIVE_HALF_BIT(c, 1, di3, di2, di1, di0, triggeri); \
-    __delay_ms(5); \
-    SEND_HALF_BIT(c, 0, do3, do2, do1, do0, triggero); \
-    RECEIVE_HALF_BIT(c, 0, di3, di2, di1, di0, triggeri); \
+    SEND_HALF_BYTE(c, 0, d3, d2, d1, d0, trigger); \
     __delay_ms(5); \
 }
 
+    
 #define SEND_STRING(str, len, d3, d2, d1, d0, trigger) \
 { \
     for(uint8_t i = 0; i < len; i++) \
@@ -53,18 +114,21 @@ extern "C" {
         SEND_BYTE(str[i], d3, d2, d1, d0, trigger); \
     } \
 }
-#define SEND_STRING_ACK(str, len, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero) \
-{ \
-    for(uint8_t i = 0; i < len; i++) \
-    { \
-        SEND_BYTE_ACK(str[i], di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero); \
-    } \
-}
-    
+
 #define RECEIVE_STRING(str, d3, d2, d1, d0, trigger) \
 { \
     uint8_t count = 0; \
     uint8_t low = 1; \
+    GET_CHAR_FROM_4_BITS(str[count], low, d3, d2, d1, d0); \
+    low = ((low == 1) ? 0 : 1); \
+    if(low == 1) \
+    { \
+        count++; \
+        if(count == str[0]) \
+        { \
+            break; \
+        } \
+    } \
     while(1) \
     { \
         if(trigger == 0) \
@@ -77,38 +141,48 @@ extern "C" {
                 if(count == str[0]) \
                 { \
                     break; \
-                    count = 0; \
                 } \
             } \
-            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(pmsg->data[2], 3); \
         } \
     } \
 }    
+#define RECEIVE_HALF_BYTE(value, low, d3, d2, d1, d0, trigger) \
+{ \
+    while(1) \
+    { \
+        if(trigger == 0) \
+        { \
+            GET_CHAR_FROM_4_BITS(value, low, d3, d2, d1, d0); \
+            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "rcv:"); DEBUG_INT(value, 3); \
+            break; \
+        } \
+    } \
+}
 
-#define RECEIVE_STRING_ACK(str, di3, di2, di1, di0, triggeri, do3, do2, do1, do0, triggero) \
+#define RECEIVE_STRING_TIMEOUT(str, d3, d2, d1, d0, trigger, ntimeout, btimeout) \
 { \
     uint8_t count = 0; \
     uint8_t low = 1; \
-    while(1) \
+    btimeout = YES; \
+    for(uint8_t i = 0; i < ntimeout; i++) \
     { \
-        if(triggeri == 0) \
+        if(trigger == 0) \
         { \
-            GET_CHAR_FROM_4_BITS(str[count], low, di3, di2, di1, di0); \
-            SEND_HALF_BIT(c, 1, do3, do2, do1, do0, triggero); \            
+            GET_CHAR_FROM_4_BITS(str[count], low, d3, d2, d1, d0); \
             low = ((low == 1) ? 0 : 1); \
             if(low == 1) \
             { \
                 count++; \
                 if(count == str[0]) \
                 { \
+                    btimeout = NO; \
                     break; \
-                    count = 0; \
                 } \
             } \
-            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(pmsg->data[2], 3); \
         } \
     } \
 }    
+
 #ifdef	__cplusplus
 }
 #endif

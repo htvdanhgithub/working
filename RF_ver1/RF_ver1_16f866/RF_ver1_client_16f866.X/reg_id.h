@@ -70,7 +70,8 @@ void extract_REG_ID_RSP_CMD(const Msg_t *pmsg, REG_ID_RSP_CMD_t *prsp)
 { \
     create_REG_ID_RQT_CMD(pconn, prqt, pmsgo); \
     SEND_MSG(pmsgo, do3, do2, do1, do0, triggero); \
-    dum_msg(pmsgo); \
+    RECEIVE_MSG(pmsgi, di3, di2, di1, di0, triggeri); \
+    dum_msg(pmsgi); \
 }
 //#define CLIENT_REG_ID(pmsgi, pconn, di3, di2, di1, di0, triggeri, pmsgo, do3, do2, do1, do0, triggero) \
 { \
@@ -94,7 +95,9 @@ void extract_REG_ID_RSP_CMD(const Msg_t *pmsg, REG_ID_RSP_CMD_t *prsp)
         REG_ID_RSP_CMD_t rsp; \
         extract_REG_ID_RQT_CMD(pmsgi, &rqt); \
         rsp.id = rqt.id; \
-        dum_msg(pmsgi); \
+        create_REG_ID_RSP_CMD(pconn, &rsp, pmsgo); \
+        SEND_MSG(pmsgo, do3, do2, do1, do0, triggero); \
+        dum_msg(pmsgo); \
     } \
 }
 

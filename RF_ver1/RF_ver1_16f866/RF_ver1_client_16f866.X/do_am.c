@@ -1,6 +1,5 @@
 #include <xc.h>
 #include <pic16f886.h>
-#include "lcd_hd44780_pic16.h"
 #include "adc_pic16.h"
 #include "lm35_pic16.h"
 #include "menu.h"
@@ -9,6 +8,7 @@
 #include "debug.h"
 #include "connection.h"
 #include "reg_id.h"
+#include "io_define.h"
 
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
@@ -28,90 +28,11 @@
 
 
 
-#define IOCB_ENABLE      IOCBbits.IOCB4 = 1
-#define IOCB_CLEAR       IOCBbits.IOCB4 = 0
-#define INTB_ENABLE      INTCONbits.RBIE = 1
-#define INTB_FLAG        INTCONbits.RBIF
-#define INT_ENABLE       INTCONbits.INTE = 1
-#define GLB_INT_ENABLE   INTCONbits.GIE
-
 //LM35 is connected to Port A bit 2
-
-#define DATA_IN0_PORT      A
-#define DATA_IN0_POS       0
-#define DATA_IN0_PIN       PIN(DATA_IN0_PORT, DATA_IN0_POS)
-#define DATA_IN0           PORTBIT(DATA_IN0_PIN)
-
-#define DATA_IN1_PORT      A
-#define DATA_IN1_POS       1
-#define DATA_IN1_PIN       PIN(DATA_IN1_PORT, DATA_IN1_POS)
-#define DATA_IN1           PORTBIT(DATA_IN1_PIN)
-
-#define DATA_IN2_PORT      A
-#define DATA_IN2_POS       2
-#define DATA_IN2_PIN       PIN(DATA_IN2_PORT, DATA_IN2_POS)
-#define DATA_IN2           PORTBIT(DATA_IN2_PIN)
-
-#define DATA_IN3_PORT      A
-#define DATA_IN3_POS       3
-#define DATA_IN3_PIN       PIN(DATA_IN3_PORT, DATA_IN3_POS)
-#define DATA_IN3           PORTBIT(DATA_IN3_PIN)
-
-#define DATA_OUT_TRIGGER_PORT      A
-#define DATA_OUT_TRIGGER_POS       7
-#define DATA_OUT_TRIGGER_PIN       PIN(DATA_OUT_TRIGGER_PORT, DATA_OUT_TRIGGER_POS)
-#define DATA_OUT_TRIGGER           PORTBIT(DATA_OUT_TRIGGER_PIN)
-
-#define DATA_OUT0_PORT      B
-#define DATA_OUT0_POS       0
-#define DATA_OUT0_PIN       PIN(DATA_OUT0_PORT, DATA_OUT0_POS)
-#define DATA_OUT0           PORTBIT(DATA_OUT0_PIN)
-
-#define DATA_OUT1_PORT      B
-#define DATA_OUT1_POS       1
-#define DATA_OUT1_PIN       PIN(DATA_OUT1_PORT, DATA_OUT1_POS)
-#define DATA_OUT1           PORTBIT(DATA_OUT1_PIN)
-
-#define DATA_OUT2_PORT      B
-#define DATA_OUT2_POS       2
-#define DATA_OUT2_PIN       PIN(DATA_OUT2_PORT, DATA_OUT2_POS)
-#define DATA_OUT2           PORTBIT(DATA_OUT2_PIN)
-
-#define DATA_OUT3_PORT      B
-#define DATA_OUT3_POS       3
-#define DATA_OUT3_PIN       PIN(DATA_OUT3_PORT, DATA_OUT3_POS)
-#define DATA_OUT3           PORTBIT(DATA_OUT3_PIN)
-
-#define DATA_IN_TRIGGER_PORT      A
-#define DATA_IN_TRIGGER_POS       6
-#define DATA_IN_TRIGGER_PIN       PIN(DATA_IN_TRIGGER_PORT, DATA_IN_TRIGGER_POS)
-#define DATA_IN_TRIGGER           PORTBIT(DATA_IN_TRIGGER_PIN)
-
-#define MENU_IN_PORT      B
-#define MENU_IN_POS       4
-#define MENU_IN_PIN       PIN(MENU_IN_PORT, MENU_IN_POS)
-#define MENU_IN           PORTBIT(MENU_IN_PIN)
-
-#define MENU_OUT_PORT      B
-#define MENU_OUT_POS       6
-#define MENU_OUT_PIN       PIN(MENU_OUT_PORT, MENU_OUT_POS)
-#define MENU_OUT           PORTBIT(MENU_OUT_PIN)
-
-#define UP_PORT      B
-#define UP_POS       5
-#define UP_PIN       PIN(UP_PORT, UP_POS)
-#define UP           PORTBIT(UP_PIN)
-
-#define DOWN_PORT      B
-#define DOWN_POS       7
-#define DOWN_PIN       PIN(DOWN_PORT, DOWN_POS)
-#define DOWN           PORTBIT(DOWN_PIN)
 
 E_operation_mode mode = NORMAL;
 E_operation_submode submode = NOTEDIT;
 
-Msg_t msg;
-Msg_t *pmsg = &msg;
 Connection_t server_conn;
 
 void ConnInit()
@@ -125,8 +46,16 @@ void ConnInit()
 void IOInit()
 {
     // 2. Individual pin configuration
+    IO_INPUT(KICK_OFF_TRIGGER_PIN);
+    ANSELHbits.ANS8 = 0;
+
     IO_INPUT(DATA_IN_TRIGGER_PIN);
-//    ANSELHbits.ANS11 = 0;
+    ANSELHbits.ANS12 = 0;
+    
+    INTCONbits.GIE = 1;
+    INTCONbits.INTE = 1;
+    INTCONbits.INTF = 0;
+    OPTION_REGbits.INTEDG = 0;
     
     IO_INPUT(DATA_IN0_PIN);
     ANSELbits.ANS0 = 0;
@@ -139,18 +68,16 @@ void IOInit()
     ANSELbits.ANS3 = 0;
     
     IO_OUTPUT(DATA_OUT_TRIGGER_PIN);
-
-    IO_OUTPUT(DATA_OUT0_PIN);
-    ANSELHbits.ANS12 = 0;
-	
-    IO_OUTPUT(DATA_OUT1_PIN);
     ANSELHbits.ANS10 = 0;
 
+    IO_OUTPUT(DATA_OUT0_PIN);
+	
+    IO_OUTPUT(DATA_OUT1_PIN);
+    ANSELbits.ANS4 = 0;
+
     IO_OUTPUT(DATA_OUT2_PIN);
-    ANSELHbits.ANS8 = 0;
 
     IO_OUTPUT(DATA_OUT3_PIN);
-    ANSELHbits.ANS9 = 0;
     
     DATA_OUT_TRIGGER = 1;
     
@@ -166,8 +93,14 @@ void IOInit()
     IO_INPUT(DOWN_PIN);
 
 }
+int count = 0;
 void interrupt ISR()
 {
+    if(INTCONbits.INTF == 1)
+    {
+        RECEIVE_INPUT(DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0);
+        INTCONbits.INTF = 0;
+    }
 }
 void main (void)
 {
@@ -187,99 +120,121 @@ void main (void)
     //Clear the LCD
     LCDClear();
     
-    uint8_t revc = 0;
+    uint8_t count = 0;
+    uint8_t ret;
+    uint8_t value;
     
-    dum_conn(&server_conn);
+    dump_conn(&server_conn);
     while(1)
     {
-//        RECEIVE_HALF_BIT(revc, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
-//        SEND_HALF_BIT(revc, 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+        if(KICK_OFF_TRIGGER == 0)
+        {
+                    
+        }
+            if(get_msg(pmsg_rcv) == YES)
+            {
+                dump_msg(pmsg_rcv);
+            }
+//        RECEIVE_HALF_BYTE(revc, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
+//        SEND_HALF_BYTE(revc, 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
 
 //            CLIENT_REG_ID(pmsg, &server_conn, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
 //                          pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);        
 //          RECEIVE_MSG(pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
 //          DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(crc_verify(pmsg), 3);
 
-        if(DATA_IN_TRIGGER == 0)
+//        if(reveive_finished() == YES)
         {
-            CLIENT_REG_ID(pmsg, &server_conn, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
-                          pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);        
-        }
-        else
-        {
-            if(MENU_IN == 0)
-            {
-                if(mode == NORMAL)
-                {
-                    DEBUG_STRING_CLEAR("MENU MODE");
-                    mode = MENU;
-                    ShowMenu();
-                }
-                else
-                {
-                    DEBUG_STRING_CLEAR("EDIT MODE");
-                    submode = EDIT;
-                    ShowMenu();
-                    LCDSetStyle(LS_BLINK);
-                }
+//            RECEIVE_MSG_ACK(pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
+//                                  DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//            RECEIVE_MSG(pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
+//            count++;
+//            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(index, 3);
+//              dump_msg(pmsg_rcv);
+//            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(count, 3);
 
-                __delay_ms(200);
-            }
-            else if(MENU_OUT == 0)
-            {
-                if(mode == MENU)
-                {
-                    if(submode == EDIT)
-                    {
-                        DEBUG_STRING_CLEAR("NOTEDIT MODE");
-                        submode = NOTEDIT;
-                        LCDSetStyle(LS_NONE);
-                    }
-                    else
-                    {
-                        DEBUG_STRING_CLEAR("NORMAL MODE");
-                        mode = NORMAL;
-                        ClearMenu();
-                    }
-                }
-
-                __delay_ms(200);
-            }
-            else if(UP == 0)
-            {
-                DEBUG_STRING_CLEAR("UP");
-                if(mode == MENU)
-                {
-                    if(submode == EDIT)
-                    {
-                        ValueInc();
-                    }            
-                    else
-                    {
-                        MenuUp();
-                    }
-                    ShowMenu();                
-                }
-                __delay_ms(200);
-            }
-            else if(DOWN == 0)
-            {
-                DEBUG_STRING_CLEAR("DOWN");
-                if(mode == MENU)
-                {
-                    if(submode == EDIT)
-                    {
-                        ValueDec();
-                    }            
-                    else
-                    {
-                        MenuDown();
-                    }
-                    ShowMenu();
-                }
-                __delay_ms(200);
-            }
+//            RECEIVE_HALF_BYTE_ACK(ret, value, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
+//                                               DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
+//            DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "ret:"); DEBUG_INT(value, 3);
+            
+//            CLIENT_REG_ID(pmsg, &server_conn, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 
+//                          pmsg, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);        
         }
+//        else
+//        {
+//            if(MENU_IN == 0)
+//            {
+//                if(mode == NORMAL)
+//                {
+//                    DEBUG_STRING_CLEAR("MENU MODE");
+//                    mode = MENU;
+//                    ShowMenu();
+//                }
+//                else
+//                {
+//                    DEBUG_STRING_CLEAR("EDIT MODE");
+//                    submode = EDIT;
+//                    ShowMenu();
+//                    LCDSetStyle(LS_BLINK);
+//                }
+//
+//                __delay_ms(200);
+//            }
+//            else if(MENU_OUT == 0)
+//            {
+//                if(mode == MENU)
+//                {
+//                    if(submode == EDIT)
+//                    {
+//                        DEBUG_STRING_CLEAR("NOTEDIT MODE");
+//                        submode = NOTEDIT;
+//                        LCDSetStyle(LS_NONE);
+//                    }
+//                    else
+//                    {
+//                        DEBUG_STRING_CLEAR("NORMAL MODE");
+//                        mode = NORMAL;
+//                        ClearMenu();
+//                    }
+//                }
+//
+//                __delay_ms(200);
+//            }
+//            else if(UP == 0)
+//            {
+//                DEBUG_STRING_CLEAR("UP");
+//                if(mode == MENU)
+//                {
+//                    if(submode == EDIT)
+//                    {
+//                        ValueInc();
+//                    }            
+//                    else
+//                    {
+//                        MenuUp();
+//                    }
+//                    ShowMenu();                
+//                }
+//                __delay_ms(200);
+//            }
+//            else if(DOWN == 0)
+//            {
+//                DEBUG_STRING_CLEAR("DOWN");
+//                if(mode == MENU)
+//                {
+//                    if(submode == EDIT)
+//                    {
+//                        ValueDec();
+//                    }            
+//                    else
+//                    {
+//                        MenuDown();
+//                    }
+//                    ShowMenu();
+//                }
+//                __delay_ms(200);
+//            }
+//        }
     }
 }
 

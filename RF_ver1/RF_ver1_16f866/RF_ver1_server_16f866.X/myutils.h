@@ -8,6 +8,9 @@
 #ifndef MYUTILS_H
 #define	MYUTILS_H
 
+#include <xc.h>
+#include <stdint.h>
+
 #ifdef	__cplusplus
 extern "C" {
 #endif
@@ -35,23 +38,33 @@ extern "C" {
     
 #define ANSELBIT(__port,__pos) _CONCAT7(__port,__pos)
     
-    
-#define GET_CHAR_FROM_4_BITS(c, low, b3, b2, b1, b0) \
+#define MAKE_CHAR_FROM_4_BITS(c, b3, b2, b1, b0) \
 { \
+    c = 0; \
     BITbits_t *byte = (BITbits_t *)&c; \
+    byte->B0 = b0; \
+    byte->B1 = b1; \
+    byte->B2 = b2; \
+    byte->B3 = b3; \
+}
+    
+#define COPY_CHAR_FROM_4_BITS(c, low, d) \
+{ \
+    BITbits_t *byte1 = (BITbits_t *)&c; \
+    BITbits_t *byte2 = (BITbits_t *)&d; \
     if(low == 1) \
     { \
-        byte->B0 = b0; \
-        byte->B1 = b1; \
-        byte->B2 = b2; \
-        byte->B3 = b3; \
+        byte1->B0 = byte2->B0; \
+        byte1->B1 = byte2->B1; \
+        byte1->B2 = byte2->B2; \
+        byte1->B3 = byte2->B3; \
     } \
     else \
     { \
-        byte->B4 = b0; \
-        byte->B5 = b1; \
-        byte->B6 = b2; \
-        byte->B7 = b3; \
+        byte1->B4 = byte2->B0; \
+        byte1->B5 = byte2->B1; \
+        byte1->B6 = byte2->B2; \
+        byte1->B7 = byte2->B3; \
     } \
 }
 
@@ -76,7 +89,8 @@ extern "C" {
 #define CLONE_4_BITS(a3, a2, a1, a0, b3, b2, b1, b0)    {a3 = b3; a2 = b2; a1 = b1; a0 = b0;}
    
 #define FLASH(x)    {x = ~x; __delay_us(1); x = ~x;}
-    
+#define FLASH_DOWN(x)    {x = 0; __delay_us(1); x = 1;}
+#define FLASH_UP(x)    {x = 1; __delay_us(1); x = 0;}
     
 typedef struct {
         unsigned B0                    :1;
@@ -95,6 +109,8 @@ typedef struct {
 
 
 #define DEBUG(msg) {LCDWriteStringXYCLEAR(0, 1, msg);}
+
+extern int8_t compare_4_bits(uint8_t byte1, uint8_t byte2, uint8_t low);
 
 #ifdef	__cplusplus
 }

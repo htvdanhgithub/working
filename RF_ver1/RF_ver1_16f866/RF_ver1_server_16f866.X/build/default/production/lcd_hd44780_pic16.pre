@@ -2095,7 +2095,7 @@ void LCDByte(uint8_t,uint8_t);
 
 void LCDBusyLoop();
 
-# 81 "myutils.h"
+# 95 "myutils.h"
 typedef struct {
 unsigned B0 :1;
 unsigned B1 :1;
@@ -2106,6 +2106,9 @@ unsigned B5 :1;
 unsigned B6 :1;
 unsigned B7 :1;
 } BITbits_t;
+
+# 113
+extern int8_t compare_4_bits(uint8_t byte1, uint8_t byte2, uint8_t low);
 
 # 15 "custom_char.h"
 unsigned char __cgram[]=

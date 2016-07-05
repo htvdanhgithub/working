@@ -1,6 +1,6 @@
 #include <xc.h>
 #include "menu.h"
-
+#include "lcd_hd44780_pic16.h"
 
 Menu_t g_menu;
 
