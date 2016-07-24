@@ -2471,9 +2471,8 @@ pmsg->crc = crc_calculate(pmsg);
 }
 void dump_msg(Msg_t *pmsg)
 {
-char s[32];
-sprintf(s, "M:%d,%d,%d,%d,%d,%d", pmsg->msglen, pmsg->crc, pmsg->from, pmsg->to, pmsg->msgid, pmsg->cmd);
-{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(s);};};
+sprintf(sdebug, "M:%d,%d,%d,%d,%d,%d", pmsg->msglen, pmsg->crc, pmsg->from, pmsg->to, pmsg->msgid, pmsg->cmd);
+{{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(sdebug);};};
 }
 
 Msg_t msg_rcv;
@@ -2492,7 +2491,7 @@ low_rcv = 1;
 count_rcv = 0;
 }
 
-# 103
+# 102
 uint8_t get_msg(Msg_t* pmsg)
 {
 uint8_t *pstr = (uint8_t *)pmsg;
@@ -2519,13 +2518,18 @@ return 1;
 return 0;
 }
 
-# 20 "connection.h"
+# 21 "connection.h"
 typedef struct {
 uint8_t from;
 uint8_t to;
 uint8_t msgid;
+uint8_t heart_beat_count;
 uint8_t available;
 } Connection_t;
+
+# 34
+Connection_t server_conn;
+
 
 void create_msg_header(Connection_t *pconn, Msg_t *pmsg)
 {
@@ -2545,13 +2549,48 @@ typedef enum E_cmd
 {
 REG_ID_RQT,
 REG_ID_RSP,
+HEART_BEAT_RQT,
+HEART_BEAT_RSP,
 CMD_MAX
 };
+
+extern void handle_REG_ID_RQT_CMD(Msg_t *pmsgi);
+extern void handle_HEART_BEAT_RQT_CMD(Msg_t *pmsgi);
 
 uint8_t is_right_addr(Connection_t *pconn, Msg_t *pmsg)
 {
 
 return ((pconn->from == pmsg->to) && (pconn->to == pmsg->from));
+}
+
+void handle_received_cmds()
+{
+if(get_msg(pmsg_rcv) == 1)
+{
+switch(pmsg_rcv->cmd)
+{
+
+# 46
+case HEART_BEAT_RQT:
+handle_HEART_BEAT_RQT_CMD(pmsg_rcv);
+break;
+
+default:
+break;
+}
+
+
+}
+}
+void create_cmd(Connection_t *pconn, uint8_t cmd_id, uint8_t msg_id, const void *cmd_data, uint8_t cmd_data_len, Msg_t *pmsg)
+{
+compose(pmsg,
+pconn->from,
+pconn->to,
+msg_id,
+cmd_id,
+(uint8_t *)cmd_data,
+cmd_data_len);
 }
 
 # 20 "reg_id.h"
@@ -2563,37 +2602,74 @@ typedef struct {
 uint8_t id;
 } REG_ID_RSP_CMD_t;
 
+
 void create_REG_ID_RQT_CMD(Connection_t *pconn, const REG_ID_RQT_CMD_t *prqt, Msg_t *pmsg)
 {
-compose(pmsg,
-pconn->from,
-pconn->to,
-pconn->msgid++,
-REG_ID_RQT,
-(uint8_t *)prqt,
-1);
-}
-void create_REG_ID_RSP_CMD(Connection_t *pconn, const REG_ID_RSP_CMD_t *prsp, Msg_t *pmsg)
-{
-compose(pmsg,
-pconn->from,
-pconn->to,
-pconn->msgid++,
-REG_ID_RSP,
-(uint8_t *)prsp,
-1);
-}
-void extract_REG_ID_RQT_CMD(const Msg_t *pmsg, REG_ID_RQT_CMD_t *prqt)
-{
-memcpy((void *)prqt, (void *)pmsg->data, 1);
+create_cmd(pconn, REG_ID_RQT, pconn->msgid++, prqt, 1, pmsg);
 }
 void extract_REG_ID_RSP_CMD(const Msg_t *pmsg, REG_ID_RSP_CMD_t *prsp)
 {
 memcpy((void *)prsp, (void *)pmsg->data, 1);
 }
+uint8_t send_REG_ID_RQT_CMD_and_wait(Connection_t *pconn, const REG_ID_RQT_CMD_t *prqt)
+{
+Msg_t msg;
+create_REG_ID_RQT_CMD(pconn, prqt, &msg);
+send_msg(&msg);
+
+_delay((unsigned long)((200)*(20000000/4000.0)));
+
+if((get_msg(pmsg_rcv) == 1)
+&& (crc_verify(pmsg_rcv) == 1)
+&& (is_right_addr(pconn, pmsg_rcv) == 1)
+&& (pmsg_rcv->cmd == REG_ID_RSP)
+&& (msg.msgid == pmsg_rcv->msgid))
+{
+pconn->available = 1;
+dump_msg(pmsg_rcv);
+
+return 1;
+}
+return 0;
+}
+
+# 21 "heart_beat.h"
+typedef struct {
+uint8_t id;
+} HEART_BEAT_RQT_CMD_t;
+
+typedef struct {
+uint8_t id;
+} HEART_BEAT_RSP_CMD_t;
+
+# 68
+void extract_HEART_BEAT_RQT_CMD(const Msg_t *pmsg, HEART_BEAT_RQT_CMD_t *prqt)
+{
+memcpy((void *)prqt, (void *)pmsg->data, 1);
+}
+
+void create_HEART_BEAT_RSP_CMD(Connection_t *pconn, Msg_t *pmsgi, Msg_t *pmsgo)
+{
+HEART_BEAT_RSP_CMD_t rsp;
+HEART_BEAT_RQT_CMD_t rqt;
+
+extract_HEART_BEAT_RQT_CMD(pmsgi, &rqt);
+rsp.id = rqt.id;
+
+create_cmd(pconn, HEART_BEAT_RSP, pmsgi->msgid, &rsp, 1, pmsgo);
+
+}
+void handle_HEART_BEAT_RQT_CMD(Msg_t *pmsgi)
+{
+Msg_t msgo;
+server_conn.available = 1;
+create_HEART_BEAT_RSP_CMD(&server_conn, pmsgi, &msgo);
+send_msg(&msgo);
+dump_msg(&msgo);
+}
 
 
-# 14 "do_am.c"
+# 16 "do_am.c"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = ON
 #pragma config PWRTE = OFF
@@ -2609,11 +2685,9 @@ memcpy((void *)prsp, (void *)pmsg->data, 1);
 #pragma config BOR4V = BOR21V
 #pragma config WRT = OFF
 
-# 33
+# 35
 E_operation_mode mode = NORMAL;
 E_operation_submode submode = NOTEDIT;
-
-Connection_t server_conn;
 
 void ConnInit()
 {
@@ -2707,18 +2781,17 @@ uint8_t value;
 dump_conn(&server_conn);
 while(1)
 {
-if(get_msg(pmsg_rcv) == 1)
+
+# 136
+handle_received_cmds();
+
+# 160
 {
-dump_msg(pmsg_rcv);
+
+# 175
 }
 
-# 143
-{
-
-# 158
-}
-
-# 234
+# 251
 }
 }
 

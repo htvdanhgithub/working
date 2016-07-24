@@ -35,16 +35,6 @@ void create_REG_ID_RQT_CMD(Connection_t *pconn, const REG_ID_RQT_CMD_t *prqt, Ms
         (uint8_t *)prqt,
         REG_ID_RQT_CMD_SIZE);
 }
-void create_REG_ID_RSP_CMD(Connection_t *pconn, const REG_ID_RSP_CMD_t *prsp, Msg_t *pmsg)
-{
-    compose(pmsg, 
-        pconn->from,
-        pconn->to,
-        pconn->msgid++,
-        REG_ID_RSP,
-        (uint8_t *)prsp,
-        REG_ID_RSP_CMD_SIZE);
-}
 void extract_REG_ID_RQT_CMD(const Msg_t *pmsg, REG_ID_RQT_CMD_t *prqt)
 {
     memcpy((void *)prqt, (void *)pmsg->data, REG_ID_RQT_CMD_SIZE);
@@ -53,56 +43,55 @@ void extract_REG_ID_RSP_CMD(const Msg_t *pmsg, REG_ID_RSP_CMD_t *prsp)
 {
     memcpy((void *)prsp, (void *)pmsg->data, REG_ID_RSP_CMD_SIZE);
 }
+void create_REG_ID_RSP_CMD(Connection_t *pconn, Msg_t *pmsgi, Msg_t *pmsgo)
+{
+    REG_ID_RSP_CMD_t rsp;
+    REG_ID_RQT_CMD_t rqt;
 
-//#define SERVER_REG_ID(pmsgi, pconn, prqt, prsp, di3, di2, di1, di0, triggeri, pmsgo, do3, do2, do1, do0, triggero) \
-{ \
-    create_REG_ID_RQT_CMD(pconn, prqt, pmsgo); \
-    SEND_MSG(pmsgo, do3, do2, do1, do0, triggero); \
-    RECEIVE_MSG(pmsgi, di3, di2, di1, di0, triggeri); \
-    if(is_right_addr(pconn, pmsgi)) \
-    { \
-        extract_REG_ID_RSP_CMD(pmsgi, prsp); \
-        pconn->available = YES; \
-        DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "SND:"); DEBUG_INT(prsp->id, 3); \
-    } \
+    extract_REG_ID_RQT_CMD(pmsgi, &rqt);
+    rsp.id = rqt.id;
+    
+    compose(pmsgo, 
+        pconn->from,
+        pconn->to,
+        pmsgi->msgid,
+        REG_ID_RSP,
+        (uint8_t *)&rsp,
+        REG_ID_RSP_CMD_SIZE);
 }
-#define SERVER_REG_ID(pmsgi, pconn, prqt, prsp, di3, di2, di1, di0, triggeri, pmsgo, do3, do2, do1, do0, triggero) \
-{ \
-    create_REG_ID_RQT_CMD(pconn, prqt, pmsgo); \
-    SEND_MSG(pmsgo, do3, do2, do1, do0, triggero); \
-    uint8_t btimeout; \
-    RECEIVE_MSG(pmsgi, di3, di2, di1, di0, triggeri); \
-    dum_msg(pmsgi); \
-}
+uint8_t send_REG_ID_RQT_CMD_and_wait(Connection_t *pconn, const REG_ID_RQT_CMD_t *prqt)
+{
+    Msg_t msg;
+    create_REG_ID_RQT_CMD(pconn, prqt, &msg);
+    send_msg(&msg);
+//    dump_msg(&msg);
+    __delay_ms(200);
+    
+    if((get_msg(pmsg_rcv) == YES) 
+        && (crc_verify(pmsg_rcv) == YES)
+        && (is_right_addr(pconn, pmsg_rcv) == YES)
+        && (pmsg_rcv->cmd == REG_ID_RSP) 
+        && (msg.msgid == pmsg_rcv->msgid))
+    {
+        pconn->available = YES;
+        dump_msg(pmsg_rcv);
 
-//    DEBUG_INT(btimeout, 3); \
-
-//#define CLIENT_REG_ID(pmsgi, pconn, di3, di2, di1, di0, triggeri, pmsgo, do3, do2, do1, do0, triggero) \
-{ \
-    RECEIVE_MSG(pmsgi, di3, di2, di1, di0, triggeri); \
-    if(is_right_addr(pconn, pmsg)) \
-    { \
-        REG_ID_RQT_CMD_t rqt; \
-        REG_ID_RSP_CMD_t rsp; \
-        extract_REG_ID_RQT_CMD(pmsgi, &rqt); \
-        rsp.id = rqt.id; \
-        DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, "RCV:"); DEBUG_INT(rqt.id, 3); \
-        create_REG_ID_RSP_CMD(pconn, &rsp, pmsgo); \
-        SEND_MSG(pmsgo, do3, do2, do1, do0, triggero); \
-    } \
+        return YES; 
+    }
+    return NO;
 }
-#define CLIENT_REG_ID(pmsgi, pconn, di3, di2, di1, di0, triggeri, pmsgo, do3, do2, do1, do0, triggero) \
-{ \
-    RECEIVE_MSG(pmsgi, di3, di2, di1, di0, triggeri); \
-    { \
-        REG_ID_RQT_CMD_t rqt; \
-        REG_ID_RSP_CMD_t rsp; \
-        extract_REG_ID_RQT_CMD(pmsgi, &rqt); \
-        rsp.id = rqt.id; \
-        create_REG_ID_RSP_CMD(pconn, &rsp, pmsgo); \
-        SEND_MSG(pmsgo, do3, do2, do1, do0, triggero); \
-        dum_msg(pmsgo); \
-    } \
+void handle_REG_ID_RQT_CMD(Msg_t *pmsgi)
+{
+    Connection_t conn;
+    Msg_t msgo;
+    conn.to = pmsgi->from;
+    conn.from = pmsgi->to;
+
+    create_REG_ID_RSP_CMD(&conn, pmsgi, &msgo);
+    conn.available = YES;
+    send_msg(&msgo);
+    dump_msg(&msgo);
+    
 }
 
 #ifdef	__cplusplus

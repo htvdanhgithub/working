@@ -9,6 +9,7 @@ io_define.h  \
 lcd_hd44780_pic16.h  \
 menu.h  \
 circle_buffer.h  \
+heart_beat.h  \
 myutils.h  \
 msg.h  \
 common.h  \

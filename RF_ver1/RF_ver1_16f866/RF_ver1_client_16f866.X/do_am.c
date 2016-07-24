@@ -8,7 +8,9 @@
 #include "debug.h"
 #include "connection.h"
 #include "reg_id.h"
+#include "heart_beat.h"
 #include "io_define.h"
+#include "common.h"
 
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
@@ -32,8 +34,6 @@
 
 E_operation_mode mode = NORMAL;
 E_operation_submode submode = NOTEDIT;
-
-Connection_t server_conn;
 
 void ConnInit()
 {
@@ -127,14 +127,27 @@ void main (void)
     dump_conn(&server_conn);
     while(1)
     {
-        if(KICK_OFF_TRIGGER == 0)
-        {
-                    
-        }
-            if(get_msg(pmsg_rcv) == YES)
-            {
-                dump_msg(pmsg_rcv);
-            }
+//        if(server_conn.available == NO)
+//        {
+//            REG_ID_RQT_CMD_t rqt;
+//            rqt.id = server_conn.from;
+//            send_REG_ID_RQT_CMD_and_wait(&server_conn, &rqt);
+//        }
+        handle_received_cmds();
+//        if(KICK_OFF_TRIGGER == 0)
+//        {
+//            while(server_conn.available == NO)
+//            {
+//                REG_ID_RQT_CMD_t rqt;
+//                rqt.id = server_conn.from;
+//                send_REG_ID_RQT_CMD_and_wait(&server_conn, &rqt);
+//                __delay_ms(200);
+//            }
+//        }
+//            if(get_msg(pmsg_rcv) == YES)
+//            {
+//                dump_msg(pmsg_rcv);
+//            }
 //        RECEIVE_HALF_BYTE(revc, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER);
 //        SEND_HALF_BYTE(revc, 1, DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
 

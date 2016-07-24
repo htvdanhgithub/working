@@ -74,9 +74,8 @@ void compose(Msg_t *pmsg,
 }
 void dump_msg(Msg_t *pmsg)
 {
-    char s[32];
-    sprintf(s, "M:%d,%d,%d,%d,%d,%d", pmsg->msglen, pmsg->crc, pmsg->from, pmsg->to, pmsg->msgid, pmsg->cmd);
-    DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, s);
+    sprintf(sdebug, "M:%d,%d,%d,%d,%d,%d", pmsg->msglen, pmsg->crc, pmsg->from, pmsg->to, pmsg->msgid, pmsg->cmd);
+    DEBUG_LINE_CLEAR; DEBUG_STRING_X(0, sdebug);
 }
 
 Msg_t msg_rcv;

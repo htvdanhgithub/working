@@ -29,22 +29,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S195 . msglen crc from to msgid cmd data ]
 "14 C:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h
 [v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
-"20 connection.h
-[s S216 `uc 1 `uc 1 `uc 1 `uc 1 ]
-[n S216 . from to msgid available ]
+"21 connection.h
+[s S216 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S216 . from to msgid heart_beat_count available ]
+"26 cmd.h
+[v _handle_HEART_BEAT_RQT_CMD `(v ~T0 @X0 0 ef1`*S195 ]
+"38
+[c E1937 0 1 2 3 4 .. ]
+[n E1937 E_cmd REG_ID_RQT REG_ID_RSP HEART_BEAT_RQT HEART_BEAT_RSP CMD_MAX  ]
 "20 reg_id.h
-[s S223 `uc 1 ]
-[n S223 . id ]
-"36
-[c E1936 0 1 2 .. ]
-[n E1936 E_cmd REG_ID_RQT REG_ID_RSP CMD_MAX  ]
+[s S230 `uc 1 ]
+[n S230 . id ]
 "24
-[s S224 `uc 1 ]
-[n S224 . id ]
-"33 do_am.c
+[s S231 `uc 1 ]
+[n S231 . id ]
+"21 heart_beat.h
+[s S236 `uc 1 ]
+[n S236 . id ]
+"25
+[s S237 `uc 1 ]
+[n S237 . id ]
+"35 do_am.c
 [c E1604 0 1 .. ]
 [n E1604 . MENU NORMAL  ]
-"34
+"36
 [c E1608 0 1 .. ]
 [n E1608 . EDIT NOTEDIT  ]
 "43 menu.h
@@ -2621,14 +2629,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _pmsg `*S195 ~T0 @X0 1 r1 ]
 "76
 [f ]
+[; ;msg.h: 77: sprintf(sdebug, "M:%d,%d,%d,%d,%d,%d", pmsg->msglen, pmsg->crc, pmsg->from, pmsg->to, pmsg->msgid, pmsg->cmd);
 "77
-[v _s `uc ~T0 @X0 -> 32 `i a ]
-[; ;msg.h: 77: char s[32];
-[; ;msg.h: 78: sprintf(s, "M:%d,%d,%d,%d,%d,%d", pmsg->msglen, pmsg->crc, pmsg->from, pmsg->to, pmsg->msgid, pmsg->cmd);
+[e ( _sprintf (1 , , , , , , (. , &U _sdebug :s 11C -> . *U _pmsg 0 `i . *U _pmsg 1 -> . *U _pmsg 2 `i -> . *U _pmsg 3 `i -> . *U _pmsg 4 `i -> . *U _pmsg 5 `i ]
+[; ;msg.h: 78: {{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(sdebug);};};
 "78
-[e ( _sprintf (1 , , , , , , (. , &U _s :s 11C -> . *U _pmsg 0 `i . *U _pmsg 1 -> . *U _pmsg 2 `i -> . *U _pmsg 3 `i -> . *U _pmsg 4 `i -> . *U _pmsg 5 `i ]
-[; ;msg.h: 79: {{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(s);};};
-"79
 {
 {
 [e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
@@ -2652,210 +2657,214 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 {
 [e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-[e ( _LCDWriteString (1 -> &U _s `*Cuc ]
+[e ( _LCDWriteString (1 -> &U _sdebug `*Cuc ]
 }
 }
-[; ;msg.h: 80: }
-"80
+[; ;msg.h: 79: }
+"79
 [e :UE 204 ]
 }
-"82
+"81
 [v _msg_rcv `S195 ~T0 @X0 1 e ]
-[; ;msg.h: 82: Msg_t msg_rcv;
-"83
+[; ;msg.h: 81: Msg_t msg_rcv;
+"82
 [v _pmsg_rcv `*S195 ~T0 @X0 1 e ]
 [i _pmsg_rcv
 &U _msg_rcv
 ]
-[; ;msg.h: 83: Msg_t *pmsg_rcv = &msg_rcv;
-"84
+[; ;msg.h: 82: Msg_t *pmsg_rcv = &msg_rcv;
+"83
 [v _pstr_rcv `*uc ~T0 @X0 1 e ]
 [i _pstr_rcv
 -> &U _msg_rcv `*uc
 ]
-[; ;msg.h: 84: uint8_t *pstr_rcv = (uint8_t *)&msg_rcv;
-"85
+[; ;msg.h: 83: uint8_t *pstr_rcv = (uint8_t *)&msg_rcv;
+"84
 [v _low_rcv `uc ~T0 @X0 1 e ]
 [i _low_rcv
 -> -> 1 `i `uc
 ]
-[; ;msg.h: 85: uint8_t low_rcv = 1;
-"86
+[; ;msg.h: 84: uint8_t low_rcv = 1;
+"85
 [v _count_rcv `uc ~T0 @X0 1 e ]
 [i _count_rcv
 -> -> 0 `i `uc
 ]
-[; ;msg.h: 86: uint8_t count_rcv = 0;;
-"88
+[; ;msg.h: 85: uint8_t count_rcv = 0;;
+"87
 [v _reveive_finished `(uc ~T0 @X0 1 ef ]
-"89
+"88
 {
-[; ;msg.h: 88: uint8_t reveive_finished()
-[; ;msg.h: 89: {
+[; ;msg.h: 87: uint8_t reveive_finished()
+[; ;msg.h: 88: {
 [e :U _reveive_finished ]
 [f ]
-[; ;msg.h: 90: return ((count_rcv > 0) && (count_rcv == pstr_rcv[0]));
-"90
+[; ;msg.h: 89: return ((count_rcv > 0) && (count_rcv == pstr_rcv[0]));
+"89
 [e ) -> -> && > -> _count_rcv `i -> 0 `i == -> _count_rcv `i -> *U + _pstr_rcv * -> -> 0 `i `x -> -> # *U _pstr_rcv `i `x `i `i `uc ]
 [e $UE 208  ]
-[; ;msg.h: 91: }
-"91
+[; ;msg.h: 90: }
+"90
 [e :UE 208 ]
 }
-"92
+"91
 [v _reveive_reset `(v ~T0 @X0 1 ef ]
-"93
+"92
 {
-[; ;msg.h: 92: void reveive_reset()
-[; ;msg.h: 93: {
+[; ;msg.h: 91: void reveive_reset()
+[; ;msg.h: 92: {
 [e :U _reveive_reset ]
 [f ]
-[; ;msg.h: 94: low_rcv = 1;
-"94
+[; ;msg.h: 93: low_rcv = 1;
+"93
 [e = _low_rcv -> -> 1 `i `uc ]
-[; ;msg.h: 95: count_rcv = 0;
-"95
+[; ;msg.h: 94: count_rcv = 0;
+"94
 [e = _count_rcv -> -> 0 `i `uc ]
-[; ;msg.h: 96: }
-"96
+[; ;msg.h: 95: }
+"95
 [e :UE 209 ]
 }
-"103
+"102
 [v _get_msg `(uc ~T0 @X0 1 ef1`*S195 ]
-"104
-{
-[; ;msg.h: 103: uint8_t get_msg(Msg_t* pmsg)
-[; ;msg.h: 104: {
-[e :U _get_msg ]
 "103
+{
+[; ;msg.h: 102: uint8_t get_msg(Msg_t* pmsg)
+[; ;msg.h: 103: {
+[e :U _get_msg ]
+"102
 [v _pmsg `*S195 ~T0 @X0 1 r1 ]
-"104
+"103
 [f ]
-"105
+"104
 [v _pstr `*uc ~T0 @X0 1 a ]
-[; ;msg.h: 105: uint8_t *pstr = (uint8_t *)pmsg;
+[; ;msg.h: 104: uint8_t *pstr = (uint8_t *)pmsg;
 [e = _pstr -> _pmsg `*uc ]
-"106
+"105
 [v _start_index `uc ~T0 @X0 1 a ]
 [v _end_index `uc ~T0 @X0 1 a ]
-"107
+"106
 [v _i `uc ~T0 @X0 1 a ]
-[; ;msg.h: 106: uint8_t start_index, end_index;
-[; ;msg.h: 107: uint8_t i = 0;
+[; ;msg.h: 105: uint8_t start_index, end_index;
+[; ;msg.h: 106: uint8_t i = 0;
 [e = _i -> -> 0 `i `uc ]
-"108
+"107
 [v _temp `uc ~T0 @X0 1 a ]
-[; ;msg.h: 108: uint8_t temp;
-[; ;msg.h: 109: if(get_msg_index(&start_index, &end_index) == 1)
-"109
+[; ;msg.h: 107: uint8_t temp;
+[; ;msg.h: 108: if(get_msg_index(&start_index, &end_index) == 1)
+"108
 [e $ ! == -> ( _get_msg_index (2 , &U _start_index &U _end_index `i -> 1 `i 211  ]
-[; ;msg.h: 110: {
+[; ;msg.h: 109: {
+"109
+{
+[; ;msg.h: 110: temp = start_index;
 "110
-{
-[; ;msg.h: 111: temp = start_index;
-"111
 [e = _temp _start_index ]
-[; ;msg.h: 112: while(1)
-"112
+[; ;msg.h: 111: while(1)
+"111
 [e :U 213 ]
-[; ;msg.h: 113: {
+[; ;msg.h: 112: {
+"112
+{
+[; ;msg.h: 113: pstr[i++] = buffer_rcv[temp];
 "113
-{
-[; ;msg.h: 114: pstr[i++] = buffer_rcv[temp];
-"114
 [e = *U + _pstr * -> ++ _i -> -> 1 `i `uc `ux -> -> # *U _pstr `ui `ux *U + &U _buffer_rcv * -> _temp `ux -> -> # *U &U _buffer_rcv `ui `ux ]
-[; ;msg.h: 115: buffer_rcv[temp] = 0;
-"115
+[; ;msg.h: 114: buffer_rcv[temp] = 0;
+"114
 [e = *U + &U _buffer_rcv * -> _temp `ux -> -> # *U &U _buffer_rcv `ui `ux -> -> 0 `i `uc ]
-[; ;msg.h: 116: if(get_distance(temp, end_index) == 0)
-"116
+[; ;msg.h: 115: if(get_distance(temp, end_index) == 0)
+"115
 [e $ ! == -> ( _get_distance (2 , _temp _end_index `i -> 0 `i 215  ]
-[; ;msg.h: 117: {
-"117
+[; ;msg.h: 116: {
+"116
 {
-[; ;msg.h: 118: break;
-"118
+[; ;msg.h: 117: break;
+"117
 [e $U 214  ]
-"119
+"118
 }
 [e :U 215 ]
-[; ;msg.h: 119: }
-[; ;msg.h: 120: temp = get_next_index(temp);
-"120
+[; ;msg.h: 118: }
+[; ;msg.h: 119: temp = get_next_index(temp);
+"119
 [e = _temp ( _get_next_index (1 _temp ]
-"121
+"120
 }
 [e :U 212 ]
-"112
+"111
 [e $U 213  ]
 [e :U 214 ]
-[; ;msg.h: 121: }
-[; ;msg.h: 123: return 1;
-"123
+[; ;msg.h: 120: }
+[; ;msg.h: 122: return 1;
+"122
 [e ) -> -> 1 `i `uc ]
 [e $UE 210  ]
-"124
+"123
 }
 [e :U 211 ]
-[; ;msg.h: 124: }
-[; ;msg.h: 126: return 0;
-"126
+[; ;msg.h: 123: }
+[; ;msg.h: 125: return 0;
+"125
 [e ) -> -> 0 `i `uc ]
 [e $UE 210  ]
-[; ;msg.h: 127: }
-"127
+[; ;msg.h: 126: }
+"126
 [e :UE 210 ]
 }
-[; ;connection.h: 20: typedef struct {
-[; ;connection.h: 21: uint8_t from;
-[; ;connection.h: 22: uint8_t to;
-[; ;connection.h: 23: uint8_t msgid;
-[; ;connection.h: 24: uint8_t available;
-[; ;connection.h: 25: } Connection_t;
-"27 connection.h
+[; ;connection.h: 21: typedef struct {
+[; ;connection.h: 22: uint8_t from;
+[; ;connection.h: 23: uint8_t to;
+[; ;connection.h: 24: uint8_t msgid;
+[; ;connection.h: 25: uint8_t heart_beat_count;
+[; ;connection.h: 26: uint8_t available;
+[; ;connection.h: 27: } Connection_t;
+"34 connection.h
+[v _server_conn `S216 ~T0 @X0 1 e ]
+[; ;connection.h: 34: Connection_t server_conn;
+"37
 [v _create_msg_header `(v ~T0 @X0 1 ef2`*S216`*S195 ]
-"28
+"38
 {
-[; ;connection.h: 27: void create_msg_header(Connection_t *pconn, Msg_t *pmsg)
-[; ;connection.h: 28: {
+[; ;connection.h: 37: void create_msg_header(Connection_t *pconn, Msg_t *pmsg)
+[; ;connection.h: 38: {
 [e :U _create_msg_header ]
-"27
+"37
 [v _pconn `*S216 ~T0 @X0 1 r1 ]
 [v _pmsg `*S195 ~T0 @X0 1 r2 ]
-"28
+"38
 [f ]
-[; ;connection.h: 29: pmsg->from = pconn->from;
-"29
+[; ;connection.h: 39: pmsg->from = pconn->from;
+"39
 [e = . *U _pmsg 2 . *U _pconn 0 ]
-[; ;connection.h: 30: pmsg->to = pconn->to;
-"30
+[; ;connection.h: 40: pmsg->to = pconn->to;
+"40
 [e = . *U _pmsg 3 . *U _pconn 1 ]
-[; ;connection.h: 31: pmsg->msgid = pconn->msgid++;
-"31
+[; ;connection.h: 41: pmsg->msgid = pconn->msgid++;
+"41
 [e = . *U _pmsg 4 ++ . *U _pconn 2 -> -> 1 `i `uc ]
-[; ;connection.h: 32: }
-"32
+[; ;connection.h: 42: }
+"42
 [e :UE 217 ]
 }
-"33
+"43
 [v _dump_conn `(v ~T0 @X0 1 ef1`*S216 ]
-"34
+"44
 {
-[; ;connection.h: 33: void dump_conn(Connection_t *pconn)
-[; ;connection.h: 34: {
+[; ;connection.h: 43: void dump_conn(Connection_t *pconn)
+[; ;connection.h: 44: {
 [e :U _dump_conn ]
-"33
+"43
 [v _pconn `*S216 ~T0 @X0 1 r1 ]
-"34
+"44
 [f ]
-"35
+"45
 [v _s `uc ~T0 @X0 -> 32 `i a ]
-[; ;connection.h: 35: char s[32];
-[; ;connection.h: 36: sprintf(s, "C:%d,%d,%d,%d", pconn->from, pconn->to, pconn->msgid, pconn->available);
-"36
-[e ( _sprintf (1 , , , , (. , &U _s :s 13C -> . *U _pconn 0 `i -> . *U _pconn 1 `i -> . *U _pconn 2 `i -> . *U _pconn 3 `i ]
-[; ;connection.h: 37: {{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(s);};};
-"37
+[; ;connection.h: 45: char s[32];
+[; ;connection.h: 46: sprintf(s, "C:%d,%d,%d,%d", pconn->from, pconn->to, pconn->msgid, pconn->available);
+"46
+[e ( _sprintf (1 , , , , (. , &U _s :s 13C -> . *U _pconn 0 `i -> . *U _pconn 1 `i -> . *U _pconn 2 `i -> . *U _pconn 4 `i ]
+[; ;connection.h: 47: {{ LCDGotoXY(0,1); int8_t count = LCDWriteString(""); for(int8_t i = count + 0; i < 16; i++) { (LCDByte(' ',1)); } };}; {{ LCDGotoXY(0,1); LCDWriteString(s);};};
+"47
 {
 {
 [e ( _LCDGotoXY (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
@@ -2882,35 +2891,121 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _LCDWriteString (1 -> &U _s `*Cuc ]
 }
 }
-[; ;connection.h: 38: }
-"38
+[; ;connection.h: 48: }
+"48
 [e :UE 218 ]
 }
 [; ;cmd.h: 16: typedef enum E_cmd
 [; ;cmd.h: 17: {
 [; ;cmd.h: 18: REG_ID_RQT,
 [; ;cmd.h: 19: REG_ID_RSP,
-[; ;cmd.h: 20: CMD_MAX
-[; ;cmd.h: 21: };
-"23 cmd.h
+[; ;cmd.h: 20: HEART_BEAT_RQT,
+[; ;cmd.h: 21: HEART_BEAT_RSP,
+[; ;cmd.h: 22: CMD_MAX
+[; ;cmd.h: 23: };
+[; ;cmd.h: 25: extern void handle_REG_ID_RQT_CMD(Msg_t *pmsgi);
+[; ;cmd.h: 26: extern void handle_HEART_BEAT_RQT_CMD(Msg_t *pmsgi);
+"28 cmd.h
 [v _is_right_addr `(uc ~T0 @X0 1 ef2`*S216`*S195 ]
-"24
+"29
 {
-[; ;cmd.h: 23: uint8_t is_right_addr(Connection_t *pconn, Msg_t *pmsg)
-[; ;cmd.h: 24: {
+[; ;cmd.h: 28: uint8_t is_right_addr(Connection_t *pconn, Msg_t *pmsg)
+[; ;cmd.h: 29: {
 [e :U _is_right_addr ]
-"23
+"28
 [v _pconn `*S216 ~T0 @X0 1 r1 ]
 [v _pmsg `*S195 ~T0 @X0 1 r2 ]
-"24
+"29
 [f ]
-[; ;cmd.h: 26: return ((pconn->from == pmsg->to) && (pconn->to == pmsg->from));
-"26
+[; ;cmd.h: 31: return ((pconn->from == pmsg->to) && (pconn->to == pmsg->from));
+"31
 [e ) -> -> && == -> . *U _pconn 0 `i -> . *U _pmsg 3 `i == -> . *U _pconn 1 `i -> . *U _pmsg 2 `i `i `uc ]
 [e $UE 222  ]
-[; ;cmd.h: 27: }
-"27
+[; ;cmd.h: 32: }
+"32
 [e :UE 222 ]
+}
+"34
+[v _handle_received_cmds `(v ~T0 @X0 1 ef ]
+"35
+{
+[; ;cmd.h: 34: void handle_received_cmds()
+[; ;cmd.h: 35: {
+[e :U _handle_received_cmds ]
+[f ]
+[; ;cmd.h: 36: if(get_msg(pmsg_rcv) == 1)
+"36
+[e $ ! == -> ( _get_msg (1 _pmsg_rcv `i -> 1 `i 224  ]
+[; ;cmd.h: 37: {
+"37
+{
+[; ;cmd.h: 38: switch(pmsg_rcv->cmd)
+"38
+[e $U 226  ]
+[; ;cmd.h: 39: {
+"39
+{
+[; ;cmd.h: 46: case HEART_BEAT_RQT:
+"46
+[e :U 227 ]
+[; ;cmd.h: 47: handle_HEART_BEAT_RQT_CMD(pmsg_rcv);
+"47
+[e ( _handle_HEART_BEAT_RQT_CMD (1 _pmsg_rcv ]
+[; ;cmd.h: 48: break;
+"48
+[e $U 225  ]
+[; ;cmd.h: 50: default:
+"50
+[e :U 228 ]
+[; ;cmd.h: 51: break;
+"51
+[e $U 225  ]
+"52
+}
+[; ;cmd.h: 52: }
+[e $U 225  ]
+"38
+[e :U 226 ]
+[e [\ . *U _pmsg_rcv 5 , $ -> . `E1937 2 `uc 227
+ 228 ]
+"52
+[e :U 225 ]
+"55
+}
+[e :U 224 ]
+[; ;cmd.h: 55: }
+[; ;cmd.h: 56: }
+"56
+[e :UE 223 ]
+}
+"57
+[v _create_cmd `(v ~T0 @X0 1 ef6`*S216`uc`uc`*Cv`uc`*S195 ]
+"58
+{
+[; ;cmd.h: 57: void create_cmd(Connection_t *pconn, uint8_t cmd_id, uint8_t msg_id, const void *cmd_data, uint8_t cmd_data_len, Msg_t *pmsg)
+[; ;cmd.h: 58: {
+[e :U _create_cmd ]
+"57
+[v _pconn `*S216 ~T0 @X0 1 r1 ]
+[v _cmd_id `uc ~T0 @X0 1 r2 ]
+[v _msg_id `uc ~T0 @X0 1 r3 ]
+[v _cmd_data `*Cv ~T0 @X0 1 r4 ]
+[v _cmd_data_len `uc ~T0 @X0 1 r5 ]
+[v _pmsg `*S195 ~T0 @X0 1 r6 ]
+"58
+[f ]
+[; ;cmd.h: 59: compose(pmsg,
+[; ;cmd.h: 60: pconn->from,
+[; ;cmd.h: 61: pconn->to,
+[; ;cmd.h: 62: msg_id,
+[; ;cmd.h: 63: cmd_id,
+[; ;cmd.h: 64: (uint8_t *)cmd_data,
+[; ;cmd.h: 65: cmd_data_len);
+"65
+[e ( _compose (4 , , , , , , _pmsg . *U _pconn 0 . *U _pconn 1 _msg_id _cmd_id -> _cmd_data `*uc _cmd_data_len ]
+[; ;cmd.h: 66: }
+"66
+[e :UE 229 ]
 }
 [; ;reg_id.h: 20: typedef struct {
 [; ;reg_id.h: 21: uint8_t id;
@@ -2918,135 +3013,224 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;reg_id.h: 24: typedef struct {
 [; ;reg_id.h: 25: uint8_t id;
 [; ;reg_id.h: 26: } REG_ID_RSP_CMD_t;
-"28 reg_id.h
-[v _create_REG_ID_RQT_CMD `(v ~T0 @X0 1 ef3`*S216`*CS223`*S195 ]
-"29
+"29 reg_id.h
+[v _create_REG_ID_RQT_CMD `(v ~T0 @X0 1 ef3`*S216`*CS230`*S195 ]
+"30
 {
-[; ;reg_id.h: 28: void create_REG_ID_RQT_CMD(Connection_t *pconn, const REG_ID_RQT_CMD_t *prqt, Msg_t *pmsg)
-[; ;reg_id.h: 29: {
+[; ;reg_id.h: 29: void create_REG_ID_RQT_CMD(Connection_t *pconn, const REG_ID_RQT_CMD_t *prqt, Msg_t *pmsg)
+[; ;reg_id.h: 30: {
 [e :U _create_REG_ID_RQT_CMD ]
-"28
-[v _pconn `*S216 ~T0 @X0 1 r1 ]
-[v _prqt `*CS223 ~T0 @X0 1 r2 ]
-[v _pmsg `*S195 ~T0 @X0 1 r3 ]
 "29
-[f ]
-[; ;reg_id.h: 30: compose(pmsg,
-[; ;reg_id.h: 31: pconn->from,
-[; ;reg_id.h: 32: pconn->to,
-[; ;reg_id.h: 33: pconn->msgid++,
-[; ;reg_id.h: 34: REG_ID_RQT,
-[; ;reg_id.h: 35: (uint8_t *)prqt,
-[; ;reg_id.h: 36: 1);
-"36
-[e ( _compose (4 , , , , , , _pmsg . *U _pconn 0 . *U _pconn 1 ++ . *U _pconn 2 -> -> 1 `i `uc -> . `E1936 0 `uc -> _prqt `*uc -> -> 1 `i `uc ]
-[; ;reg_id.h: 37: }
-"37
-[e :UE 225 ]
-}
-"38
-[v _create_REG_ID_RSP_CMD `(v ~T0 @X0 1 ef3`*S216`*CS224`*S195 ]
-"39
-{
-[; ;reg_id.h: 38: void create_REG_ID_RSP_CMD(Connection_t *pconn, const REG_ID_RSP_CMD_t *prsp, Msg_t *pmsg)
-[; ;reg_id.h: 39: {
-[e :U _create_REG_ID_RSP_CMD ]
-"38
 [v _pconn `*S216 ~T0 @X0 1 r1 ]
-[v _prsp `*CS224 ~T0 @X0 1 r2 ]
+[v _prqt `*CS230 ~T0 @X0 1 r2 ]
 [v _pmsg `*S195 ~T0 @X0 1 r3 ]
-"39
+"30
 [f ]
-[; ;reg_id.h: 40: compose(pmsg,
-[; ;reg_id.h: 41: pconn->from,
-[; ;reg_id.h: 42: pconn->to,
-[; ;reg_id.h: 43: pconn->msgid++,
-[; ;reg_id.h: 44: REG_ID_RSP,
-[; ;reg_id.h: 45: (uint8_t *)prsp,
-[; ;reg_id.h: 46: 1);
-"46
-[e ( _compose (4 , , , , , , _pmsg . *U _pconn 0 . *U _pconn 1 ++ . *U _pconn 2 -> -> 1 `i `uc -> . `E1936 1 `uc -> _prsp `*uc -> -> 1 `i `uc ]
-[; ;reg_id.h: 47: }
-"47
-[e :UE 226 ]
+[; ;reg_id.h: 31: create_cmd(pconn, REG_ID_RQT, pconn->msgid++, prqt, 1, pmsg);
+"31
+[e ( _create_cmd (4 , , , , , _pconn -> . `E1937 0 `uc ++ . *U _pconn 2 -> -> 1 `i `uc -> _prqt `*Cv -> -> 1 `i `uc _pmsg ]
+[; ;reg_id.h: 32: }
+"32
+[e :UE 232 ]
 }
-"48
-[v _extract_REG_ID_RQT_CMD `(v ~T0 @X0 1 ef2`*CS195`*S223 ]
-"49
-{
-[; ;reg_id.h: 48: void extract_REG_ID_RQT_CMD(const Msg_t *pmsg, REG_ID_RQT_CMD_t *prqt)
-[; ;reg_id.h: 49: {
-[e :U _extract_REG_ID_RQT_CMD ]
-"48
-[v _pmsg `*CS195 ~T0 @X0 1 r1 ]
-[v _prqt `*S223 ~T0 @X0 1 r2 ]
-"49
-[f ]
-[; ;reg_id.h: 50: memcpy((void *)prqt, (void *)pmsg->data, 1);
-"50
-[e ( _memcpy (3 , , -> _prqt `*v -> -> &U . *U _pmsg 6 `*v `*Cv -> -> 1 `i `ui ]
-[; ;reg_id.h: 51: }
-"51
-[e :UE 227 ]
-}
-"52
-[v _extract_REG_ID_RSP_CMD `(v ~T0 @X0 1 ef2`*CS195`*S224 ]
-"53
-{
-[; ;reg_id.h: 52: void extract_REG_ID_RSP_CMD(const Msg_t *pmsg, REG_ID_RSP_CMD_t *prsp)
-[; ;reg_id.h: 53: {
-[e :U _extract_REG_ID_RSP_CMD ]
-"52
-[v _pmsg `*CS195 ~T0 @X0 1 r1 ]
-[v _prsp `*S224 ~T0 @X0 1 r2 ]
-"53
-[f ]
-[; ;reg_id.h: 54: memcpy((void *)prsp, (void *)pmsg->data, 1);
-"54
-[e ( _memcpy (3 , , -> _prsp `*v -> -> &U . *U _pmsg 6 `*v `*Cv -> -> 1 `i `ui ]
-[; ;reg_id.h: 55: }
-"55
-[e :UE 228 ]
-}
-"14 do_am.c
-[p x FOSC=INTRC_NOCLKOUT ]
-"15
-[p x WDTE=ON ]
-"16
-[p x PWRTE=OFF ]
-"17
-[p x MCLRE=ON ]
-"18
-[p x CP=ON ]
-"19
-[p x CPD=ON ]
-"20
-[p x BOREN=ON ]
-"21
-[p x IESO=ON ]
-"22
-[p x FCMEN=ON ]
-"23
-[p x LVP=ON ]
-"26
-[p x BOR4V=BOR21V ]
-"27
-[p x WRT=OFF ]
 "33
+[v _extract_REG_ID_RSP_CMD `(v ~T0 @X0 1 ef2`*CS195`*S231 ]
+"34
+{
+[; ;reg_id.h: 33: void extract_REG_ID_RSP_CMD(const Msg_t *pmsg, REG_ID_RSP_CMD_t *prsp)
+[; ;reg_id.h: 34: {
+[e :U _extract_REG_ID_RSP_CMD ]
+"33
+[v _pmsg `*CS195 ~T0 @X0 1 r1 ]
+[v _prsp `*S231 ~T0 @X0 1 r2 ]
+"34
+[f ]
+[; ;reg_id.h: 35: memcpy((void *)prsp, (void *)pmsg->data, 1);
+"35
+[e ( _memcpy (3 , , -> _prsp `*v -> -> &U . *U _pmsg 6 `*v `*Cv -> -> 1 `i `ui ]
+[; ;reg_id.h: 36: }
+"36
+[e :UE 233 ]
+}
+"37
+[v _send_REG_ID_RQT_CMD_and_wait `(uc ~T0 @X0 1 ef2`*S216`*CS230 ]
+"38
+{
+[; ;reg_id.h: 37: uint8_t send_REG_ID_RQT_CMD_and_wait(Connection_t *pconn, const REG_ID_RQT_CMD_t *prqt)
+[; ;reg_id.h: 38: {
+[e :U _send_REG_ID_RQT_CMD_and_wait ]
+"37
+[v _pconn `*S216 ~T0 @X0 1 r1 ]
+[v _prqt `*CS230 ~T0 @X0 1 r2 ]
+"38
+[f ]
+"39
+[v _msg `S195 ~T0 @X0 1 a ]
+[; ;reg_id.h: 39: Msg_t msg;
+[; ;reg_id.h: 40: create_REG_ID_RQT_CMD(pconn, prqt, &msg);
+"40
+[e ( _create_REG_ID_RQT_CMD (3 , , _pconn _prqt &U _msg ]
+[; ;reg_id.h: 41: send_msg(&msg);
+"41
+[e ( _send_msg (1 &U _msg ]
+[; ;reg_id.h: 43: _delay((unsigned long)((200)*(20000000/4000.0)));
+"43
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
+[; ;reg_id.h: 45: if((get_msg(pmsg_rcv) == 1)
+[; ;reg_id.h: 46: && (crc_verify(pmsg_rcv) == 1)
+[; ;reg_id.h: 47: && (is_right_addr(pconn, pmsg_rcv) == 1)
+[; ;reg_id.h: 48: && (pmsg_rcv->cmd == REG_ID_RSP)
+[; ;reg_id.h: 49: && (msg.msgid == pmsg_rcv->msgid))
+"49
+[e $ ! && && && && == -> ( _get_msg (1 _pmsg_rcv `i -> 1 `i == -> ( _crc_verify (1 _pmsg_rcv `i -> 1 `i == -> ( _is_right_addr (2 , _pconn _pmsg_rcv `i -> 1 `i == -> . *U _pmsg_rcv 5 `i -> . `E1937 1 `i == -> . _msg 4 `i -> . *U _pmsg_rcv 4 `i 235  ]
+[; ;reg_id.h: 50: {
+"50
+{
+[; ;reg_id.h: 51: pconn->available = 1;
+"51
+[e = . *U _pconn 4 -> -> 1 `i `uc ]
+[; ;reg_id.h: 52: dump_msg(pmsg_rcv);
+"52
+[e ( _dump_msg (1 _pmsg_rcv ]
+[; ;reg_id.h: 54: return 1;
+"54
+[e ) -> -> 1 `i `uc ]
+[e $UE 234  ]
+"55
+}
+[e :U 235 ]
+[; ;reg_id.h: 55: }
+[; ;reg_id.h: 56: return 0;
+"56
+[e ) -> -> 0 `i `uc ]
+[e $UE 234  ]
+[; ;reg_id.h: 57: }
+"57
+[e :UE 234 ]
+}
+[; ;heart_beat.h: 21: typedef struct {
+[; ;heart_beat.h: 22: uint8_t id;
+[; ;heart_beat.h: 23: } HEART_BEAT_RQT_CMD_t;
+[; ;heart_beat.h: 25: typedef struct {
+[; ;heart_beat.h: 26: uint8_t id;
+[; ;heart_beat.h: 27: } HEART_BEAT_RSP_CMD_t;
+"68 heart_beat.h
+[v _extract_HEART_BEAT_RQT_CMD `(v ~T0 @X0 1 ef2`*CS195`*S236 ]
+"69
+{
+[; ;heart_beat.h: 68: void extract_HEART_BEAT_RQT_CMD(const Msg_t *pmsg, HEART_BEAT_RQT_CMD_t *prqt)
+[; ;heart_beat.h: 69: {
+[e :U _extract_HEART_BEAT_RQT_CMD ]
+"68
+[v _pmsg `*CS195 ~T0 @X0 1 r1 ]
+[v _prqt `*S236 ~T0 @X0 1 r2 ]
+"69
+[f ]
+[; ;heart_beat.h: 70: memcpy((void *)prqt, (void *)pmsg->data, 1);
+"70
+[e ( _memcpy (3 , , -> _prqt `*v -> -> &U . *U _pmsg 6 `*v `*Cv -> -> 1 `i `ui ]
+[; ;heart_beat.h: 71: }
+"71
+[e :UE 238 ]
+}
+"73
+[v _create_HEART_BEAT_RSP_CMD `(v ~T0 @X0 1 ef3`*S216`*S195`*S195 ]
+"74
+{
+[; ;heart_beat.h: 73: void create_HEART_BEAT_RSP_CMD(Connection_t *pconn, Msg_t *pmsgi, Msg_t *pmsgo)
+[; ;heart_beat.h: 74: {
+[e :U _create_HEART_BEAT_RSP_CMD ]
+"73
+[v _pconn `*S216 ~T0 @X0 1 r1 ]
+[v _pmsgi `*S195 ~T0 @X0 1 r2 ]
+[v _pmsgo `*S195 ~T0 @X0 1 r3 ]
+"74
+[f ]
+"75
+[v _rsp `S237 ~T0 @X0 1 a ]
+"76
+[v _rqt `S236 ~T0 @X0 1 a ]
+[; ;heart_beat.h: 75: HEART_BEAT_RSP_CMD_t rsp;
+[; ;heart_beat.h: 76: HEART_BEAT_RQT_CMD_t rqt;
+[; ;heart_beat.h: 78: extract_HEART_BEAT_RQT_CMD(pmsgi, &rqt);
+"78
+[e ( _extract_HEART_BEAT_RQT_CMD (2 , -> _pmsgi `*CS195 &U _rqt ]
+[; ;heart_beat.h: 79: rsp.id = rqt.id;
+"79
+[e = . _rsp 0 . _rqt 0 ]
+[; ;heart_beat.h: 81: create_cmd(pconn, HEART_BEAT_RSP, pmsgi->msgid, &rsp, 1, pmsgo);
+"81
+[e ( _create_cmd (4 , , , , , _pconn -> . `E1937 3 `uc . *U _pmsgi 4 -> &U _rsp `*Cv -> -> 1 `i `uc _pmsgo ]
+[; ;heart_beat.h: 83: }
+"83
+[e :UE 239 ]
+}
+"84
+[v _handle_HEART_BEAT_RQT_CMD `(v ~T0 @X0 1 ef1`*S195 ]
+"85
+{
+[; ;heart_beat.h: 84: void handle_HEART_BEAT_RQT_CMD(Msg_t *pmsgi)
+[; ;heart_beat.h: 85: {
+[e :U _handle_HEART_BEAT_RQT_CMD ]
+"84
+[v _pmsgi `*S195 ~T0 @X0 1 r1 ]
+"85
+[f ]
+"86
+[v _msgo `S195 ~T0 @X0 1 a ]
+[; ;heart_beat.h: 86: Msg_t msgo;
+[; ;heart_beat.h: 87: server_conn.available = 1;
+"87
+[e = . _server_conn 4 -> -> 1 `i `uc ]
+[; ;heart_beat.h: 88: create_HEART_BEAT_RSP_CMD(&server_conn, pmsgi, &msgo);
+"88
+[e ( _create_HEART_BEAT_RSP_CMD (3 , , &U _server_conn _pmsgi &U _msgo ]
+[; ;heart_beat.h: 89: send_msg(&msgo);
+"89
+[e ( _send_msg (1 &U _msgo ]
+[; ;heart_beat.h: 90: dump_msg(&msgo);
+"90
+[e ( _dump_msg (1 &U _msgo ]
+[; ;heart_beat.h: 91: }
+"91
+[e :UE 240 ]
+}
+"16 do_am.c
+[p x FOSC=INTRC_NOCLKOUT ]
+"17
+[p x WDTE=ON ]
+"18
+[p x PWRTE=OFF ]
+"19
+[p x MCLRE=ON ]
+"20
+[p x CP=ON ]
+"21
+[p x CPD=ON ]
+"22
+[p x BOREN=ON ]
+"23
+[p x IESO=ON ]
+"24
+[p x FCMEN=ON ]
+"25
+[p x LVP=ON ]
+"28
+[p x BOR4V=BOR21V ]
+"29
+[p x WRT=OFF ]
+"35
 [v _mode `E1604 ~T0 @X0 1 e ]
 [i _mode
 . `E1604 1
 ]
-[; ;do_am.c: 33: E_operation_mode mode = NORMAL;
-"34
+[; ;do_am.c: 35: E_operation_mode mode = NORMAL;
+"36
 [v _submode `E1608 ~T0 @X0 1 e ]
 [i _submode
 . `E1608 1
 ]
-[; ;do_am.c: 34: E_operation_submode submode = NOTEDIT;
-"36
-[v _server_conn `S216 ~T0 @X0 1 e ]
-[; ;do_am.c: 36: Connection_t server_conn;
+[; ;do_am.c: 36: E_operation_submode submode = NOTEDIT;
 "38
 [v _ConnInit `(v ~T0 @X0 1 ef ]
 "39
@@ -3066,10 +3250,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . _server_conn 2 -> -> 0 `i `uc ]
 [; ;do_am.c: 43: server_conn.available = 0;
 "43
-[e = . _server_conn 3 -> -> 0 `i `uc ]
+[e = . _server_conn 4 -> -> 0 `i `uc ]
 [; ;do_am.c: 44: }
 "44
-[e :UE 229 ]
+[e :UE 241 ]
 }
 "46
 [v _IOInit `(v ~T0 @X0 1 ef ]
@@ -3171,7 +3355,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _TRISBbits 0 7 -> -> 1 `i `uc ]
 [; ;do_am.c: 95: }
 "95
-[e :UE 230 ]
+[e :UE 242 ]
 }
 "96
 [v _count `i ~T0 @X0 1 e ]
@@ -3179,9 +3363,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `i
 ]
 [; ;do_am.c: 96: int count = 0;
-[v F1978 `(v ~T0 @X0 1 tf ]
+[v F2006 `(v ~T0 @X0 1 tf ]
 "97
-[v _ISR `IF1978 ~T0 @X0 1 e ]
+[v _ISR `IF2006 ~T0 @X0 1 e ]
 "98
 {
 [; ;do_am.c: 97: void interrupt ISR()
@@ -3190,7 +3374,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;do_am.c: 99: if(INTCONbits.INTF == 1)
 "99
-[e $ ! == -> . . _INTCONbits 0 1 `i -> 1 `i 232  ]
+[e $ ! == -> . . _INTCONbits 0 1 `i -> 1 `i 244  ]
 [; ;do_am.c: 100: {
 "100
 {
@@ -3214,11 +3398,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 0 1 -> -> 0 `i `uc ]
 "103
 }
-[e :U 232 ]
+[e :U 244 ]
 [; ;do_am.c: 103: }
 [; ;do_am.c: 104: }
 "104
-[e :UE 231 ]
+[e :UE 243 ]
 }
 "105
 [v _main `(v ~T0 @X0 1 ef ]
@@ -3261,39 +3445,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _dump_conn (1 &U _server_conn ]
 [; ;do_am.c: 128: while(1)
 "128
-[e :U 235 ]
+[e :U 247 ]
 [; ;do_am.c: 129: {
 "129
 {
-[; ;do_am.c: 130: if(get_msg(pmsg_rcv) == 1)
-"130
-[e $ ! == -> ( _get_msg (1 _pmsg_rcv `i -> 1 `i 237  ]
-[; ;do_am.c: 131: {
-"131
+[; ;do_am.c: 136: handle_received_cmds();
+"136
+[e ( _handle_received_cmds ..  ]
+[; ;do_am.c: 160: {
+"160
 {
-[; ;do_am.c: 132: dump_msg(pmsg_rcv);
-"132
-[e ( _dump_msg (1 _pmsg_rcv ]
-"133
+"175
 }
-[e :U 237 ]
-[; ;do_am.c: 133: }
-[; ;do_am.c: 143: {
-"143
-{
-"158
+"251
 }
-"234
-}
-[e :U 234 ]
+[e :U 246 ]
 "128
-[e $U 235  ]
-[e :U 236 ]
-[; ;do_am.c: 158: }
-[; ;do_am.c: 234: }
-[; ;do_am.c: 235: }
-"235
-[e :UE 233 ]
+[e $U 247  ]
+[e :U 248 ]
+[; ;do_am.c: 175: }
+[; ;do_am.c: 251: }
+[; ;do_am.c: 252: }
+"252
+[e :UE 245 ]
 }
 [p f _sprintf 8388736 ]
 [a 13C 67 58 37 100 44 37 100 44 37 100 44 37 100 0 ]

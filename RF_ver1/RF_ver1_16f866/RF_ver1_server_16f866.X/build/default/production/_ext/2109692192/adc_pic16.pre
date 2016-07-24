@@ -1,5 +1,5 @@
 
-# 1 "adc_pic16.c"
+# 1 "../RF_ver1_client_16f866.X/adc_pic16.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -2081,7 +2081,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 95 "myutils.h"
+# 95 "../RF_ver1_client_16f866.X/myutils.h"
 typedef struct {
 unsigned B0 :1;
 unsigned B1 :1;
@@ -2096,11 +2096,11 @@ unsigned B7 :1;
 # 113
 extern int8_t compare_4_bits(uint8_t byte1, uint8_t byte2, uint8_t low);
 
-# 29 "adc_pic16.h"
+# 29 "../RF_ver1_client_16f866.X/adc_pic16.h"
 void ADCInit();
 uint16_t ReadADC(uint8_t ch);
 
-# 7 "adc_pic16.c"
+# 7 "../RF_ver1_client_16f866.X/adc_pic16.c"
 void ADCInit()
 {
 

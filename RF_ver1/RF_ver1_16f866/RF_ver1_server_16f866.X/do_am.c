@@ -8,7 +8,9 @@
 #include "debug.h"
 #include "connection.h"
 #include "reg_id.h"
+#include "heart_beat.h"
 #include "io_define.h"
+#include "common.h"
 
 // CONFIG1
 #pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
@@ -33,8 +35,6 @@
 E_operation_mode mode = NORMAL;
 E_operation_submode submode = NOTEDIT;
 
-Connection_t client_conn[MAX_CLIENT_CONNECTION];
-
 Msg_t msg;
 Msg_t *pmsg = &msg;
 
@@ -43,11 +43,12 @@ void ConnInit()
     for(uint8_t i = 0; i < MAX_CLIENT_CONNECTION; i++)
     {
         client_conn[i].from         = SERVER_ID;
-        client_conn[i].to           = i;
+        client_conn[i].to           = 255;
         client_conn[i].msgid        = 0;
         client_conn[i].available    = NO;
     }
 }
+
 void IOInit()
 {
     // 2. Individual pin configuration
@@ -138,8 +139,12 @@ void main (void)
     uint8_t start_index, end_index;
     while(1)
     {
+   //     handle_received_cmds();
         if(KICK_OFF_TRIGGER == 0)
         {
+            HEART_BEAT_RQT_CMD_t rqt;
+            send_HEART_BEAT_RQT_CMD_and_wait(&client_conn[0], &rqt);
+            
 //            if(get_msg(pmsg) == YES)
 //            {
 //                dump_msg(pmsg);
@@ -149,10 +154,10 @@ void main (void)
 //            RECEIVE_INPUT(DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0);
 //            SEND_MSG_ACK(ret, pmsg, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER,
 //                                DATA_OUT3, DATA_OUT2, DATA_OUT1, DATA_OUT0, DATA_OUT_TRIGGER);
-            count++;
-            compose(pmsg, 11 + count, 22 + count, 33 + count, 44 + count, "abc", 3);
-            send_msg(pmsg);
-            dump_msg(pmsg);
+//            count++;
+//            compose(pmsg, 11 + count, 22 + count, 33 + count, 44 + count, "abc", 3);
+//            send_msg(pmsg);
+//            dump_msg(pmsg);
 ////            while(ret == NO)
 //            {
 //                SEND_HALF_BYTE_ACK(ret, value, 1, DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0, DATA_IN_TRIGGER, 

@@ -1508,7 +1508,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;myutils.h: 113: extern int8_t compare_4_bits(uint8_t byte1, uint8_t byte2, uint8_t low);
 [; ;adc_pic16.h: 29: void ADCInit();
 [; ;adc_pic16.h: 30: uint16_t ReadADC(uint8_t ch);
-"7 adc_pic16.c
+"7 ../RF_ver1_client_16f866.X/adc_pic16.c
 [v _ADCInit `(v ~T0 @X0 1 ef ]
 "8
 {
