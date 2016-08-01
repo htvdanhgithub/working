@@ -145,10 +145,10 @@ void main (void)
             HEART_BEAT_RQT_CMD_t rqt;
             send_HEART_BEAT_RQT_CMD_and_wait(&client_conn[0], &rqt);
             
-//            if(get_msg(pmsg) == YES)
-//            {
-//                dump_msg(pmsg);
-//            }
+            if(get_msg(pmsg) == YES)
+            {
+                dump_msg(pmsg);
+            }
 //            debug_1(get_distance(9, 1));
 //              get_msg_index(&start_index, &end_index);
 //            RECEIVE_INPUT(DATA_IN3, DATA_IN2, DATA_IN1, DATA_IN0);
