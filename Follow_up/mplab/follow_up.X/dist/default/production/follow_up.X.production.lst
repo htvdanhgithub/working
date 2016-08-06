@@ -1,0 +1,3518 @@
+
+
+Microchip Technology PIC LITE Macro Assembler V1.37 build -260352376 
+                                                                                               Sat Aug 06 13:11:45 2016
+
+Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110536
+     1                           	processor	16F1823
+     2                           	opt	pw 120
+     3                           	opt	lm
+     4                           	psect	idataCOMMON,global,class=CODE,delta=2
+     5                           	psect	idataBANK0,global,class=CODE,delta=2
+     6                           	psect	stringtext,global,class=STRCODE,delta=2
+     7                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     8                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     9                           	psect	dataCOMMON,global,class=COMMON,space=1,delta=1
+    10                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+    11                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+    12                           	psect	bssBANK1,global,class=BANK1,space=1,delta=1
+    13                           	psect	clrtext,global,class=CODE,delta=2
+    14                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    15                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    16                           	psect	maintext,global,class=CODE,merge=1,split=1,delta=2
+    17                           	psect	text1,local,class=CODE,merge=1,delta=2
+    18                           	psect	text2,local,class=CODE,merge=1,delta=2
+    19                           	psect	text3,local,class=CODE,merge=1,delta=2
+    20                           	psect	text4,local,class=CODE,merge=1,delta=2
+    21                           	psect	text5,local,class=CODE,merge=1,delta=2
+    22                           	psect	text6,local,class=CODE,merge=1,delta=2
+    23                           	psect	text7,local,class=CODE,merge=1,delta=2
+    24                           	psect	text8,local,class=CODE,merge=1,delta=2
+    25                           	psect	text9,local,class=CODE,merge=1,delta=2
+    26                           	psect	text10,local,class=CODE,merge=1,delta=2
+    27                           	psect	text11,local,class=CODE,merge=1,delta=2
+    28                           	psect	text12,local,class=CODE,merge=1,delta=2
+    29                           	psect	text13,local,class=CODE,merge=1,delta=2
+    30                           	psect	text14,local,class=CODE,merge=1,delta=2
+    31                           	psect	text15,local,class=CODE,merge=1,delta=2
+    32                           	psect	text16,local,class=CODE,merge=1,delta=2
+    33                           	psect	text17,local,class=CODE,merge=1,delta=2
+    34                           	psect	intentry,global,class=CODE,delta=2
+    35                           	psect	text19,local,class=CODE,merge=1,delta=2
+    36                           	psect	text20,local,class=CODE,merge=1,delta=2
+    37                           	dabs	1,0x7E,2
+    38  0000                     	;# 
+    39  0001                     	;# 
+    40  0002                     	;# 
+    41  0003                     	;# 
+    42  0004                     	;# 
+    43  0005                     	;# 
+    44  0006                     	;# 
+    45  0007                     	;# 
+    46  0008                     	;# 
+    47  0009                     	;# 
+    48  000A                     	;# 
+    49  000B                     	;# 
+    50  000C                     	;# 
+    51  000E                     	;# 
+    52  0011                     	;# 
+    53  0012                     	;# 
+    54  0015                     	;# 
+    55  0016                     	;# 
+    56  0016                     	;# 
+    57  0017                     	;# 
+    58  0018                     	;# 
+    59  0019                     	;# 
+    60  001A                     	;# 
+    61  001B                     	;# 
+    62  001C                     	;# 
+    63  001E                     	;# 
+    64  001F                     	;# 
+    65  008C                     	;# 
+    66  008E                     	;# 
+    67  0091                     	;# 
+    68  0092                     	;# 
+    69  0095                     	;# 
+    70  0096                     	;# 
+    71  0097                     	;# 
+    72  0098                     	;# 
+    73  0099                     	;# 
+    74  009A                     	;# 
+    75  009B                     	;# 
+    76  009B                     	;# 
+    77  009C                     	;# 
+    78  009D                     	;# 
+    79  009E                     	;# 
+    80  010C                     	;# 
+    81  010E                     	;# 
+    82  0111                     	;# 
+    83  0112                     	;# 
+    84  0113                     	;# 
+    85  0114                     	;# 
+    86  0115                     	;# 
+    87  0116                     	;# 
+    88  0117                     	;# 
+    89  0118                     	;# 
+    90  0119                     	;# 
+    91  011A                     	;# 
+    92  011B                     	;# 
+    93  011D                     	;# 
+    94  011D                     	;# 
+    95  018C                     	;# 
+    96  018E                     	;# 
+    97  0191                     	;# 
+    98  0191                     	;# 
+    99  0192                     	;# 
+   100  0193                     	;# 
+   101  0193                     	;# 
+   102  0193                     	;# 
+   103  0194                     	;# 
+   104  0195                     	;# 
+   105  0196                     	;# 
+   106  0199                     	;# 
+   107  019A                     	;# 
+   108  019B                     	;# 
+   109  019B                     	;# 
+   110  019B                     	;# 
+   111  019B                     	;# 
+   112  019C                     	;# 
+   113  019C                     	;# 
+   114  019D                     	;# 
+   115  019E                     	;# 
+   116  019F                     	;# 
+   117  020C                     	;# 
+   118  020E                     	;# 
+   119  0211                     	;# 
+   120  0211                     	;# 
+   121  0212                     	;# 
+   122  0212                     	;# 
+   123  0213                     	;# 
+   124  0213                     	;# 
+   125  0214                     	;# 
+   126  0214                     	;# 
+   127  0215                     	;# 
+   128  0215                     	;# 
+   129  0215                     	;# 
+   130  0216                     	;# 
+   131  0216                     	;# 
+   132  0217                     	;# 
+   133  0217                     	;# 
+   134  0291                     	;# 
+   135  0291                     	;# 
+   136  0292                     	;# 
+   137  0293                     	;# 
+   138  0294                     	;# 
+   139  0295                     	;# 
+   140  0295                     	;# 
+   141  0296                     	;# 
+   142  0391                     	;# 
+   143  0392                     	;# 
+   144  0393                     	;# 
+   145  039A                     	;# 
+   146  039C                     	;# 
+   147  039D                     	;# 
+   148  039E                     	;# 
+   149  039F                     	;# 
+   150  0FE4                     	;# 
+   151  0FE5                     	;# 
+   152  0FE6                     	;# 
+   153  0FE7                     	;# 
+   154  0FE8                     	;# 
+   155  0FE9                     	;# 
+   156  0FEA                     	;# 
+   157  0FEB                     	;# 
+   158  0FED                     	;# 
+   159  0FEE                     	;# 
+   160  0FEF                     	;# 
+   161                           
+   162                           	psect	idataCOMMON
+   163  0464                     __pidataCOMMON:	
+   164                           
+   165                           ;initializer for _low_half_rcv
+   166  0464  3401               	retlw	1
+   167                           
+   168                           	psect	idataBANK0
+   169  0465                     __pidataBANK0:	
+   170                           
+   171                           ;initializer for _pmsg
+   172  0465  3464               	retlw	low (_msg| 0)
+   173                           
+   174                           	psect	stringtext
+   175  0450                     __pstringtext:	
+   176  0450                     _start_mark:	
+   177  0450  34EA               	retlw	234
+   178  0451  34EB               	retlw	235
+   179  0452  34EC               	retlw	236
+   180  0453  34ED               	retlw	237
+   181  0454                     __end_of_start_mark:	
+   182  0454                     _stop_mark:	
+   183  0454  34ED               	retlw	237
+   184  0455  34EC               	retlw	236
+   185  0456  34EB               	retlw	235
+   186  0457  34EA               	retlw	234
+   187  0458                     __end_of_stop_mark:	
+   188  000B                     _INTCONbits	set	11
+   189  0060                     _RA0	set	96
+   190  0061                     _RA1	set	97
+   191  0064                     _RA4	set	100
+   192  0065                     _RA5	set	101
+   193  0070                     _RC0	set	112
+   194  0071                     _RC1	set	113
+   195  0072                     _RC2	set	114
+   196  0073                     _RC3	set	115
+   197  0074                     _RC4	set	116
+   198  0075                     _RC5	set	117
+   199  0095                     _OPTION_REGbits	set	149
+   200  008C                     _TRISAbits	set	140
+   201  008E                     _TRISCbits	set	142
+   202  018C                     _ANSELAbits	set	396
+   203  018E                     _ANSELCbits	set	398
+   204                           
+   205                           ; #config settings
+   206  0000                     
+   207                           	psect	cinit
+   208  0034                     start_initialization:	
+   209  0034                     __initialization:	
+   210                           
+   211                           ; Clear objects allocated to COMMON
+   212  0034  01F9               	clrf	__pbssCOMMON& (0+127)
+   213                           
+   214                           ; Clear objects allocated to BANK0
+   215  0035  305E               	movlw	low __pbssBANK0
+   216  0036  0084               	movwf	4
+   217  0037  3000               	movlw	high __pbssBANK0
+   218  0038  0085               	movwf	5
+   219  0039  300E               	movlw	14
+   220  003A  2458               	fcall	clear_ram0
+   221                           
+   222                           ; Clear objects allocated to BANK1
+   223  003B  30A0               	movlw	low __pbssBANK1
+   224  003C  0084               	movwf	4
+   225  003D  3000               	movlw	high __pbssBANK1
+   226  003E  0085               	movwf	5
+   227  003F  3020               	movlw	32
+   228  0040  2458               	fcall	clear_ram0
+   229                           
+   230                           ; Initialize objects allocated to COMMON
+   231  0041  2464               	fcall	__pidataCOMMON	;fetch initializer
+   232  0042  00FA               	movwf	__pdataCOMMON& (0+127)
+   233                           
+   234                           ; Initialize objects allocated to BANK0
+   235  0043  2465               	fcall	__pidataBANK0	;fetch initializer
+   236  0044  00EC               	movwf	__pdataBANK0& (0+127)
+   237  0045                     end_of_initialization:	
+   238                           ;End of C runtime variable initialization code
+   239                           
+   240  0045                     __end_of__initialization:	
+   241  0045  107E               	bcf	int$flags,0	;clear compiler interrupt flag (level 1)
+   242  0046  0020               	movlb	0
+   243  0047  2AC5               	ljmp	_main	;jump to C main() function
+   244                           
+   245                           	psect	bssCOMMON
+   246  0079                     __pbssCOMMON:	
+   247  0079                     _end_index_rcv:	
+   248  0079                     	ds	1
+   249                           
+   250                           	psect	dataCOMMON
+   251  007A                     __pdataCOMMON:	
+   252  007A                     _low_half_rcv:	
+   253  007A                     	ds	1
+   254                           
+   255                           	psect	bssBANK0
+   256  005E                     __pbssBANK0:	
+   257  005E                     _client_conn:	
+   258  005E                     	ds	5
+   259  0063                     _start_index_rcv:	
+   260  0063                     	ds	1
+   261  0064                     _msg:	
+   262  0064                     	ds	8
+   263                           
+   264                           	psect	dataBANK0
+   265  006C                     __pdataBANK0:	
+   266  006C                     _pmsg:	
+   267  006C                     	ds	1
+   268                           
+   269                           	psect	bssBANK1
+   270  00A0                     __pbssBANK1:	
+   271  00A0                     _buffer_rcv:	
+   272  00A0                     	ds	32
+   273                           
+   274                           	psect	clrtext
+   275  0458                     clear_ram0:	
+   276                           ;	Called with FSR0 containing the base address, and
+   277                           ;	WREG with the size to clear
+   278                           
+   279  0458  0064               	clrwdt	;clear the watchdog before getting into this loop
+   280  0459                     clrloop0:	
+   281  0459  0180               	clrf	0	;clear RAM location pointed to by FSR
+   282  045A  3101               	addfsr 0,1
+   283  045B  0B89               	decfsz	9,f	;Have we reached the end of clearing yet?
+   284  045C  2C59               	goto	clrloop0	;have we reached the end yet?
+   285  045D  3400               	retlw	0	;all done for this memory range, return
+   286                           
+   287                           	psect	cstackCOMMON
+   288  0070                     __pcstackCOMMON:	
+   289  0070                     ?_get_next_index:	
+   290  0070                     ?_receive_input:	
+   291                           ; 1 bytes @ 0x0
+   292                           
+   293  0070                     ?_send_byte:	
+   294                           ; 1 bytes @ 0x0
+   295                           
+   296  0070                     ?_get_msg:	
+   297                           ; 1 bytes @ 0x0
+   298                           
+   299  0070                     ?_send_msg:	
+   300                           ; 1 bytes @ 0x0
+   301                           
+   302  0070                     ?_InitIO:	
+   303                           ; 1 bytes @ 0x0
+   304                           
+   305  0070                     ?_InitInputDataInt:	
+   306                           ; 1 bytes @ 0x0
+   307                           
+   308  0070                     ?_ISR:	
+   309                           ; 1 bytes @ 0x0
+   310                           
+   311  0070                     ?_main:	
+   312                           ; 1 bytes @ 0x0
+   313                           
+   314  0070                     ?i1_get_next_index:	
+   315                           ; 1 bytes @ 0x0
+   316                           
+   317  0070                     ??i1_get_next_index:	
+   318                           ; 1 bytes @ 0x0
+   319                           
+   320  0070                     i1get_next_index@index:	
+   321                           ; 1 bytes @ 0x0
+   322                           
+   323                           
+   324                           ; 1 bytes @ 0x0
+   325  0070                     	ds	1
+   326  0071                     ??_receive_input:	
+   327                           
+   328                           ; 1 bytes @ 0x1
+   329  0071                     	ds	1
+   330  0072                     receive_input@value:	
+   331                           
+   332                           ; 1 bytes @ 0x2
+   333  0072                     	ds	1
+   334  0073                     receive_input@byte1:	
+   335                           
+   336                           ; 1 bytes @ 0x3
+   337  0073                     	ds	1
+   338  0074                     receive_input@byte2:	
+   339                           
+   340                           ; 1 bytes @ 0x4
+   341  0074                     	ds	1
+   342  0075                     ??_ISR:	
+   343                           
+   344                           ; 1 bytes @ 0x5
+   345  0075                     	ds	2
+   346  0077                     ISR@value:	
+   347                           
+   348                           ; 1 bytes @ 0x7
+   349  0077                     	ds	1
+   350  0078                     ISR@byte:	
+   351                           
+   352                           ; 1 bytes @ 0x8
+   353  0078                     	ds	1
+   354                           
+   355                           	psect	cstackBANK0
+   356  0020                     __pcstackBANK0:	
+   357  0020                     ??_get_next_index:	
+   358  0020                     ?_get_plus_index:	
+   359                           ; 1 bytes @ 0x0
+   360                           
+   361  0020                     ?_get_minus_index:	
+   362                           ; 1 bytes @ 0x0
+   363                           
+   364  0020                     ?_get_distance:	
+   365                           ; 1 bytes @ 0x0
+   366                           
+   367  0020                     ?_send_half_byte:	
+   368                           ; 1 bytes @ 0x0
+   369                           
+   370  0020                     ??_InitIO:	
+   371                           ; 1 bytes @ 0x0
+   372                           
+   373  0020                     ??_InitInputDataInt:	
+   374                           ; 1 bytes @ 0x0
+   375                           
+   376  0020                     ?_crc_calculate:	
+   377                           ; 1 bytes @ 0x0
+   378                           
+   379  0020                     get_next_index@index:	
+   380                           ; 2 bytes @ 0x0
+   381                           
+   382  0020                     get_plus_index@add:	
+   383                           ; 1 bytes @ 0x0
+   384                           
+   385  0020                     get_minus_index@sub:	
+   386                           ; 1 bytes @ 0x0
+   387                           
+   388  0020                     get_distance@end_index:	
+   389                           ; 1 bytes @ 0x0
+   390                           
+   391  0020                     send_half_byte@low:	
+   392                           ; 1 bytes @ 0x0
+   393                           
+   394                           
+   395                           ; 1 bytes @ 0x0
+   396  0020                     	ds	1
+   397  0021                     ??_get_plus_index:	
+   398  0021                     ??_get_minus_index:	
+   399                           ; 1 bytes @ 0x1
+   400                           
+   401  0021                     ??_get_distance:	
+   402                           ; 1 bytes @ 0x1
+   403                           
+   404  0021                     ??_send_half_byte:	
+   405                           ; 1 bytes @ 0x1
+   406                           
+   407  0021                     get_minus_index@index:	
+   408                           ; 1 bytes @ 0x1
+   409                           
+   410  0021                     get_distance@start_index:	
+   411                           ; 1 bytes @ 0x1
+   412                           
+   413                           
+   414                           ; 1 bytes @ 0x1
+   415  0021                     	ds	1
+   416  0022                     ??_crc_calculate:	
+   417  0022                     get_plus_index@index:	
+   418                           ; 1 bytes @ 0x2
+   419                           
+   420  0022                     send_half_byte@value:	
+   421                           ; 1 bytes @ 0x2
+   422                           
+   423                           
+   424                           ; 1 bytes @ 0x2
+   425  0022                     	ds	1
+   426  0023                     ?_get_msg_index:	
+   427  0023                     get_msg_index@end_index:	
+   428                           ; 1 bytes @ 0x3
+   429                           
+   430  0023                     send_half_byte@byte:	
+   431                           ; 1 bytes @ 0x3
+   432                           
+   433                           
+   434                           ; 1 bytes @ 0x3
+   435  0023                     	ds	1
+   436  0024                     ??_get_msg_index:	
+   437  0024                     ??_send_byte:	
+   438                           ; 1 bytes @ 0x4
+   439                           
+   440                           
+   441                           ; 1 bytes @ 0x4
+   442  0024                     	ds	1
+   443  0025                     crc_calculate@crc:	
+   444                           
+   445                           ; 2 bytes @ 0x5
+   446  0025                     	ds	1
+   447  0026                     get_msg_index@start_index:	
+   448  0026                     send_byte@c:	
+   449                           ; 1 bytes @ 0x6
+   450                           
+   451                           
+   452                           ; 1 bytes @ 0x6
+   453  0026                     	ds	1
+   454  0027                     ?_send_string:	
+   455  0027                     get_msg_index@i:	
+   456                           ; 1 bytes @ 0x7
+   457                           
+   458  0027                     crc_calculate@i:	
+   459                           ; 1 bytes @ 0x7
+   460                           
+   461  0027                     send_string@str:	
+   462                           ; 1 bytes @ 0x7
+   463                           
+   464                           
+   465                           ; 2 bytes @ 0x7
+   466  0027                     	ds	1
+   467  0028                     ??_get_msg:	
+   468  0028                     crc_calculate@pmsg:	
+   469                           ; 1 bytes @ 0x8
+   470                           
+   471                           
+   472                           ; 1 bytes @ 0x8
+   473  0028                     	ds	1
+   474  0029                     ?_compose:	
+   475  0029                     send_string@len:	
+   476                           ; 1 bytes @ 0x9
+   477                           
+   478  0029                     compose@from:	
+   479                           ; 1 bytes @ 0x9
+   480                           
+   481                           
+   482                           ; 1 bytes @ 0x9
+   483  0029                     	ds	1
+   484  002A                     ??_send_string:	
+   485  002A                     get_msg@pstr:	
+   486                           ; 1 bytes @ 0xA
+   487                           
+   488  002A                     compose@to:	
+   489                           ; 1 bytes @ 0xA
+   490                           
+   491                           
+   492                           ; 1 bytes @ 0xA
+   493  002A                     	ds	1
+   494  002B                     get_msg@pmsg:	
+   495  002B                     compose@msgid:	
+   496                           ; 1 bytes @ 0xB
+   497                           
+   498                           
+   499                           ; 1 bytes @ 0xB
+   500  002B                     	ds	1
+   501  002C                     send_string@i:	
+   502  002C                     get_msg@i:	
+   503                           ; 1 bytes @ 0xC
+   504                           
+   505  002C                     compose@cmd:	
+   506                           ; 1 bytes @ 0xC
+   507                           
+   508                           
+   509                           ; 1 bytes @ 0xC
+   510  002C                     	ds	1
+   511  002D                     ??_send_msg:	
+   512  002D                     get_msg@start_index:	
+   513                           ; 1 bytes @ 0xD
+   514                           
+   515  002D                     compose@data:	
+   516                           ; 1 bytes @ 0xD
+   517                           
+   518                           
+   519                           ; 1 bytes @ 0xD
+   520  002D                     	ds	1
+   521  002E                     get_msg@end_index:	
+   522  002E                     send_msg@s:	
+   523                           ; 1 bytes @ 0xE
+   524                           
+   525  002E                     compose@datalen:	
+   526                           ; 1 bytes @ 0xE
+   527                           
+   528                           
+   529                           ; 1 bytes @ 0xE
+   530  002E                     	ds	1
+   531  002F                     ??_compose:	
+   532  002F                     get_msg@temp:	
+   533                           ; 1 bytes @ 0xF
+   534                           
+   535  002F                     send_msg@pmsg:	
+   536                           ; 1 bytes @ 0xF
+   537                           
+   538                           
+   539                           ; 1 bytes @ 0xF
+   540  002F                     	ds	2
+   541  0031                     compose@len:	
+   542                           
+   543                           ; 2 bytes @ 0x11
+   544  0031                     	ds	2
+   545  0033                     compose@pmsg:	
+   546                           
+   547                           ; 1 bytes @ 0x13
+   548  0033                     	ds	1
+   549  0034                     ?_create_cmd:	
+   550  0034                     create_cmd@cmd_id:	
+   551                           ; 1 bytes @ 0x14
+   552                           
+   553                           
+   554                           ; 1 bytes @ 0x14
+   555  0034                     	ds	1
+   556  0035                     create_cmd@msg_id:	
+   557                           
+   558                           ; 1 bytes @ 0x15
+   559  0035                     	ds	1
+   560  0036                     create_cmd@cmd_data:	
+   561                           
+   562                           ; 1 bytes @ 0x16
+   563  0036                     	ds	1
+   564  0037                     create_cmd@cmd_data_len:	
+   565                           
+   566                           ; 1 bytes @ 0x17
+   567  0037                     	ds	1
+   568  0038                     create_cmd@pmsg:	
+   569                           
+   570                           ; 1 bytes @ 0x18
+   571  0038                     	ds	1
+   572  0039                     ??_create_cmd:	
+   573                           
+   574                           ; 1 bytes @ 0x19
+   575  0039                     	ds	5
+   576  003E                     create_cmd@pconn:	
+   577                           
+   578                           ; 1 bytes @ 0x1E
+   579  003E                     	ds	1
+   580  003F                     ?_create_RGB_DATA_RQT_CMD:	
+   581  003F                     create_RGB_DATA_RQT_CMD@prqt:	
+   582                           ; 1 bytes @ 0x1F
+   583                           
+   584                           
+   585                           ; 1 bytes @ 0x1F
+   586  003F                     	ds	1
+   587  0040                     create_RGB_DATA_RQT_CMD@pmsg:	
+   588                           
+   589                           ; 1 bytes @ 0x20
+   590  0040                     	ds	1
+   591  0041                     ??_create_RGB_DATA_RQT_CMD:	
+   592                           
+   593                           ; 1 bytes @ 0x21
+   594  0041                     	ds	3
+   595  0044                     create_RGB_DATA_RQT_CMD@pconn:	
+   596                           
+   597                           ; 1 bytes @ 0x24
+   598  0044                     	ds	1
+   599  0045                     ?_send_RGB_DATA_RQT_CMD:	
+   600  0045                     send_RGB_DATA_RQT_CMD@prqt:	
+   601                           ; 1 bytes @ 0x25
+   602                           
+   603                           
+   604                           ; 1 bytes @ 0x25
+   605  0045                     	ds	1
+   606  0046                     ??_send_RGB_DATA_RQT_CMD:	
+   607                           
+   608                           ; 1 bytes @ 0x26
+   609  0046                     	ds	2
+   610  0048                     send_RGB_DATA_RQT_CMD@pconn:	
+   611                           
+   612                           ; 1 bytes @ 0x28
+   613  0048                     	ds	1
+   614  0049                     send_RGB_DATA_RQT_CMD@msg:	
+   615                           
+   616                           ; 8 bytes @ 0x29
+   617  0049                     	ds	8
+   618  0051                     ??_main:	
+   619                           
+   620                           ; 1 bytes @ 0x31
+   621  0051                     	ds	3
+   622  0054                     main@recv:	
+   623                           
+   624                           ; 2 bytes @ 0x34
+   625  0054                     	ds	2
+   626  0056                     main@rqt:	
+   627                           
+   628                           ; 1 bytes @ 0x36
+   629  0056                     	ds	1
+   630  0057                     main@conn:	
+   631                           
+   632                           ; 5 bytes @ 0x37
+   633  0057                     	ds	5
+   634  005C                     main@count:	
+   635                           
+   636                           ; 2 bytes @ 0x3C
+   637  005C                     	ds	2
+   638                           
+   639                           	psect	maintext
+   640  02C5                     __pmaintext:	
+   641 ;;
+   642 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   643 ;;
+   644 ;; *************** function _main *****************
+   645 ;; Defined at:
+   646 ;;		line 88 in file "follow_up.c"
+   647 ;; Parameters:    Size  Location     Type
+   648 ;;		None
+   649 ;; Auto vars:     Size  Location     Type
+   650 ;;  conn            5   55[BANK0 ] struct .
+   651 ;;  count           2   60[BANK0 ] int 
+   652 ;;  recv            2   52[BANK0 ] int 
+   653 ;;  rqt             1   54[BANK0 ] struct .
+   654 ;; Return value:  Size  Location     Type
+   655 ;;                  1    wreg      void 
+   656 ;; Registers used:
+   657 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+   658 ;; Tracked objects:
+   659 ;;		On entry : B1F/0
+   660 ;;		On exit  : 0/0
+   661 ;;		Unchanged: 0/0
+   662 ;; Data sizes:     COMMON   BANK0   BANK1
+   663 ;;      Params:         0       0       0
+   664 ;;      Locals:         0      10       0
+   665 ;;      Temps:          0       3       0
+   666 ;;      Totals:         0      13       0
+   667 ;;Total ram usage:       13 bytes
+   668 ;; Hardware stack levels required when called:    8
+   669 ;; This function calls:
+   670 ;;		_InitIO
+   671 ;;		_InitInputDataInt
+   672 ;;		_get_msg
+   673 ;;		_send_RGB_DATA_RQT_CMD
+   674 ;; This function is called by:
+   675 ;;		Startup code after reset
+   676 ;; This function uses a non-reentrant model
+   677 ;;
+   678                           
+   679                           
+   680                           ;psect for function _main
+   681  02C5                     _main:	
+   682                           
+   683                           ;follow_up.c: 90: InitIO();
+   684                           
+   685                           ;incstack = 0
+   686                           ; Regs used in _main: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+   687  02C5  238E               	fcall	_InitIO
+   688                           
+   689                           ;follow_up.c: 91: InitInputDataInt();
+   690  02C6  245E               	fcall	_InitInputDataInt
+   691                           
+   692                           ;follow_up.c: 93: RA1 = 0;
+   693  02C7  0020               	movlb	0	; select bank0
+   694  02C8  108C               	bcf	12,1	;volatile
+   695                           
+   696                           ;follow_up.c: 94: int count = 0;
+   697  02C9  01DC               	clrf	main@count
+   698  02CA  01DD               	clrf	main@count+1
+   699                           
+   700                           ;follow_up.c: 95: int recv = 0;
+   701  02CB  01D4               	clrf	main@recv
+   702  02CC  01D5               	clrf	main@recv+1
+   703                           
+   704                           ;follow_up.c: 96: Connection_t conn;
+   705                           ;follow_up.c: 97: RGB_DATA_RQT_CMD_t rqt;
+   706                           ;follow_up.c: 98: rqt.id = 255;
+   707  02CD  30FF               	movlw	255
+   708  02CE  00D1               	movwf	??_main
+   709  02CF  0851               	movf	??_main,w
+   710  02D0  00D6               	movwf	main@rqt
+   711  02D1                     l1174:	
+   712                           ;follow_up.c: 100: while(1)
+   713                           
+   714                           
+   715                           ;follow_up.c: 101: {
+   716                           ;follow_up.c: 102: send_RGB_DATA_RQT_CMD(&conn, &rqt);
+   717  02D1  3056               	movlw	(low (main@rqt| 0))& (0+255)
+   718  02D2  00D1               	movwf	??_main
+   719  02D3  0851               	movf	??_main,w
+   720  02D4  00C5               	movwf	send_RGB_DATA_RQT_CMD@prqt
+   721  02D5  3057               	movlw	(low (main@conn| 0))& (0+255)
+   722  02D6  2400               	fcall	_send_RGB_DATA_RQT_CMD
+   723                           
+   724                           ;follow_up.c: 104: if(get_msg(pmsg) == 1)
+   725  02D7  0020               	movlb	0	; select bank0
+   726  02D8  086C               	movf	_pmsg,w
+   727  02D9  2308               	fcall	_get_msg
+   728  02DA  3A01               	xorlw	1
+   729  02DB  1D03               	skipz
+   730  02DC  2AE2               	goto	l1180
+   731                           
+   732                           ;follow_up.c: 105: {
+   733                           ;follow_up.c: 106: recv = 1;
+   734  02DD  3001               	movlw	1
+   735  02DE  0020               	movlb	0	; select bank0
+   736  02DF  00D4               	movwf	main@recv
+   737  02E0  3000               	movlw	0
+   738  02E1  00D5               	movwf	main@recv+1
+   739  02E2                     l1180:	
+   740                           
+   741                           ;follow_up.c: 107: }
+   742                           ;follow_up.c: 109: if(count == 0)
+   743  02E2  0020               	movlb	0	; select bank0
+   744  02E3  085C               	movf	main@count,w
+   745  02E4  045D               	iorwf	main@count+1,w
+   746  02E5  1D03               	btfss	3,2
+   747  02E6  2AEE               	goto	l1186
+   748                           
+   749                           ;follow_up.c: 110: {
+   750                           ;follow_up.c: 111: if(recv == 1)
+   751  02E7  0354               	decf	main@recv,w
+   752  02E8  0455               	iorwf	main@recv+1,w
+   753  02E9  1D03               	btfss	3,2
+   754  02EA  2AED               	goto	l159
+   755                           
+   756                           ;follow_up.c: 112: {
+   757                           ;follow_up.c: 113: RA1 = 1;
+   758  02EB  148C               	bsf	12,1	;volatile
+   759                           
+   760                           ;follow_up.c: 115: }
+   761  02EC  2AEE               	goto	l1186
+   762  02ED                     l159:	
+   763                           
+   764                           ;follow_up.c: 116: else
+   765                           ;follow_up.c: 117: {
+   766                           ;follow_up.c: 118: RA1 = 0;
+   767  02ED  108C               	bcf	12,1	;volatile
+   768  02EE                     l1186:	
+   769                           
+   770                           ;follow_up.c: 119: }
+   771                           ;follow_up.c: 120: }
+   772                           ;follow_up.c: 121: _delay((unsigned long)((100)*(20000000/4000.0)));
+   773  02EE  3003               	movlw	3
+   774  02EF  00D3               	movwf	??_main+2
+   775  02F0  308A               	movlw	138
+   776  02F1  00D2               	movwf	??_main+1
+   777  02F2  3056               	movlw	86
+   778  02F3  00D1               	movwf	??_main
+   779  02F4                     u1237:	
+   780  02F4  0BD1               	decfsz	??_main,f
+   781  02F5  2AF4               	goto	u1237
+   782  02F6  0BD2               	decfsz	??_main+1,f
+   783  02F7  2AF4               	goto	u1237
+   784  02F8  0BD3               	decfsz	??_main+2,f
+   785  02F9  2AF4               	goto	u1237
+   786  02FA  3200               	nop2
+   787                           
+   788                           ;follow_up.c: 122: count++;
+   789  02FB  3001               	movlw	1
+   790  02FC  0020               	movlb	0	; select bank0
+   791  02FD  07DC               	addwf	main@count,f
+   792  02FE  3000               	movlw	0
+   793  02FF  3DDD               	addwfc	main@count+1,f
+   794                           
+   795                           ;follow_up.c: 123: if(count == 5)
+   796  0300  3005               	movlw	5
+   797  0301  065C               	xorwf	main@count,w
+   798  0302  045D               	iorwf	main@count+1,w
+   799  0303  1D03               	btfss	3,2
+   800  0304  2AD1               	goto	l1174
+   801                           
+   802                           ;follow_up.c: 124: {
+   803                           ;follow_up.c: 125: count = 0;
+   804  0305  01DC               	clrf	main@count
+   805  0306  01DD               	clrf	main@count+1
+   806  0307  2AD1               	goto	l1174
+   807  0308                     __end_of_main:	
+   808                           
+   809                           	psect	text1
+   810  0400                     __ptext1:	
+   811 ;; *************** function _send_RGB_DATA_RQT_CMD *****************
+   812 ;; Defined at:
+   813 ;;		line 26 in file "rgb_data.h"
+   814 ;; Parameters:    Size  Location     Type
+   815 ;;  pconn           1    wreg     PTR struct .
+   816 ;;		 -> main@conn(5), 
+   817 ;;  prqt            1   37[BANK0 ] PTR const struct .
+   818 ;;		 -> main@rqt(1), 
+   819 ;; Auto vars:     Size  Location     Type
+   820 ;;  pconn           1   40[BANK0 ] PTR struct .
+   821 ;;		 -> main@conn(5), 
+   822 ;;  msg             8   41[BANK0 ] struct .
+   823 ;; Return value:  Size  Location     Type
+   824 ;;                  1    wreg      unsigned char 
+   825 ;; Registers used:
+   826 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+   827 ;; Tracked objects:
+   828 ;;		On entry : 0/0
+   829 ;;		On exit  : 0/0
+   830 ;;		Unchanged: 0/0
+   831 ;; Data sizes:     COMMON   BANK0   BANK1
+   832 ;;      Params:         0       1       0
+   833 ;;      Locals:         0       9       0
+   834 ;;      Temps:          0       2       0
+   835 ;;      Totals:         0      12       0
+   836 ;;Total ram usage:       12 bytes
+   837 ;; Hardware stack levels used:    1
+   838 ;; Hardware stack levels required when called:    7
+   839 ;; This function calls:
+   840 ;;		_create_RGB_DATA_RQT_CMD
+   841 ;;		_send_msg
+   842 ;; This function is called by:
+   843 ;;		_main
+   844 ;; This function uses a non-reentrant model
+   845 ;;
+   846                           
+   847                           
+   848                           ;psect for function _send_RGB_DATA_RQT_CMD
+   849  0400                     _send_RGB_DATA_RQT_CMD:	
+   850                           
+   851                           ;incstack = 0
+   852                           ; Regs used in _send_RGB_DATA_RQT_CMD: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+   853                           ;send_RGB_DATA_RQT_CMD@pconn stored from wreg
+   854  0400  0020               	movlb	0	; select bank0
+   855  0401  00C8               	movwf	send_RGB_DATA_RQT_CMD@pconn
+   856                           
+   857                           ;rgb_data.h: 28: Msg_t msg;
+   858                           ;rgb_data.h: 29: create_RGB_DATA_RQT_CMD(pconn, prqt, &msg);
+   859  0402  0845               	movf	send_RGB_DATA_RQT_CMD@prqt,w
+   860  0403  00C6               	movwf	??_send_RGB_DATA_RQT_CMD
+   861  0404  0846               	movf	??_send_RGB_DATA_RQT_CMD,w
+   862  0405  00BF               	movwf	create_RGB_DATA_RQT_CMD@prqt
+   863  0406  3049               	movlw	(low (send_RGB_DATA_RQT_CMD@msg| 0))& (0+255)
+   864  0407  00C7               	movwf	??_send_RGB_DATA_RQT_CMD+1
+   865  0408  0847               	movf	??_send_RGB_DATA_RQT_CMD+1,w
+   866  0409  00C0               	movwf	create_RGB_DATA_RQT_CMD@pmsg
+   867  040A  0848               	movf	send_RGB_DATA_RQT_CMD@pconn,w
+   868  040B  23E7               	fcall	_create_RGB_DATA_RQT_CMD
+   869                           
+   870                           ;rgb_data.h: 30: send_msg(&msg);
+   871  040C  3049               	movlw	(low (send_RGB_DATA_RQT_CMD@msg| 0))& (0+255)
+   872  040D  2346               	fcall	_send_msg
+   873  040E  0008               	return
+   874  040F                     __end_of_send_RGB_DATA_RQT_CMD:	
+   875                           
+   876                           	psect	text2
+   877  0346                     __ptext2:	
+   878 ;; *************** function _send_msg *****************
+   879 ;; Defined at:
+   880 ;;		line 51 in file "msg.h"
+   881 ;; Parameters:    Size  Location     Type
+   882 ;;  pmsg            1    wreg     PTR struct .
+   883 ;;		 -> send_RGB_DATA_RQT_CMD@msg(8), 
+   884 ;; Auto vars:     Size  Location     Type
+   885 ;;  pmsg            1   15[BANK0 ] PTR struct .
+   886 ;;		 -> send_RGB_DATA_RQT_CMD@msg(8), 
+   887 ;;  s               1   14[BANK0 ] PTR unsigned char 
+   888 ;;		 -> send_RGB_DATA_RQT_CMD@msg(8), 
+   889 ;; Return value:  Size  Location     Type
+   890 ;;                  1    wreg      void 
+   891 ;; Registers used:
+   892 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+   893 ;; Tracked objects:
+   894 ;;		On entry : 0/0
+   895 ;;		On exit  : 0/0
+   896 ;;		Unchanged: 0/0
+   897 ;; Data sizes:     COMMON   BANK0   BANK1
+   898 ;;      Params:         0       0       0
+   899 ;;      Locals:         0       2       0
+   900 ;;      Temps:          0       1       0
+   901 ;;      Totals:         0       3       0
+   902 ;;Total ram usage:        3 bytes
+   903 ;; Hardware stack levels used:    1
+   904 ;; Hardware stack levels required when called:    6
+   905 ;; This function calls:
+   906 ;;		_send_string
+   907 ;; This function is called by:
+   908 ;;		_send_RGB_DATA_RQT_CMD
+   909 ;; This function uses a non-reentrant model
+   910 ;;
+   911                           
+   912                           
+   913                           ;psect for function _send_msg
+   914  0346                     _send_msg:	
+   915                           
+   916                           ;incstack = 0
+   917                           ; Regs used in _send_msg: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+   918                           ;send_msg@pmsg stored from wreg
+   919  0346  0020               	movlb	0	; select bank0
+   920  0347  00AF               	movwf	send_msg@pmsg
+   921                           
+   922                           ;msg.h: 53: send_string(start_mark, 4);
+   923  0348  3050               	movlw	low (_start_mark| (0+32768))
+   924  0349  00A7               	movwf	send_string@str
+   925  034A  3084               	movlw	high (_start_mark| (0+32768))
+   926  034B  00A8               	movwf	send_string@str+1
+   927  034C  3004               	movlw	4
+   928  034D  00AD               	movwf	??_send_msg
+   929  034E  082D               	movf	??_send_msg,w
+   930  034F  00A9               	movwf	send_string@len
+   931  0350  23CE               	fcall	_send_string
+   932                           
+   933                           ;msg.h: 54: uint8_t *s = (uint8_t *)pmsg;
+   934  0351  0020               	movlb	0	; select bank0
+   935  0352  082F               	movf	send_msg@pmsg,w
+   936  0353  00AD               	movwf	??_send_msg
+   937  0354  082D               	movf	??_send_msg,w
+   938  0355  00AE               	movwf	send_msg@s
+   939                           
+   940                           ;msg.h: 55: send_string(s, pmsg->msglen);
+   941  0356  082E               	movf	send_msg@s,w
+   942  0357  00A7               	movwf	send_string@str
+   943  0358  3000               	movlw	0
+   944  0359  00A8               	movwf	send_string@str+1
+   945  035A  082F               	movf	send_msg@pmsg,w
+   946  035B  0086               	movwf	6
+   947  035C  0187               	clrf	7
+   948  035D  0801               	movf	1,w
+   949  035E  00AD               	movwf	??_send_msg
+   950  035F  082D               	movf	??_send_msg,w
+   951  0360  00A9               	movwf	send_string@len
+   952  0361  23CE               	fcall	_send_string
+   953                           
+   954                           ;msg.h: 56: send_string(stop_mark, 4);
+   955  0362  3054               	movlw	low (_stop_mark| (0+32768))
+   956  0363  0020               	movlb	0	; select bank0
+   957  0364  00A7               	movwf	send_string@str
+   958  0365  3084               	movlw	high (_stop_mark| (0+32768))
+   959  0366  00A8               	movwf	send_string@str+1
+   960  0367  3004               	movlw	4
+   961  0368  00AD               	movwf	??_send_msg
+   962  0369  082D               	movf	??_send_msg,w
+   963  036A  00A9               	movwf	send_string@len
+   964  036B  23CE               	fcall	_send_string
+   965  036C  0008               	return
+   966  036D                     __end_of_send_msg:	
+   967                           
+   968                           	psect	text3
+   969  03CE                     __ptext3:	
+   970 ;; *************** function _send_string *****************
+   971 ;; Defined at:
+   972 ;;		line 29 in file "packet.h"
+   973 ;; Parameters:    Size  Location     Type
+   974 ;;  str             2    7[BANK0 ] PTR unsigned char 
+   975 ;;		 -> send_RGB_DATA_RQT_CMD@msg(8), stop_mark(4), start_mark(4), 
+   976 ;;  len             1    9[BANK0 ] unsigned char 
+   977 ;; Auto vars:     Size  Location     Type
+   978 ;;  i               1   12[BANK0 ] unsigned char 
+   979 ;; Return value:  Size  Location     Type
+   980 ;;                  1    wreg      void 
+   981 ;; Registers used:
+   982 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+   983 ;; Tracked objects:
+   984 ;;		On entry : 0/0
+   985 ;;		On exit  : 0/0
+   986 ;;		Unchanged: 0/0
+   987 ;; Data sizes:     COMMON   BANK0   BANK1
+   988 ;;      Params:         0       3       0
+   989 ;;      Locals:         0       1       0
+   990 ;;      Temps:          0       2       0
+   991 ;;      Totals:         0       6       0
+   992 ;;Total ram usage:        6 bytes
+   993 ;; Hardware stack levels used:    1
+   994 ;; Hardware stack levels required when called:    5
+   995 ;; This function calls:
+   996 ;;		_send_byte
+   997 ;; This function is called by:
+   998 ;;		_send_msg
+   999 ;; This function uses a non-reentrant model
+  1000 ;;
+  1001                           
+  1002                           
+  1003                           ;psect for function _send_string
+  1004  03CE                     _send_string:	
+  1005                           
+  1006                           ;packet.h: 31: for(uint8_t i = 0; i < len; i++)
+  1007                           
+  1008                           ;incstack = 0
+  1009                           ; Regs used in _send_string: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  1010  03CE  0020               	movlb	0	; select bank0
+  1011  03CF  01AC               	clrf	send_string@i
+  1012  03D0                     l1016:	
+  1013  03D0  0829               	movf	send_string@len,w
+  1014  03D1  022C               	subwf	send_string@i,w
+  1015  03D2  1803               	btfsc	3,0
+  1016  03D3  0008               	return
+  1017                           
+  1018                           ;packet.h: 32: {
+  1019                           ;packet.h: 33: send_byte(str[i]);
+  1020  03D4  0828               	movf	send_string@str+1,w
+  1021  03D5  00AB               	movwf	??_send_string+1
+  1022  03D6  0827               	movf	send_string@str,w
+  1023  03D7  00AA               	movwf	??_send_string
+  1024  03D8  082C               	movf	send_string@i,w
+  1025  03D9  072A               	addwf	??_send_string,w
+  1026  03DA  0084               	movwf	4
+  1027  03DB  082B               	movf	??_send_string+1,w
+  1028  03DC  1803               	skipnc
+  1029  03DD  0A2B               	incf	??_send_string+1,w
+  1030  03DE  0085               	movwf	5
+  1031  03DF  0800               	movf	0,w	;code access
+  1032  03E0  23AF               	fcall	_send_byte
+  1033  03E1  3001               	movlw	1
+  1034  03E2  0020               	movlb	0	; select bank0
+  1035  03E3  00AA               	movwf	??_send_string
+  1036  03E4  082A               	movf	??_send_string,w
+  1037  03E5  07AC               	addwf	send_string@i,f
+  1038  03E6  2BD0               	goto	l1016
+  1039  03E7                     __end_of_send_string:	
+  1040                           
+  1041                           	psect	text4
+  1042  03AF                     __ptext4:	
+  1043 ;; *************** function _send_byte *****************
+  1044 ;; Defined at:
+  1045 ;;		line 20 in file "packet.h"
+  1046 ;; Parameters:    Size  Location     Type
+  1047 ;;  c               1    wreg     unsigned char 
+  1048 ;; Auto vars:     Size  Location     Type
+  1049 ;;  c               1    6[BANK0 ] unsigned char 
+  1050 ;; Return value:  Size  Location     Type
+  1051 ;;                  1    wreg      void 
+  1052 ;; Registers used:
+  1053 ;;		wreg, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  1054 ;; Tracked objects:
+  1055 ;;		On entry : 0/0
+  1056 ;;		On exit  : 0/0
+  1057 ;;		Unchanged: 0/0
+  1058 ;; Data sizes:     COMMON   BANK0   BANK1
+  1059 ;;      Params:         0       0       0
+  1060 ;;      Locals:         0       1       0
+  1061 ;;      Temps:          0       2       0
+  1062 ;;      Totals:         0       3       0
+  1063 ;;Total ram usage:        3 bytes
+  1064 ;; Hardware stack levels used:    1
+  1065 ;; Hardware stack levels required when called:    4
+  1066 ;; This function calls:
+  1067 ;;		_send_half_byte
+  1068 ;; This function is called by:
+  1069 ;;		_send_string
+  1070 ;; This function uses a non-reentrant model
+  1071 ;;
+  1072                           
+  1073                           
+  1074                           ;psect for function _send_byte
+  1075  03AF                     _send_byte:	
+  1076                           
+  1077                           ;incstack = 0
+  1078                           ; Regs used in _send_byte: [wreg+fsr1l+fsr1h+status,2+status,0+pclath+cstack]
+  1079                           ;send_byte@c stored from wreg
+  1080  03AF  0020               	movlb	0	; select bank0
+  1081  03B0  00A6               	movwf	send_byte@c
+  1082                           
+  1083                           ;packet.h: 22: send_half_byte(c, 1);
+  1084  03B1  01A0               	clrf	send_half_byte@low
+  1085  03B2  0AA0               	incf	send_half_byte@low,f
+  1086  03B3  0826               	movf	send_byte@c,w
+  1087  03B4  21AA               	fcall	_send_half_byte
+  1088                           
+  1089                           ;packet.h: 23: _delay((unsigned long)((2)*(20000000/4000.0)));
+  1090  03B5  300D               	movlw	13
+  1091  03B6  0020               	movlb	0	; select bank0
+  1092  03B7  00A5               	movwf	??_send_byte+1
+  1093  03B8  30FB               	movlw	251
+  1094  03B9  00A4               	movwf	??_send_byte
+  1095  03BA                     u1247:	
+  1096  03BA  0BA4               	decfsz	??_send_byte,f
+  1097  03BB  2BBA               	goto	u1247
+  1098  03BC  0BA5               	decfsz	??_send_byte+1,f
+  1099  03BD  2BBA               	goto	u1247
+  1100  03BE  3200               	nop2
+  1101                           
+  1102                           ;packet.h: 24: send_half_byte(c, 0);
+  1103  03BF  0020               	movlb	0	; select bank0
+  1104  03C0  01A0               	clrf	send_half_byte@low
+  1105  03C1  0826               	movf	send_byte@c,w
+  1106  03C2  21AA               	fcall	_send_half_byte
+  1107                           
+  1108                           ;packet.h: 25: _delay((unsigned long)((2)*(20000000/4000.0)));
+  1109  03C3  300D               	movlw	13
+  1110  03C4  0020               	movlb	0	; select bank0
+  1111  03C5  00A5               	movwf	??_send_byte+1
+  1112  03C6  30FB               	movlw	251
+  1113  03C7  00A4               	movwf	??_send_byte
+  1114  03C8                     u1257:	
+  1115  03C8  0BA4               	decfsz	??_send_byte,f
+  1116  03C9  2BC8               	goto	u1257
+  1117  03CA  0BA5               	decfsz	??_send_byte+1,f
+  1118  03CB  2BC8               	goto	u1257
+  1119  03CC  3200               	nop2
+  1120  03CD  0008               	return
+  1121  03CE                     __end_of_send_byte:	
+  1122                           
+  1123                           	psect	text5
+  1124  01AA                     __ptext5:	
+  1125 ;; *************** function _send_half_byte *****************
+  1126 ;; Defined at:
+  1127 ;;		line 14 in file "packet.h"
+  1128 ;; Parameters:    Size  Location     Type
+  1129 ;;  value           1    wreg     unsigned char 
+  1130 ;;  low             1    0[BANK0 ] unsigned char 
+  1131 ;; Auto vars:     Size  Location     Type
+  1132 ;;  value           1    2[BANK0 ] unsigned char 
+  1133 ;;  byte            1    3[BANK0 ] PTR struct .
+  1134 ;;		 -> send_half_byte@value(1), 
+  1135 ;; Return value:  Size  Location     Type
+  1136 ;;                  1    wreg      void 
+  1137 ;; Registers used:
+  1138 ;;		wreg, fsr1l, fsr1h, status,2, status,0
+  1139 ;; Tracked objects:
+  1140 ;;		On entry : 0/0
+  1141 ;;		On exit  : 0/0
+  1142 ;;		Unchanged: 0/0
+  1143 ;; Data sizes:     COMMON   BANK0   BANK1
+  1144 ;;      Params:         0       1       0
+  1145 ;;      Locals:         0       2       0
+  1146 ;;      Temps:          0       1       0
+  1147 ;;      Totals:         0       4       0
+  1148 ;;Total ram usage:        4 bytes
+  1149 ;; Hardware stack levels used:    1
+  1150 ;; Hardware stack levels required when called:    3
+  1151 ;; This function calls:
+  1152 ;;		Nothing
+  1153 ;; This function is called by:
+  1154 ;;		_send_byte
+  1155 ;; This function uses a non-reentrant model
+  1156 ;;
+  1157                           
+  1158                           
+  1159                           ;psect for function _send_half_byte
+  1160  01AA                     _send_half_byte:	
+  1161                           
+  1162                           ;incstack = 0
+  1163                           ; Regs used in _send_half_byte: [wreg+fsr1l+fsr1h+status,2+status,0]
+  1164                           ;send_half_byte@value stored from wreg
+  1165  01AA  0020               	movlb	0	; select bank0
+  1166  01AB  00A2               	movwf	send_half_byte@value
+  1167                           
+  1168                           ;packet.h: 16: { BITbits_t *byte = (BITbits_t *)&value; if(low == 1) { RA4 = byte->B0; R
+      +                          A5 = byte->B1; RC0 = byte->B2; RC1 = byte->B3; } else { RA4 = byte->B4; RA5 = byte->B5; 
+      +                          RC0 = byte->B6; RC1 = byte->B7; } };
+  1169  01AC  3022               	movlw	(low (send_half_byte@value| 0))& (0+255)
+  1170  01AD  00A1               	movwf	??_send_half_byte
+  1171  01AE  0821               	movf	??_send_half_byte,w
+  1172  01AF  00A3               	movwf	send_half_byte@byte
+  1173  01B0  0320               	decf	send_half_byte@low,w
+  1174  01B1  1D03               	btfss	3,2
+  1175  01B2  29D7               	goto	l918
+  1176  01B3  0823               	movf	send_half_byte@byte,w
+  1177  01B4  0086               	movwf	6
+  1178  01B5  0187               	clrf	7
+  1179  01B6  1C01               	btfss	1,0
+  1180  01B7  29BB               	goto	u640
+  1181  01B8  0020               	movlb	0	; select bank0
+  1182  01B9  160C               	bsf	12,4	;volatile
+  1183  01BA  29BD               	goto	u654
+  1184  01BB                     u640:	
+  1185  01BB  0020               	movlb	0	; select bank0
+  1186  01BC  120C               	bcf	12,4	;volatile
+  1187  01BD                     u654:	
+  1188  01BD  0823               	movf	send_half_byte@byte,w
+  1189  01BE  0086               	movwf	6
+  1190  01BF  0187               	clrf	7
+  1191  01C0  1C81               	btfss	1,1
+  1192  01C1  29C5               	goto	u660
+  1193  01C2  0020               	movlb	0	; select bank0
+  1194  01C3  168C               	bsf	12,5	;volatile
+  1195  01C4  29C7               	goto	u674
+  1196  01C5                     u660:	
+  1197  01C5  0020               	movlb	0	; select bank0
+  1198  01C6  128C               	bcf	12,5	;volatile
+  1199  01C7                     u674:	
+  1200  01C7  0823               	movf	send_half_byte@byte,w
+  1201  01C8  0086               	movwf	6
+  1202  01C9  0187               	clrf	7
+  1203  01CA  1D01               	btfss	1,2
+  1204  01CB  29CF               	goto	u680
+  1205  01CC  0020               	movlb	0	; select bank0
+  1206  01CD  140E               	bsf	14,0	;volatile
+  1207  01CE  29D1               	goto	u694
+  1208  01CF                     u680:	
+  1209  01CF  0020               	movlb	0	; select bank0
+  1210  01D0  100E               	bcf	14,0	;volatile
+  1211  01D1                     u694:	
+  1212  01D1  0823               	movf	send_half_byte@byte,w
+  1213  01D2  0086               	movwf	6
+  1214  01D3  0187               	clrf	7
+  1215  01D4  1981               	btfsc	1,3
+  1216  01D5  29FA               	goto	L1
+  1217  01D6  29FD               	goto	u780
+  1218  01D7                     l918:	
+  1219  01D7  0823               	movf	send_half_byte@byte,w
+  1220  01D8  0086               	movwf	6
+  1221  01D9  0187               	clrf	7
+  1222  01DA  1E01               	btfss	1,4
+  1223  01DB  29DF               	goto	u720
+  1224  01DC  0020               	movlb	0	; select bank0
+  1225  01DD  160C               	bsf	12,4	;volatile
+  1226  01DE  29E1               	goto	u734
+  1227  01DF                     u720:	
+  1228  01DF  0020               	movlb	0	; select bank0
+  1229  01E0  120C               	bcf	12,4	;volatile
+  1230  01E1                     u734:	
+  1231  01E1  0823               	movf	send_half_byte@byte,w
+  1232  01E2  0086               	movwf	6
+  1233  01E3  0187               	clrf	7
+  1234  01E4  1E81               	btfss	1,5
+  1235  01E5  29E9               	goto	u740
+  1236  01E6  0020               	movlb	0	; select bank0
+  1237  01E7  168C               	bsf	12,5	;volatile
+  1238  01E8  29EB               	goto	u754
+  1239  01E9                     u740:	
+  1240  01E9  0020               	movlb	0	; select bank0
+  1241  01EA  128C               	bcf	12,5	;volatile
+  1242  01EB                     u754:	
+  1243  01EB  0823               	movf	send_half_byte@byte,w
+  1244  01EC  0086               	movwf	6
+  1245  01ED  0187               	clrf	7
+  1246  01EE  1F01               	btfss	1,6
+  1247  01EF  29F3               	goto	u760
+  1248  01F0  0020               	movlb	0	; select bank0
+  1249  01F1  140E               	bsf	14,0	;volatile
+  1250  01F2  29F5               	goto	u774
+  1251  01F3                     u760:	
+  1252  01F3  0020               	movlb	0	; select bank0
+  1253  01F4  100E               	bcf	14,0	;volatile
+  1254  01F5                     u774:	
+  1255  01F5  0823               	movf	send_half_byte@byte,w
+  1256  01F6  0086               	movwf	6
+  1257  01F7  0187               	clrf	7
+  1258  01F8  1F81               	btfss	1,7
+  1259  01F9  29FD               	goto	u780
+  1260  01FA                     L1:	
+  1261  01FA  0020               	movlb	0	; select bank0
+  1262  01FB  148E               	bsf	14,1	;volatile
+  1263  01FC  29FF               	goto	l920
+  1264  01FD                     u780:	
+  1265  01FD  0020               	movlb	0	; select bank0
+  1266  01FE  108E               	bcf	14,1	;volatile
+  1267  01FF                     l920:	
+  1268                           
+  1269                           ;packet.h: 17: { if(RA0 == 0) { RA0 = 1; _delay((unsigned long)((1)*(20000000/4000000.0)
+      +                          )); RA0 = 0; } else { RA0 = 0; _delay((unsigned long)((1)*(20000000/4000000.0))); RA0 = 
+      +                          1; } };
+  1270  01FF  180C               	btfsc	12,0	;volatile
+  1271  0200  2A08               	goto	l92
+  1272  0201  140C               	bsf	12,0	;volatile
+  1273  0202  3200               	nop2	;2 cycle nop
+  1274  0203  3200               	nop2	;2 cycle nop
+  1275  0204  0000               	nop
+  1276  0205  0020               	movlb	0	; select bank0
+  1277  0206  100C               	bcf	12,0	;volatile
+  1278  0207  0008               	return
+  1279  0208                     l92:	
+  1280  0208  100C               	bcf	12,0	;volatile
+  1281  0209  3200               	nop2	;2 cycle nop
+  1282  020A  3200               	nop2	;2 cycle nop
+  1283  020B  0000               	nop
+  1284  020C  0020               	movlb	0	; select bank0
+  1285  020D  140C               	bsf	12,0	;volatile
+  1286  020E  0008               	return
+  1287  020F                     __end_of_send_half_byte:	
+  1288                           
+  1289                           	psect	text6
+  1290  03E7                     __ptext6:	
+  1291 ;; *************** function _create_RGB_DATA_RQT_CMD *****************
+  1292 ;; Defined at:
+  1293 ;;		line 22 in file "rgb_data.h"
+  1294 ;; Parameters:    Size  Location     Type
+  1295 ;;  pconn           1    wreg     PTR struct .
+  1296 ;;		 -> main@conn(5), 
+  1297 ;;  prqt            1   31[BANK0 ] PTR const struct .
+  1298 ;;		 -> main@rqt(1), 
+  1299 ;;  pmsg            1   32[BANK0 ] PTR struct .
+  1300 ;;		 -> send_RGB_DATA_RQT_CMD@msg(8), 
+  1301 ;; Auto vars:     Size  Location     Type
+  1302 ;;  pconn           1   36[BANK0 ] PTR struct .
+  1303 ;;		 -> main@conn(5), 
+  1304 ;; Return value:  Size  Location     Type
+  1305 ;;                  1    wreg      void 
+  1306 ;; Registers used:
+  1307 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  1308 ;; Tracked objects:
+  1309 ;;		On entry : 0/0
+  1310 ;;		On exit  : 0/0
+  1311 ;;		Unchanged: 0/0
+  1312 ;; Data sizes:     COMMON   BANK0   BANK1
+  1313 ;;      Params:         0       2       0
+  1314 ;;      Locals:         0       1       0
+  1315 ;;      Temps:          0       3       0
+  1316 ;;      Totals:         0       6       0
+  1317 ;;Total ram usage:        6 bytes
+  1318 ;; Hardware stack levels used:    1
+  1319 ;; Hardware stack levels required when called:    6
+  1320 ;; This function calls:
+  1321 ;;		_create_cmd
+  1322 ;; This function is called by:
+  1323 ;;		_send_RGB_DATA_RQT_CMD
+  1324 ;; This function uses a non-reentrant model
+  1325 ;;
+  1326                           
+  1327                           
+  1328                           ;psect for function _create_RGB_DATA_RQT_CMD
+  1329  03E7                     _create_RGB_DATA_RQT_CMD:	
+  1330                           
+  1331                           ;incstack = 0
+  1332                           ; Regs used in _create_RGB_DATA_RQT_CMD: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  1333                           ;create_RGB_DATA_RQT_CMD@pconn stored from wreg
+  1334  03E7  0020               	movlb	0	; select bank0
+  1335  03E8  00C4               	movwf	create_RGB_DATA_RQT_CMD@pconn
+  1336                           
+  1337                           ;rgb_data.h: 24: create_cmd(pconn, RGB_DATA_RQT, pconn->msgid++, prqt, 1, pmsg);
+  1338  03E9  01B4               	clrf	create_cmd@cmd_id
+  1339  03EA  0844               	movf	create_RGB_DATA_RQT_CMD@pconn,w
+  1340  03EB  3E02               	addlw	2
+  1341  03EC  0086               	movwf	6
+  1342  03ED  0187               	clrf	7
+  1343  03EE  0801               	movf	1,w
+  1344  03EF  0A81               	incf	1,f
+  1345  03F0  00C1               	movwf	??_create_RGB_DATA_RQT_CMD
+  1346  03F1  0841               	movf	??_create_RGB_DATA_RQT_CMD,w
+  1347  03F2  00B5               	movwf	create_cmd@msg_id
+  1348  03F3  083F               	movf	create_RGB_DATA_RQT_CMD@prqt,w
+  1349  03F4  00C2               	movwf	??_create_RGB_DATA_RQT_CMD+1
+  1350  03F5  0842               	movf	??_create_RGB_DATA_RQT_CMD+1,w
+  1351  03F6  00B6               	movwf	create_cmd@cmd_data
+  1352  03F7  01B7               	clrf	create_cmd@cmd_data_len
+  1353  03F8  0AB7               	incf	create_cmd@cmd_data_len,f
+  1354  03F9  0840               	movf	create_RGB_DATA_RQT_CMD@pmsg,w
+  1355  03FA  00C3               	movwf	??_create_RGB_DATA_RQT_CMD+2
+  1356  03FB  0843               	movf	??_create_RGB_DATA_RQT_CMD+2,w
+  1357  03FC  00B8               	movwf	create_cmd@pmsg
+  1358  03FD  0844               	movf	create_RGB_DATA_RQT_CMD@pconn,w
+  1359  03FE  236D               	fcall	_create_cmd
+  1360  03FF  0008               	return
+  1361  0400                     __end_of_create_RGB_DATA_RQT_CMD:	
+  1362                           
+  1363                           	psect	text7
+  1364  036D                     __ptext7:	
+  1365 ;; *************** function _create_cmd *****************
+  1366 ;; Defined at:
+  1367 ;;		line 27 in file "cmd.h"
+  1368 ;; Parameters:    Size  Location     Type
+  1369 ;;  pconn           1    wreg     PTR struct .
+  1370 ;;		 -> main@conn(5), 
+  1371 ;;  cmd_id          1   20[BANK0 ] unsigned char 
+  1372 ;;  msg_id          1   21[BANK0 ] unsigned char 
+  1373 ;;  cmd_data        1   22[BANK0 ] PTR const void 
+  1374 ;;		 -> main@rqt(1), 
+  1375 ;;  cmd_data_len    1   23[BANK0 ] unsigned char 
+  1376 ;;  pmsg            1   24[BANK0 ] PTR struct .
+  1377 ;;		 -> send_RGB_DATA_RQT_CMD@msg(8), 
+  1378 ;; Auto vars:     Size  Location     Type
+  1379 ;;  pconn           1   30[BANK0 ] PTR struct .
+  1380 ;;		 -> main@conn(5), 
+  1381 ;; Return value:  Size  Location     Type
+  1382 ;;                  1    wreg      void 
+  1383 ;; Registers used:
+  1384 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  1385 ;; Tracked objects:
+  1386 ;;		On entry : 0/0
+  1387 ;;		On exit  : 0/0
+  1388 ;;		Unchanged: 0/0
+  1389 ;; Data sizes:     COMMON   BANK0   BANK1
+  1390 ;;      Params:         0       5       0
+  1391 ;;      Locals:         0       1       0
+  1392 ;;      Temps:          0       5       0
+  1393 ;;      Totals:         0      11       0
+  1394 ;;Total ram usage:       11 bytes
+  1395 ;; Hardware stack levels used:    1
+  1396 ;; Hardware stack levels required when called:    5
+  1397 ;; This function calls:
+  1398 ;;		_compose
+  1399 ;; This function is called by:
+  1400 ;;		_create_RGB_DATA_RQT_CMD
+  1401 ;; This function uses a non-reentrant model
+  1402 ;;
+  1403                           
+  1404                           
+  1405                           ;psect for function _create_cmd
+  1406  036D                     _create_cmd:	
+  1407                           
+  1408                           ;incstack = 0
+  1409                           ; Regs used in _create_cmd: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  1410                           ;create_cmd@pconn stored from wreg
+  1411  036D  0020               	movlb	0	; select bank0
+  1412  036E  00BE               	movwf	create_cmd@pconn
+  1413                           
+  1414                           ;cmd.h: 29: compose(pmsg,
+  1415                           ;cmd.h: 30: pconn->from,
+  1416                           ;cmd.h: 31: pconn->to,
+  1417                           ;cmd.h: 32: msg_id,
+  1418                           ;cmd.h: 33: cmd_id,
+  1419                           ;cmd.h: 34: (uint8_t *)cmd_data,
+  1420                           ;cmd.h: 35: cmd_data_len);
+  1421  036F  083E               	movf	create_cmd@pconn,w
+  1422  0370  0086               	movwf	6
+  1423  0371  0187               	clrf	7
+  1424  0372  0801               	movf	1,w
+  1425  0373  00B9               	movwf	??_create_cmd
+  1426  0374  0839               	movf	??_create_cmd,w
+  1427  0375  00A9               	movwf	compose@from
+  1428  0376  083E               	movf	create_cmd@pconn,w
+  1429  0377  0086               	movwf	6
+  1430  0378  0187               	clrf	7
+  1431  0379  3F41               	moviw [1]fsr1
+  1432  037A  00AA               	movwf	compose@to
+  1433  037B  0835               	movf	create_cmd@msg_id,w
+  1434  037C  00BA               	movwf	??_create_cmd+1
+  1435  037D  083A               	movf	??_create_cmd+1,w
+  1436  037E  00AB               	movwf	compose@msgid
+  1437  037F  0834               	movf	create_cmd@cmd_id,w
+  1438  0380  00BB               	movwf	??_create_cmd+2
+  1439  0381  083B               	movf	??_create_cmd+2,w
+  1440  0382  00AC               	movwf	compose@cmd
+  1441  0383  0836               	movf	create_cmd@cmd_data,w
+  1442  0384  00BC               	movwf	??_create_cmd+3
+  1443  0385  083C               	movf	??_create_cmd+3,w
+  1444  0386  00AD               	movwf	compose@data
+  1445  0387  0837               	movf	create_cmd@cmd_data_len,w
+  1446  0388  00BD               	movwf	??_create_cmd+4
+  1447  0389  083D               	movf	??_create_cmd+4,w
+  1448  038A  00AE               	movwf	compose@datalen
+  1449  038B  0838               	movf	create_cmd@pmsg,w
+  1450  038C  2272               	fcall	_compose
+  1451  038D  0008               	return
+  1452  038E                     __end_of_create_cmd:	
+  1453                           
+  1454                           	psect	text8
+  1455  0272                     __ptext8:	
+  1456 ;; *************** function _compose *****************
+  1457 ;; Defined at:
+  1458 ;;		line 74 in file "msg.h"
+  1459 ;; Parameters:    Size  Location     Type
+  1460 ;;  pmsg            1    wreg     PTR struct .
+  1461 ;;		 -> send_RGB_DATA_RQT_CMD@msg(8), 
+  1462 ;;  from            1    9[BANK0 ] unsigned char 
+  1463 ;;  to              1   10[BANK0 ] unsigned char 
+  1464 ;;  msgid           1   11[BANK0 ] unsigned char 
+  1465 ;;  cmd             1   12[BANK0 ] unsigned char 
+  1466 ;;  data            1   13[BANK0 ] PTR unsigned char 
+  1467 ;;		 -> main@rqt(1), 
+  1468 ;;  datalen         1   14[BANK0 ] unsigned char 
+  1469 ;; Auto vars:     Size  Location     Type
+  1470 ;;  pmsg            1   19[BANK0 ] PTR struct .
+  1471 ;;		 -> send_RGB_DATA_RQT_CMD@msg(8), 
+  1472 ;;  len             2   17[BANK0 ] unsigned int 
+  1473 ;; Return value:  Size  Location     Type
+  1474 ;;                  1    wreg      void 
+  1475 ;; Registers used:
+  1476 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  1477 ;; Tracked objects:
+  1478 ;;		On entry : 0/0
+  1479 ;;		On exit  : 0/0
+  1480 ;;		Unchanged: 0/0
+  1481 ;; Data sizes:     COMMON   BANK0   BANK1
+  1482 ;;      Params:         0       6       0
+  1483 ;;      Locals:         0       3       0
+  1484 ;;      Temps:          0       2       0
+  1485 ;;      Totals:         0      11       0
+  1486 ;;Total ram usage:       11 bytes
+  1487 ;; Hardware stack levels used:    1
+  1488 ;; Hardware stack levels required when called:    4
+  1489 ;; This function calls:
+  1490 ;;		_crc_calculate
+  1491 ;; This function is called by:
+  1492 ;;		_create_cmd
+  1493 ;; This function uses a non-reentrant model
+  1494 ;;
+  1495                           
+  1496                           
+  1497                           ;psect for function _compose
+  1498  0272                     _compose:	
+  1499                           
+  1500                           ;incstack = 0
+  1501                           ; Regs used in _compose: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  1502                           ;compose@pmsg stored from wreg
+  1503  0272  0020               	movlb	0	; select bank0
+  1504  0273  00B3               	movwf	compose@pmsg
+  1505                           
+  1506                           ;msg.h: 82: register size_t len = datalen;
+  1507  0274  082E               	movf	compose@datalen,w
+  1508  0275  00AF               	movwf	??_compose
+  1509  0276  01B0               	clrf	??_compose+1
+  1510  0277  082F               	movf	??_compose,w
+  1511  0278  00B1               	movwf	compose@len
+  1512  0279  0830               	movf	??_compose+1,w
+  1513  027A  00B2               	movwf	compose@len+1
+  1514                           
+  1515                           ;msg.h: 83: pmsg->from = from;
+  1516  027B  0829               	movf	compose@from,w
+  1517  027C  00AF               	movwf	??_compose
+  1518  027D  0833               	movf	compose@pmsg,w
+  1519  027E  3E03               	addlw	3
+  1520  027F  0086               	movwf	6
+  1521  0280  0187               	clrf	7
+  1522  0281  082F               	movf	??_compose,w
+  1523  0282  0081               	movwf	1
+  1524                           
+  1525                           ;msg.h: 84: pmsg->to = to;
+  1526  0283  082A               	movf	compose@to,w
+  1527  0284  00AF               	movwf	??_compose
+  1528  0285  0833               	movf	compose@pmsg,w
+  1529  0286  3E04               	addlw	4
+  1530  0287  0086               	movwf	6
+  1531  0288  0187               	clrf	7
+  1532  0289  082F               	movf	??_compose,w
+  1533  028A  0081               	movwf	1
+  1534                           
+  1535                           ;msg.h: 85: pmsg->msgid = msgid;
+  1536  028B  082B               	movf	compose@msgid,w
+  1537  028C  00AF               	movwf	??_compose
+  1538  028D  0833               	movf	compose@pmsg,w
+  1539  028E  3E05               	addlw	5
+  1540  028F  0086               	movwf	6
+  1541  0290  0187               	clrf	7
+  1542  0291  082F               	movf	??_compose,w
+  1543  0292  0081               	movwf	1
+  1544                           
+  1545                           ;msg.h: 86: pmsg->cmd = cmd;
+  1546  0293  082C               	movf	compose@cmd,w
+  1547  0294  00AF               	movwf	??_compose
+  1548  0295  0833               	movf	compose@pmsg,w
+  1549  0296  3E06               	addlw	6
+  1550  0297  0086               	movwf	6
+  1551  0298  0187               	clrf	7
+  1552  0299  082F               	movf	??_compose,w
+  1553  029A  0081               	movwf	1
+  1554                           
+  1555                           ;msg.h: 87: __builtin_memcpy((void *)pmsg->data,(void *)data,len);
+  1556  029B  0833               	movf	compose@pmsg,w
+  1557  029C  3E07               	addlw	7
+  1558  029D  0086               	movwf	6
+  1559  029E  0187               	clrf	7
+  1560  029F  0020               	movlb	0	; select bank0
+  1561  02A0  082D               	movf	compose@data,w
+  1562  02A1  0084               	movwf	4
+  1563  02A2  0185               	clrf	5
+  1564  02A3  0832               	movf	compose@len+1,w
+  1565  02A4  00B0               	movwf	??_compose+1
+  1566  02A5  0831               	movf	compose@len,w
+  1567  02A6  00AF               	movwf	??_compose
+  1568  02A7                     u82m0:	
+  1569  02A7  0012               	moviw fsr0++
+  1570  02A8  001E               	movwi fsr1++
+  1571  02A9  3001               	movlw	1
+  1572  02AA  02AF               	subwf	??_compose,f
+  1573  02AB  3000               	movlw	0
+  1574  02AC  3BB0               	subwfb	??_compose+1,f
+  1575  02AD  0830               	movf	??_compose+1,w
+  1576  02AE  042F               	iorwf	??_compose,w
+  1577  02AF  1D03               	btfss	3,2
+  1578  02B0  2AA7               	goto	u82m0
+  1579                           
+  1580                           ;msg.h: 88: pmsg->msglen = datalen + 7;
+  1581  02B1  0020               	movlb	0	; select bank0
+  1582  02B2  082E               	movf	compose@datalen,w
+  1583  02B3  3E07               	addlw	7
+  1584  02B4  00AF               	movwf	??_compose
+  1585  02B5  0833               	movf	compose@pmsg,w
+  1586  02B6  0086               	movwf	6
+  1587  02B7  0187               	clrf	7
+  1588  02B8  082F               	movf	??_compose,w
+  1589  02B9  0081               	movwf	1
+  1590                           
+  1591                           ;msg.h: 90: pmsg->crc = crc_calculate(pmsg);
+  1592  02BA  0833               	movf	compose@pmsg,w
+  1593  02BB  2144               	fcall	_crc_calculate
+  1594  02BC  0020               	movlb	0	; select bank0
+  1595  02BD  0A33               	incf	compose@pmsg,w
+  1596  02BE  0086               	movwf	6
+  1597  02BF  0187               	clrf	7
+  1598  02C0  0820               	movf	?_crc_calculate,w
+  1599  02C1  3FC0               	movwi [0]fsr1
+  1600  02C2  0821               	movf	?_crc_calculate+1,w
+  1601  02C3  3FC1               	movwi [1]fsr1
+  1602  02C4  0008               	return
+  1603  02C5                     __end_of_compose:	
+  1604                           
+  1605                           	psect	text9
+  1606  0144                     __ptext9:	
+  1607 ;; *************** function _crc_calculate *****************
+  1608 ;; Defined at:
+  1609 ;;		line 58 in file "msg.h"
+  1610 ;; Parameters:    Size  Location     Type
+  1611 ;;  pmsg            1    wreg     PTR struct .
+  1612 ;;		 -> send_RGB_DATA_RQT_CMD@msg(8), 
+  1613 ;; Auto vars:     Size  Location     Type
+  1614 ;;  pmsg            1    8[BANK0 ] PTR struct .
+  1615 ;;		 -> send_RGB_DATA_RQT_CMD@msg(8), 
+  1616 ;;  i               1    7[BANK0 ] unsigned char 
+  1617 ;;  crc             2    5[BANK0 ] unsigned int 
+  1618 ;; Return value:  Size  Location     Type
+  1619 ;;                  2    0[BANK0 ] unsigned int 
+  1620 ;; Registers used:
+  1621 ;;		wreg, fsr1l, fsr1h, status,2, status,0
+  1622 ;; Tracked objects:
+  1623 ;;		On entry : 0/0
+  1624 ;;		On exit  : 0/0
+  1625 ;;		Unchanged: 0/0
+  1626 ;; Data sizes:     COMMON   BANK0   BANK1
+  1627 ;;      Params:         0       2       0
+  1628 ;;      Locals:         0       4       0
+  1629 ;;      Temps:          0       3       0
+  1630 ;;      Totals:         0       9       0
+  1631 ;;Total ram usage:        9 bytes
+  1632 ;; Hardware stack levels used:    1
+  1633 ;; Hardware stack levels required when called:    3
+  1634 ;; This function calls:
+  1635 ;;		Nothing
+  1636 ;; This function is called by:
+  1637 ;;		_compose
+  1638 ;; This function uses a non-reentrant model
+  1639 ;;
+  1640                           
+  1641                           
+  1642                           ;psect for function _crc_calculate
+  1643  0144                     _crc_calculate:	
+  1644                           
+  1645                           ;incstack = 0
+  1646                           ; Regs used in _crc_calculate: [wreg+fsr1l+fsr1h+status,2+status,0]
+  1647                           ;crc_calculate@pmsg stored from wreg
+  1648  0144  0020               	movlb	0	; select bank0
+  1649  0145  00A8               	movwf	crc_calculate@pmsg
+  1650                           
+  1651                           ;msg.h: 60: uint16_t crc;
+  1652                           ;msg.h: 61: crc = (uint8_t)pmsg->msglen;
+  1653  0146  0828               	movf	crc_calculate@pmsg,w
+  1654  0147  0086               	movwf	6
+  1655  0148  0187               	clrf	7
+  1656  0149  0801               	movf	1,w
+  1657  014A  00A2               	movwf	??_crc_calculate
+  1658  014B  01A3               	clrf	??_crc_calculate+1
+  1659  014C  0822               	movf	??_crc_calculate,w
+  1660  014D  00A5               	movwf	crc_calculate@crc
+  1661  014E  0823               	movf	??_crc_calculate+1,w
+  1662  014F  00A6               	movwf	crc_calculate@crc+1
+  1663                           
+  1664                           ;msg.h: 62: crc += (uint8_t)pmsg->from;
+  1665  0150  0828               	movf	crc_calculate@pmsg,w
+  1666  0151  3E03               	addlw	3
+  1667  0152  0086               	movwf	6
+  1668  0153  0187               	clrf	7
+  1669  0154  0801               	movf	1,w
+  1670  0155  00A2               	movwf	??_crc_calculate
+  1671  0156  01A3               	clrf	??_crc_calculate+1
+  1672  0157  0822               	movf	??_crc_calculate,w
+  1673  0158  07A5               	addwf	crc_calculate@crc,f
+  1674  0159  0823               	movf	??_crc_calculate+1,w
+  1675  015A  3DA6               	addwfc	crc_calculate@crc+1,f
+  1676                           
+  1677                           ;msg.h: 63: crc += (uint8_t)pmsg->to;
+  1678  015B  0828               	movf	crc_calculate@pmsg,w
+  1679  015C  3E04               	addlw	4
+  1680  015D  0086               	movwf	6
+  1681  015E  0187               	clrf	7
+  1682  015F  0801               	movf	1,w
+  1683  0160  00A2               	movwf	??_crc_calculate
+  1684  0161  01A3               	clrf	??_crc_calculate+1
+  1685  0162  0822               	movf	??_crc_calculate,w
+  1686  0163  07A5               	addwf	crc_calculate@crc,f
+  1687  0164  0823               	movf	??_crc_calculate+1,w
+  1688  0165  3DA6               	addwfc	crc_calculate@crc+1,f
+  1689                           
+  1690                           ;msg.h: 64: crc += (uint8_t)pmsg->msgid;
+  1691  0166  0828               	movf	crc_calculate@pmsg,w
+  1692  0167  3E05               	addlw	5
+  1693  0168  0086               	movwf	6
+  1694  0169  0187               	clrf	7
+  1695  016A  0801               	movf	1,w
+  1696  016B  00A2               	movwf	??_crc_calculate
+  1697  016C  01A3               	clrf	??_crc_calculate+1
+  1698  016D  0822               	movf	??_crc_calculate,w
+  1699  016E  07A5               	addwf	crc_calculate@crc,f
+  1700  016F  0823               	movf	??_crc_calculate+1,w
+  1701  0170  3DA6               	addwfc	crc_calculate@crc+1,f
+  1702                           
+  1703                           ;msg.h: 65: crc += (uint8_t)pmsg->cmd;
+  1704  0171  0828               	movf	crc_calculate@pmsg,w
+  1705  0172  3E06               	addlw	6
+  1706  0173  0086               	movwf	6
+  1707  0174  0187               	clrf	7
+  1708  0175  0801               	movf	1,w
+  1709  0176  00A2               	movwf	??_crc_calculate
+  1710  0177  01A3               	clrf	??_crc_calculate+1
+  1711  0178  0822               	movf	??_crc_calculate,w
+  1712  0179  07A5               	addwf	crc_calculate@crc,f
+  1713  017A  0823               	movf	??_crc_calculate+1,w
+  1714  017B  3DA6               	addwfc	crc_calculate@crc+1,f
+  1715                           
+  1716                           ;msg.h: 67: for(uint8_t i = 0; i < pmsg->msglen - 7; i++)
+  1717  017C  01A7               	clrf	crc_calculate@i
+  1718  017D                     l940:	
+  1719  017D  0828               	movf	crc_calculate@pmsg,w
+  1720  017E  0086               	movwf	6
+  1721  017F  0187               	clrf	7
+  1722  0180  0801               	movf	1,w
+  1723  0181  3EF9               	addlw	249
+  1724  0182  00A2               	movwf	??_crc_calculate
+  1725  0183  30FF               	movlw	255
+  1726  0184  1803               	skipnc
+  1727  0185  3000               	movlw	0
+  1728  0186  00A3               	movwf	??_crc_calculate+1
+  1729  0187  0823               	movf	??_crc_calculate+1,w
+  1730  0188  3A80               	xorlw	128
+  1731  0189  3C80               	sublw	128
+  1732  018A  1D03               	skipz
+  1733  018B  298E               	goto	u815
+  1734  018C  0822               	movf	??_crc_calculate,w
+  1735  018D  0227               	subwf	crc_calculate@i,w
+  1736  018E                     u815:	
+  1737  018E  1803               	btfsc	3,0
+  1738  018F  29A4               	goto	l942
+  1739                           
+  1740                           ;msg.h: 68: {
+  1741                           ;msg.h: 69: crc += (uint8_t)pmsg->data[i];
+  1742  0190  0020               	movlb	0	; select bank0
+  1743  0191  0827               	movf	crc_calculate@i,w
+  1744  0192  3E07               	addlw	7
+  1745  0193  0728               	addwf	crc_calculate@pmsg,w
+  1746  0194  00A2               	movwf	??_crc_calculate
+  1747  0195  0822               	movf	??_crc_calculate,w
+  1748  0196  0086               	movwf	6
+  1749  0197  0187               	clrf	7
+  1750  0198  0801               	movf	1,w
+  1751  0199  00A3               	movwf	??_crc_calculate+1
+  1752  019A  01A4               	clrf	??_crc_calculate+2
+  1753  019B  0823               	movf	??_crc_calculate+1,w
+  1754  019C  07A5               	addwf	crc_calculate@crc,f
+  1755  019D  0824               	movf	??_crc_calculate+2,w
+  1756  019E  3DA6               	addwfc	crc_calculate@crc+1,f
+  1757  019F  3001               	movlw	1
+  1758  01A0  00A2               	movwf	??_crc_calculate
+  1759  01A1  0822               	movf	??_crc_calculate,w
+  1760  01A2  07A7               	addwf	crc_calculate@i,f
+  1761  01A3  297D               	goto	l940
+  1762  01A4                     l942:	
+  1763                           
+  1764                           ;msg.h: 70: }
+  1765                           ;msg.h: 72: return crc;
+  1766  01A4  0020               	movlb	0	; select bank0
+  1767  01A5  0826               	movf	crc_calculate@crc+1,w
+  1768  01A6  00A1               	movwf	?_crc_calculate+1
+  1769  01A7  0825               	movf	crc_calculate@crc,w
+  1770  01A8  00A0               	movwf	?_crc_calculate
+  1771  01A9  0008               	return
+  1772  01AA                     __end_of_crc_calculate:	
+  1773                           
+  1774                           	psect	text10
+  1775  0308                     __ptext10:	
+  1776 ;; *************** function _get_msg *****************
+  1777 ;; Defined at:
+  1778 ;;		line 28 in file "msg.h"
+  1779 ;; Parameters:    Size  Location     Type
+  1780 ;;  pmsg            1    wreg     PTR struct .
+  1781 ;;		 -> msg(8), 
+  1782 ;; Auto vars:     Size  Location     Type
+  1783 ;;  pmsg            1   11[BANK0 ] PTR struct .
+  1784 ;;		 -> msg(8), 
+  1785 ;;  temp            1   15[BANK0 ] unsigned char 
+  1786 ;;  end_index       1   14[BANK0 ] unsigned char 
+  1787 ;;  start_index     1   13[BANK0 ] unsigned char 
+  1788 ;;  i               1   12[BANK0 ] unsigned char 
+  1789 ;;  pstr            1   10[BANK0 ] PTR unsigned char 
+  1790 ;;		 -> msg(8), 
+  1791 ;; Return value:  Size  Location     Type
+  1792 ;;                  1    wreg      unsigned char 
+  1793 ;; Registers used:
+  1794 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  1795 ;; Tracked objects:
+  1796 ;;		On entry : 0/0
+  1797 ;;		On exit  : 0/0
+  1798 ;;		Unchanged: 0/0
+  1799 ;; Data sizes:     COMMON   BANK0   BANK1
+  1800 ;;      Params:         0       0       0
+  1801 ;;      Locals:         0       6       0
+  1802 ;;      Temps:          0       2       0
+  1803 ;;      Totals:         0       8       0
+  1804 ;;Total ram usage:        8 bytes
+  1805 ;; Hardware stack levels used:    1
+  1806 ;; Hardware stack levels required when called:    5
+  1807 ;; This function calls:
+  1808 ;;		_get_distance
+  1809 ;;		_get_msg_index
+  1810 ;;		_get_next_index
+  1811 ;; This function is called by:
+  1812 ;;		_main
+  1813 ;; This function uses a non-reentrant model
+  1814 ;;
+  1815                           
+  1816                           
+  1817                           ;psect for function _get_msg
+  1818  0308                     _get_msg:	
+  1819                           
+  1820                           ;incstack = 0
+  1821                           ; Regs used in _get_msg: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  1822                           ;get_msg@pmsg stored from wreg
+  1823  0308  0020               	movlb	0	; select bank0
+  1824  0309  00AB               	movwf	get_msg@pmsg
+  1825                           
+  1826                           ;msg.h: 30: uint8_t *pstr = (uint8_t *)pmsg;
+  1827  030A  082B               	movf	get_msg@pmsg,w
+  1828  030B  00A8               	movwf	??_get_msg
+  1829  030C  0828               	movf	??_get_msg,w
+  1830  030D  00AA               	movwf	get_msg@pstr
+  1831                           
+  1832                           ;msg.h: 31: uint8_t start_index, end_index;
+  1833                           ;msg.h: 32: uint8_t i = 0;
+  1834  030E  01AC               	clrf	get_msg@i
+  1835                           
+  1836                           ;msg.h: 33: uint8_t temp;
+  1837                           ;msg.h: 34: if(get_msg_index(&start_index, &end_index) == 1)
+  1838  030F  302E               	movlw	(low (get_msg@end_index| 0))& (0+255)
+  1839  0310  00A8               	movwf	??_get_msg
+  1840  0311  0828               	movf	??_get_msg,w
+  1841  0312  00A3               	movwf	get_msg_index@end_index
+  1842  0313  302D               	movlw	(low (get_msg@start_index| 0))& (0+255)
+  1843  0314  2048               	fcall	_get_msg_index
+  1844  0315  3A01               	xorlw	1
+  1845  0316  1D03               	skipz
+  1846  0317  2B44               	goto	l1136
+  1847                           
+  1848                           ;msg.h: 35: {
+  1849                           ;msg.h: 36: temp = start_index;
+  1850  0318  0020               	movlb	0	; select bank0
+  1851  0319  082D               	movf	get_msg@start_index,w
+  1852  031A                     L2:	
+  1853  031A  00A8               	movwf	??_get_msg
+  1854  031B  0828               	movf	??_get_msg,w
+  1855  031C  00AF               	movwf	get_msg@temp
+  1856                           
+  1857                           ;msg.h: 38: {
+  1858                           ;msg.h: 39: pstr[i++] = buffer_rcv[temp];
+  1859                           
+  1860                           ;msg.h: 37: while(1)
+  1861  031D  082F               	movf	get_msg@temp,w
+  1862  031E  3EA0               	addlw	(low (_buffer_rcv| 0))& (0+255)
+  1863  031F  0086               	movwf	6
+  1864  0320  0187               	clrf	7
+  1865  0321  0801               	movf	1,w
+  1866  0322  00A8               	movwf	??_get_msg
+  1867  0323  082C               	movf	get_msg@i,w
+  1868  0324  072A               	addwf	get_msg@pstr,w
+  1869  0325  00A9               	movwf	??_get_msg+1
+  1870  0326  0829               	movf	??_get_msg+1,w
+  1871  0327  0086               	movwf	6
+  1872  0328  0187               	clrf	7
+  1873  0329  0828               	movf	??_get_msg,w
+  1874  032A  0081               	movwf	1
+  1875  032B  3001               	movlw	1
+  1876  032C  00A8               	movwf	??_get_msg
+  1877  032D  0828               	movf	??_get_msg,w
+  1878  032E  07AC               	addwf	get_msg@i,f
+  1879                           
+  1880                           ;msg.h: 40: buffer_rcv[temp] = 0;
+  1881  032F  082F               	movf	get_msg@temp,w
+  1882  0330  3EA0               	addlw	(low (_buffer_rcv| 0))& (0+255)
+  1883  0331  0086               	movwf	6
+  1884  0332  0187               	clrf	7
+  1885  0333  0181               	clrf	1
+  1886                           
+  1887                           ;msg.h: 41: if(get_distance(temp, end_index) == 0)
+  1888  0334  082E               	movf	get_msg@end_index,w
+  1889  0335  00A8               	movwf	??_get_msg
+  1890  0336  0828               	movf	??_get_msg,w
+  1891  0337  00A0               	movwf	get_distance@end_index
+  1892  0338  082F               	movf	get_msg@temp,w
+  1893  0339  241E               	fcall	_get_distance
+  1894  033A  3A00               	xorlw	0
+  1895  033B  1903               	btfsc	3,2
+  1896  033C  2B42               	goto	l1132
+  1897                           
+  1898                           ;msg.h: 44: }
+  1899                           ;msg.h: 45: temp = get_next_index(temp);
+  1900                           
+  1901                           ;msg.h: 42: {
+  1902                           ;msg.h: 43: break;
+  1903  033D  0020               	movlb	0	; select bank0
+  1904  033E  082F               	movf	get_msg@temp,w
+  1905  033F  243B               	fcall	_get_next_index
+  1906  0340  0020               	movlb	0	; select bank0
+  1907  0341  2B1A               	goto	L2
+  1908  0342                     l1132:	
+  1909                           
+  1910                           ;msg.h: 46: }
+  1911                           ;msg.h: 47: return 1;
+  1912  0342  3001               	movlw	1
+  1913  0343  0008               	return
+  1914  0344                     l1136:	
+  1915                           
+  1916                           ;msg.h: 48: }
+  1917                           ;msg.h: 49: return 0;
+  1918  0344  3000               	movlw	0
+  1919  0345  0008               	return
+  1920  0346                     __end_of_get_msg:	
+  1921                           
+  1922                           	psect	text11
+  1923  0048                     __ptext11:	
+  1924 ;; *************** function _get_msg_index *****************
+  1925 ;; Defined at:
+  1926 ;;		line 82 in file "circle_buffer.h"
+  1927 ;; Parameters:    Size  Location     Type
+  1928 ;;  start_index     1    wreg     PTR unsigned char 
+  1929 ;;		 -> get_msg@start_index(1), 
+  1930 ;;  end_index       1    3[BANK0 ] PTR unsigned char 
+  1931 ;;		 -> get_msg@end_index(1), 
+  1932 ;; Auto vars:     Size  Location     Type
+  1933 ;;  start_index     1    6[BANK0 ] PTR unsigned char 
+  1934 ;;		 -> get_msg@start_index(1), 
+  1935 ;;  i               1    7[BANK0 ] unsigned char 
+  1936 ;; Return value:  Size  Location     Type
+  1937 ;;                  1    wreg      unsigned char 
+  1938 ;; Registers used:
+  1939 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  1940 ;; Tracked objects:
+  1941 ;;		On entry : 0/0
+  1942 ;;		On exit  : 0/0
+  1943 ;;		Unchanged: 0/0
+  1944 ;; Data sizes:     COMMON   BANK0   BANK1
+  1945 ;;      Params:         0       1       0
+  1946 ;;      Locals:         0       2       0
+  1947 ;;      Temps:          0       2       0
+  1948 ;;      Totals:         0       5       0
+  1949 ;;Total ram usage:        5 bytes
+  1950 ;; Hardware stack levels used:    1
+  1951 ;; Hardware stack levels required when called:    4
+  1952 ;; This function calls:
+  1953 ;;		_get_distance
+  1954 ;;		_get_minus_index
+  1955 ;;		_get_next_index
+  1956 ;;		_get_plus_index
+  1957 ;; This function is called by:
+  1958 ;;		_get_msg
+  1959 ;; This function uses a non-reentrant model
+  1960 ;;
+  1961                           
+  1962                           
+  1963                           ;psect for function _get_msg_index
+  1964  0048                     _get_msg_index:	
+  1965                           
+  1966                           ;incstack = 0
+  1967                           ; Regs used in _get_msg_index: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  1968                           ;get_msg_index@start_index stored from wreg
+  1969  0048  0020               	movlb	0	; select bank0
+  1970  0049  00A6               	movwf	get_msg_index@start_index
+  1971                           
+  1972                           ;circle_buffer.h: 84: uint8_t i;
+  1973                           ;circle_buffer.h: 85: *start_index = 0xFF;
+  1974  004A  30FF               	movlw	255
+  1975  004B  00A4               	movwf	??_get_msg_index
+  1976  004C  0826               	movf	get_msg_index@start_index,w
+  1977  004D  0086               	movwf	6
+  1978  004E  0187               	clrf	7
+  1979  004F  0824               	movf	??_get_msg_index,w
+  1980  0050  0081               	movwf	1
+  1981                           
+  1982                           ;circle_buffer.h: 86: *end_index = 0xFF;
+  1983  0051  30FF               	movlw	255
+  1984  0052  00A4               	movwf	??_get_msg_index
+  1985  0053  0823               	movf	get_msg_index@end_index,w
+  1986  0054  0086               	movwf	6
+  1987  0055  0187               	clrf	7
+  1988  0056  0824               	movf	??_get_msg_index,w
+  1989  0057  0081               	movwf	1
+  1990                           
+  1991                           ;circle_buffer.h: 88: if(low_half_rcv == 0)
+  1992  0058  087A               	movf	_low_half_rcv,w
+  1993  0059  1D03               	btfss	3,2
+  1994  005A  285D               	goto	l1028
+  1995                           
+  1996                           ;circle_buffer.h: 89: {
+  1997                           ;circle_buffer.h: 90: return 0;
+  1998  005B  3000               	movlw	0
+  1999  005C  0008               	return
+  2000  005D                     l1028:	
+  2001                           
+  2002                           ;circle_buffer.h: 91: }
+  2003                           ;circle_buffer.h: 92: if(get_distance(start_index_rcv, end_index_rcv) <= 7)
+  2004  005D  0879               	movf	_end_index_rcv,w
+  2005  005E  00A4               	movwf	??_get_msg_index
+  2006  005F  0824               	movf	??_get_msg_index,w
+  2007  0060  00A0               	movwf	get_distance@end_index
+  2008  0061  0863               	movf	_start_index_rcv,w
+  2009  0062  241E               	fcall	_get_distance
+  2010  0063  0020               	movlb	0	; select bank0
+  2011  0064  00A5               	movwf	??_get_msg_index+1
+  2012  0065  3008               	movlw	8
+  2013  0066  0225               	subwf	??_get_msg_index+1,w
+  2014  0067  1803               	skipnc
+  2015  0068  286B               	goto	l1034
+  2016                           
+  2017                           ;circle_buffer.h: 93: {
+  2018                           ;circle_buffer.h: 94: return 0;
+  2019  0069  3000               	movlw	0
+  2020  006A  0008               	return
+  2021  006B                     l1034:	
+  2022                           
+  2023                           ;circle_buffer.h: 95: }
+  2024                           ;circle_buffer.h: 96: i = start_index_rcv;
+  2025  006B  0863               	movf	_start_index_rcv,w
+  2026  006C                     L3:	
+  2027  006C  00A4               	movwf	??_get_msg_index
+  2028  006D  0824               	movf	??_get_msg_index,w
+  2029  006E  00A7               	movwf	get_msg_index@i
+  2030  006F  0879               	movf	_end_index_rcv,w
+  2031  0070  00A4               	movwf	??_get_msg_index
+  2032  0071  0824               	movf	??_get_msg_index,w
+  2033  0072  00A0               	movwf	get_distance@end_index
+  2034  0073  0827               	movf	get_msg_index@i,w
+  2035  0074  241E               	fcall	_get_distance
+  2036  0075  0020               	movlb	0	; select bank0
+  2037  0076  00A5               	movwf	??_get_msg_index+1
+  2038  0077  3003               	movlw	3
+  2039  0078  0225               	subwf	??_get_msg_index+1,w
+  2040  0079  1C03               	btfss	3,0
+  2041  007A  2927               	goto	l1060
+  2042                           
+  2043                           ;circle_buffer.h: 98: {
+  2044                           ;circle_buffer.h: 99: if((buffer_rcv[i] == start_mark[0]) && (buffer_rcv[get_plus_index(
+      +                          i, 1)] == start_mark[1])
+  2045                           ;circle_buffer.h: 100: && (buffer_rcv[get_plus_index(i, 2)] == start_mark[2]) && (buffer
+      +                          _rcv[get_plus_index(i, 3)] == start_mark[3]))
+  2046                           
+  2047                           ;circle_buffer.h: 97: while(get_distance(i, end_index_rcv) >= 3)
+  2048  007B  3050               	movlw	low (_start_mark| (0+32768))
+  2049  007C  0084               	movwf	4
+  2050  007D  3084               	movlw	high (_start_mark| (0+32768))
+  2051  007E  0085               	movwf	5
+  2052  007F  0800               	movf	0,w	;code access
+  2053  0080  00A4               	movwf	??_get_msg_index
+  2054  0081  0827               	movf	get_msg_index@i,w
+  2055  0082  3EA0               	addlw	(low (_buffer_rcv| 0))& (0+255)
+  2056  0083  0086               	movwf	6
+  2057  0084  0187               	clrf	7
+  2058  0085  0801               	movf	1,w
+  2059  0086  0624               	xorwf	??_get_msg_index,w
+  2060  0087  1D03               	skipz
+  2061  0088  28D0               	goto	l1046
+  2062  0089  3051               	movlw	low ((_start_mark+1)| (0+32768))
+  2063  008A  0084               	movwf	4
+  2064  008B  3084               	movlw	high ((_start_mark+1)| (0+32768))
+  2065  008C  0085               	movwf	5
+  2066  008D  0800               	movf	0,w	;code access
+  2067  008E  00A4               	movwf	??_get_msg_index
+  2068  008F  01A0               	clrf	get_plus_index@add
+  2069  0090  0AA0               	incf	get_plus_index@add,f
+  2070  0091  0827               	movf	get_msg_index@i,w
+  2071  0092  242D               	fcall	_get_plus_index
+  2072  0093  3EA0               	addlw	(low (_buffer_rcv| 0))& (0+255)
+  2073  0094  0086               	movwf	6
+  2074  0095  0187               	clrf	7
+  2075  0096  0801               	movf	1,w
+  2076  0097  0020               	movlb	0	; select bank0
+  2077  0098  0624               	xorwf	??_get_msg_index,w
+  2078  0099  1D03               	skipz
+  2079  009A  28D0               	goto	l1046
+  2080  009B  3052               	movlw	low ((_start_mark+2)| (0+32768))
+  2081  009C  0084               	movwf	4
+  2082  009D  3084               	movlw	high ((_start_mark+2)| (0+32768))
+  2083  009E  0085               	movwf	5
+  2084  009F  0800               	movf	0,w	;code access
+  2085  00A0  00A4               	movwf	??_get_msg_index
+  2086  00A1  3002               	movlw	2
+  2087  00A2  00A5               	movwf	??_get_msg_index+1
+  2088  00A3  0825               	movf	??_get_msg_index+1,w
+  2089  00A4  00A0               	movwf	get_plus_index@add
+  2090  00A5  0827               	movf	get_msg_index@i,w
+  2091  00A6  242D               	fcall	_get_plus_index
+  2092  00A7  3EA0               	addlw	(low (_buffer_rcv| 0))& (0+255)
+  2093  00A8  0086               	movwf	6
+  2094  00A9  0187               	clrf	7
+  2095  00AA  0801               	movf	1,w
+  2096  00AB  0020               	movlb	0	; select bank0
+  2097  00AC  0624               	xorwf	??_get_msg_index,w
+  2098  00AD  1D03               	skipz
+  2099  00AE  28D0               	goto	l1046
+  2100                           
+  2101                           ;circle_buffer.h: 101: {
+  2102                           ;circle_buffer.h: 102: if(*start_index != -1)
+  2103  00AF  3053               	movlw	low ((_start_mark+3)| (0+32768))
+  2104  00B0  0084               	movwf	4
+  2105  00B1  3084               	movlw	high ((_start_mark+3)| (0+32768))
+  2106  00B2  0085               	movwf	5
+  2107  00B3  0800               	movf	0,w	;code access
+  2108  00B4  00A4               	movwf	??_get_msg_index
+  2109  00B5  3003               	movlw	3
+  2110  00B6  00A5               	movwf	??_get_msg_index+1
+  2111  00B7  0825               	movf	??_get_msg_index+1,w
+  2112  00B8  00A0               	movwf	get_plus_index@add
+  2113  00B9  0827               	movf	get_msg_index@i,w
+  2114  00BA  242D               	fcall	_get_plus_index
+  2115  00BB  3EA0               	addlw	(low (_buffer_rcv| 0))& (0+255)
+  2116  00BC  0086               	movwf	6
+  2117  00BD  0187               	clrf	7
+  2118  00BE  0801               	movf	1,w
+  2119  00BF  0020               	movlb	0	; select bank0
+  2120  00C0  0624               	xorwf	??_get_msg_index,w
+  2121  00C1  1D03               	skipz
+  2122  00C2  28D0               	goto	l1046
+  2123                           
+  2124                           ;circle_buffer.h: 103: {
+  2125                           ;circle_buffer.h: 104: *start_index = get_plus_index(i, 4);
+  2126  00C3  3004               	movlw	4
+  2127  00C4  00A4               	movwf	??_get_msg_index
+  2128  00C5  0824               	movf	??_get_msg_index,w
+  2129  00C6  00A0               	movwf	get_plus_index@add
+  2130  00C7  0827               	movf	get_msg_index@i,w
+  2131  00C8  242D               	fcall	_get_plus_index
+  2132  00C9  0020               	movlb	0	; select bank0
+  2133  00CA  00A5               	movwf	??_get_msg_index+1
+  2134  00CB  0826               	movf	get_msg_index@start_index,w
+  2135  00CC  0086               	movwf	6
+  2136  00CD  0187               	clrf	7
+  2137  00CE  0825               	movf	??_get_msg_index+1,w
+  2138  00CF  2922               	goto	L4
+  2139  00D0                     l1046:	
+  2140                           ;circle_buffer.h: 105: }
+  2141                           ;circle_buffer.h: 106: }
+  2142                           
+  2143                           
+  2144                           ;circle_buffer.h: 107: else if((buffer_rcv[i] == stop_mark[0]) && (buffer_rcv[get_plus_i
+      +                          ndex(i, 1)] == stop_mark[1])
+  2145                           ;circle_buffer.h: 108: && (buffer_rcv[get_plus_index(i, 2)] == stop_mark[2]) && (buffer_
+      +                          rcv[get_plus_index(i, 3)] == stop_mark[3]))
+  2146  00D0  3054               	movlw	low (_stop_mark| (0+32768))
+  2147  00D1  0084               	movwf	4
+  2148  00D2  3084               	movlw	high (_stop_mark| (0+32768))
+  2149  00D3  0085               	movwf	5
+  2150  00D4  0800               	movf	0,w	;code access
+  2151  00D5  00A4               	movwf	??_get_msg_index
+  2152  00D6  0827               	movf	get_msg_index@i,w
+  2153  00D7  3EA0               	addlw	(low (_buffer_rcv| 0))& (0+255)
+  2154  00D8  0086               	movwf	6
+  2155  00D9  0187               	clrf	7
+  2156  00DA  0801               	movf	1,w
+  2157  00DB  0624               	xorwf	??_get_msg_index,w
+  2158  00DC  1D03               	skipz
+  2159  00DD  2923               	goto	l1056
+  2160  00DE  3055               	movlw	low ((_stop_mark+1)| (0+32768))
+  2161  00DF  0084               	movwf	4
+  2162  00E0  3084               	movlw	high ((_stop_mark+1)| (0+32768))
+  2163  00E1  0085               	movwf	5
+  2164  00E2  0800               	movf	0,w	;code access
+  2165  00E3  00A4               	movwf	??_get_msg_index
+  2166  00E4  01A0               	clrf	get_plus_index@add
+  2167  00E5  0AA0               	incf	get_plus_index@add,f
+  2168  00E6  0827               	movf	get_msg_index@i,w
+  2169  00E7  242D               	fcall	_get_plus_index
+  2170  00E8  3EA0               	addlw	(low (_buffer_rcv| 0))& (0+255)
+  2171  00E9  0086               	movwf	6
+  2172  00EA  0187               	clrf	7
+  2173  00EB  0801               	movf	1,w
+  2174  00EC  0020               	movlb	0	; select bank0
+  2175  00ED  0624               	xorwf	??_get_msg_index,w
+  2176  00EE  1D03               	skipz
+  2177  00EF  2923               	goto	l1056
+  2178  00F0  3056               	movlw	low ((_stop_mark+2)| (0+32768))
+  2179  00F1  0084               	movwf	4
+  2180  00F2  3084               	movlw	high ((_stop_mark+2)| (0+32768))
+  2181  00F3  0085               	movwf	5
+  2182  00F4  0800               	movf	0,w	;code access
+  2183  00F5  00A4               	movwf	??_get_msg_index
+  2184  00F6  3002               	movlw	2
+  2185  00F7  00A5               	movwf	??_get_msg_index+1
+  2186  00F8  0825               	movf	??_get_msg_index+1,w
+  2187  00F9  00A0               	movwf	get_plus_index@add
+  2188  00FA  0827               	movf	get_msg_index@i,w
+  2189  00FB  242D               	fcall	_get_plus_index
+  2190  00FC  3EA0               	addlw	(low (_buffer_rcv| 0))& (0+255)
+  2191  00FD  0086               	movwf	6
+  2192  00FE  0187               	clrf	7
+  2193  00FF  0801               	movf	1,w
+  2194  0100  0020               	movlb	0	; select bank0
+  2195  0101  0624               	xorwf	??_get_msg_index,w
+  2196  0102  1D03               	skipz
+  2197  0103  2923               	goto	l1056
+  2198                           
+  2199                           ;circle_buffer.h: 109: {
+  2200                           ;circle_buffer.h: 110: if(*end_index != -1)
+  2201  0104  3057               	movlw	low ((_stop_mark+3)| (0+32768))
+  2202  0105  0084               	movwf	4
+  2203  0106  3084               	movlw	high ((_stop_mark+3)| (0+32768))
+  2204  0107  0085               	movwf	5
+  2205  0108  0800               	movf	0,w	;code access
+  2206  0109  00A4               	movwf	??_get_msg_index
+  2207  010A  3003               	movlw	3
+  2208  010B  00A5               	movwf	??_get_msg_index+1
+  2209  010C  0825               	movf	??_get_msg_index+1,w
+  2210  010D  00A0               	movwf	get_plus_index@add
+  2211  010E  0827               	movf	get_msg_index@i,w
+  2212  010F  242D               	fcall	_get_plus_index
+  2213  0110  3EA0               	addlw	(low (_buffer_rcv| 0))& (0+255)
+  2214  0111  0086               	movwf	6
+  2215  0112  0187               	clrf	7
+  2216  0113  0801               	movf	1,w
+  2217  0114  0020               	movlb	0	; select bank0
+  2218  0115  0624               	xorwf	??_get_msg_index,w
+  2219  0116  1D03               	skipz
+  2220  0117  2923               	goto	l1056
+  2221                           
+  2222                           ;circle_buffer.h: 111: {
+  2223                           ;circle_buffer.h: 112: *end_index = get_minus_index(i, 1);
+  2224  0118  01A0               	clrf	get_minus_index@sub
+  2225  0119  0AA0               	incf	get_minus_index@sub,f
+  2226  011A  0827               	movf	get_msg_index@i,w
+  2227  011B  240F               	fcall	_get_minus_index
+  2228  011C  0020               	movlb	0	; select bank0
+  2229  011D  00A4               	movwf	??_get_msg_index
+  2230  011E  0823               	movf	get_msg_index@end_index,w
+  2231  011F  0086               	movwf	6
+  2232  0120  0187               	clrf	7
+  2233  0121  0824               	movf	??_get_msg_index,w
+  2234  0122                     L4:	
+  2235  0122  0081               	movwf	1
+  2236  0123                     l1056:	
+  2237                           
+  2238                           ;circle_buffer.h: 113: }
+  2239                           ;circle_buffer.h: 114: }
+  2240                           ;circle_buffer.h: 116: i = get_next_index(i);
+  2241  0123  0827               	movf	get_msg_index@i,w
+  2242  0124  243B               	fcall	_get_next_index
+  2243  0125  0020               	movlb	0	; select bank0
+  2244  0126  286C               	goto	L3
+  2245  0127                     l1060:	
+  2246                           
+  2247                           ;circle_buffer.h: 117: }
+  2248                           ;circle_buffer.h: 119: if(((*start_index != 0xFF) && (*end_index != 0xFF)) == 1)
+  2249  0127  0826               	movf	get_msg_index@start_index,w
+  2250  0128  0086               	movwf	6
+  2251  0129  0187               	clrf	7
+  2252  012A  0A01               	incf	1,w
+  2253  012B  1903               	btfsc	3,2
+  2254  012C  2942               	goto	l1070
+  2255  012D  0823               	movf	get_msg_index@end_index,w
+  2256  012E  0086               	movwf	6
+  2257  012F  0187               	clrf	7
+  2258  0130  0A01               	incf	1,w
+  2259  0131  1903               	btfsc	3,2
+  2260  0132  2942               	goto	l1070
+  2261                           
+  2262                           ;circle_buffer.h: 120: {
+  2263                           ;circle_buffer.h: 121: start_index_rcv = get_plus_index(*end_index, 5);
+  2264  0133  3005               	movlw	5
+  2265  0134  00A4               	movwf	??_get_msg_index
+  2266  0135  0824               	movf	??_get_msg_index,w
+  2267  0136  00A0               	movwf	get_plus_index@add
+  2268  0137  0823               	movf	get_msg_index@end_index,w
+  2269  0138  0086               	movwf	6
+  2270  0139  0187               	clrf	7
+  2271  013A  0801               	movf	1,w
+  2272  013B  242D               	fcall	_get_plus_index
+  2273  013C  0020               	movlb	0	; select bank0
+  2274  013D  00A5               	movwf	??_get_msg_index+1
+  2275  013E  0825               	movf	??_get_msg_index+1,w
+  2276  013F  00E3               	movwf	_start_index_rcv
+  2277                           
+  2278                           ;circle_buffer.h: 122: return 1;
+  2279  0140  3001               	movlw	1
+  2280  0141  0008               	return
+  2281  0142                     l1070:	
+  2282                           
+  2283                           ;circle_buffer.h: 123: }
+  2284                           ;circle_buffer.h: 124: return 0;
+  2285  0142  3000               	movlw	0
+  2286  0143  0008               	return
+  2287  0144                     __end_of_get_msg_index:	
+  2288                           
+  2289                           	psect	text12
+  2290  042D                     __ptext12:	
+  2291 ;; *************** function _get_plus_index *****************
+  2292 ;; Defined at:
+  2293 ;;		line 54 in file "circle_buffer.h"
+  2294 ;; Parameters:    Size  Location     Type
+  2295 ;;  index           1    wreg     unsigned char 
+  2296 ;;  add             1    0[BANK0 ] unsigned char 
+  2297 ;; Auto vars:     Size  Location     Type
+  2298 ;;  index           1    2[BANK0 ] unsigned char 
+  2299 ;; Return value:  Size  Location     Type
+  2300 ;;                  1    wreg      unsigned char 
+  2301 ;; Registers used:
+  2302 ;;		wreg, status,2, status,0
+  2303 ;; Tracked objects:
+  2304 ;;		On entry : 0/0
+  2305 ;;		On exit  : 0/0
+  2306 ;;		Unchanged: 0/0
+  2307 ;; Data sizes:     COMMON   BANK0   BANK1
+  2308 ;;      Params:         0       1       0
+  2309 ;;      Locals:         0       1       0
+  2310 ;;      Temps:          0       1       0
+  2311 ;;      Totals:         0       3       0
+  2312 ;;Total ram usage:        3 bytes
+  2313 ;; Hardware stack levels used:    1
+  2314 ;; Hardware stack levels required when called:    3
+  2315 ;; This function calls:
+  2316 ;;		Nothing
+  2317 ;; This function is called by:
+  2318 ;;		_get_msg_index
+  2319 ;; This function uses a non-reentrant model
+  2320 ;;
+  2321                           
+  2322                           
+  2323                           ;psect for function _get_plus_index
+  2324  042D                     _get_plus_index:	
+  2325                           
+  2326                           ;incstack = 0
+  2327                           ; Regs used in _get_plus_index: [wreg+status,2+status,0]
+  2328                           ;get_plus_index@index stored from wreg
+  2329  042D  0020               	movlb	0	; select bank0
+  2330  042E  00A2               	movwf	get_plus_index@index
+  2331                           
+  2332                           ;circle_buffer.h: 56: index += add;
+  2333  042F  0820               	movf	get_plus_index@add,w
+  2334  0430  00A1               	movwf	??_get_plus_index
+  2335  0431  0821               	movf	??_get_plus_index,w
+  2336  0432  07A2               	addwf	get_plus_index@index,f
+  2337                           
+  2338                           ;circle_buffer.h: 57: if(index >= 32)
+  2339  0433  3020               	movlw	32
+  2340  0434  0222               	subwf	get_plus_index@index,w
+  2341  0435  1C03               	skipc
+  2342  0436  2C39               	goto	l984
+  2343                           
+  2344                           ;circle_buffer.h: 58: {
+  2345                           ;circle_buffer.h: 59: index -= 32;
+  2346  0437  3020               	movlw	32
+  2347  0438  02A2               	subwf	get_plus_index@index,f
+  2348  0439                     l984:	
+  2349                           
+  2350                           ;circle_buffer.h: 60: }
+  2351                           ;circle_buffer.h: 61: return index;
+  2352  0439  0822               	movf	get_plus_index@index,w
+  2353  043A  0008               	return
+  2354  043B                     __end_of_get_plus_index:	
+  2355                           
+  2356                           	psect	text13
+  2357  043B                     __ptext13:	
+  2358 ;; *************** function _get_next_index *****************
+  2359 ;; Defined at:
+  2360 ;;		line 29 in file "circle_buffer.h"
+  2361 ;; Parameters:    Size  Location     Type
+  2362 ;;  index           1    wreg     unsigned char 
+  2363 ;; Auto vars:     Size  Location     Type
+  2364 ;;  index           1    0[BANK0 ] unsigned char 
+  2365 ;; Return value:  Size  Location     Type
+  2366 ;;                  1    wreg      unsigned char 
+  2367 ;; Registers used:
+  2368 ;;		wreg, status,2, status,0
+  2369 ;; Tracked objects:
+  2370 ;;		On entry : 0/0
+  2371 ;;		On exit  : 0/0
+  2372 ;;		Unchanged: 0/0
+  2373 ;; Data sizes:     COMMON   BANK0   BANK1
+  2374 ;;      Params:         0       0       0
+  2375 ;;      Locals:         0       1       0
+  2376 ;;      Temps:          0       0       0
+  2377 ;;      Totals:         0       1       0
+  2378 ;;Total ram usage:        1 bytes
+  2379 ;; Hardware stack levels used:    1
+  2380 ;; Hardware stack levels required when called:    3
+  2381 ;; This function calls:
+  2382 ;;		Nothing
+  2383 ;; This function is called by:
+  2384 ;;		_get_msg_index
+  2385 ;;		_get_msg
+  2386 ;; This function uses a non-reentrant model
+  2387 ;;
+  2388                           
+  2389                           
+  2390                           ;psect for function _get_next_index
+  2391  043B                     _get_next_index:	
+  2392                           
+  2393                           ;incstack = 0
+  2394                           ; Regs used in _get_next_index: [wreg+status,2+status,0]
+  2395                           ;get_next_index@index stored from wreg
+  2396  043B  0020               	movlb	0	; select bank0
+  2397  043C  00A0               	movwf	get_next_index@index
+  2398                           
+  2399                           ;circle_buffer.h: 31: if(index == 32 - 1)
+  2400  043D  301F               	movlw	31
+  2401  043E  0620               	xorwf	get_next_index@index,w
+  2402  043F  1D03               	btfss	3,2
+  2403  0440  2C43               	goto	l976
+  2404                           
+  2405                           ;circle_buffer.h: 32: {
+  2406                           ;circle_buffer.h: 33: return 0;
+  2407  0441  3000               	movlw	0
+  2408                           
+  2409                           ;circle_buffer.h: 34: }
+  2410  0442  0008               	return
+  2411  0443                     l976:	
+  2412                           
+  2413                           ;circle_buffer.h: 35: else
+  2414                           ;circle_buffer.h: 36: {
+  2415                           ;circle_buffer.h: 37: return (index + 1);
+  2416  0443  0820               	movf	get_next_index@index,w
+  2417  0444  3E01               	addlw	1
+  2418  0445  0008               	return
+  2419  0446                     __end_of_get_next_index:	
+  2420                           
+  2421                           	psect	text14
+  2422  040F                     __ptext14:	
+  2423 ;; *************** function _get_minus_index *****************
+  2424 ;; Defined at:
+  2425 ;;		line 63 in file "circle_buffer.h"
+  2426 ;; Parameters:    Size  Location     Type
+  2427 ;;  index           1    wreg     unsigned char 
+  2428 ;;  sub             1    0[BANK0 ] unsigned char 
+  2429 ;; Auto vars:     Size  Location     Type
+  2430 ;;  index           1    1[BANK0 ] unsigned char 
+  2431 ;; Return value:  Size  Location     Type
+  2432 ;;                  1    wreg      unsigned char 
+  2433 ;; Registers used:
+  2434 ;;		wreg, status,2, status,0
+  2435 ;; Tracked objects:
+  2436 ;;		On entry : 0/0
+  2437 ;;		On exit  : 0/0
+  2438 ;;		Unchanged: 0/0
+  2439 ;; Data sizes:     COMMON   BANK0   BANK1
+  2440 ;;      Params:         0       1       0
+  2441 ;;      Locals:         0       1       0
+  2442 ;;      Temps:          0       0       0
+  2443 ;;      Totals:         0       2       0
+  2444 ;;Total ram usage:        2 bytes
+  2445 ;; Hardware stack levels used:    1
+  2446 ;; Hardware stack levels required when called:    3
+  2447 ;; This function calls:
+  2448 ;;		Nothing
+  2449 ;; This function is called by:
+  2450 ;;		_get_msg_index
+  2451 ;; This function uses a non-reentrant model
+  2452 ;;
+  2453                           
+  2454                           
+  2455                           ;psect for function _get_minus_index
+  2456  040F                     _get_minus_index:	
+  2457                           
+  2458                           ;incstack = 0
+  2459                           ; Regs used in _get_minus_index: [wreg+status,2+status,0]
+  2460                           ;get_minus_index@index stored from wreg
+  2461  040F  0020               	movlb	0	; select bank0
+  2462  0410  00A1               	movwf	get_minus_index@index
+  2463                           
+  2464                           ;circle_buffer.h: 65: if(index < sub)
+  2465  0411  0820               	movf	get_minus_index@sub,w
+  2466  0412  0221               	subwf	get_minus_index@index,w
+  2467  0413  1803               	skipnc
+  2468  0414  2C1A               	goto	l994
+  2469                           
+  2470                           ;circle_buffer.h: 66: {
+  2471                           ;circle_buffer.h: 67: return index + 32 - sub;
+  2472  0415  0320               	decf	get_minus_index@sub,w
+  2473  0416  3AFF               	xorlw	255
+  2474  0417  0721               	addwf	get_minus_index@index,w
+  2475  0418  3E20               	addlw	32
+  2476  0419  0008               	return
+  2477  041A                     l994:	
+  2478                           
+  2479                           ;circle_buffer.h: 68: }
+  2480                           ;circle_buffer.h: 69: return index - sub;
+  2481  041A  0320               	decf	get_minus_index@sub,w
+  2482  041B  3AFF               	xorlw	255
+  2483  041C  0721               	addwf	get_minus_index@index,w
+  2484  041D  0008               	return
+  2485  041E                     __end_of_get_minus_index:	
+  2486                           
+  2487                           	psect	text15
+  2488  041E                     __ptext15:	
+  2489 ;; *************** function _get_distance *****************
+  2490 ;; Defined at:
+  2491 ;;		line 71 in file "circle_buffer.h"
+  2492 ;; Parameters:    Size  Location     Type
+  2493 ;;  start_index     1    wreg     unsigned char 
+  2494 ;;  end_index       1    0[BANK0 ] unsigned char 
+  2495 ;; Auto vars:     Size  Location     Type
+  2496 ;;  start_index     1    1[BANK0 ] unsigned char 
+  2497 ;; Return value:  Size  Location     Type
+  2498 ;;                  1    wreg      unsigned char 
+  2499 ;; Registers used:
+  2500 ;;		wreg, status,2, status,0
+  2501 ;; Tracked objects:
+  2502 ;;		On entry : 0/0
+  2503 ;;		On exit  : 0/0
+  2504 ;;		Unchanged: 0/0
+  2505 ;; Data sizes:     COMMON   BANK0   BANK1
+  2506 ;;      Params:         0       1       0
+  2507 ;;      Locals:         0       1       0
+  2508 ;;      Temps:          0       0       0
+  2509 ;;      Totals:         0       2       0
+  2510 ;;Total ram usage:        2 bytes
+  2511 ;; Hardware stack levels used:    1
+  2512 ;; Hardware stack levels required when called:    3
+  2513 ;; This function calls:
+  2514 ;;		Nothing
+  2515 ;; This function is called by:
+  2516 ;;		_get_msg_index
+  2517 ;;		_get_msg
+  2518 ;; This function uses a non-reentrant model
+  2519 ;;
+  2520                           
+  2521                           
+  2522                           ;psect for function _get_distance
+  2523  041E                     _get_distance:	
+  2524                           
+  2525                           ;incstack = 0
+  2526                           ; Regs used in _get_distance: [wreg+status,2+status,0]
+  2527                           ;get_distance@start_index stored from wreg
+  2528  041E  0020               	movlb	0	; select bank0
+  2529  041F  00A1               	movwf	get_distance@start_index
+  2530                           
+  2531                           ;circle_buffer.h: 73: if(end_index < start_index)
+  2532  0420  0821               	movf	get_distance@start_index,w
+  2533  0421  0220               	subwf	get_distance@end_index,w
+  2534  0422  1803               	skipnc
+  2535  0423  2C29               	goto	l1006
+  2536                           
+  2537                           ;circle_buffer.h: 74: {
+  2538                           ;circle_buffer.h: 75: return end_index + 32 - start_index;
+  2539  0424  0321               	decf	get_distance@start_index,w
+  2540  0425  3AFF               	xorlw	255
+  2541  0426  0720               	addwf	get_distance@end_index,w
+  2542  0427  3E20               	addlw	32
+  2543                           
+  2544                           ;circle_buffer.h: 76: }
+  2545  0428  0008               	return
+  2546  0429                     l1006:	
+  2547                           
+  2548                           ;circle_buffer.h: 77: else
+  2549                           ;circle_buffer.h: 78: {
+  2550                           ;circle_buffer.h: 79: return (end_index - start_index);
+  2551  0429  0321               	decf	get_distance@start_index,w
+  2552  042A  3AFF               	xorlw	255
+  2553  042B  0720               	addwf	get_distance@end_index,w
+  2554  042C  0008               	return
+  2555  042D                     __end_of_get_distance:	
+  2556                           
+  2557                           	psect	text16
+  2558  045E                     __ptext16:	
+  2559 ;; *************** function _InitInputDataInt *****************
+  2560 ;; Defined at:
+  2561 ;;		line 73 in file "follow_up.c"
+  2562 ;; Parameters:    Size  Location     Type
+  2563 ;;		None
+  2564 ;; Auto vars:     Size  Location     Type
+  2565 ;;		None
+  2566 ;; Return value:  Size  Location     Type
+  2567 ;;                  1    wreg      void 
+  2568 ;; Registers used:
+  2569 ;;		None
+  2570 ;; Tracked objects:
+  2571 ;;		On entry : 0/0
+  2572 ;;		On exit  : 0/0
+  2573 ;;		Unchanged: 0/0
+  2574 ;; Data sizes:     COMMON   BANK0   BANK1
+  2575 ;;      Params:         0       0       0
+  2576 ;;      Locals:         0       0       0
+  2577 ;;      Temps:          0       0       0
+  2578 ;;      Totals:         0       0       0
+  2579 ;;Total ram usage:        0 bytes
+  2580 ;; Hardware stack levels used:    1
+  2581 ;; Hardware stack levels required when called:    3
+  2582 ;; This function calls:
+  2583 ;;		Nothing
+  2584 ;; This function is called by:
+  2585 ;;		_main
+  2586 ;; This function uses a non-reentrant model
+  2587 ;;
+  2588                           
+  2589                           
+  2590                           ;psect for function _InitInputDataInt
+  2591  045E                     _InitInputDataInt:	
+  2592                           
+  2593                           ;follow_up.c: 75: INTCONbits.GIE = 1;
+  2594                           
+  2595                           ;incstack = 0
+  2596                           ; Regs used in _InitInputDataInt: []
+  2597  045E  178B               	bsf	11,7	;volatile
+  2598                           
+  2599                           ;follow_up.c: 76: INTCONbits.INTE = 1;
+  2600  045F  160B               	bsf	11,4	;volatile
+  2601                           
+  2602                           ;follow_up.c: 77: INTCONbits.INTF = 0;
+  2603  0460  108B               	bcf	11,1	;volatile
+  2604                           
+  2605                           ;follow_up.c: 78: OPTION_REGbits.INTEDG = 0;
+  2606  0461  0021               	movlb	1	; select bank1
+  2607  0462  1315               	bcf	21,6	;volatile
+  2608  0463  0008               	return
+  2609  0464                     __end_of_InitInputDataInt:	
+  2610                           
+  2611                           	psect	text17
+  2612  038E                     __ptext17:	
+  2613 ;; *************** function _InitIO *****************
+  2614 ;; Defined at:
+  2615 ;;		line 40 in file "follow_up.c"
+  2616 ;; Parameters:    Size  Location     Type
+  2617 ;;		None
+  2618 ;; Auto vars:     Size  Location     Type
+  2619 ;;		None
+  2620 ;; Return value:  Size  Location     Type
+  2621 ;;                  1    wreg      void 
+  2622 ;; Registers used:
+  2623 ;;		None
+  2624 ;; Tracked objects:
+  2625 ;;		On entry : 0/0
+  2626 ;;		On exit  : 0/0
+  2627 ;;		Unchanged: 0/0
+  2628 ;; Data sizes:     COMMON   BANK0   BANK1
+  2629 ;;      Params:         0       0       0
+  2630 ;;      Locals:         0       0       0
+  2631 ;;      Temps:          0       0       0
+  2632 ;;      Totals:         0       0       0
+  2633 ;;Total ram usage:        0 bytes
+  2634 ;; Hardware stack levels used:    1
+  2635 ;; Hardware stack levels required when called:    3
+  2636 ;; This function calls:
+  2637 ;;		Nothing
+  2638 ;; This function is called by:
+  2639 ;;		_main
+  2640 ;; This function uses a non-reentrant model
+  2641 ;;
+  2642                           
+  2643                           
+  2644                           ;psect for function _InitIO
+  2645  038E                     _InitIO:	
+  2646                           
+  2647                           ;follow_up.c: 42: (TRISAbits.TRISA0 = 0);
+  2648                           
+  2649                           ;incstack = 0
+  2650                           ; Regs used in _InitIO: []
+  2651  038E  0021               	movlb	1	; select bank1
+  2652  038F  100C               	bcf	12,0	;volatile
+  2653                           
+  2654                           ;follow_up.c: 43: ANSELAbits.ANSA0 = 0;
+  2655  0390  0023               	movlb	3	; select bank3
+  2656  0391  100C               	bcf	12,0	;volatile
+  2657                           
+  2658                           ;follow_up.c: 45: (TRISAbits.TRISA1 = 0);
+  2659  0392  0021               	movlb	1	; select bank1
+  2660  0393  108C               	bcf	12,1	;volatile
+  2661                           
+  2662                           ;follow_up.c: 46: ANSELAbits.ANSA1 = 0;
+  2663  0394  0023               	movlb	3	; select bank3
+  2664  0395  108C               	bcf	12,1	;volatile
+  2665                           
+  2666                           ;follow_up.c: 48: (TRISAbits.TRISA4 = 0);
+  2667  0396  0021               	movlb	1	; select bank1
+  2668  0397  120C               	bcf	12,4	;volatile
+  2669                           
+  2670                           ;follow_up.c: 49: ANSELAbits.ANSA4 = 0;
+  2671  0398  0023               	movlb	3	; select bank3
+  2672  0399  120C               	bcf	12,4	;volatile
+  2673                           
+  2674                           ;follow_up.c: 51: (TRISAbits.TRISA5 = 0);
+  2675  039A  0021               	movlb	1	; select bank1
+  2676  039B  128C               	bcf	12,5	;volatile
+  2677                           
+  2678                           ;follow_up.c: 54: (TRISCbits.TRISC0 = 0);
+  2679  039C  100E               	bcf	14,0	;volatile
+  2680                           
+  2681                           ;follow_up.c: 55: ANSELAbits.ANSA4 = 0;
+  2682  039D  0023               	movlb	3	; select bank3
+  2683  039E  120C               	bcf	12,4	;volatile
+  2684                           
+  2685                           ;follow_up.c: 57: (TRISCbits.TRISC1 = 0);
+  2686  039F  0021               	movlb	1	; select bank1
+  2687  03A0  108E               	bcf	14,1	;volatile
+  2688                           
+  2689                           ;follow_up.c: 58: ANSELAbits.ANSA4 = 0;
+  2690  03A1  0023               	movlb	3	; select bank3
+  2691  03A2  120C               	bcf	12,4	;volatile
+  2692                           
+  2693                           ;follow_up.c: 61: (TRISCbits.TRISC2 = 1);
+  2694  03A3  0021               	movlb	1	; select bank1
+  2695  03A4  150E               	bsf	14,2	;volatile
+  2696                           
+  2697                           ;follow_up.c: 62: ANSELCbits.ANSC2 = 0;
+  2698  03A5  0023               	movlb	3	; select bank3
+  2699  03A6  110E               	bcf	14,2	;volatile
+  2700                           
+  2701                           ;follow_up.c: 64: (TRISCbits.TRISC3 = 1);
+  2702  03A7  0021               	movlb	1	; select bank1
+  2703  03A8  158E               	bsf	14,3	;volatile
+  2704                           
+  2705                           ;follow_up.c: 65: ANSELCbits.ANSC3 = 0;
+  2706  03A9  0023               	movlb	3	; select bank3
+  2707  03AA  118E               	bcf	14,3	;volatile
+  2708                           
+  2709                           ;follow_up.c: 67: (TRISCbits.TRISC4 = 1);
+  2710  03AB  0021               	movlb	1	; select bank1
+  2711  03AC  160E               	bsf	14,4	;volatile
+  2712                           
+  2713                           ;follow_up.c: 70: (TRISCbits.TRISC5 = 1);
+  2714  03AD  168E               	bsf	14,5	;volatile
+  2715  03AE  0008               	return
+  2716  03AF                     __end_of_InitIO:	
+  2717                           
+  2718                           	psect	intentry
+  2719  0004                     __pintentry:	
+  2720 ;; *************** function _ISR *****************
+  2721 ;; Defined at:
+  2722 ;;		line 80 in file "follow_up.c"
+  2723 ;; Parameters:    Size  Location     Type
+  2724 ;;		None
+  2725 ;; Auto vars:     Size  Location     Type
+  2726 ;;  byte            1    8[COMMON] PTR struct .
+  2727 ;;		 -> ISR@value(1), 
+  2728 ;;  value           1    7[COMMON] unsigned char 
+  2729 ;; Return value:  Size  Location     Type
+  2730 ;;                  1    wreg      void 
+  2731 ;; Registers used:
+  2732 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  2733 ;; Tracked objects:
+  2734 ;;		On entry : 0/0
+  2735 ;;		On exit  : 0/0
+  2736 ;;		Unchanged: 0/0
+  2737 ;; Data sizes:     COMMON   BANK0   BANK1
+  2738 ;;      Params:         0       0       0
+  2739 ;;      Locals:         2       0       0
+  2740 ;;      Temps:          2       0       0
+  2741 ;;      Totals:         4       0       0
+  2742 ;;Total ram usage:        4 bytes
+  2743 ;; Hardware stack levels used:    1
+  2744 ;; Hardware stack levels required when called:    2
+  2745 ;; This function calls:
+  2746 ;;		_receive_input
+  2747 ;; This function is called by:
+  2748 ;;		Interrupt level 1
+  2749 ;; This function uses a non-reentrant model
+  2750 ;;
+  2751                           
+  2752  0004                     _ISR:	
+  2753                           
+  2754                           ;incstack = 0
+  2755                           ; Regs used in _ISR: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  2756  0004  147E               	bsf	126,0	;set compiler interrupt flag (level 1)
+  2757  0005  3180               	pagesel	$
+  2758  0006  0020               	movlb	0	; select bank0
+  2759  0007  087F               	movf	127,w
+  2760  0008  00F6               	movwf	??_ISR+1
+  2761                           
+  2762                           ;follow_up.c: 82: if(INTCONbits.INTF == 1)
+  2763  0009  1C8B               	btfss	11,1	;volatile
+  2764  000A  282E               	goto	i1l153
+  2765                           
+  2766                           ;follow_up.c: 83: {
+  2767                           ;follow_up.c: 84: { uint8_t value; { value = 0; BITbits_t *byte = (BITbits_t *)&value; b
+      +                          yte->B0 = RC2; byte->B1 = RC3; byte->B2 = RC4; byte->B3 = RC5; }; receive_input(value); 
+      +                          };
+  2768  000B  01F7               	clrf	ISR@value
+  2769  000C  3077               	movlw	(low (ISR@value| 0))& (0+255)
+  2770  000D  00F5               	movwf	??_ISR
+  2771  000E  0875               	movf	??_ISR,w
+  2772  000F  00F8               	movwf	ISR@byte
+  2773  0010  0878               	movf	ISR@byte,w
+  2774  0011  0086               	movwf	6
+  2775  0012  0187               	clrf	7
+  2776  0013  1001               	bcf	1,0
+  2777  0014  190E               	btfsc	14,2	;volatile
+  2778  0015  1401               	bsf	1,0
+  2779  0016  0878               	movf	ISR@byte,w
+  2780  0017  0086               	movwf	6
+  2781  0018  0187               	clrf	7
+  2782  0019  1081               	bcf	1,1
+  2783  001A  0020               	movlb	0	; select bank0
+  2784  001B  198E               	btfsc	14,3	;volatile
+  2785  001C  1481               	bsf	1,1
+  2786  001D  0878               	movf	ISR@byte,w
+  2787  001E  0086               	movwf	6
+  2788  001F  0187               	clrf	7
+  2789  0020  1101               	bcf	1,2
+  2790  0021  0020               	movlb	0	; select bank0
+  2791  0022  1A0E               	btfsc	14,4	;volatile
+  2792  0023  1501               	bsf	1,2
+  2793  0024  0878               	movf	ISR@byte,w
+  2794  0025  0086               	movwf	6
+  2795  0026  0187               	clrf	7
+  2796  0027  1181               	bcf	1,3
+  2797  0028  0020               	movlb	0	; select bank0
+  2798  0029  1A8E               	btfsc	14,5	;volatile
+  2799  002A  1581               	bsf	1,3
+  2800  002B  0877               	movf	ISR@value,w
+  2801  002C  220F               	fcall	_receive_input
+  2802                           
+  2803                           ;follow_up.c: 85: INTCONbits.INTF = 0;
+  2804  002D  108B               	bcf	11,1	;volatile
+  2805  002E                     i1l153:	
+  2806  002E  0876               	movf	??_ISR+1,w
+  2807  002F  0020               	movlb	0	; select bank0
+  2808  0030  00FF               	movwf	127
+  2809  0031  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+  2810  0032  0009               	retfie
+  2811  0033                     __end_of_ISR:	
+  2812                           
+  2813                           	psect	text19
+  2814  020F                     __ptext19:	
+  2815 ;; *************** function _receive_input *****************
+  2816 ;; Defined at:
+  2817 ;;		line 40 in file "circle_buffer.h"
+  2818 ;; Parameters:    Size  Location     Type
+  2819 ;;  value           1    wreg     unsigned char 
+  2820 ;; Auto vars:     Size  Location     Type
+  2821 ;;  value           1    2[COMMON] unsigned char 
+  2822 ;;  byte2           1    4[COMMON] PTR struct .
+  2823 ;;		 -> receive_input@value(1), 
+  2824 ;;  byte1           1    3[COMMON] PTR struct .
+  2825 ;;		 -> buffer_rcv(32), 
+  2826 ;; Return value:  Size  Location     Type
+  2827 ;;                  1    wreg      void 
+  2828 ;; Registers used:
+  2829 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  2830 ;; Tracked objects:
+  2831 ;;		On entry : 0/0
+  2832 ;;		On exit  : 0/0
+  2833 ;;		Unchanged: 0/0
+  2834 ;; Data sizes:     COMMON   BANK0   BANK1
+  2835 ;;      Params:         0       0       0
+  2836 ;;      Locals:         3       0       0
+  2837 ;;      Temps:          1       0       0
+  2838 ;;      Totals:         4       0       0
+  2839 ;;Total ram usage:        4 bytes
+  2840 ;; Hardware stack levels used:    1
+  2841 ;; Hardware stack levels required when called:    1
+  2842 ;; This function calls:
+  2843 ;;		i1_get_next_index
+  2844 ;; This function is called by:
+  2845 ;;		_ISR
+  2846 ;; This function uses a non-reentrant model
+  2847 ;;
+  2848                           
+  2849                           
+  2850                           ;psect for function _receive_input
+  2851  020F                     _receive_input:	
+  2852                           
+  2853                           ;incstack = 0
+  2854                           ; Regs used in _receive_input: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  2855                           ;receive_input@value stored from wreg
+  2856  020F  00F2               	movwf	receive_input@value
+  2857                           
+  2858                           ;circle_buffer.h: 42: { BITbits_t *byte1 = (BITbits_t *)&buffer_rcv[end_index_rcv]; BITb
+      +                          its_t *byte2 = (BITbits_t *)&value; if(low_half_rcv == 1) { byte1->B0 = byte2->B0; byte1
+      +                          ->B1 = byte2->B1; byte1->B2 = byte2->B2; byte1->B3 = byte2->B3; } else { byte1->B4 = byt
+      +                          e2->B0; 
+  2859  0210  0879               	movf	_end_index_rcv,w
+  2860  0211  3EA0               	addlw	(low (_buffer_rcv| 0))& (0+255)
+  2861  0212  00F1               	movwf	??_receive_input
+  2862  0213  0871               	movf	??_receive_input,w
+  2863  0214  00F3               	movwf	receive_input@byte1
+  2864  0215  3072               	movlw	(low (receive_input@value| 0))& (0+255)
+  2865  0216  00F1               	movwf	??_receive_input
+  2866  0217  0871               	movf	??_receive_input,w
+  2867  0218  00F4               	movwf	receive_input@byte2
+  2868  0219  037A               	decf	_low_half_rcv,w
+  2869  021A  1D03               	btfss	3,2
+  2870  021B  2A41               	goto	i1l1104
+  2871  021C  0874               	movf	receive_input@byte2,w
+  2872  021D  0086               	movwf	6
+  2873  021E  0187               	clrf	7
+  2874  021F  0873               	movf	receive_input@byte1,w
+  2875  0220  0084               	movwf	4
+  2876  0221  0185               	clrf	5
+  2877  0222  1000               	bcf	0,0
+  2878  0223  1801               	btfsc	1,0
+  2879  0224  1400               	bsf	0,0
+  2880  0225  0874               	movf	receive_input@byte2,w
+  2881  0226  0086               	movwf	6
+  2882  0227  0187               	clrf	7
+  2883  0228  0873               	movf	receive_input@byte1,w
+  2884  0229  0084               	movwf	4
+  2885  022A  0185               	clrf	5
+  2886  022B  1080               	bcf	0,1
+  2887  022C  1881               	btfsc	1,1
+  2888  022D  1480               	bsf	0,1
+  2889  022E  0874               	movf	receive_input@byte2,w
+  2890  022F  0086               	movwf	6
+  2891  0230  0187               	clrf	7
+  2892  0231  0873               	movf	receive_input@byte1,w
+  2893  0232  0084               	movwf	4
+  2894  0233  0185               	clrf	5
+  2895  0234  1100               	bcf	0,2
+  2896  0235  1901               	btfsc	1,2
+  2897  0236  1500               	bsf	0,2
+  2898  0237  0874               	movf	receive_input@byte2,w
+  2899  0238  0086               	movwf	6
+  2900  0239  0187               	clrf	7
+  2901  023A  0873               	movf	receive_input@byte1,w
+  2902  023B  0084               	movwf	4
+  2903  023C  0185               	clrf	5
+  2904  023D  1180               	bcf	0,3
+  2905  023E  1981               	btfsc	1,3
+  2906  023F  1580               	bsf	0,3
+  2907  0240  2A65               	goto	i1l1106
+  2908  0241                     i1l1104:	
+  2909  0241  0874               	movf	receive_input@byte2,w
+  2910  0242  0086               	movwf	6
+  2911  0243  0187               	clrf	7
+  2912  0244  0873               	movf	receive_input@byte1,w
+  2913  0245  0084               	movwf	4
+  2914  0246  0185               	clrf	5
+  2915  0247  1200               	bcf	0,4
+  2916  0248  1801               	btfsc	1,0
+  2917  0249  1600               	bsf	0,4
+  2918  024A  0874               	movf	receive_input@byte2,w
+  2919  024B  0086               	movwf	6
+  2920  024C  0187               	clrf	7
+  2921  024D  0873               	movf	receive_input@byte1,w
+  2922  024E  0084               	movwf	4
+  2923  024F  0185               	clrf	5
+  2924  0250  1280               	bcf	0,5
+  2925  0251  1881               	btfsc	1,1
+  2926  0252  1680               	bsf	0,5
+  2927  0253  0874               	movf	receive_input@byte2,w
+  2928  0254  0086               	movwf	6
+  2929  0255  0187               	clrf	7
+  2930  0256  0873               	movf	receive_input@byte1,w
+  2931  0257  0084               	movwf	4
+  2932  0258  0185               	clrf	5
+  2933  0259  1300               	bcf	0,6
+  2934  025A  1901               	btfsc	1,2
+  2935  025B  1700               	bsf	0,6
+  2936  025C  0874               	movf	receive_input@byte2,w
+  2937  025D  0086               	movwf	6
+  2938  025E  0187               	clrf	7
+  2939  025F  0873               	movf	receive_input@byte1,w
+  2940  0260  0084               	movwf	4
+  2941  0261  0185               	clrf	5
+  2942  0262  1380               	bcf	0,7
+  2943  0263  1981               	btfsc	1,3
+  2944  0264  1780               	bsf	0,7
+  2945  0265                     i1l1106:	
+  2946                           
+  2947                           ;circle_buffer.h: 43: if(low_half_rcv == 1)
+  2948  0265  037A               	decf	_low_half_rcv,w
+  2949  0266  1D03               	btfss	3,2
+  2950  0267  2A6A               	goto	i1l58
+  2951                           
+  2952                           ;circle_buffer.h: 44: {
+  2953                           ;circle_buffer.h: 45: low_half_rcv = 0;
+  2954  0268  01FA               	clrf	_low_half_rcv
+  2955                           
+  2956                           ;circle_buffer.h: 46: }
+  2957  0269  0008               	return
+  2958  026A                     i1l58:	
+  2959                           
+  2960                           ;circle_buffer.h: 47: else
+  2961                           ;circle_buffer.h: 48: {
+  2962                           ;circle_buffer.h: 49: low_half_rcv = 1;
+  2963  026A  01FA               	clrf	_low_half_rcv
+  2964  026B  0AFA               	incf	_low_half_rcv,f
+  2965                           
+  2966                           ;circle_buffer.h: 50: end_index_rcv = get_next_index(end_index_rcv);
+  2967  026C  0879               	movf	_end_index_rcv,w
+  2968  026D  2446               	fcall	i1_get_next_index
+  2969  026E  00F1               	movwf	??_receive_input
+  2970  026F  0871               	movf	??_receive_input,w
+  2971  0270  00F9               	movwf	_end_index_rcv
+  2972  0271  0008               	return
+  2973  0272                     __end_of_receive_input:	
+  2974                           
+  2975                           	psect	text20
+  2976  0446                     __ptext20:	
+  2977 ;; *************** function i1_get_next_index *****************
+  2978 ;; Defined at:
+  2979 ;;		line 29 in file "circle_buffer.h"
+  2980 ;; Parameters:    Size  Location     Type
+  2981 ;;  index           1    wreg     unsigned char 
+  2982 ;; Auto vars:     Size  Location     Type
+  2983 ;;  index           1    0[COMMON] unsigned char 
+  2984 ;; Return value:  Size  Location     Type
+  2985 ;;                  1    wreg      unsigned char 
+  2986 ;; Registers used:
+  2987 ;;		wreg, status,2, status,0
+  2988 ;; Tracked objects:
+  2989 ;;		On entry : 0/0
+  2990 ;;		On exit  : 0/0
+  2991 ;;		Unchanged: 0/0
+  2992 ;; Data sizes:     COMMON   BANK0   BANK1
+  2993 ;;      Params:         0       0       0
+  2994 ;;      Locals:         1       0       0
+  2995 ;;      Temps:          0       0       0
+  2996 ;;      Totals:         1       0       0
+  2997 ;;Total ram usage:        1 bytes
+  2998 ;; Hardware stack levels used:    1
+  2999 ;; This function calls:
+  3000 ;;		Nothing
+  3001 ;; This function is called by:
+  3002 ;;		_receive_input
+  3003 ;; This function uses a non-reentrant model
+  3004 ;;
+  3005                           
+  3006                           
+  3007                           ;psect for function i1_get_next_index
+  3008  0446                     i1_get_next_index:	
+  3009                           
+  3010                           ;incstack = 0
+  3011                           ; Regs used in i1_get_next_index: [wreg+status,2+status,0]
+  3012                           ;i1get_next_index@index stored from wreg
+  3013  0446  00F0               	movwf	i1get_next_index@index
+  3014                           
+  3015                           ;circle_buffer.h: 31: if(index == 32 - 1)
+  3016  0447  301F               	movlw	31
+  3017  0448  0670               	xorwf	i1get_next_index@index,w
+  3018  0449  1D03               	btfss	3,2
+  3019  044A  2C4D               	goto	i1l1092
+  3020                           
+  3021                           ;circle_buffer.h: 32: {
+  3022                           ;circle_buffer.h: 33: return 0;
+  3023  044B  3000               	movlw	0
+  3024                           
+  3025                           ;circle_buffer.h: 34: }
+  3026  044C  0008               	return
+  3027  044D                     i1l1092:	
+  3028                           
+  3029                           ;circle_buffer.h: 35: else
+  3030                           ;circle_buffer.h: 36: {
+  3031                           ;circle_buffer.h: 37: return (index + 1);
+  3032  044D  0870               	movf	i1get_next_index@index,w
+  3033  044E  3E01               	addlw	1
+  3034  044F  0008               	return
+  3035  0450                     __end_ofi1_get_next_index:	
+  3036  007E                     btemp	set	126	;btemp
+  3037  007E                     int$flags	set	126
+  3038  007E                     wtemp	set	126
+  3039  007E                     wtemp0	set	126
+  3040  0080                     wtemp1	set	128
+  3041  0082                     wtemp2	set	130
+  3042  0084                     wtemp3	set	132
+  3043  0086                     wtemp4	set	134
+  3044  0088                     wtemp5	set	136
+  3045  007F                     wtemp6	set	127
+  3046  007E                     ttemp	set	126
+  3047  007E                     ttemp0	set	126
+  3048  0081                     ttemp1	set	129
+  3049  0084                     ttemp2	set	132
+  3050  0087                     ttemp3	set	135
+  3051  007F                     ttemp4	set	127
+  3052  007E                     ltemp	set	126
+  3053  007E                     ltemp0	set	126
+  3054  0082                     ltemp1	set	130
+  3055  0086                     ltemp2	set	134
+  3056  0080                     ltemp3	set	128
+
+
+Data Sizes:
+    Strings     0
+    Constant    8
+    Data        2
+    BSS         47
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      9      11
+    BANK0            80     62      77
+    BANK1            32      0      32
+
+Pointer List with Targets:
+
+    __builtin_memcpy$1	PTR const void  size(1) Largest target is 1
+		 -> main@rqt(BANK0[1]), 
+
+    __builtin_memcpy$0	PTR void  size(1) Largest target is 8
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[8]), 
+
+    ISR@byte	PTR struct . size(1) Largest target is 1
+		 -> ISR@value(COMMON[1]), 
+
+    pmsg	PTR struct . size(1) Largest target is 8
+		 -> msg(BANK0[8]), 
+
+    send_RGB_DATA_RQT_CMD@prqt	PTR const struct . size(1) Largest target is 1
+		 -> main@rqt(BANK0[1]), 
+
+    send_RGB_DATA_RQT_CMD@pconn	PTR struct . size(1) Largest target is 5
+		 -> main@conn(BANK0[5]), 
+
+    create_RGB_DATA_RQT_CMD@pmsg	PTR struct . size(1) Largest target is 8
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[8]), 
+
+    create_RGB_DATA_RQT_CMD@prqt	PTR const struct . size(1) Largest target is 1
+		 -> main@rqt(BANK0[1]), 
+
+    create_RGB_DATA_RQT_CMD@pconn	PTR struct . size(1) Largest target is 5
+		 -> main@conn(BANK0[5]), 
+
+    create_cmd@cmd_data	PTR const void  size(1) Largest target is 1
+		 -> main@rqt(BANK0[1]), 
+
+    create_cmd@pconn	PTR struct . size(1) Largest target is 5
+		 -> main@conn(BANK0[5]), 
+
+    create_cmd@pmsg	PTR struct . size(1) Largest target is 8
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[8]), 
+
+    sp____builtin_memcpy	PTR void  size(2) Largest target is 4096
+		 -> RAM(DATA[4096]), 
+
+    compose@data	PTR unsigned char  size(1) Largest target is 1
+		 -> main@rqt(BANK0[1]), 
+
+    compose@pmsg	PTR struct . size(1) Largest target is 8
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[8]), 
+
+    crc_calculate@pmsg	PTR struct . size(1) Largest target is 8
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[8]), 
+
+    send_msg@pmsg	PTR struct . size(1) Largest target is 8
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[8]), 
+
+    send_msg@s	PTR unsigned char  size(1) Largest target is 8
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[8]), 
+
+    get_msg@pmsg	PTR struct . size(1) Largest target is 8
+		 -> msg(BANK0[8]), 
+
+    get_msg@pstr	PTR unsigned char  size(1) Largest target is 8
+		 -> msg(BANK0[8]), 
+
+    send_string@str	PTR unsigned char  size(2) Largest target is 8
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[8]), stop_mark(CODE[4]), start_mark(CODE[4]), 
+
+    send_half_byte@byte	PTR struct . size(1) Largest target is 1
+		 -> send_half_byte@value(BANK0[1]), 
+
+    get_msg_index@end_index	PTR unsigned char  size(1) Largest target is 1
+		 -> get_msg@end_index(BANK0[1]), 
+
+    get_msg_index@start_index	PTR unsigned char  size(1) Largest target is 1
+		 -> get_msg@start_index(BANK0[1]), 
+
+    receive_input@byte2	PTR struct . size(1) Largest target is 1
+		 -> receive_input@value(COMMON[1]), 
+
+    receive_input@byte1	PTR struct . size(1) Largest target is 32
+		 -> buffer_rcv(BANK1[32]), 
+
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _ISR in COMMON
+
+    _ISR->_receive_input
+    _receive_input->i1_get_next_index
+
+Critical Paths under _main in BANK0
+
+    _main->_send_RGB_DATA_RQT_CMD
+    _send_RGB_DATA_RQT_CMD->_create_RGB_DATA_RQT_CMD
+    _send_msg->_send_string
+    _send_string->_send_byte
+    _send_byte->_send_half_byte
+    _create_RGB_DATA_RQT_CMD->_create_cmd
+    _create_cmd->_compose
+    _compose->_crc_calculate
+    _get_msg->_get_msg_index
+    _get_msg_index->_get_plus_index
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                13    13      0    4942
+                                             49 BANK0     13    13      0
+                             _InitIO
+                   _InitInputDataInt
+                            _get_msg
+              _send_RGB_DATA_RQT_CMD
+ ---------------------------------------------------------------------------------
+ (1) _send_RGB_DATA_RQT_CMD                               12    11      1    2690
+                                             37 BANK0     12    11      1
+            _create_RGB_DATA_RQT_CMD
+                           _send_msg
+ ---------------------------------------------------------------------------------
+ (2) _send_msg                                             3     3      0     881
+                                             13 BANK0      3     3      0
+                        _send_string
+ ---------------------------------------------------------------------------------
+ (3) _send_string                                          6     3      3     787
+                                              7 BANK0      6     3      3
+                          _send_byte
+ ---------------------------------------------------------------------------------
+ (4) _send_byte                                            3     3      0     379
+                                              4 BANK0      3     3      0
+                     _send_half_byte
+ ---------------------------------------------------------------------------------
+ (5) _send_half_byte                                       4     3      1     335
+                                              0 BANK0      4     3      1
+ ---------------------------------------------------------------------------------
+ (2) _create_RGB_DATA_RQT_CMD                              6     4      2    1620
+                                             31 BANK0      6     4      2
+                         _create_cmd
+ ---------------------------------------------------------------------------------
+ (3) _create_cmd                                          11     6      5    1399
+                                             20 BANK0     11     6      5
+                            _compose
+ ---------------------------------------------------------------------------------
+ (4) _compose                                             11     5      6     953
+                                              9 BANK0     11     5      6
+                      _crc_calculate
+ ---------------------------------------------------------------------------------
+ (5) _crc_calculate                                        9     7      2     255
+                                              0 BANK0      9     7      2
+ ---------------------------------------------------------------------------------
+ (1) _get_msg                                              8     8      0    2132
+                                              8 BANK0      8     8      0
+                       _get_distance
+                      _get_msg_index
+                     _get_next_index
+ ---------------------------------------------------------------------------------
+ (2) _get_msg_index                                        5     4      1    1512
+                                              3 BANK0      5     4      1
+                       _get_distance
+                    _get_minus_index
+                     _get_next_index
+                     _get_plus_index
+ ---------------------------------------------------------------------------------
+ (3) _get_plus_index                                       3     2      1     492
+                                              0 BANK0      3     2      1
+ ---------------------------------------------------------------------------------
+ (2) _get_next_index                                       1     1      0      44
+                                              0 BANK0      1     1      0
+ ---------------------------------------------------------------------------------
+ (3) _get_minus_index                                      2     1      1     185
+                                              0 BANK0      2     1      1
+ ---------------------------------------------------------------------------------
+ (3) _get_distance                                         2     1      1     291
+                                              0 BANK0      2     1      1
+ ---------------------------------------------------------------------------------
+ (1) _InitInputDataInt                                     0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _InitIO                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 5
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (6) _ISR                                                  4     4      0     566
+                                              5 COMMON     4     4      0
+                      _receive_input
+ ---------------------------------------------------------------------------------
+ (7) _receive_input                                        4     4      0     428
+                                              1 COMMON     4     4      0
+                   i1_get_next_index
+ ---------------------------------------------------------------------------------
+ (8) i1_get_next_index                                     1     1      0      44
+                                              0 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 8
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _InitIO
+   _InitInputDataInt
+   _get_msg
+     _get_distance
+     _get_msg_index
+       _get_distance
+       _get_minus_index
+       _get_next_index
+       _get_plus_index
+     _get_next_index
+   _send_RGB_DATA_RQT_CMD
+     _create_RGB_DATA_RQT_CMD
+       _create_cmd
+         _compose
+           _crc_calculate
+     _send_msg
+       _send_string
+         _send_byte
+           _send_half_byte
+
+ _ISR (ROOT)
+   _receive_input
+     i1_get_next_index
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM              70      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+BITCOMMON            E      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+COMMON               E      9       B       2       78.6%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR2              0      0       0       3        0.0%
+SFR2                 0      0       0       3        0.0%
+STACK                0      0       0       3        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+ABS                  0      0      78       4        0.0%
+BITBANK0            50      0       0       5        0.0%
+BITSFR4              0      0       0       5        0.0%
+SFR4                 0      0       0       5        0.0%
+BANK0               50     3E      4D       6       96.3%
+BITSFR5              0      0       0       6        0.0%
+SFR5                 0      0       0       6        0.0%
+BITBANK1            20      0       0       7        0.0%
+BITSFR6              0      0       0       7        0.0%
+SFR6                 0      0       0       7        0.0%
+BANK1               20      0      20       8      100.0%
+BITSFR7              0      0       0       8        0.0%
+SFR7                 0      0       0       8        0.0%
+BITSFR8              0      0       0       9        0.0%
+SFR8                 0      0       0       9        0.0%
+DATA                 0      0      78       9        0.0%
+BITSFR9              0      0       0      10        0.0%
+SFR9                 0      0       0      10        0.0%
+BITSFR10             0      0       0      11        0.0%
+SFR10                0      0       0      11        0.0%
+BITSFR11             0      0       0      12        0.0%
+SFR11                0      0       0      12        0.0%
+BITSFR12             0      0       0      13        0.0%
+SFR12                0      0       0      13        0.0%
+BITSFR13             0      0       0      14        0.0%
+SFR13                0      0       0      14        0.0%
+BITSFR14             0      0       0      15        0.0%
+SFR14                0      0       0      15        0.0%
+BITSFR15             0      0       0      16        0.0%
+SFR15                0      0       0      16        0.0%
+BITSFR16             0      0       0      17        0.0%
+SFR16                0      0       0      17        0.0%
+BITSFR17             0      0       0      18        0.0%
+SFR17                0      0       0      18        0.0%
+BITSFR18             0      0       0      19        0.0%
+SFR18                0      0       0      19        0.0%
+BITSFR19             0      0       0      20        0.0%
+SFR19                0      0       0      20        0.0%
+BITSFR20             0      0       0      21        0.0%
+SFR20                0      0       0      21        0.0%
+BITSFR21             0      0       0      22        0.0%
+SFR21                0      0       0      22        0.0%
+BITSFR22             0      0       0      23        0.0%
+SFR22                0      0       0      23        0.0%
+BITSFR23             0      0       0      24        0.0%
+SFR23                0      0       0      24        0.0%
+BITSFR24             0      0       0      25        0.0%
+SFR24                0      0       0      25        0.0%
+BITSFR25             0      0       0      26        0.0%
+SFR25                0      0       0      26        0.0%
+BITSFR26             0      0       0      27        0.0%
+SFR26                0      0       0      27        0.0%
+BITSFR27             0      0       0      28        0.0%
+SFR27                0      0       0      28        0.0%
+BITSFR28             0      0       0      29        0.0%
+SFR28                0      0       0      29        0.0%
+BITSFR29             0      0       0      30        0.0%
+SFR29                0      0       0      30        0.0%
+BITSFR30             0      0       0      31        0.0%
+SFR30                0      0       0      31        0.0%
+BITSFR31             0      0       0      32        0.0%
+SFR31                0      0       0      32        0.0%
+
+
+Microchip Technology PIC Macro Assembler V1.37 build -260352376 
+Symbol Table                                                                                   Sat Aug 06 13:11:45 2016
+
+                      __CFG_CP$ON 0000                    ?_get_msg_index 0023                  get_msg@end_index 002E  
+                              l92 0208                       __CFG_CPD$ON 0000                    create_cmd@pmsg 0038  
+                 ?_get_next_index 0070                       __CFG_LVP$ON 0000                               l159 02ED  
+                             l920 01FF                               l940 017D                               l942 01A4  
+                             l918 01D7                               l976 0443                               l984 0439  
+                             l994 041A                               _RA0 0060                               _RA1 0061  
+                             _RC0 0070                               _RA4 0064                               _RC1 0071  
+                             _RA5 0065                               _RC2 0072                               _RC3 0073  
+                             _RC4 0074                               _RC5 0075                               _ISR 0004  
+                             u720 01DF                               u640 01BB                               u740 01E9  
+                             u660 01C5                               u734 01E1                               u654 01BD  
+                             u815 018E                               u760 01F3                               u680 01CF  
+                             u754 01EB                               u674 01C7                               u780 01FD  
+                             u774 01F5                               u694 01D1                               _msg 0064  
+                    __CFG_BORV$LO 0000                               wreg 0009                      __CFG_IESO$ON 0000  
+                ?_get_minus_index 0020           __size_of_send_half_byte 0065                 ?_InitInputDataInt 0070  
+                     get_msg@temp 002F                       get_msg@pmsg 002B                       get_msg@pstr 002A  
+                 create_cmd@pconn 003E                              ?_ISR 0070                ??_InitInputDataInt 0020  
+                            l1006 0429                              l1016 03D0                              l1034 006B  
+                            l1060 0127                              l1028 005D                              l1132 0342  
+                            l1070 0142                              l1046 00D0                              l1056 0123  
+                            l1136 0344                              l1180 02E2                              l1174 02D1  
+                            l1186 02EE                              u1237 02F4                              u1247 03BA  
+                            u1257 03C8                              i1l58 026A                              u82m0 02A7  
+                  ??_get_distance 0021                      __CFG_WRT$OFF 0000                     __CFG_FCMEN$ON 0000  
+                            _main 02C5                              _pmsg 006C                              fsr0h 0005  
+                            fsr1h 0007                              fsr0l 0004                              indf0 0000  
+                            indf1 0001                              fsr1l 0006                              btemp 007E  
+                   __CFG_BOREN$ON 0000                              ltemp 007E                   ?_get_plus_index 0020  
+                            start 0033                              ttemp 007E                              wtemp 007E  
+          create_cmd@cmd_data_len 0037                  create_cmd@cmd_id 0034                  create_cmd@msg_id 0035  
+                           ??_ISR 0075                     __CFG_PLLEN$ON 0000                       compose@data 002D  
+                     compose@from 0029                       compose@pmsg 0033                             ?_main 0070  
+                   __CFG_WDTE$OFF 0000                             i1l153 002E                   __end_of_get_msg 0346  
+                 __end_of_compose 02C5                get_minus_index@sub 0020                             ltemp0 007E  
+                           ltemp1 0082                             ltemp2 0086                             ltemp3 0080  
+                           ttemp0 007E                             ttemp1 0081                             ttemp2 0084  
+                           ttemp3 0087                             ttemp4 007F                             status 0003  
+                           wtemp0 007E                             wtemp1 0080                             wtemp2 0082  
+                           wtemp3 0084                             wtemp4 0086                             wtemp5 0088  
+                           wtemp6 007F                    __CFG_MCLRE$OFF 0000                   __initialization 0034  
+                 ??_get_msg_index 0024                      __end_of_main 0308                            ??_main 0051  
+                    compose@msgid 002B          ?_create_RGB_DATA_RQT_CMD 003F                            i1l1104 0241  
+                          i1l1106 0265                            i1l1092 044D                      ?_send_string 0027  
+                i1_get_next_index 0446                    send_string@len 0029                    send_string@str 0027  
+                  __CFG_PWRTE$OFF 0000                            _InitIO 038E                    __CFG_STVREN$ON 0000  
+            __end_of_get_distance 042D                         ??_get_msg 0028                         ??_compose 002F  
+                __end_of_send_msg 036D                      __pdataCOMMON 007A           get_distance@start_index 0021  
+                  _send_half_byte 01AA             _send_RGB_DATA_RQT_CMD 0400                 get_plus_index@add 0020  
+         __end_of__initialization 0045                create_cmd@cmd_data 0036                    __pcstackCOMMON 0070  
+                ??_get_next_index 0020                      __pidataBANK0 0465                  crc_calculate@crc 0025  
+           __end_of_crc_calculate 01AA            __end_of_send_half_byte 020F                    _OPTION_REGbits 0095  
+      send_RGB_DATA_RQT_CMD@pconn 0048                  ??_get_plus_index 0021                        __pbssBANK0 005E  
+                      __pbssBANK1 00A0                    get_msg_index@i 0027                           ?_InitIO 0070  
+       __size_of_InitInputDataInt 0006                           ISR@byte 0078                        __pmaintext 02C5  
+                      __pintentry 0004            __size_of_receive_input 0063                __size_of_send_byte 001F  
+                 ?_send_half_byte 0020         send_RGB_DATA_RQT_CMD@prqt 0045                        _create_cmd 036D  
+              get_msg@start_index 002D            ?_send_RGB_DATA_RQT_CMD 0045                        _buffer_rcv 00A0  
+        __size_of_get_minus_index 000F              __size_of_send_string 0019                         ?_send_msg 0070  
+                 __size_of_InitIO 0021             __size_of_get_distance 000F                   _start_index_rcv 0063  
+                         __ptext1 0400                           __ptext2 0346                           __ptext3 03CE  
+                         __ptext4 03AF                           __ptext5 01AA                           __ptext6 03E7  
+                         __ptext7 036D                           __ptext8 0272                           __ptext9 0144  
+                         _get_msg 0308                           _compose 0272                      __size_of_ISR 002F  
+        __end_ofi1_get_next_index 0450              get_minus_index@index 0021                           clrloop0 0459  
+                         main@rqt 0056                     _receive_input 020F              end_of_initialization 0045  
+               __end_of_send_byte 03CE                      _get_distance 041E               get_next_index@index 0020  
+                      ??_send_msg 002D  __size_of_create_RGB_DATA_RQT_CMD 0019             __end_of_get_msg_index 0144  
+                    __pstringtext 0450                 __end_of_stop_mark 0458                       ?_create_cmd 0034  
+                __CFG_FOSC$INTOSC 0000                         _TRISAbits 008C                         _TRISCbits 008E  
+                  ?_receive_input 0070                        _start_mark 0450                  _InitInputDataInt 045E  
+                  __end_of_InitIO 03AF                 ??_get_minus_index 0021                        compose@cmd 002C  
+                      compose@len 0031                 crc_calculate@pmsg 0028                     __pidataCOMMON 0464  
+             start_initialization 0034                       __end_of_ISR 0033                    crc_calculate@i 0027  
+                        ??_InitIO 0020               __size_of_create_cmd 0021            get_msg_index@end_index 0023  
+                ??_send_half_byte 0021                       __pdataBANK0 006C           ??_send_RGB_DATA_RQT_CMD 0046  
+                     __pbssCOMMON 0079                         ___latbits 0000                   ??_receive_input 0071  
+                   __pcstackBANK0 0020                    compose@datalen 002E            __size_of_crc_calculate 0066  
+                        ISR@value 0077           _create_RGB_DATA_RQT_CMD 03E7                 __size_of_send_msg 0027  
+                        ?_get_msg 0070                          ?_compose 0029                        send_byte@c 0026  
+               ?i1_get_next_index 0070                       _client_conn 005E           __size_of_get_next_index 000B  
+              ??i1_get_next_index 0070                     ??_send_string 002A          get_msg_index@start_index 0026  
+                       clear_ram0 0458      create_RGB_DATA_RQT_CMD@pconn 0044             get_distance@end_index 0020  
+                       _send_byte 03AF           __size_of_get_plus_index 000E                     _crc_calculate 0144  
+                    ??_create_cmd 0039                         main@count 005C          __end_of_InitInputDataInt 0464  
+                       _stop_mark 0454                      send_msg@pmsg 002F                         compose@to 002A  
+                 _get_minus_index 040F         ??_create_RGB_DATA_RQT_CMD 0041                        ?_send_byte 0070  
+                    send_string@i 002C               __end_of_send_string 03E7                __end_of_create_cmd 038E  
+                    _low_half_rcv 007A                     _end_index_rcv 0079                    ?_crc_calculate 0020  
+                      _ANSELAbits 018C                        _ANSELCbits 018E                  __size_of_get_msg 003E  
+                __size_of_compose 0053                          __ptext10 0308                          __ptext11 0048  
+                        __ptext20 0446                          __ptext12 042D                          __ptext13 043B  
+                        __ptext14 040F                          __ptext15 041E                          __ptext16 045E  
+                        __ptext17 038E                          __ptext19 020F                         send_msg@s 002E  
+          __size_of_get_msg_index 00FC                     __size_of_main 0043                          _send_msg 0346  
+     create_RGB_DATA_RQT_CMD@pmsg 0040       create_RGB_DATA_RQT_CMD@prqt 003F                          int$flags 007E  
+                        get_msg@i 002C                          main@conn 0057                          main@recv 0054  
+        send_RGB_DATA_RQT_CMD@msg 0049   __end_of_create_RGB_DATA_RQT_CMD 0400    __size_of_send_RGB_DATA_RQT_CMD 000F  
+   __end_of_send_RGB_DATA_RQT_CMD 040F                    _get_next_index 043B                        _INTCONbits 000B  
+         __end_of_get_minus_index 041E                          intlevel1 0000                       _send_string 03CE  
+           i1get_next_index@index 0070                 __CFG_CLKOUTEN$OFF 0000                       ??_send_byte 0024  
+              receive_input@byte1 0073                receive_input@byte2 0074                    _get_plus_index 042D  
+              receive_input@value 0072                     _get_msg_index 0048                   ??_crc_calculate 0022  
+          __end_of_get_next_index 0446                __end_of_start_mark 0454               get_plus_index@index 0022  
+           __end_of_receive_input 0272               send_half_byte@value 0022                     ?_get_distance 0020  
+              send_half_byte@byte 0023         __size_ofi1_get_next_index 000A            __end_of_get_plus_index 043B  
+               send_half_byte@low 0020  

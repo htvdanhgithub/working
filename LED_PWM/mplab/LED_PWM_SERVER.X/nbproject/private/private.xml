@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>lcd_hd44780_pic16.c</url>
+            <bookmark id="1">
+                <name/>
+                <line>245</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Working/working/LED_PWM/mplab/LED_PWM_SERVER.X/io_define.h</file>
+            <file>file:/D:/Working/working/LED_PWM/mplab/LED_PWM_SERVER.X/led_pwm_server.c</file>
+            <file>file:/D:/Working/working/LED_PWM/mplab/LED_PWM_SERVER.X/rgb_data.h</file>
+            <file>file:/D:/Working/working/LED_PWM/mplab/LED_PWM_SERVER.X/msg.h</file>
+            <file>file:/D:/Working/working/LED_PWM/mplab/LED_PWM_SERVER.X/cmd.h</file>
+            <file>file:/D:/Working/working/LED_PWM/mplab/LED_PWM_SERVER.X/circle_buffer.h</file>
+            <file>file:/D:/Working/working/LED_PWM/mplab/LED_PWM_SERVER.X/packet.h</file>
+            <file>file:/D:/Working/working/LED_PWM/mplab/LED_PWM_SERVER.X/myutils.h</file>
+            <file>file:/D:/Working/working/LED_PWM/mplab/LED_PWM_SERVER.X/common.h</file>
+            <file>file:/D:/Working/working/LED_PWM/mplab/LED_PWM_SERVER.X/connection.h</file>
+        </group>
+    </open-files>
+</project-private>

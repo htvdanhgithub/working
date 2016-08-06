@@ -1,0 +1,2076 @@
+
+
+Microchip Technology PIC LITE Macro Assembler V1.37 build -260352376 
+                                                                                               Tue Aug 02 23:45:51 2016
+
+Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110536
+     1                           	processor	16F1823
+     2                           	opt	pw 120
+     3                           	opt	lm
+     4                           	psect	idataBANK0,global,class=CODE,delta=2
+     5                           	psect	stringtext,global,class=STRCODE,delta=2
+     6                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     7                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+     8                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	clrtext,global,class=CODE,delta=2
+    10                           	psect	cstackBANK1,global,class=BANK1,space=1,delta=1
+    11                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    12                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    13                           	psect	maintext,global,class=CODE,merge=1,split=1,delta=2
+    14                           	psect	text1,local,class=CODE,merge=1,delta=2
+    15                           	psect	text2,local,class=CODE,merge=1,delta=2
+    16                           	psect	intentry,global,class=CODE,delta=2
+    17                           	psect	text4,local,class=CODE,merge=1,delta=2
+    18                           	psect	text5,local,class=CODE,merge=1,delta=2
+    19                           	psect	text6,local,class=CODE,merge=1,delta=2
+    20                           	psect	text7,local,class=CODE,merge=1,delta=2
+    21                           	psect	text8,local,class=CODE,merge=1,delta=2
+    22                           	psect	text9,local,class=CODE,merge=1,delta=2
+    23                           	psect	text10,local,class=CODE,merge=1,delta=2
+    24                           	psect	text11,local,class=CODE,merge=1,delta=2
+    25                           	psect	text12,local,class=CODE,merge=1,delta=2
+    26                           	dabs	1,0x7E,2
+    27  0000                     	;# 
+    28  0001                     	;# 
+    29  0002                     	;# 
+    30  0003                     	;# 
+    31  0004                     	;# 
+    32  0005                     	;# 
+    33  0006                     	;# 
+    34  0007                     	;# 
+    35  0008                     	;# 
+    36  0009                     	;# 
+    37  000A                     	;# 
+    38  000B                     	;# 
+    39  000C                     	;# 
+    40  000E                     	;# 
+    41  0011                     	;# 
+    42  0012                     	;# 
+    43  0015                     	;# 
+    44  0016                     	;# 
+    45  0016                     	;# 
+    46  0017                     	;# 
+    47  0018                     	;# 
+    48  0019                     	;# 
+    49  001A                     	;# 
+    50  001B                     	;# 
+    51  001C                     	;# 
+    52  001E                     	;# 
+    53  001F                     	;# 
+    54  008C                     	;# 
+    55  008E                     	;# 
+    56  0091                     	;# 
+    57  0092                     	;# 
+    58  0095                     	;# 
+    59  0096                     	;# 
+    60  0097                     	;# 
+    61  0098                     	;# 
+    62  0099                     	;# 
+    63  009A                     	;# 
+    64  009B                     	;# 
+    65  009B                     	;# 
+    66  009C                     	;# 
+    67  009D                     	;# 
+    68  009E                     	;# 
+    69  010C                     	;# 
+    70  010E                     	;# 
+    71  0111                     	;# 
+    72  0112                     	;# 
+    73  0113                     	;# 
+    74  0114                     	;# 
+    75  0115                     	;# 
+    76  0116                     	;# 
+    77  0117                     	;# 
+    78  0118                     	;# 
+    79  0119                     	;# 
+    80  011A                     	;# 
+    81  011B                     	;# 
+    82  011D                     	;# 
+    83  011D                     	;# 
+    84  018C                     	;# 
+    85  018E                     	;# 
+    86  0191                     	;# 
+    87  0191                     	;# 
+    88  0192                     	;# 
+    89  0193                     	;# 
+    90  0193                     	;# 
+    91  0193                     	;# 
+    92  0194                     	;# 
+    93  0195                     	;# 
+    94  0196                     	;# 
+    95  0199                     	;# 
+    96  019A                     	;# 
+    97  019B                     	;# 
+    98  019B                     	;# 
+    99  019B                     	;# 
+   100  019B                     	;# 
+   101  019C                     	;# 
+   102  019C                     	;# 
+   103  019D                     	;# 
+   104  019E                     	;# 
+   105  019F                     	;# 
+   106  020C                     	;# 
+   107  020E                     	;# 
+   108  0211                     	;# 
+   109  0211                     	;# 
+   110  0212                     	;# 
+   111  0212                     	;# 
+   112  0213                     	;# 
+   113  0213                     	;# 
+   114  0214                     	;# 
+   115  0214                     	;# 
+   116  0215                     	;# 
+   117  0215                     	;# 
+   118  0215                     	;# 
+   119  0216                     	;# 
+   120  0216                     	;# 
+   121  0217                     	;# 
+   122  0217                     	;# 
+   123  0291                     	;# 
+   124  0291                     	;# 
+   125  0292                     	;# 
+   126  0293                     	;# 
+   127  0294                     	;# 
+   128  0295                     	;# 
+   129  0295                     	;# 
+   130  0296                     	;# 
+   131  0391                     	;# 
+   132  0392                     	;# 
+   133  0393                     	;# 
+   134  039A                     	;# 
+   135  039C                     	;# 
+   136  039D                     	;# 
+   137  039E                     	;# 
+   138  039F                     	;# 
+   139  0FE4                     	;# 
+   140  0FE5                     	;# 
+   141  0FE6                     	;# 
+   142  0FE7                     	;# 
+   143  0FE8                     	;# 
+   144  0FE9                     	;# 
+   145  0FEA                     	;# 
+   146  0FEB                     	;# 
+   147  0FED                     	;# 
+   148  0FEE                     	;# 
+   149  0FEF                     	;# 
+   150                           
+   151                           	psect	idataBANK0
+   152  021B                     __pidataBANK0:	
+   153                           
+   154                           ;initializer for _duty
+   155  021B  3432               	retlw	50
+   156  021C  347D               	retlw	125
+   157  021D  34C8               	retlw	200
+   158                           
+   159                           ;initializer for _pmsg
+   160  021E  3456               	retlw	low (_msg| 0)
+   161                           
+   162                           	psect	stringtext
+   163  0202                     __pstringtext:	
+   164  0202                     _start_mark:	
+   165  0202  34EA               	retlw	234
+   166  0203  34EB               	retlw	235
+   167  0204  34EC               	retlw	236
+   168  0205  34ED               	retlw	237
+   169  0206                     __end_of_start_mark:	
+   170  0206                     _stop_mark:	
+   171  0206  34ED               	retlw	237
+   172  0207  34EC               	retlw	236
+   173  0208  34EB               	retlw	235
+   174  0209  34EA               	retlw	234
+   175  020A                     __end_of_stop_mark:	
+   176  000B                     _INTCONbits	set	11
+   177  0060                     _RA0	set	96
+   178  0072                     _RC2	set	114
+   179  0073                     _RC3	set	115
+   180  0074                     _RC4	set	116
+   181  0075                     _RC5	set	117
+   182  0095                     _OPTION_REGbits	set	149
+   183  008C                     _TRISAbits	set	140
+   184  008E                     _TRISCbits	set	142
+   185  018C                     _ANSELAbits	set	396
+   186  018E                     _ANSELCbits	set	398
+   187                           
+   188                           ; #config settings
+   189  0000                     
+   190                           	psect	cinit
+   191  0021                     start_initialization:	
+   192  0021                     __initialization:	
+   193                           
+   194                           ; Clear objects allocated to BANK0
+   195  0021  3050               	movlw	low __pbssBANK0
+   196  0022  0084               	movwf	4
+   197  0023  3000               	movlw	high __pbssBANK0
+   198  0024  0085               	movwf	5
+   199  0025  3010               	movlw	16
+   200  0026  220A               	fcall	clear_ram0
+   201                           
+   202                           ; Initialize objects allocated to BANK0
+   203  0027  221B               	fcall	__pidataBANK0	;fetch initializer
+   204  0028  00E0               	movwf	__pdataBANK0& (0+127)
+   205  0029  221C               	fcall	__pidataBANK0+1	;fetch initializer
+   206  002A  00E1               	movwf	(__pdataBANK0+1)& (0+127)
+   207  002B  221D               	fcall	__pidataBANK0+2	;fetch initializer
+   208  002C  00E2               	movwf	(__pdataBANK0+2)& (0+127)
+   209  002D  221E               	fcall	__pidataBANK0+3	;fetch initializer
+   210  002E  00E3               	movwf	(__pdataBANK0+3)& (0+127)
+   211  002F                     end_of_initialization:	
+   212                           ;End of C runtime variable initialization code
+   213                           
+   214  002F                     __end_of__initialization:	
+   215  002F  107E               	bcf	int$flags,0	;clear compiler interrupt flag (level 1)
+   216  0030  0020               	movlb	0
+   217  0031  2A16               	ljmp	_main	;jump to C main() function
+   218                           
+   219                           	psect	bssBANK0
+   220  0050                     __pbssBANK0:	
+   221  0050                     _client_conn:	
+   222  0050                     	ds	5
+   223  0055                     _time:	
+   224  0055                     	ds	1
+   225  0056                     _msg:	
+   226  0056                     	ds	10
+   227                           
+   228                           	psect	dataBANK0
+   229  0060                     __pdataBANK0:	
+   230  0060                     _duty:	
+   231  0060                     	ds	3
+   232  0063                     _pmsg:	
+   233  0063                     	ds	1
+   234                           
+   235                           	psect	clrtext
+   236  020A                     clear_ram0:	
+   237                           ;	Called with FSR0 containing the base address, and
+   238                           ;	WREG with the size to clear
+   239                           
+   240  020A  0064               	clrwdt	;clear the watchdog before getting into this loop
+   241  020B                     clrloop0:	
+   242  020B  0180               	clrf	0	;clear RAM location pointed to by FSR
+   243  020C  3101               	addfsr 0,1
+   244  020D  0B89               	decfsz	9,f	;Have we reached the end of clearing yet?
+   245  020E  2A0B               	goto	clrloop0	;have we reached the end yet?
+   246  020F  3400               	retlw	0	;all done for this memory range, return
+   247                           
+   248                           	psect	cstackBANK1
+   249  0000                     __pcstackBANK1:	
+   250  0000                     ??_InitIO:	
+   251  0000                     ??_InitInputDataInt:	
+   252                           ; 1 bytes @ 0x0
+   253                           
+   254  0000                     ??_main:	
+   255                           ; 1 bytes @ 0x0
+   256                           
+   257                           
+   258                           	psect	cstackCOMMON
+   259  0070                     __pcstackCOMMON:	
+   260                           ; 1 bytes @ 0x0
+   261                           
+   262  0070                     ?_send_half_byte:	
+   263  0070                     ?_send_byte:	
+   264                           ; 1 bytes @ 0x0
+   265                           
+   266  0070                     ?_send_msg:	
+   267                           ; 1 bytes @ 0x0
+   268                           
+   269  0070                     ?_InitIO:	
+   270                           ; 1 bytes @ 0x0
+   271                           
+   272  0070                     ?_InitInputDataInt:	
+   273                           ; 1 bytes @ 0x0
+   274                           
+   275  0070                     ?_ISR:	
+   276                           ; 1 bytes @ 0x0
+   277                           
+   278  0070                     ?_main:	
+   279                           ; 1 bytes @ 0x0
+   280                           
+   281  0070                     ?_crc_calculate:	
+   282                           ; 1 bytes @ 0x0
+   283                           
+   284  0070                     send_half_byte@low:	
+   285                           ; 2 bytes @ 0x0
+   286                           
+   287                           
+   288                           ; 1 bytes @ 0x0
+   289  0070                     	ds	1
+   290  0071                     ??_send_half_byte:	
+   291                           
+   292                           ; 1 bytes @ 0x1
+   293  0071                     	ds	1
+   294  0072                     ??_crc_calculate:	
+   295  0072                     send_half_byte@value:	
+   296                           ; 1 bytes @ 0x2
+   297                           
+   298                           
+   299                           ; 1 bytes @ 0x2
+   300  0072                     	ds	1
+   301  0073                     send_half_byte@byte:	
+   302                           
+   303                           ; 1 bytes @ 0x3
+   304  0073                     	ds	1
+   305  0074                     ??_send_byte:	
+   306                           
+   307                           ; 1 bytes @ 0x4
+   308  0074                     	ds	1
+   309  0075                     crc_calculate@crc:	
+   310                           
+   311                           ; 2 bytes @ 0x5
+   312  0075                     	ds	1
+   313  0076                     send_byte@c:	
+   314                           
+   315                           ; 1 bytes @ 0x6
+   316  0076                     	ds	1
+   317  0077                     ?_send_string:	
+   318  0077                     crc_calculate@i:	
+   319                           ; 1 bytes @ 0x7
+   320                           
+   321  0077                     send_string@str:	
+   322                           ; 1 bytes @ 0x7
+   323                           
+   324                           
+   325                           ; 2 bytes @ 0x7
+   326  0077                     	ds	1
+   327  0078                     crc_calculate@pmsg:	
+   328                           
+   329                           ; 1 bytes @ 0x8
+   330  0078                     	ds	1
+   331  0079                     ??_compose:	
+   332  0079                     send_string@len:	
+   333                           ; 1 bytes @ 0x9
+   334                           
+   335                           
+   336                           ; 1 bytes @ 0x9
+   337  0079                     	ds	1
+   338  007A                     ??_send_string:	
+   339                           
+   340                           ; 1 bytes @ 0xA
+   341  007A                     	ds	1
+   342  007B                     compose@len:	
+   343                           
+   344                           ; 2 bytes @ 0xB
+   345  007B                     	ds	1
+   346  007C                     send_string@i:	
+   347                           
+   348                           ; 1 bytes @ 0xC
+   349  007C                     	ds	1
+   350  007D                     ??_send_msg:	
+   351  007D                     compose@pmsg:	
+   352                           ; 1 bytes @ 0xD
+   353                           
+   354                           
+   355                           ; 1 bytes @ 0xD
+   356  007D                     	ds	1
+   357                           
+   358                           	psect	cstackBANK0
+   359  0020                     __pcstackBANK0:	
+   360  0020                     ?_compose:	
+   361  0020                     send_msg@s:	
+   362                           ; 1 bytes @ 0x0
+   363                           
+   364  0020                     compose@from:	
+   365                           ; 1 bytes @ 0x0
+   366                           
+   367                           
+   368                           ; 1 bytes @ 0x0
+   369  0020                     	ds	1
+   370  0021                     send_msg@pmsg:	
+   371  0021                     compose@to:	
+   372                           ; 1 bytes @ 0x1
+   373                           
+   374                           
+   375                           ; 1 bytes @ 0x1
+   376  0021                     	ds	1
+   377  0022                     compose@msgid:	
+   378                           
+   379                           ; 1 bytes @ 0x2
+   380  0022                     	ds	1
+   381  0023                     compose@cmd:	
+   382                           
+   383                           ; 1 bytes @ 0x3
+   384  0023                     	ds	1
+   385  0024                     compose@data:	
+   386                           
+   387                           ; 1 bytes @ 0x4
+   388  0024                     	ds	1
+   389  0025                     compose@datalen:	
+   390                           
+   391                           ; 1 bytes @ 0x5
+   392  0025                     	ds	1
+   393  0026                     ?_create_cmd:	
+   394  0026                     create_cmd@cmd_id:	
+   395                           ; 1 bytes @ 0x6
+   396                           
+   397                           
+   398                           ; 1 bytes @ 0x6
+   399  0026                     	ds	1
+   400  0027                     create_cmd@msg_id:	
+   401                           
+   402                           ; 1 bytes @ 0x7
+   403  0027                     	ds	1
+   404  0028                     create_cmd@cmd_data:	
+   405                           
+   406                           ; 1 bytes @ 0x8
+   407  0028                     	ds	1
+   408  0029                     create_cmd@cmd_data_len:	
+   409                           
+   410                           ; 1 bytes @ 0x9
+   411  0029                     	ds	1
+   412  002A                     create_cmd@pmsg:	
+   413                           
+   414                           ; 1 bytes @ 0xA
+   415  002A                     	ds	1
+   416  002B                     ??_create_cmd:	
+   417                           
+   418                           ; 1 bytes @ 0xB
+   419  002B                     	ds	5
+   420  0030                     create_cmd@pconn:	
+   421                           
+   422                           ; 1 bytes @ 0x10
+   423  0030                     	ds	1
+   424  0031                     ?_create_RGB_DATA_RQT_CMD:	
+   425  0031                     create_RGB_DATA_RQT_CMD@prqt:	
+   426                           ; 1 bytes @ 0x11
+   427                           
+   428                           
+   429                           ; 1 bytes @ 0x11
+   430  0031                     	ds	1
+   431  0032                     create_RGB_DATA_RQT_CMD@pmsg:	
+   432                           
+   433                           ; 1 bytes @ 0x12
+   434  0032                     	ds	1
+   435  0033                     ??_create_RGB_DATA_RQT_CMD:	
+   436                           
+   437                           ; 1 bytes @ 0x13
+   438  0033                     	ds	4
+   439  0037                     create_RGB_DATA_RQT_CMD@pconn:	
+   440                           
+   441                           ; 1 bytes @ 0x17
+   442  0037                     	ds	1
+   443  0038                     ?_send_RGB_DATA_RQT_CMD:	
+   444  0038                     send_RGB_DATA_RQT_CMD@prqt:	
+   445                           ; 1 bytes @ 0x18
+   446                           
+   447                           
+   448                           ; 1 bytes @ 0x18
+   449  0038                     	ds	1
+   450  0039                     ??_send_RGB_DATA_RQT_CMD:	
+   451                           
+   452                           ; 1 bytes @ 0x19
+   453  0039                     	ds	2
+   454  003B                     send_RGB_DATA_RQT_CMD@pconn:	
+   455                           
+   456                           ; 1 bytes @ 0x1B
+   457  003B                     	ds	1
+   458  003C                     send_RGB_DATA_RQT_CMD@msg:	
+   459                           
+   460                           ; 10 bytes @ 0x1C
+   461  003C                     	ds	10
+   462  0046                     ??_ISR:	
+   463                           
+   464                           ; 1 bytes @ 0x26
+   465  0046                     	ds	2
+   466  0048                     ISR@conn:	
+   467                           
+   468                           ; 5 bytes @ 0x28
+   469  0048                     	ds	5
+   470  004D                     ISR@rqt:	
+   471                           
+   472                           ; 3 bytes @ 0x2D
+   473  004D                     	ds	3
+   474                           
+   475                           	psect	maintext
+   476  0216                     __pmaintext:	
+   477 ;;
+   478 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   479 ;;
+   480 ;; *************** function _main *****************
+   481 ;; Defined at:
+   482 ;;		line 97 in file "led_pwm_server.c"
+   483 ;; Parameters:    Size  Location     Type
+   484 ;;		None
+   485 ;; Auto vars:     Size  Location     Type
+   486 ;;		None
+   487 ;; Return value:  Size  Location     Type
+   488 ;;                  1    wreg      void 
+   489 ;; Registers used:
+   490 ;;		status,2, status,0, pclath, cstack
+   491 ;; Tracked objects:
+   492 ;;		On entry : B1F/0
+   493 ;;		On exit  : 0/0
+   494 ;;		Unchanged: 0/0
+   495 ;; Data sizes:     COMMON   BANK0   BANK1
+   496 ;;      Params:         0       0       0
+   497 ;;      Locals:         0       0       0
+   498 ;;      Temps:          0       0       0
+   499 ;;      Totals:         0       0       0
+   500 ;;Total ram usage:        0 bytes
+   501 ;; Hardware stack levels required when called:    7
+   502 ;; This function calls:
+   503 ;;		_InitIO
+   504 ;;		_InitInputDataInt
+   505 ;; This function is called by:
+   506 ;;		Startup code after reset
+   507 ;; This function uses a non-reentrant model
+   508 ;;
+   509                           
+   510                           
+   511                           ;psect for function _main
+   512  0216                     _main:	
+   513                           
+   514                           ;led_pwm_server.c: 99: InitIO();
+   515                           
+   516                           ;incstack = 0
+   517                           ; Regs used in _main: [status,2+status,0+pclath+cstack]
+   518  0216  21DF               	fcall	_InitIO
+   519                           
+   520                           ;led_pwm_server.c: 101: InitInputDataInt();
+   521  0217  2210               	fcall	_InitInputDataInt
+   522                           
+   523                           ;led_pwm_server.c: 103: RA0 = 0;
+   524  0218  0020               	movlb	0	; select bank0
+   525  0219  100C               	bcf	12,0	;volatile
+   526  021A                     l95:	
+   527                           ;led_pwm_server.c: 105: while(1)
+   528                           
+   529                           
+   530                           ;led_pwm_server.c: 106: {
+   531  021A  2A1A               	goto	l95
+   532  021B                     __end_of_main:	
+   533                           
+   534                           	psect	text1
+   535  0210                     __ptext1:	
+   536 ;; *************** function _InitInputDataInt *****************
+   537 ;; Defined at:
+   538 ;;		line 77 in file "led_pwm_server.c"
+   539 ;; Parameters:    Size  Location     Type
+   540 ;;		None
+   541 ;; Auto vars:     Size  Location     Type
+   542 ;;		None
+   543 ;; Return value:  Size  Location     Type
+   544 ;;                  1    wreg      void 
+   545 ;; Registers used:
+   546 ;;		None
+   547 ;; Tracked objects:
+   548 ;;		On entry : 0/0
+   549 ;;		On exit  : 0/0
+   550 ;;		Unchanged: 0/0
+   551 ;; Data sizes:     COMMON   BANK0   BANK1
+   552 ;;      Params:         0       0       0
+   553 ;;      Locals:         0       0       0
+   554 ;;      Temps:          0       0       0
+   555 ;;      Totals:         0       0       0
+   556 ;;Total ram usage:        0 bytes
+   557 ;; Hardware stack levels used:    1
+   558 ;; Hardware stack levels required when called:    6
+   559 ;; This function calls:
+   560 ;;		Nothing
+   561 ;; This function is called by:
+   562 ;;		_main
+   563 ;; This function uses a non-reentrant model
+   564 ;;
+   565                           
+   566                           
+   567                           ;psect for function _InitInputDataInt
+   568  0210                     _InitInputDataInt:	
+   569                           
+   570                           ;led_pwm_server.c: 79: INTCONbits.GIE = 1;
+   571                           
+   572                           ;incstack = 0
+   573                           ; Regs used in _InitInputDataInt: []
+   574  0210  178B               	bsf	11,7	;volatile
+   575                           
+   576                           ;led_pwm_server.c: 80: INTCONbits.INTE = 1;
+   577  0211  160B               	bsf	11,4	;volatile
+   578                           
+   579                           ;led_pwm_server.c: 81: INTCONbits.INTF = 0;
+   580  0212  108B               	bcf	11,1	;volatile
+   581                           
+   582                           ;led_pwm_server.c: 82: OPTION_REGbits.INTEDG = 0;
+   583  0213  0021               	movlb	1	; select bank1
+   584  0214  1315               	bcf	21,6	;volatile
+   585  0215  0008               	return
+   586  0216                     __end_of_InitInputDataInt:	
+   587                           
+   588                           	psect	text2
+   589  01DF                     __ptext2:	
+   590 ;; *************** function _InitIO *****************
+   591 ;; Defined at:
+   592 ;;		line 42 in file "led_pwm_server.c"
+   593 ;; Parameters:    Size  Location     Type
+   594 ;;		None
+   595 ;; Auto vars:     Size  Location     Type
+   596 ;;		None
+   597 ;; Return value:  Size  Location     Type
+   598 ;;                  1    wreg      void 
+   599 ;; Registers used:
+   600 ;;		None
+   601 ;; Tracked objects:
+   602 ;;		On entry : 0/0
+   603 ;;		On exit  : 0/0
+   604 ;;		Unchanged: 0/0
+   605 ;; Data sizes:     COMMON   BANK0   BANK1
+   606 ;;      Params:         0       0       0
+   607 ;;      Locals:         0       0       0
+   608 ;;      Temps:          0       0       0
+   609 ;;      Totals:         0       0       0
+   610 ;;Total ram usage:        0 bytes
+   611 ;; Hardware stack levels used:    1
+   612 ;; Hardware stack levels required when called:    6
+   613 ;; This function calls:
+   614 ;;		Nothing
+   615 ;; This function is called by:
+   616 ;;		_main
+   617 ;; This function uses a non-reentrant model
+   618 ;;
+   619                           
+   620                           
+   621                           ;psect for function _InitIO
+   622  01DF                     _InitIO:	
+   623                           
+   624                           ;led_pwm_server.c: 44: (TRISAbits.TRISA2 = 1);
+   625                           
+   626                           ;incstack = 0
+   627                           ; Regs used in _InitIO: []
+   628  01DF  0021               	movlb	1	; select bank1
+   629  01E0  150C               	bsf	12,2	;volatile
+   630                           
+   631                           ;led_pwm_server.c: 45: ANSELAbits.ANSA2 = 0;
+   632  01E1  0023               	movlb	3	; select bank3
+   633  01E2  110C               	bcf	12,2	;volatile
+   634                           
+   635                           ;led_pwm_server.c: 47: (TRISAbits.TRISA0 = 0);
+   636  01E3  0021               	movlb	1	; select bank1
+   637  01E4  100C               	bcf	12,0	;volatile
+   638                           
+   639                           ;led_pwm_server.c: 48: ANSELAbits.ANSA0 = 0;
+   640  01E5  0023               	movlb	3	; select bank3
+   641  01E6  100C               	bcf	12,0	;volatile
+   642                           
+   643                           ;led_pwm_server.c: 50: (TRISCbits.TRISC2 = 0);
+   644  01E7  0021               	movlb	1	; select bank1
+   645  01E8  110E               	bcf	14,2	;volatile
+   646                           
+   647                           ;led_pwm_server.c: 51: ANSELCbits.ANSC2 = 0;
+   648  01E9  0023               	movlb	3	; select bank3
+   649  01EA  110E               	bcf	14,2	;volatile
+   650                           
+   651                           ;led_pwm_server.c: 53: (TRISCbits.TRISC3 = 0);
+   652  01EB  0021               	movlb	1	; select bank1
+   653  01EC  118E               	bcf	14,3	;volatile
+   654                           
+   655                           ;led_pwm_server.c: 54: ANSELCbits.ANSC3 = 0;
+   656  01ED  0023               	movlb	3	; select bank3
+   657  01EE  118E               	bcf	14,3	;volatile
+   658                           
+   659                           ;led_pwm_server.c: 56: (TRISCbits.TRISC4 = 0);
+   660  01EF  0021               	movlb	1	; select bank1
+   661  01F0  120E               	bcf	14,4	;volatile
+   662                           
+   663                           ;led_pwm_server.c: 59: (TRISCbits.TRISC5 = 0);
+   664  01F1  128E               	bcf	14,5	;volatile
+   665  01F2  0008               	return
+   666  01F3                     __end_of_InitIO:	
+   667                           
+   668                           	psect	intentry
+   669  0004                     __pintentry:	
+   670 ;; *************** function _ISR *****************
+   671 ;; Defined at:
+   672 ;;		line 84 in file "led_pwm_server.c"
+   673 ;; Parameters:    Size  Location     Type
+   674 ;;		None
+   675 ;; Auto vars:     Size  Location     Type
+   676 ;;  conn            5   40[BANK0 ] struct .
+   677 ;;  rqt             3   45[BANK0 ] struct .
+   678 ;; Return value:  Size  Location     Type
+   679 ;;                  1    wreg      void 
+   680 ;; Registers used:
+   681 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+   682 ;; Tracked objects:
+   683 ;;		On entry : 0/0
+   684 ;;		On exit  : 0/0
+   685 ;;		Unchanged: 0/0
+   686 ;; Data sizes:     COMMON   BANK0   BANK1
+   687 ;;      Params:         0       0       0
+   688 ;;      Locals:         0       8       0
+   689 ;;      Temps:          0       2       0
+   690 ;;      Totals:         0      10       0
+   691 ;;Total ram usage:       10 bytes
+   692 ;; Hardware stack levels used:    1
+   693 ;; Hardware stack levels required when called:    5
+   694 ;; This function calls:
+   695 ;;		_send_RGB_DATA_RQT_CMD
+   696 ;; This function is called by:
+   697 ;;		Interrupt level 1
+   698 ;; This function uses a non-reentrant model
+   699 ;;
+   700                           
+   701  0004                     _ISR:	
+   702                           
+   703                           ;incstack = 0
+   704                           ; Regs used in _ISR: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+   705  0004  147E               	bsf	126,0	;set compiler interrupt flag (level 1)
+   706  0005  3180               	pagesel	$
+   707  0006  0020               	movlb	0	; select bank0
+   708  0007  087F               	movf	127,w
+   709  0008  00C7               	movwf	??_ISR+1
+   710                           
+   711                           ;led_pwm_server.c: 86: if(INTCONbits.INTF == 1)
+   712  0009  1C8B               	btfss	11,1	;volatile
+   713  000A  281B               	goto	i1l92
+   714                           
+   715                           ;led_pwm_server.c: 87: {
+   716                           ;led_pwm_server.c: 88: Connection_t conn;
+   717                           ;led_pwm_server.c: 89: RGB_DATA_RQT_CMD_t rqt;
+   718                           ;led_pwm_server.c: 90: rqt.r = 255;
+   719  000B  30FF               	movlw	255
+   720  000C  00C6               	movwf	??_ISR
+   721  000D  0846               	movf	??_ISR,w
+   722  000E  00CD               	movwf	ISR@rqt
+   723                           
+   724                           ;led_pwm_server.c: 91: rqt.g = 0;
+   725  000F  01CE               	clrf	ISR@rqt+1
+   726                           
+   727                           ;led_pwm_server.c: 92: rqt.b = 255;
+   728  0010  30FF               	movlw	255
+   729  0011  00C6               	movwf	??_ISR
+   730  0012  0846               	movf	??_ISR,w
+   731  0013  00CF               	movwf	ISR@rqt+2
+   732                           
+   733                           ;led_pwm_server.c: 93: send_RGB_DATA_RQT_CMD(&conn, &rqt);
+   734  0014  304D               	movlw	(low (ISR@rqt| 0))& (0+255)
+   735  0015  00C6               	movwf	??_ISR
+   736  0016  0846               	movf	??_ISR,w
+   737  0017  00B8               	movwf	send_RGB_DATA_RQT_CMD@prqt
+   738  0018  3048               	movlw	(low (ISR@conn| 0))& (0+255)
+   739  0019  21F3               	fcall	_send_RGB_DATA_RQT_CMD
+   740                           
+   741                           ;led_pwm_server.c: 94: INTCONbits.INTF = 0;
+   742  001A  108B               	bcf	11,1	;volatile
+   743  001B                     i1l92:	
+   744  001B  0020               	movlb	0	; select bank0
+   745  001C  0847               	movf	??_ISR+1,w
+   746  001D  00FF               	movwf	127
+   747  001E  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+   748  001F  0009               	retfie
+   749  0020                     __end_of_ISR:	
+   750                           
+   751                           	psect	text4
+   752  01F3                     __ptext4:	
+   753 ;; *************** function _send_RGB_DATA_RQT_CMD *****************
+   754 ;; Defined at:
+   755 ;;		line 28 in file "rgb_data.h"
+   756 ;; Parameters:    Size  Location     Type
+   757 ;;  pconn           1    wreg     PTR struct .
+   758 ;;		 -> ISR@conn(5), 
+   759 ;;  prqt            1   24[BANK0 ] PTR const struct .
+   760 ;;		 -> ISR@rqt(3), 
+   761 ;; Auto vars:     Size  Location     Type
+   762 ;;  pconn           1   27[BANK0 ] PTR struct .
+   763 ;;		 -> ISR@conn(5), 
+   764 ;;  msg            10   28[BANK0 ] struct .
+   765 ;; Return value:  Size  Location     Type
+   766 ;;                  1    wreg      unsigned char 
+   767 ;; Registers used:
+   768 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+   769 ;; Tracked objects:
+   770 ;;		On entry : 0/0
+   771 ;;		On exit  : 0/0
+   772 ;;		Unchanged: 0/0
+   773 ;; Data sizes:     COMMON   BANK0   BANK1
+   774 ;;      Params:         0       1       0
+   775 ;;      Locals:         0      11       0
+   776 ;;      Temps:          0       2       0
+   777 ;;      Totals:         0      14       0
+   778 ;;Total ram usage:       14 bytes
+   779 ;; Hardware stack levels used:    1
+   780 ;; Hardware stack levels required when called:    4
+   781 ;; This function calls:
+   782 ;;		_create_RGB_DATA_RQT_CMD
+   783 ;;		_send_msg
+   784 ;; This function is called by:
+   785 ;;		_ISR
+   786 ;; This function uses a non-reentrant model
+   787 ;;
+   788                           
+   789                           
+   790                           ;psect for function _send_RGB_DATA_RQT_CMD
+   791  01F3                     _send_RGB_DATA_RQT_CMD:	
+   792                           
+   793                           ;incstack = 0
+   794                           ; Regs used in _send_RGB_DATA_RQT_CMD: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+   795                           ;send_RGB_DATA_RQT_CMD@pconn stored from wreg
+   796  01F3  0020               	movlb	0	; select bank0
+   797  01F4  00BB               	movwf	send_RGB_DATA_RQT_CMD@pconn
+   798                           
+   799                           ;rgb_data.h: 30: Msg_t msg;
+   800                           ;rgb_data.h: 31: create_RGB_DATA_RQT_CMD(pconn, prqt, &msg);
+   801  01F5  0838               	movf	send_RGB_DATA_RQT_CMD@prqt,w
+   802  01F6  00B9               	movwf	??_send_RGB_DATA_RQT_CMD
+   803  01F7  0839               	movf	??_send_RGB_DATA_RQT_CMD,w
+   804  01F8  00B1               	movwf	create_RGB_DATA_RQT_CMD@prqt
+   805  01F9  303C               	movlw	(low (send_RGB_DATA_RQT_CMD@msg| 0))& (0+255)
+   806  01FA  00BA               	movwf	??_send_RGB_DATA_RQT_CMD+1
+   807  01FB  083A               	movf	??_send_RGB_DATA_RQT_CMD+1,w
+   808  01FC  00B2               	movwf	create_RGB_DATA_RQT_CMD@pmsg
+   809  01FD  083B               	movf	send_RGB_DATA_RQT_CMD@pconn,w
+   810  01FE  21AD               	fcall	_create_RGB_DATA_RQT_CMD
+   811                           
+   812                           ;rgb_data.h: 32: send_msg(&msg);
+   813  01FF  303C               	movlw	(low (send_RGB_DATA_RQT_CMD@msg| 0))& (0+255)
+   814  0200  214B               	fcall	_send_msg
+   815  0201  0008               	return
+   816  0202                     __end_of_send_RGB_DATA_RQT_CMD:	
+   817                           
+   818                           	psect	text5
+   819  014B                     __ptext5:	
+   820 ;; *************** function _send_msg *****************
+   821 ;; Defined at:
+   822 ;;		line 29 in file "msg.h"
+   823 ;; Parameters:    Size  Location     Type
+   824 ;;  pmsg            1    wreg     PTR struct .
+   825 ;;		 -> send_RGB_DATA_RQT_CMD@msg(10), 
+   826 ;; Auto vars:     Size  Location     Type
+   827 ;;  pmsg            1    1[BANK0 ] PTR struct .
+   828 ;;		 -> send_RGB_DATA_RQT_CMD@msg(10), 
+   829 ;;  s               1    0[BANK0 ] PTR unsigned char 
+   830 ;;		 -> send_RGB_DATA_RQT_CMD@msg(10), 
+   831 ;; Return value:  Size  Location     Type
+   832 ;;                  1    wreg      void 
+   833 ;; Registers used:
+   834 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+   835 ;; Tracked objects:
+   836 ;;		On entry : 0/0
+   837 ;;		On exit  : 0/0
+   838 ;;		Unchanged: 0/0
+   839 ;; Data sizes:     COMMON   BANK0   BANK1
+   840 ;;      Params:         0       0       0
+   841 ;;      Locals:         0       2       0
+   842 ;;      Temps:          1       0       0
+   843 ;;      Totals:         1       2       0
+   844 ;;Total ram usage:        3 bytes
+   845 ;; Hardware stack levels used:    1
+   846 ;; Hardware stack levels required when called:    3
+   847 ;; This function calls:
+   848 ;;		_send_string
+   849 ;; This function is called by:
+   850 ;;		_send_RGB_DATA_RQT_CMD
+   851 ;; This function uses a non-reentrant model
+   852 ;;
+   853                           
+   854                           
+   855                           ;psect for function _send_msg
+   856  014B                     _send_msg:	
+   857                           
+   858                           ;incstack = 0
+   859                           ; Regs used in _send_msg: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+   860                           ;send_msg@pmsg stored from wreg
+   861  014B  0020               	movlb	0	; select bank0
+   862  014C  00A1               	movwf	send_msg@pmsg
+   863                           
+   864                           ;msg.h: 31: send_string(start_mark, 4);
+   865  014D  3002               	movlw	low (_start_mark| (0+32768))
+   866  014E  00F7               	movwf	send_string@str
+   867  014F  3082               	movlw	high (_start_mark| (0+32768))
+   868  0150  00F8               	movwf	send_string@str+1
+   869  0151  3004               	movlw	4
+   870  0152  00FD               	movwf	??_send_msg
+   871  0153  087D               	movf	??_send_msg,w
+   872  0154  00F9               	movwf	send_string@len
+   873  0155  21C8               	fcall	_send_string
+   874                           
+   875                           ;msg.h: 32: uint8_t *s = (uint8_t *)pmsg;
+   876  0156  0020               	movlb	0	; select bank0
+   877  0157  0821               	movf	send_msg@pmsg,w
+   878  0158  00FD               	movwf	??_send_msg
+   879  0159  087D               	movf	??_send_msg,w
+   880  015A  00A0               	movwf	send_msg@s
+   881                           
+   882                           ;msg.h: 33: send_string(s, pmsg->msglen);
+   883  015B  0820               	movf	send_msg@s,w
+   884  015C  00F7               	movwf	send_string@str
+   885  015D  3000               	movlw	0
+   886  015E  00F8               	movwf	send_string@str+1
+   887  015F  0821               	movf	send_msg@pmsg,w
+   888  0160  0086               	movwf	6
+   889  0161  0187               	clrf	7
+   890  0162  0801               	movf	1,w
+   891  0163  00FD               	movwf	??_send_msg
+   892  0164  087D               	movf	??_send_msg,w
+   893  0165  00F9               	movwf	send_string@len
+   894  0166  21C8               	fcall	_send_string
+   895                           
+   896                           ;msg.h: 34: send_string(stop_mark, 4);
+   897  0167  3006               	movlw	low (_stop_mark| (0+32768))
+   898  0168  00F7               	movwf	send_string@str
+   899  0169  3082               	movlw	high (_stop_mark| (0+32768))
+   900  016A  00F8               	movwf	send_string@str+1
+   901  016B  3004               	movlw	4
+   902  016C  00FD               	movwf	??_send_msg
+   903  016D  087D               	movf	??_send_msg,w
+   904  016E  00F9               	movwf	send_string@len
+   905  016F  21C8               	fcall	_send_string
+   906  0170  0008               	return
+   907  0171                     __end_of_send_msg:	
+   908                           
+   909                           	psect	text6
+   910  01C8                     __ptext6:	
+   911 ;; *************** function _send_string *****************
+   912 ;; Defined at:
+   913 ;;		line 29 in file "packet.h"
+   914 ;; Parameters:    Size  Location     Type
+   915 ;;  str             2    7[COMMON] PTR unsigned char 
+   916 ;;		 -> send_RGB_DATA_RQT_CMD@msg(10), stop_mark(4), start_mark(4), 
+   917 ;;  len             1    9[COMMON] unsigned char 
+   918 ;; Auto vars:     Size  Location     Type
+   919 ;;  i               1   12[COMMON] unsigned char 
+   920 ;; Return value:  Size  Location     Type
+   921 ;;                  1    wreg      void 
+   922 ;; Registers used:
+   923 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+   924 ;; Tracked objects:
+   925 ;;		On entry : 0/0
+   926 ;;		On exit  : 0/0
+   927 ;;		Unchanged: 0/0
+   928 ;; Data sizes:     COMMON   BANK0   BANK1
+   929 ;;      Params:         3       0       0
+   930 ;;      Locals:         1       0       0
+   931 ;;      Temps:          2       0       0
+   932 ;;      Totals:         6       0       0
+   933 ;;Total ram usage:        6 bytes
+   934 ;; Hardware stack levels used:    1
+   935 ;; Hardware stack levels required when called:    2
+   936 ;; This function calls:
+   937 ;;		_send_byte
+   938 ;; This function is called by:
+   939 ;;		_send_msg
+   940 ;; This function uses a non-reentrant model
+   941 ;;
+   942                           
+   943                           
+   944                           ;psect for function _send_string
+   945  01C8                     _send_string:	
+   946                           
+   947                           ;packet.h: 31: for(uint8_t i = 0; i < len; i++)
+   948                           
+   949                           ;incstack = 0
+   950                           ; Regs used in _send_string: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+   951  01C8  01FC               	clrf	send_string@i
+   952  01C9                     i1l726:	
+   953  01C9  0879               	movf	send_string@len,w
+   954  01CA  027C               	subwf	send_string@i,w
+   955  01CB  1803               	btfsc	3,0
+   956  01CC  0008               	return
+   957                           
+   958                           ;packet.h: 32: {
+   959                           ;packet.h: 33: send_byte(str[i]);
+   960  01CD  0878               	movf	send_string@str+1,w
+   961  01CE  00FB               	movwf	??_send_string+1
+   962  01CF  0877               	movf	send_string@str,w
+   963  01D0  00FA               	movwf	??_send_string
+   964  01D1  087C               	movf	send_string@i,w
+   965  01D2  077A               	addwf	??_send_string,w
+   966  01D3  0084               	movwf	4
+   967  01D4  087B               	movf	??_send_string+1,w
+   968  01D5  1803               	skipnc
+   969  01D6  0A7B               	incf	??_send_string+1,w
+   970  01D7  0085               	movwf	5
+   971  01D8  0800               	movf	0,w	;code access
+   972  01D9  2192               	fcall	_send_byte
+   973  01DA  3001               	movlw	1
+   974  01DB  00FA               	movwf	??_send_string
+   975  01DC  087A               	movf	??_send_string,w
+   976  01DD  07FC               	addwf	send_string@i,f
+   977  01DE  29C9               	goto	i1l726
+   978  01DF                     __end_of_send_string:	
+   979                           
+   980                           	psect	text7
+   981  0192                     __ptext7:	
+   982 ;; *************** function _send_byte *****************
+   983 ;; Defined at:
+   984 ;;		line 20 in file "packet.h"
+   985 ;; Parameters:    Size  Location     Type
+   986 ;;  c               1    wreg     unsigned char 
+   987 ;; Auto vars:     Size  Location     Type
+   988 ;;  c               1    6[COMMON] unsigned char 
+   989 ;; Return value:  Size  Location     Type
+   990 ;;                  1    wreg      void 
+   991 ;; Registers used:
+   992 ;;		wreg, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+   993 ;; Tracked objects:
+   994 ;;		On entry : 0/0
+   995 ;;		On exit  : 0/0
+   996 ;;		Unchanged: 0/0
+   997 ;; Data sizes:     COMMON   BANK0   BANK1
+   998 ;;      Params:         0       0       0
+   999 ;;      Locals:         1       0       0
+  1000 ;;      Temps:          2       0       0
+  1001 ;;      Totals:         3       0       0
+  1002 ;;Total ram usage:        3 bytes
+  1003 ;; Hardware stack levels used:    1
+  1004 ;; Hardware stack levels required when called:    1
+  1005 ;; This function calls:
+  1006 ;;		_send_half_byte
+  1007 ;; This function is called by:
+  1008 ;;		_send_string
+  1009 ;; This function uses a non-reentrant model
+  1010 ;;
+  1011                           
+  1012                           
+  1013                           ;psect for function _send_byte
+  1014  0192                     _send_byte:	
+  1015                           
+  1016                           ;incstack = 0
+  1017                           ; Regs used in _send_byte: [wreg+fsr1l+fsr1h+status,2+status,0+pclath+cstack]
+  1018                           ;send_byte@c stored from wreg
+  1019  0192  00F6               	movwf	send_byte@c
+  1020                           
+  1021                           ;packet.h: 22: send_half_byte(c, 1);
+  1022  0193  01F0               	clrf	send_half_byte@low
+  1023  0194  0AF0               	incf	send_half_byte@low,f
+  1024  0195  0876               	movf	send_byte@c,w
+  1025  0196  2032               	fcall	_send_half_byte
+  1026                           
+  1027                           ;packet.h: 23: _delay((unsigned long)((2)*(20000000/4000.0)));
+  1028  0197  300D               	movlw	13
+  1029  0198  00F5               	movwf	??_send_byte+1
+  1030  0199  30FB               	movlw	251
+  1031  019A  00F4               	movwf	??_send_byte
+  1032  019B                     u47_27:	
+  1033  019B  0BF4               	decfsz	??_send_byte,f
+  1034  019C  299B               	goto	u47_27
+  1035  019D  0BF5               	decfsz	??_send_byte+1,f
+  1036  019E  299B               	goto	u47_27
+  1037  019F  3200               	nop2
+  1038                           
+  1039                           ;packet.h: 24: send_half_byte(c, 0);
+  1040  01A0  01F0               	clrf	send_half_byte@low
+  1041  01A1  0876               	movf	send_byte@c,w
+  1042  01A2  2032               	fcall	_send_half_byte
+  1043                           
+  1044                           ;packet.h: 25: _delay((unsigned long)((2)*(20000000/4000.0)));
+  1045  01A3  300D               	movlw	13
+  1046  01A4  00F5               	movwf	??_send_byte+1
+  1047  01A5  30FB               	movlw	251
+  1048  01A6  00F4               	movwf	??_send_byte
+  1049  01A7                     u48_27:	
+  1050  01A7  0BF4               	decfsz	??_send_byte,f
+  1051  01A8  29A7               	goto	u48_27
+  1052  01A9  0BF5               	decfsz	??_send_byte+1,f
+  1053  01AA  29A7               	goto	u48_27
+  1054  01AB  3200               	nop2
+  1055  01AC  0008               	return
+  1056  01AD                     __end_of_send_byte:	
+  1057                           
+  1058                           	psect	text8
+  1059  0032                     __ptext8:	
+  1060 ;; *************** function _send_half_byte *****************
+  1061 ;; Defined at:
+  1062 ;;		line 14 in file "packet.h"
+  1063 ;; Parameters:    Size  Location     Type
+  1064 ;;  value           1    wreg     unsigned char 
+  1065 ;;  low             1    0[COMMON] unsigned char 
+  1066 ;; Auto vars:     Size  Location     Type
+  1067 ;;  value           1    2[COMMON] unsigned char 
+  1068 ;;  byte            1    3[COMMON] PTR struct .
+  1069 ;;		 -> send_half_byte@value(1), 
+  1070 ;; Return value:  Size  Location     Type
+  1071 ;;                  1    wreg      void 
+  1072 ;; Registers used:
+  1073 ;;		wreg, fsr1l, fsr1h, status,2, status,0
+  1074 ;; Tracked objects:
+  1075 ;;		On entry : 0/0
+  1076 ;;		On exit  : 0/0
+  1077 ;;		Unchanged: 0/0
+  1078 ;; Data sizes:     COMMON   BANK0   BANK1
+  1079 ;;      Params:         1       0       0
+  1080 ;;      Locals:         2       0       0
+  1081 ;;      Temps:          1       0       0
+  1082 ;;      Totals:         4       0       0
+  1083 ;;Total ram usage:        4 bytes
+  1084 ;; Hardware stack levels used:    1
+  1085 ;; This function calls:
+  1086 ;;		Nothing
+  1087 ;; This function is called by:
+  1088 ;;		_send_byte
+  1089 ;; This function uses a non-reentrant model
+  1090 ;;
+  1091                           
+  1092                           
+  1093                           ;psect for function _send_half_byte
+  1094  0032                     _send_half_byte:	
+  1095                           
+  1096                           ;incstack = 0
+  1097                           ; Regs used in _send_half_byte: [wreg+fsr1l+fsr1h+status,2+status,0]
+  1098                           ;send_half_byte@value stored from wreg
+  1099  0032  00F2               	movwf	send_half_byte@value
+  1100                           
+  1101                           ;packet.h: 16: { BITbits_t *byte = (BITbits_t *)&value; if(low == 1) { RC2 = byte->B0; R
+      +                          C3 = byte->B1; RC4 = byte->B2; RC5 = byte->B3; } else { RC2 = byte->B4; RC3 = byte->B5; 
+      +                          RC4 = byte->B6; RC5 = byte->B7; } };
+  1102  0033  3072               	movlw	(low (send_half_byte@value| 0))& (0+255)
+  1103  0034  00F1               	movwf	??_send_half_byte
+  1104  0035  0871               	movf	??_send_half_byte,w
+  1105  0036  00F3               	movwf	send_half_byte@byte
+  1106  0037  0370               	decf	send_half_byte@low,w
+  1107  0038  1D03               	btfss	3,2
+  1108  0039  285E               	goto	i1l670
+  1109  003A  0873               	movf	send_half_byte@byte,w
+  1110  003B  0086               	movwf	6
+  1111  003C  0187               	clrf	7
+  1112  003D  1C01               	btfss	1,0
+  1113  003E  2842               	goto	u26_20
+  1114  003F  0020               	movlb	0	; select bank0
+  1115  0040  150E               	bsf	14,2	;volatile
+  1116  0041  2844               	goto	u27_24
+  1117  0042                     u26_20:	
+  1118  0042  0020               	movlb	0	; select bank0
+  1119  0043  110E               	bcf	14,2	;volatile
+  1120  0044                     u27_24:	
+  1121  0044  0873               	movf	send_half_byte@byte,w
+  1122  0045  0086               	movwf	6
+  1123  0046  0187               	clrf	7
+  1124  0047  1C81               	btfss	1,1
+  1125  0048  284C               	goto	u28_20
+  1126  0049  0020               	movlb	0	; select bank0
+  1127  004A  158E               	bsf	14,3	;volatile
+  1128  004B  284E               	goto	u29_24
+  1129  004C                     u28_20:	
+  1130  004C  0020               	movlb	0	; select bank0
+  1131  004D  118E               	bcf	14,3	;volatile
+  1132  004E                     u29_24:	
+  1133  004E  0873               	movf	send_half_byte@byte,w
+  1134  004F  0086               	movwf	6
+  1135  0050  0187               	clrf	7
+  1136  0051  1D01               	btfss	1,2
+  1137  0052  2856               	goto	u30_20
+  1138  0053  0020               	movlb	0	; select bank0
+  1139  0054  160E               	bsf	14,4	;volatile
+  1140  0055  2858               	goto	u31_24
+  1141  0056                     u30_20:	
+  1142  0056  0020               	movlb	0	; select bank0
+  1143  0057  120E               	bcf	14,4	;volatile
+  1144  0058                     u31_24:	
+  1145  0058  0873               	movf	send_half_byte@byte,w
+  1146  0059  0086               	movwf	6
+  1147  005A  0187               	clrf	7
+  1148  005B  1981               	btfsc	1,3
+  1149  005C  2881               	goto	L1
+  1150  005D  2884               	goto	u40_20
+  1151  005E                     i1l670:	
+  1152  005E  0873               	movf	send_half_byte@byte,w
+  1153  005F  0086               	movwf	6
+  1154  0060  0187               	clrf	7
+  1155  0061  1E01               	btfss	1,4
+  1156  0062  2866               	goto	u34_20
+  1157  0063  0020               	movlb	0	; select bank0
+  1158  0064  150E               	bsf	14,2	;volatile
+  1159  0065  2868               	goto	u35_24
+  1160  0066                     u34_20:	
+  1161  0066  0020               	movlb	0	; select bank0
+  1162  0067  110E               	bcf	14,2	;volatile
+  1163  0068                     u35_24:	
+  1164  0068  0873               	movf	send_half_byte@byte,w
+  1165  0069  0086               	movwf	6
+  1166  006A  0187               	clrf	7
+  1167  006B  1E81               	btfss	1,5
+  1168  006C  2870               	goto	u36_20
+  1169  006D  0020               	movlb	0	; select bank0
+  1170  006E  158E               	bsf	14,3	;volatile
+  1171  006F  2872               	goto	u37_24
+  1172  0070                     u36_20:	
+  1173  0070  0020               	movlb	0	; select bank0
+  1174  0071  118E               	bcf	14,3	;volatile
+  1175  0072                     u37_24:	
+  1176  0072  0873               	movf	send_half_byte@byte,w
+  1177  0073  0086               	movwf	6
+  1178  0074  0187               	clrf	7
+  1179  0075  1F01               	btfss	1,6
+  1180  0076  287A               	goto	u38_20
+  1181  0077  0020               	movlb	0	; select bank0
+  1182  0078  160E               	bsf	14,4	;volatile
+  1183  0079  287C               	goto	u39_24
+  1184  007A                     u38_20:	
+  1185  007A  0020               	movlb	0	; select bank0
+  1186  007B  120E               	bcf	14,4	;volatile
+  1187  007C                     u39_24:	
+  1188  007C  0873               	movf	send_half_byte@byte,w
+  1189  007D  0086               	movwf	6
+  1190  007E  0187               	clrf	7
+  1191  007F  1F81               	btfss	1,7
+  1192  0080  2884               	goto	u40_20
+  1193  0081                     L1:	
+  1194  0081  0020               	movlb	0	; select bank0
+  1195  0082  168E               	bsf	14,5	;volatile
+  1196  0083  2886               	goto	i1l672
+  1197  0084                     u40_20:	
+  1198  0084  0020               	movlb	0	; select bank0
+  1199  0085  128E               	bcf	14,5	;volatile
+  1200  0086                     i1l672:	
+  1201                           
+  1202                           ;packet.h: 17: { if(RA0 == 0) { RA0 = 1; _delay((unsigned long)((1)*(20000000/4000000.0)
+      +                          )); RA0 = 0; } else { RA0 = 0; _delay((unsigned long)((1)*(20000000/4000000.0))); RA0 = 
+      +                          1; } };
+  1203  0086  180C               	btfsc	12,0	;volatile
+  1204  0087  288F               	goto	i1l35
+  1205  0088  140C               	bsf	12,0	;volatile
+  1206  0089  3200               	nop2	;2 cycle nop
+  1207  008A  3200               	nop2	;2 cycle nop
+  1208  008B  0000               	nop
+  1209  008C  0020               	movlb	0	; select bank0
+  1210  008D  100C               	bcf	12,0	;volatile
+  1211  008E  0008               	return
+  1212  008F                     i1l35:	
+  1213  008F  100C               	bcf	12,0	;volatile
+  1214  0090  3200               	nop2	;2 cycle nop
+  1215  0091  3200               	nop2	;2 cycle nop
+  1216  0092  0000               	nop
+  1217  0093  0020               	movlb	0	; select bank0
+  1218  0094  140C               	bsf	12,0	;volatile
+  1219  0095  0008               	return
+  1220  0096                     __end_of_send_half_byte:	
+  1221                           
+  1222                           	psect	text9
+  1223  01AD                     __ptext9:	
+  1224 ;; *************** function _create_RGB_DATA_RQT_CMD *****************
+  1225 ;; Defined at:
+  1226 ;;		line 24 in file "rgb_data.h"
+  1227 ;; Parameters:    Size  Location     Type
+  1228 ;;  pconn           1    wreg     PTR struct .
+  1229 ;;		 -> ISR@conn(5), 
+  1230 ;;  prqt            1   17[BANK0 ] PTR const struct .
+  1231 ;;		 -> ISR@rqt(3), 
+  1232 ;;  pmsg            1   18[BANK0 ] PTR struct .
+  1233 ;;		 -> send_RGB_DATA_RQT_CMD@msg(10), 
+  1234 ;; Auto vars:     Size  Location     Type
+  1235 ;;  pconn           1   23[BANK0 ] PTR struct .
+  1236 ;;		 -> ISR@conn(5), 
+  1237 ;; Return value:  Size  Location     Type
+  1238 ;;                  1    wreg      void 
+  1239 ;; Registers used:
+  1240 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  1241 ;; Tracked objects:
+  1242 ;;		On entry : 0/0
+  1243 ;;		On exit  : 0/0
+  1244 ;;		Unchanged: 0/0
+  1245 ;; Data sizes:     COMMON   BANK0   BANK1
+  1246 ;;      Params:         0       2       0
+  1247 ;;      Locals:         0       1       0
+  1248 ;;      Temps:          0       4       0
+  1249 ;;      Totals:         0       7       0
+  1250 ;;Total ram usage:        7 bytes
+  1251 ;; Hardware stack levels used:    1
+  1252 ;; Hardware stack levels required when called:    3
+  1253 ;; This function calls:
+  1254 ;;		_create_cmd
+  1255 ;; This function is called by:
+  1256 ;;		_send_RGB_DATA_RQT_CMD
+  1257 ;; This function uses a non-reentrant model
+  1258 ;;
+  1259                           
+  1260                           
+  1261                           ;psect for function _create_RGB_DATA_RQT_CMD
+  1262  01AD                     _create_RGB_DATA_RQT_CMD:	
+  1263                           
+  1264                           ;incstack = 0
+  1265                           ; Regs used in _create_RGB_DATA_RQT_CMD: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  1266                           ;create_RGB_DATA_RQT_CMD@pconn stored from wreg
+  1267  01AD  0020               	movlb	0	; select bank0
+  1268  01AE  00B7               	movwf	create_RGB_DATA_RQT_CMD@pconn
+  1269                           
+  1270                           ;rgb_data.h: 26: create_cmd(pconn, RGB_DATA_RQT, pconn->msgid++, prqt, 3, pmsg);
+  1271  01AF  01A6               	clrf	create_cmd@cmd_id
+  1272  01B0  0837               	movf	create_RGB_DATA_RQT_CMD@pconn,w
+  1273  01B1  3E02               	addlw	2
+  1274  01B2  0086               	movwf	6
+  1275  01B3  0187               	clrf	7
+  1276  01B4  0801               	movf	1,w
+  1277  01B5  0A81               	incf	1,f
+  1278  01B6  00B3               	movwf	??_create_RGB_DATA_RQT_CMD
+  1279  01B7  0833               	movf	??_create_RGB_DATA_RQT_CMD,w
+  1280  01B8  00A7               	movwf	create_cmd@msg_id
+  1281  01B9  0831               	movf	create_RGB_DATA_RQT_CMD@prqt,w
+  1282  01BA  00B4               	movwf	??_create_RGB_DATA_RQT_CMD+1
+  1283  01BB  0834               	movf	??_create_RGB_DATA_RQT_CMD+1,w
+  1284  01BC  00A8               	movwf	create_cmd@cmd_data
+  1285  01BD  3003               	movlw	3
+  1286  01BE  00B5               	movwf	??_create_RGB_DATA_RQT_CMD+2
+  1287  01BF  0835               	movf	??_create_RGB_DATA_RQT_CMD+2,w
+  1288  01C0  00A9               	movwf	create_cmd@cmd_data_len
+  1289  01C1  0832               	movf	create_RGB_DATA_RQT_CMD@pmsg,w
+  1290  01C2  00B6               	movwf	??_create_RGB_DATA_RQT_CMD+3
+  1291  01C3  0836               	movf	??_create_RGB_DATA_RQT_CMD+3,w
+  1292  01C4  00AA               	movwf	create_cmd@pmsg
+  1293  01C5  0837               	movf	create_RGB_DATA_RQT_CMD@pconn,w
+  1294  01C6  2171               	fcall	_create_cmd
+  1295  01C7  0008               	return
+  1296  01C8                     __end_of_create_RGB_DATA_RQT_CMD:	
+  1297                           
+  1298                           	psect	text10
+  1299  0171                     __ptext10:	
+  1300 ;; *************** function _create_cmd *****************
+  1301 ;; Defined at:
+  1302 ;;		line 27 in file "cmd.h"
+  1303 ;; Parameters:    Size  Location     Type
+  1304 ;;  pconn           1    wreg     PTR struct .
+  1305 ;;		 -> ISR@conn(5), 
+  1306 ;;  cmd_id          1    6[BANK0 ] unsigned char 
+  1307 ;;  msg_id          1    7[BANK0 ] unsigned char 
+  1308 ;;  cmd_data        1    8[BANK0 ] PTR const void 
+  1309 ;;		 -> ISR@rqt(3), 
+  1310 ;;  cmd_data_len    1    9[BANK0 ] unsigned char 
+  1311 ;;  pmsg            1   10[BANK0 ] PTR struct .
+  1312 ;;		 -> send_RGB_DATA_RQT_CMD@msg(10), 
+  1313 ;; Auto vars:     Size  Location     Type
+  1314 ;;  pconn           1   16[BANK0 ] PTR struct .
+  1315 ;;		 -> ISR@conn(5), 
+  1316 ;; Return value:  Size  Location     Type
+  1317 ;;                  1    wreg      void 
+  1318 ;; Registers used:
+  1319 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  1320 ;; Tracked objects:
+  1321 ;;		On entry : 0/0
+  1322 ;;		On exit  : 0/0
+  1323 ;;		Unchanged: 0/0
+  1324 ;; Data sizes:     COMMON   BANK0   BANK1
+  1325 ;;      Params:         0       5       0
+  1326 ;;      Locals:         0       1       0
+  1327 ;;      Temps:          0       5       0
+  1328 ;;      Totals:         0      11       0
+  1329 ;;Total ram usage:       11 bytes
+  1330 ;; Hardware stack levels used:    1
+  1331 ;; Hardware stack levels required when called:    2
+  1332 ;; This function calls:
+  1333 ;;		_compose
+  1334 ;; This function is called by:
+  1335 ;;		_create_RGB_DATA_RQT_CMD
+  1336 ;; This function uses a non-reentrant model
+  1337 ;;
+  1338                           
+  1339                           
+  1340                           ;psect for function _create_cmd
+  1341  0171                     _create_cmd:	
+  1342                           
+  1343                           ;incstack = 0
+  1344                           ; Regs used in _create_cmd: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  1345                           ;create_cmd@pconn stored from wreg
+  1346  0171  0020               	movlb	0	; select bank0
+  1347  0172  00B0               	movwf	create_cmd@pconn
+  1348                           
+  1349                           ;cmd.h: 29: compose(pmsg,
+  1350                           ;cmd.h: 30: pconn->from,
+  1351                           ;cmd.h: 31: pconn->to,
+  1352                           ;cmd.h: 32: msg_id,
+  1353                           ;cmd.h: 33: cmd_id,
+  1354                           ;cmd.h: 34: (uint8_t *)cmd_data,
+  1355                           ;cmd.h: 35: cmd_data_len);
+  1356  0173  0830               	movf	create_cmd@pconn,w
+  1357  0174  0086               	movwf	6
+  1358  0175  0187               	clrf	7
+  1359  0176  0801               	movf	1,w
+  1360  0177  00AB               	movwf	??_create_cmd
+  1361  0178  082B               	movf	??_create_cmd,w
+  1362  0179  00A0               	movwf	compose@from
+  1363  017A  0830               	movf	create_cmd@pconn,w
+  1364  017B  0086               	movwf	6
+  1365  017C  0187               	clrf	7
+  1366  017D  3F41               	moviw [1]fsr1
+  1367  017E  00A1               	movwf	compose@to
+  1368  017F  0827               	movf	create_cmd@msg_id,w
+  1369  0180  00AC               	movwf	??_create_cmd+1
+  1370  0181  082C               	movf	??_create_cmd+1,w
+  1371  0182  00A2               	movwf	compose@msgid
+  1372  0183  0826               	movf	create_cmd@cmd_id,w
+  1373  0184  00AD               	movwf	??_create_cmd+2
+  1374  0185  082D               	movf	??_create_cmd+2,w
+  1375  0186  00A3               	movwf	compose@cmd
+  1376  0187  0828               	movf	create_cmd@cmd_data,w
+  1377  0188  00AE               	movwf	??_create_cmd+3
+  1378  0189  082E               	movf	??_create_cmd+3,w
+  1379  018A  00A4               	movwf	compose@data
+  1380  018B  0829               	movf	create_cmd@cmd_data_len,w
+  1381  018C  00AF               	movwf	??_create_cmd+4
+  1382  018D  082F               	movf	??_create_cmd+4,w
+  1383  018E  00A5               	movwf	compose@datalen
+  1384  018F  082A               	movf	create_cmd@pmsg,w
+  1385  0190  20F9               	fcall	_compose
+  1386  0191  0008               	return
+  1387  0192                     __end_of_create_cmd:	
+  1388                           
+  1389                           	psect	text11
+  1390  00F9                     __ptext11:	
+  1391 ;; *************** function _compose *****************
+  1392 ;; Defined at:
+  1393 ;;		line 52 in file "msg.h"
+  1394 ;; Parameters:    Size  Location     Type
+  1395 ;;  pmsg            1    wreg     PTR struct .
+  1396 ;;		 -> send_RGB_DATA_RQT_CMD@msg(10), 
+  1397 ;;  from            1    0[BANK0 ] unsigned char 
+  1398 ;;  to              1    1[BANK0 ] unsigned char 
+  1399 ;;  msgid           1    2[BANK0 ] unsigned char 
+  1400 ;;  cmd             1    3[BANK0 ] unsigned char 
+  1401 ;;  data            1    4[BANK0 ] PTR unsigned char 
+  1402 ;;		 -> ISR@rqt(3), 
+  1403 ;;  datalen         1    5[BANK0 ] unsigned char 
+  1404 ;; Auto vars:     Size  Location     Type
+  1405 ;;  pmsg            1   13[COMMON] PTR struct .
+  1406 ;;		 -> send_RGB_DATA_RQT_CMD@msg(10), 
+  1407 ;;  len             2   11[COMMON] unsigned int 
+  1408 ;; Return value:  Size  Location     Type
+  1409 ;;                  1    wreg      void 
+  1410 ;; Registers used:
+  1411 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, pclath, cstack
+  1412 ;; Tracked objects:
+  1413 ;;		On entry : 0/0
+  1414 ;;		On exit  : 0/0
+  1415 ;;		Unchanged: 0/0
+  1416 ;; Data sizes:     COMMON   BANK0   BANK1
+  1417 ;;      Params:         0       6       0
+  1418 ;;      Locals:         3       0       0
+  1419 ;;      Temps:          2       0       0
+  1420 ;;      Totals:         5       6       0
+  1421 ;;Total ram usage:       11 bytes
+  1422 ;; Hardware stack levels used:    1
+  1423 ;; Hardware stack levels required when called:    1
+  1424 ;; This function calls:
+  1425 ;;		_crc_calculate
+  1426 ;; This function is called by:
+  1427 ;;		_create_cmd
+  1428 ;; This function uses a non-reentrant model
+  1429 ;;
+  1430                           
+  1431                           
+  1432                           ;psect for function _compose
+  1433  00F9                     _compose:	
+  1434                           
+  1435                           ;incstack = 0
+  1436                           ; Regs used in _compose: [wreg-fsr1h+status,2+status,0+pclath+cstack]
+  1437                           ;compose@pmsg stored from wreg
+  1438  00F9  00FD               	movwf	compose@pmsg
+  1439                           
+  1440                           ;msg.h: 60: register size_t len = datalen;
+  1441  00FA  0020               	movlb	0	; select bank0
+  1442  00FB  0825               	movf	compose@datalen,w
+  1443  00FC  00F9               	movwf	??_compose
+  1444  00FD  01FA               	clrf	??_compose+1
+  1445  00FE  0879               	movf	??_compose,w
+  1446  00FF  00FB               	movwf	compose@len
+  1447  0100  087A               	movf	??_compose+1,w
+  1448  0101  00FC               	movwf	compose@len+1
+  1449                           
+  1450                           ;msg.h: 61: pmsg->from = from;
+  1451  0102  0820               	movf	compose@from,w
+  1452  0103  00F9               	movwf	??_compose
+  1453  0104  087D               	movf	compose@pmsg,w
+  1454  0105  3E03               	addlw	3
+  1455  0106  0086               	movwf	6
+  1456  0107  0187               	clrf	7
+  1457  0108  0879               	movf	??_compose,w
+  1458  0109  0081               	movwf	1
+  1459                           
+  1460                           ;msg.h: 62: pmsg->to = to;
+  1461  010A  0821               	movf	compose@to,w
+  1462  010B  00F9               	movwf	??_compose
+  1463  010C  087D               	movf	compose@pmsg,w
+  1464  010D  3E04               	addlw	4
+  1465  010E  0086               	movwf	6
+  1466  010F  0187               	clrf	7
+  1467  0110  0879               	movf	??_compose,w
+  1468  0111  0081               	movwf	1
+  1469                           
+  1470                           ;msg.h: 63: pmsg->msgid = msgid;
+  1471  0112  0822               	movf	compose@msgid,w
+  1472  0113  00F9               	movwf	??_compose
+  1473  0114  087D               	movf	compose@pmsg,w
+  1474  0115  3E05               	addlw	5
+  1475  0116  0086               	movwf	6
+  1476  0117  0187               	clrf	7
+  1477  0118  0879               	movf	??_compose,w
+  1478  0119  0081               	movwf	1
+  1479                           
+  1480                           ;msg.h: 64: pmsg->cmd = cmd;
+  1481  011A  0823               	movf	compose@cmd,w
+  1482  011B  00F9               	movwf	??_compose
+  1483  011C  087D               	movf	compose@pmsg,w
+  1484  011D  3E06               	addlw	6
+  1485  011E  0086               	movwf	6
+  1486  011F  0187               	clrf	7
+  1487  0120  0879               	movf	??_compose,w
+  1488  0121  0081               	movwf	1
+  1489                           
+  1490                           ;msg.h: 65: __builtin_memcpy((void *)pmsg->data,(void *)data,len);
+  1491  0122  087D               	movf	compose@pmsg,w
+  1492  0123  3E07               	addlw	7
+  1493  0124  0086               	movwf	6
+  1494  0125  0187               	clrf	7
+  1495  0126  0020               	movlb	0	; select bank0
+  1496  0127  0824               	movf	compose@data,w
+  1497  0128  0084               	movwf	4
+  1498  0129  0185               	clrf	5
+  1499  012A  087C               	movf	compose@len+1,w
+  1500  012B  00FA               	movwf	??_compose+1
+  1501  012C  087B               	movf	compose@len,w
+  1502  012D  00F9               	movwf	??_compose
+  1503  012E                     u44_2m0:	
+  1504  012E  0012               	moviw fsr0++
+  1505  012F  001E               	movwi fsr1++
+  1506  0130  3001               	movlw	1
+  1507  0131  02F9               	subwf	??_compose,f
+  1508  0132  3000               	movlw	0
+  1509  0133  3BFA               	subwfb	??_compose+1,f
+  1510  0134  087A               	movf	??_compose+1,w
+  1511  0135  0479               	iorwf	??_compose,w
+  1512  0136  1D03               	btfss	3,2
+  1513  0137  292E               	goto	u44_2m0
+  1514                           
+  1515                           ;msg.h: 66: pmsg->msglen = datalen + 7;
+  1516  0138  0020               	movlb	0	; select bank0
+  1517  0139  0825               	movf	compose@datalen,w
+  1518  013A  3E07               	addlw	7
+  1519  013B  00F9               	movwf	??_compose
+  1520  013C  087D               	movf	compose@pmsg,w
+  1521  013D  0086               	movwf	6
+  1522  013E  0187               	clrf	7
+  1523  013F  0879               	movf	??_compose,w
+  1524  0140  0081               	movwf	1
+  1525                           
+  1526                           ;msg.h: 68: pmsg->crc = crc_calculate(pmsg);
+  1527  0141  087D               	movf	compose@pmsg,w
+  1528  0142  2096               	fcall	_crc_calculate
+  1529  0143  0A7D               	incf	compose@pmsg,w
+  1530  0144  0086               	movwf	6
+  1531  0145  0187               	clrf	7
+  1532  0146  0870               	movf	?_crc_calculate,w
+  1533  0147  3FC0               	movwi [0]fsr1
+  1534  0148  0871               	movf	?_crc_calculate+1,w
+  1535  0149  3FC1               	movwi [1]fsr1
+  1536  014A  0008               	return
+  1537  014B                     __end_of_compose:	
+  1538                           
+  1539                           	psect	text12
+  1540  0096                     __ptext12:	
+  1541 ;; *************** function _crc_calculate *****************
+  1542 ;; Defined at:
+  1543 ;;		line 36 in file "msg.h"
+  1544 ;; Parameters:    Size  Location     Type
+  1545 ;;  pmsg            1    wreg     PTR struct .
+  1546 ;;		 -> send_RGB_DATA_RQT_CMD@msg(10), 
+  1547 ;; Auto vars:     Size  Location     Type
+  1548 ;;  pmsg            1    8[COMMON] PTR struct .
+  1549 ;;		 -> send_RGB_DATA_RQT_CMD@msg(10), 
+  1550 ;;  i               1    7[COMMON] unsigned char 
+  1551 ;;  crc             2    5[COMMON] unsigned int 
+  1552 ;; Return value:  Size  Location     Type
+  1553 ;;                  2    0[COMMON] unsigned int 
+  1554 ;; Registers used:
+  1555 ;;		wreg, fsr1l, fsr1h, status,2, status,0
+  1556 ;; Tracked objects:
+  1557 ;;		On entry : 0/0
+  1558 ;;		On exit  : 0/0
+  1559 ;;		Unchanged: 0/0
+  1560 ;; Data sizes:     COMMON   BANK0   BANK1
+  1561 ;;      Params:         2       0       0
+  1562 ;;      Locals:         4       0       0
+  1563 ;;      Temps:          3       0       0
+  1564 ;;      Totals:         9       0       0
+  1565 ;;Total ram usage:        9 bytes
+  1566 ;; Hardware stack levels used:    1
+  1567 ;; This function calls:
+  1568 ;;		Nothing
+  1569 ;; This function is called by:
+  1570 ;;		_compose
+  1571 ;; This function uses a non-reentrant model
+  1572 ;;
+  1573                           
+  1574                           
+  1575                           ;psect for function _crc_calculate
+  1576  0096                     _crc_calculate:	
+  1577                           
+  1578                           ;incstack = 0
+  1579                           ; Regs used in _crc_calculate: [wreg+fsr1l+fsr1h+status,2+status,0]
+  1580                           ;crc_calculate@pmsg stored from wreg
+  1581  0096  00F8               	movwf	crc_calculate@pmsg
+  1582                           
+  1583                           ;msg.h: 38: uint16_t crc;
+  1584                           ;msg.h: 39: crc = (uint8_t)pmsg->msglen;
+  1585  0097  0878               	movf	crc_calculate@pmsg,w
+  1586  0098  0086               	movwf	6
+  1587  0099  0187               	clrf	7
+  1588  009A  0801               	movf	1,w
+  1589  009B  00F2               	movwf	??_crc_calculate
+  1590  009C  01F3               	clrf	??_crc_calculate+1
+  1591  009D  0872               	movf	??_crc_calculate,w
+  1592  009E  00F5               	movwf	crc_calculate@crc
+  1593  009F  0873               	movf	??_crc_calculate+1,w
+  1594  00A0  00F6               	movwf	crc_calculate@crc+1
+  1595                           
+  1596                           ;msg.h: 40: crc += (uint8_t)pmsg->from;
+  1597  00A1  0878               	movf	crc_calculate@pmsg,w
+  1598  00A2  3E03               	addlw	3
+  1599  00A3  0086               	movwf	6
+  1600  00A4  0187               	clrf	7
+  1601  00A5  0801               	movf	1,w
+  1602  00A6  00F2               	movwf	??_crc_calculate
+  1603  00A7  01F3               	clrf	??_crc_calculate+1
+  1604  00A8  0872               	movf	??_crc_calculate,w
+  1605  00A9  07F5               	addwf	crc_calculate@crc,f
+  1606  00AA  0873               	movf	??_crc_calculate+1,w
+  1607  00AB  3DF6               	addwfc	crc_calculate@crc+1,f
+  1608                           
+  1609                           ;msg.h: 41: crc += (uint8_t)pmsg->to;
+  1610  00AC  0878               	movf	crc_calculate@pmsg,w
+  1611  00AD  3E04               	addlw	4
+  1612  00AE  0086               	movwf	6
+  1613  00AF  0187               	clrf	7
+  1614  00B0  0801               	movf	1,w
+  1615  00B1  00F2               	movwf	??_crc_calculate
+  1616  00B2  01F3               	clrf	??_crc_calculate+1
+  1617  00B3  0872               	movf	??_crc_calculate,w
+  1618  00B4  07F5               	addwf	crc_calculate@crc,f
+  1619  00B5  0873               	movf	??_crc_calculate+1,w
+  1620  00B6  3DF6               	addwfc	crc_calculate@crc+1,f
+  1621                           
+  1622                           ;msg.h: 42: crc += (uint8_t)pmsg->msgid;
+  1623  00B7  0878               	movf	crc_calculate@pmsg,w
+  1624  00B8  3E05               	addlw	5
+  1625  00B9  0086               	movwf	6
+  1626  00BA  0187               	clrf	7
+  1627  00BB  0801               	movf	1,w
+  1628  00BC  00F2               	movwf	??_crc_calculate
+  1629  00BD  01F3               	clrf	??_crc_calculate+1
+  1630  00BE  0872               	movf	??_crc_calculate,w
+  1631  00BF  07F5               	addwf	crc_calculate@crc,f
+  1632  00C0  0873               	movf	??_crc_calculate+1,w
+  1633  00C1  3DF6               	addwfc	crc_calculate@crc+1,f
+  1634                           
+  1635                           ;msg.h: 43: crc += (uint8_t)pmsg->cmd;
+  1636  00C2  0878               	movf	crc_calculate@pmsg,w
+  1637  00C3  3E06               	addlw	6
+  1638  00C4  0086               	movwf	6
+  1639  00C5  0187               	clrf	7
+  1640  00C6  0801               	movf	1,w
+  1641  00C7  00F2               	movwf	??_crc_calculate
+  1642  00C8  01F3               	clrf	??_crc_calculate+1
+  1643  00C9  0872               	movf	??_crc_calculate,w
+  1644  00CA  07F5               	addwf	crc_calculate@crc,f
+  1645  00CB  0873               	movf	??_crc_calculate+1,w
+  1646  00CC  3DF6               	addwfc	crc_calculate@crc+1,f
+  1647                           
+  1648                           ;msg.h: 45: for(uint8_t i = 0; i < pmsg->msglen - 7; i++)
+  1649  00CD  01F7               	clrf	crc_calculate@i
+  1650  00CE                     i1l692:	
+  1651  00CE  0878               	movf	crc_calculate@pmsg,w
+  1652  00CF  0086               	movwf	6
+  1653  00D0  0187               	clrf	7
+  1654  00D1  0801               	movf	1,w
+  1655  00D2  3EF9               	addlw	249
+  1656  00D3  00F2               	movwf	??_crc_calculate
+  1657  00D4  30FF               	movlw	255
+  1658  00D5  1803               	skipnc
+  1659  00D6  3000               	movlw	0
+  1660  00D7  00F3               	movwf	??_crc_calculate+1
+  1661  00D8  0873               	movf	??_crc_calculate+1,w
+  1662  00D9  3A80               	xorlw	128
+  1663  00DA  3C80               	sublw	128
+  1664  00DB  1D03               	skipz
+  1665  00DC  28DF               	goto	u43_25
+  1666  00DD  0872               	movf	??_crc_calculate,w
+  1667  00DE  0277               	subwf	crc_calculate@i,w
+  1668  00DF                     u43_25:	
+  1669  00DF  1803               	btfsc	3,0
+  1670  00E0  28F4               	goto	i1l694
+  1671                           
+  1672                           ;msg.h: 46: {
+  1673                           ;msg.h: 47: crc += (uint8_t)pmsg->data[i];
+  1674  00E1  0877               	movf	crc_calculate@i,w
+  1675  00E2  3E07               	addlw	7
+  1676  00E3  0778               	addwf	crc_calculate@pmsg,w
+  1677  00E4  00F2               	movwf	??_crc_calculate
+  1678  00E5  0872               	movf	??_crc_calculate,w
+  1679  00E6  0086               	movwf	6
+  1680  00E7  0187               	clrf	7
+  1681  00E8  0801               	movf	1,w
+  1682  00E9  00F3               	movwf	??_crc_calculate+1
+  1683  00EA  01F4               	clrf	??_crc_calculate+2
+  1684  00EB  0873               	movf	??_crc_calculate+1,w
+  1685  00EC  07F5               	addwf	crc_calculate@crc,f
+  1686  00ED  0874               	movf	??_crc_calculate+2,w
+  1687  00EE  3DF6               	addwfc	crc_calculate@crc+1,f
+  1688  00EF  3001               	movlw	1
+  1689  00F0  00F2               	movwf	??_crc_calculate
+  1690  00F1  0872               	movf	??_crc_calculate,w
+  1691  00F2  07F7               	addwf	crc_calculate@i,f
+  1692  00F3  28CE               	goto	i1l692
+  1693  00F4                     i1l694:	
+  1694                           
+  1695                           ;msg.h: 48: }
+  1696                           ;msg.h: 50: return crc;
+  1697  00F4  0876               	movf	crc_calculate@crc+1,w
+  1698  00F5  00F1               	movwf	?_crc_calculate+1
+  1699  00F6  0875               	movf	crc_calculate@crc,w
+  1700  00F7  00F0               	movwf	?_crc_calculate
+  1701  00F8  0008               	return
+  1702  00F9                     __end_of_crc_calculate:	
+  1703  007E                     btemp	set	126	;btemp
+  1704  007E                     int$flags	set	126
+  1705  007E                     wtemp	set	126
+  1706  007E                     wtemp0	set	126
+  1707  0080                     wtemp1	set	128
+  1708  0082                     wtemp2	set	130
+  1709  0084                     wtemp3	set	132
+  1710  0086                     wtemp4	set	134
+  1711  0088                     wtemp5	set	136
+  1712  007F                     wtemp6	set	127
+  1713  007E                     ttemp	set	126
+  1714  007E                     ttemp0	set	126
+  1715  0081                     ttemp1	set	129
+  1716  0084                     ttemp2	set	132
+  1717  0087                     ttemp3	set	135
+  1718  007F                     ttemp4	set	127
+  1719  007E                     ltemp	set	126
+  1720  007E                     ltemp0	set	126
+  1721  0082                     ltemp1	set	130
+  1722  0086                     ltemp2	set	134
+  1723  0080                     ltemp3	set	128
+
+
+Data Sizes:
+    Strings     0
+    Constant    8
+    Data        4
+    BSS         16
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14     14      14
+    BANK0            80     48      68
+    BANK1            32      0       0
+
+Pointer List with Targets:
+
+    __builtin_memcpy$1	PTR const void  size(1) Largest target is 3
+		 -> ISR@rqt(BANK0[3]), 
+
+    __builtin_memcpy$0	PTR void  size(1) Largest target is 10
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[10]), 
+
+    pmsg	PTR struct . size(1) Largest target is 10
+		 -> msg(BANK0[10]), 
+
+    send_RGB_DATA_RQT_CMD@prqt	PTR const struct . size(1) Largest target is 3
+		 -> ISR@rqt(BANK0[3]), 
+
+    send_RGB_DATA_RQT_CMD@pconn	PTR struct . size(1) Largest target is 5
+		 -> ISR@conn(BANK0[5]), 
+
+    create_RGB_DATA_RQT_CMD@pmsg	PTR struct . size(1) Largest target is 10
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[10]), 
+
+    create_RGB_DATA_RQT_CMD@prqt	PTR const struct . size(1) Largest target is 3
+		 -> ISR@rqt(BANK0[3]), 
+
+    create_RGB_DATA_RQT_CMD@pconn	PTR struct . size(1) Largest target is 5
+		 -> ISR@conn(BANK0[5]), 
+
+    create_cmd@cmd_data	PTR const void  size(1) Largest target is 3
+		 -> ISR@rqt(BANK0[3]), 
+
+    create_cmd@pconn	PTR struct . size(1) Largest target is 5
+		 -> ISR@conn(BANK0[5]), 
+
+    create_cmd@pmsg	PTR struct . size(1) Largest target is 10
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[10]), 
+
+    sp____builtin_memcpy	PTR void  size(2) Largest target is 4096
+		 -> RAM(DATA[4096]), 
+
+    compose@data	PTR unsigned char  size(1) Largest target is 3
+		 -> ISR@rqt(BANK0[3]), 
+
+    compose@pmsg	PTR struct . size(1) Largest target is 10
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[10]), 
+
+    crc_calculate@pmsg	PTR struct . size(1) Largest target is 10
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[10]), 
+
+    send_msg@pmsg	PTR struct . size(1) Largest target is 10
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[10]), 
+
+    send_msg@s	PTR unsigned char  size(1) Largest target is 10
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[10]), 
+
+    send_string@str	PTR unsigned char  size(2) Largest target is 10
+		 -> send_RGB_DATA_RQT_CMD@msg(BANK0[10]), stop_mark(CODE[4]), start_mark(CODE[4]), 
+
+    send_half_byte@byte	PTR struct . size(1) Largest target is 1
+		 -> send_half_byte@value(COMMON[1]), 
+
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _ISR in COMMON
+
+    _send_RGB_DATA_RQT_CMD->_send_msg
+    _send_msg->_send_string
+    _send_string->_send_byte
+    _send_byte->_send_half_byte
+    _create_cmd->_compose
+    _compose->_crc_calculate
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    _ISR->_send_RGB_DATA_RQT_CMD
+    _send_RGB_DATA_RQT_CMD->_create_RGB_DATA_RQT_CMD
+    _create_RGB_DATA_RQT_CMD->_create_cmd
+    _create_cmd->_compose
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0       0
+                             _InitIO
+                   _InitInputDataInt
+ ---------------------------------------------------------------------------------
+ (1) _InitInputDataInt                                     0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _InitIO                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (2) _ISR                                                 10    10      0    2787
+                                             38 BANK0     10    10      0
+              _send_RGB_DATA_RQT_CMD
+ ---------------------------------------------------------------------------------
+ (3) _send_RGB_DATA_RQT_CMD                               14    13      1    2690
+                                             24 BANK0     14    13      1
+            _create_RGB_DATA_RQT_CMD
+                           _send_msg
+ ---------------------------------------------------------------------------------
+ (4) _send_msg                                             3     3      0     881
+                                             13 COMMON     1     1      0
+                                              0 BANK0      2     2      0
+                        _send_string
+ ---------------------------------------------------------------------------------
+ (5) _send_string                                          6     3      3     787
+                                              7 COMMON     6     3      3
+                          _send_byte
+ ---------------------------------------------------------------------------------
+ (6) _send_byte                                            3     3      0     379
+                                              4 COMMON     3     3      0
+                     _send_half_byte
+ ---------------------------------------------------------------------------------
+ (7) _send_half_byte                                       4     3      1     335
+                                              0 COMMON     4     3      1
+ ---------------------------------------------------------------------------------
+ (4) _create_RGB_DATA_RQT_CMD                              7     5      2    1620
+                                             17 BANK0      7     5      2
+                         _create_cmd
+ ---------------------------------------------------------------------------------
+ (5) _create_cmd                                          11     6      5    1399
+                                              6 BANK0     11     6      5
+                            _compose
+ ---------------------------------------------------------------------------------
+ (6) _compose                                             11     5      6     953
+                                              9 COMMON     5     5      0
+                                              0 BANK0      6     0      6
+                      _crc_calculate
+ ---------------------------------------------------------------------------------
+ (7) _crc_calculate                                        9     7      2     255
+                                              0 COMMON     9     7      2
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 7
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _InitIO
+   _InitInputDataInt
+
+ _ISR (ROOT)
+   _send_RGB_DATA_RQT_CMD
+     _create_RGB_DATA_RQT_CMD
+       _create_cmd
+         _compose
+           _crc_calculate
+     _send_msg
+       _send_string
+         _send_byte
+           _send_half_byte
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM              70      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+BITCOMMON            E      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+COMMON               E      E       E       2      100.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR2              0      0       0       3        0.0%
+SFR2                 0      0       0       3        0.0%
+STACK                0      0       0       3        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+ABS                  0      0      52       4        0.0%
+BITBANK0            50      0       0       5        0.0%
+BITSFR4              0      0       0       5        0.0%
+SFR4                 0      0       0       5        0.0%
+BANK0               50     30      44       6       85.0%
+BITSFR5              0      0       0       6        0.0%
+SFR5                 0      0       0       6        0.0%
+BITBANK1            20      0       0       7        0.0%
+BITSFR6              0      0       0       7        0.0%
+SFR6                 0      0       0       7        0.0%
+BANK1               20      0       0       8        0.0%
+BITSFR7              0      0       0       8        0.0%
+SFR7                 0      0       0       8        0.0%
+BITSFR8              0      0       0       9        0.0%
+SFR8                 0      0       0       9        0.0%
+DATA                 0      0      52       9        0.0%
+BITSFR9              0      0       0      10        0.0%
+SFR9                 0      0       0      10        0.0%
+BITSFR10             0      0       0      11        0.0%
+SFR10                0      0       0      11        0.0%
+BITSFR11             0      0       0      12        0.0%
+SFR11                0      0       0      12        0.0%
+BITSFR12             0      0       0      13        0.0%
+SFR12                0      0       0      13        0.0%
+BITSFR13             0      0       0      14        0.0%
+SFR13                0      0       0      14        0.0%
+BITSFR14             0      0       0      15        0.0%
+SFR14                0      0       0      15        0.0%
+BITSFR15             0      0       0      16        0.0%
+SFR15                0      0       0      16        0.0%
+BITSFR16             0      0       0      17        0.0%
+SFR16                0      0       0      17        0.0%
+BITSFR17             0      0       0      18        0.0%
+SFR17                0      0       0      18        0.0%
+BITSFR18             0      0       0      19        0.0%
+SFR18                0      0       0      19        0.0%
+BITSFR19             0      0       0      20        0.0%
+SFR19                0      0       0      20        0.0%
+BITSFR20             0      0       0      21        0.0%
+SFR20                0      0       0      21        0.0%
+BITSFR21             0      0       0      22        0.0%
+SFR21                0      0       0      22        0.0%
+BITSFR22             0      0       0      23        0.0%
+SFR22                0      0       0      23        0.0%
+BITSFR23             0      0       0      24        0.0%
+SFR23                0      0       0      24        0.0%
+BITSFR24             0      0       0      25        0.0%
+SFR24                0      0       0      25        0.0%
+BITSFR25             0      0       0      26        0.0%
+SFR25                0      0       0      26        0.0%
+BITSFR26             0      0       0      27        0.0%
+SFR26                0      0       0      27        0.0%
+BITSFR27             0      0       0      28        0.0%
+SFR27                0      0       0      28        0.0%
+BITSFR28             0      0       0      29        0.0%
+SFR28                0      0       0      29        0.0%
+BITSFR29             0      0       0      30        0.0%
+SFR29                0      0       0      30        0.0%
+BITSFR30             0      0       0      31        0.0%
+SFR30                0      0       0      31        0.0%
+BITSFR31             0      0       0      32        0.0%
+SFR31                0      0       0      32        0.0%
+
+
+Microchip Technology PIC Macro Assembler V1.37 build -260352376 
+Symbol Table                                                                                   Tue Aug 02 23:45:51 2016
+
+                      __CFG_CP$ON 0000                                l95 021A                       __CFG_CPD$ON 0000  
+                  create_cmd@pmsg 002A                       __CFG_LVP$ON 0000                               _RA0 0060  
+                             _RC2 0072                               _RC3 0073                               _RC4 0074  
+                             _RC5 0075                               _ISR 0004                               _msg 0056  
+                    __CFG_BORV$LO 0000                               wreg 0009                      __CFG_IESO$ON 0000  
+         __size_of_send_half_byte 0064                 ?_InitInputDataInt 0070                   create_cmd@pconn 0030  
+                            ?_ISR 0070                ??_InitInputDataInt 0000                              i1l35 008F  
+                            i1l92 001B                      __CFG_WRT$OFF 0000                     __CFG_FCMEN$ON 0000  
+                            _main 0216                              _duty 0060                              _pmsg 0063  
+                            _time 0055                              fsr0h 0005                              fsr1h 0007  
+                            fsr0l 0004                              indf0 0000                              indf1 0001  
+                            fsr1l 0006                              btemp 007E                     __CFG_BOREN$ON 0000  
+                            ltemp 007E                              start 0020                              ttemp 007E  
+                            wtemp 007E            create_cmd@cmd_data_len 0029                  create_cmd@cmd_id 0026  
+                create_cmd@msg_id 0027                             ??_ISR 0046                     __CFG_PLLEN$ON 0000  
+                     compose@data 0024                       compose@from 0020                       compose@pmsg 007D  
+                           ?_main 0070                     __CFG_WDTE$OFF 0000                             i1l670 005E  
+                           i1l726 01C9                             i1l672 0086                             i1l692 00CE  
+                           i1l694 00F4                             u30_20 0056                             u31_24 0058  
+                           u40_20 0084                             u34_20 0066                             u26_20 0042  
+                           u35_24 0068                             u27_24 0044                             u43_25 00DF  
+                           u36_20 0070                             u28_20 004C                             u37_24 0072  
+                           u29_24 004E                             u38_20 007A                             u39_24 007C  
+                           u47_27 019B                             u48_27 01A7                   __end_of_compose 014B  
+                           ltemp0 007E                             ltemp1 0082                             ltemp2 0086  
+                           ltemp3 0080                             ttemp0 007E                             ttemp1 0081  
+                           ttemp2 0084                             ttemp3 0087                             ttemp4 007F  
+                           status 0003                             wtemp0 007E                             wtemp1 0080  
+                           wtemp2 0082                             wtemp3 0084                             wtemp4 0086  
+                           wtemp5 0088                             wtemp6 007F                    __CFG_MCLRE$OFF 0000  
+                 __initialization 0021                      __end_of_main 021B                            ??_main 0000  
+                    compose@msgid 0022                            ISR@rqt 004D          ?_create_RGB_DATA_RQT_CMD 0031  
+                    ?_send_string 0077                            u44_2m0 012E                    send_string@len 0079  
+                  send_string@str 0077                    __CFG_PWRTE$OFF 0000                            _InitIO 01DF  
+                  __CFG_STVREN$ON 0000                         ??_compose 0079                  __end_of_send_msg 0171  
+                  _send_half_byte 0032             _send_RGB_DATA_RQT_CMD 01F3           __end_of__initialization 002F  
+              create_cmd@cmd_data 0028                    __pcstackCOMMON 0070                      __pidataBANK0 021B  
+                crc_calculate@crc 0075             __end_of_crc_calculate 00F9            __end_of_send_half_byte 0096  
+                  _OPTION_REGbits 0095        send_RGB_DATA_RQT_CMD@pconn 003B                        __pbssBANK0 0050  
+                         ?_InitIO 0070         __size_of_InitInputDataInt 0006                           ISR@conn 0048  
+                      __pmaintext 0216                        __pintentry 0004                __size_of_send_byte 001B  
+                 ?_send_half_byte 0070         send_RGB_DATA_RQT_CMD@prqt 0038                        _create_cmd 0171  
+          ?_send_RGB_DATA_RQT_CMD 0038              __size_of_send_string 0017                         ?_send_msg 0070  
+                 __size_of_InitIO 0014                           __ptext1 0210                           __ptext2 01DF  
+                         __ptext4 01F3                           __ptext5 014B                           __ptext6 01C8  
+                         __ptext7 0192                           __ptext8 0032                           __ptext9 01AD  
+                         _compose 00F9                      __size_of_ISR 001C                           clrloop0 020B  
+            end_of_initialization 002F                 __end_of_send_byte 01AD                        ??_send_msg 007D  
+__size_of_create_RGB_DATA_RQT_CMD 001B                      __pstringtext 0202                 __end_of_stop_mark 020A  
+                     ?_create_cmd 0026                  __CFG_FOSC$INTOSC 0000                         _TRISAbits 008C  
+                       _TRISCbits 008E                        _start_mark 0202                  _InitInputDataInt 0210  
+                  __end_of_InitIO 01F3                        compose@cmd 0023                        compose@len 007B  
+               crc_calculate@pmsg 0078               start_initialization 0021                       __end_of_ISR 0020  
+                  crc_calculate@i 0077                          ??_InitIO 0000               __size_of_create_cmd 0021  
+                ??_send_half_byte 0071                       __pdataBANK0 0060           ??_send_RGB_DATA_RQT_CMD 0039  
+                       ___latbits 0000                     __pcstackBANK0 0020                     __pcstackBANK1 0000  
+                  compose@datalen 0025            __size_of_crc_calculate 0063           _create_RGB_DATA_RQT_CMD 01AD  
+               __size_of_send_msg 0026                          ?_compose 0020                        send_byte@c 0076  
+                     _client_conn 0050                     ??_send_string 007A                         clear_ram0 020A  
+    create_RGB_DATA_RQT_CMD@pconn 0037                         _send_byte 0192                     _crc_calculate 0096  
+                    ??_create_cmd 002B          __end_of_InitInputDataInt 0216                         _stop_mark 0206  
+                    send_msg@pmsg 0021                         compose@to 0021         ??_create_RGB_DATA_RQT_CMD 0033  
+                      ?_send_byte 0070                      send_string@i 007C               __end_of_send_string 01DF  
+              __end_of_create_cmd 0192                    ?_crc_calculate 0070                        _ANSELAbits 018C  
+                      _ANSELCbits 018E                  __size_of_compose 0052                          __ptext10 0171  
+                        __ptext11 00F9                          __ptext12 0096                         send_msg@s 0020  
+                   __size_of_main 0005                          _send_msg 014B       create_RGB_DATA_RQT_CMD@pmsg 0032  
+     create_RGB_DATA_RQT_CMD@prqt 0031                          int$flags 007E          send_RGB_DATA_RQT_CMD@msg 003C  
+ __end_of_create_RGB_DATA_RQT_CMD 01C8    __size_of_send_RGB_DATA_RQT_CMD 000F     __end_of_send_RGB_DATA_RQT_CMD 0202  
+                      _INTCONbits 000B                          intlevel1 0000                       _send_string 01C8  
+               __CFG_CLKOUTEN$OFF 0000                       ??_send_byte 0074                   ??_crc_calculate 0072  
+              __end_of_start_mark 0206               send_half_byte@value 0072                send_half_byte@byte 0073  
+               send_half_byte@low 0070  
