@@ -73,8 +73,8 @@ char tuneTempDir = 1;
 ////    CONFIG1bits.MCLRE = 0;
 ////    APFCONbits.SSSEL = 0;
 //}
-void TuneButtonInit()
-{
+
+void TuneButtonInit() {
     // 2. Individual pin configuration
     IO_INPUT(TUNE_BUTTON_PIN);
     ANSELHbits.ANS11 = 0;
@@ -92,21 +92,20 @@ void TuneButtonInit()
     IOCB_ENABLE;
     INTB_ENABLE;
     INT_ENABLE;
-    
+
     // 3. Rising and falling edge detection
-//    TUNE_BUTTON_RAISING_EDGE = 1;
+    //    TUNE_BUTTON_RAISING_EDGE = 1;
     // 4. Individual pin interrupt flags    
     INTB_FLAG = 0;
-//    TUNE_BUTTON_IOC_FLAG = 0;
-    
+    //    TUNE_BUTTON_IOC_FLAG = 0;
+
     // 6. Global Interrupt Enable
     GLB_INT_ENABLE = 1;
 }
-void interrupt ISR()
-{
-    if(INTB_FLAG == 1)
-    {
-//        if(TUNE_BUTTON == 1)
+
+void interrupt ISR() {
+    if (INTB_FLAG == 1) {
+        //        if(TUNE_BUTTON == 1)
         {
             //Clear the LCD
             LCDClear();
@@ -114,8 +113,7 @@ void interrupt ISR()
             LCDWriteStringXY(0, 0, "Thermometer set:");
 
             tuneTemp++;
-            if(tuneTemp > 150)
-            {
+            if (tuneTemp > 150) {
                 tuneTemp = 0;
             }
 
@@ -127,19 +125,19 @@ void interrupt ISR()
 
             __delay_ms(500);
             tuneTempDir = 1;
-            
+
         }
         INTB_FLAG = 0;
     }
     IOCB_CLEAR;
-    
+
     if (RCIE && RCIF) {
         USARTHandleRxInt();
         RCIF = 0;
-    }    
+    }
 }
-void main (void)
-{
+
+void main(void) {
     //Initialize the LCD module
     LCDInit(LS_NONE);
 
@@ -148,10 +146,10 @@ void main (void)
 
     //Initialize Tune button
     TuneButtonInit();
-//    
-//    //Initialize Trigger out
-//    TriggerOutInit();
-    
+    //    
+    //    //Initialize Trigger out
+    //    TriggerOutInit();
+
     //Initialize USART with baud rate 9600
     USARTInit(9600);
 
@@ -174,23 +172,20 @@ void main (void)
     USARTWriteLine("***********************************************");
     USARTGotoNewLine();
     USARTGotoNewLine();
-    
+
     //Clear the LCD
     LCDClear();
 
-    while(1)
-    {
-//    TRIGGER_UP_OUT = 1;
-        if(TUNE_BUTTON == 1)
-        {
+    while (1) {
+        //    TRIGGER_UP_OUT = 1;
+        if (TUNE_BUTTON == 1) {
             //Clear the LCD
             LCDClear();
 
             LCDWriteStringXY(0, 0, "Thermometer set:");
 
             tuneTemp++;
-            if(tuneTemp > 150)
-            {
+            if (tuneTemp > 150) {
                 tuneTemp = 0;
             }
 
@@ -202,24 +197,18 @@ void main (void)
 
             __delay_ms(500);
             tuneTempDir = 1;
-            
-        }
-        else
-        {
+
+        } else {
             //Read the temperature using LM35
             curTemp = LM35ReadTemp();
 
-            if(curTemp >= tuneTemp)
-            {
+            if (curTemp >= tuneTemp) {
                 TRIGGER_DOWN_OUT = 1;
-            }
-            else
-            {
+            } else {
                 TRIGGER_DOWN_OUT = 0;
             }
 
-            if(tuneTempDir == 1)
-            {
+            if (tuneTempDir == 1) {
                 //Clear the LCD
                 LCDClear();
 
@@ -231,28 +220,27 @@ void main (void)
             LCDWriteIntXY(0, 1, curTemp, 3);
 
             //Print the degree symbol and C
-            LCDWriteString("%0C"); 
+            LCDWriteString("%0C");
 
             //Wait 200ms before taking next reading
             __delay_ms(200);
-            
+
         }
-        
+
         //Get the amount of data waiting in USART queue
-        uint8_t n= USARTDataAvailable();
+        uint8_t n = USARTDataAvailable();
 
         //If we have some data
-        if(n!=0)
-        {
+        if (n != 0) {
             //Read it
-            char data=USARTReadData();
+            char data = USARTReadData();
 
             //And send back
             USARTWriteChar('<');
             USARTWriteChar(data);
             USARTWriteChar('>');
         }
-        
+
     }
 }
 

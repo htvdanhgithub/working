@@ -1,0 +1,435 @@
+#include <xc.h>
+#include <pic16f886.h>
+#include "usart_pic16.h"
+#include "myutils.h"
+
+// CONFIG1
+#pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
+#pragma config WDTE = ON        // Watchdog Timer Enable bit (WDT enabled)
+#pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
+#pragma config MCLRE = ON       // RE3/MCLR pin function select bit (RE3/MCLR pin function is MCLR)
+#pragma config CP = ON          // Code Protection bit (Program memory code protection is enabled)
+#pragma config CPD = ON         // Data Code Protection bit (Data memory code protection is enabled)
+#pragma config BOREN = ON       // Brown Out Reset Selection bits (BOR enabled)
+#pragma config IESO = ON        // Internal External Switchover bit (Internal/External Switchover mode is enabled)
+#pragma config FCMEN = ON       // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is enabled)
+#pragma config LVP = ON         // Low Voltage Programming Enable bit (RB3/PGM pin has PGM function, low voltage programming enabled)
+
+// CONFIG2
+#pragma config BOR4V = BOR21V   // Brown-out Reset Selection bit (Brown-out Reset set to 2.1V)
+#pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
+
+
+
+#define IOCB_ENABLE      IOCBbits.IOCB4 = 1
+#define IOCB_CLEAR       IOCBbits.IOCB4 = 0
+#define INTB_ENABLE      INTCONbits.RBIE = 1
+#define INTB_FLAG        INTCONbits.RBIF
+#define INT_ENABLE       INTCONbits.INTE = 1
+#define GLB_INT_ENABLE   INTCONbits.GIE
+
+//LM35 is connected to Port A bit 2
+
+#define TUNE_BUTTON_PORT      B
+#define TUNE_BUTTON_POS       4
+#define TUNE_BUTTON_PIN       PIN(TUNE_BUTTON_PORT, TUNE_BUTTON_POS)
+
+#define TUNE_BUTTON                     PORTBIT(TUNE_BUTTON_PIN)
+#define TUNE_BUTTON_TRIS                TRISBIT(TUNE_BUTTON_PIN)
+
+#define TRIGGER_DOWN_OUT_PORT      A
+#define TRIGGER_DOWN_OUT_POS       1
+#define TRIGGER_DOWN_OUT_PIN       PIN(TRIGGER_DOWN_OUT_PORT, TRIGGER_DOWN_OUT_POS)
+#define TRIGGER_DOWN_OUT           PORTBIT(TRIGGER_DOWN_OUT_PIN)
+
+#define TRIGGER_UP_OUT_PORT      A
+#define TRIGGER_UP_OUT_POS       0
+#define TRIGGER_UP_OUT_PIN       PIN(TRIGGER_UP_OUT_PORT, TRIGGER_UP_OUT_POS)
+#define TRIGGER_UP_OUT           PORTBIT(TRIGGER_UP_OUT_PIN)
+
+
+#define TUNE_BUTTON_RAISING_EDGE        IOCPBIT(TUNE_BUTTON_PIN)
+#define TUNE_BUTTON_IOC_FLAG            IOCFBIT(TUNE_BUTTON_PIN)
+
+//////////////////////////////////////////////////////////
+/*
+'*******************************************************************************
+'  Project name: PIC16F876A & MAX7219 For 8x8 LED Display
+'  Description:
+'          Trough the current experiment we wish to succed the next task:
+'          Display on 8x8 Led matrix, the alphabet. The sequence between letters,
+'          will have one second delay.
+'  Written by:
+'          Mark &
+'          Aureliu Raducu Macovei, 2011.
+'  Test configuration:
+'    MCU:                        PIC16F876A;
+'    Test.Board:                 WB-106 Breadboard 2420 dots;
+'    SW:                         MikroC PRO for PIC 2011 (version v4.60);
+'  Configuration Word:
+'    Oscillator:                 HS (8Mhz)on pins 9 and 10;
+'    Watchdog Timer:             OFF;
+'    Power up Timer:             OFF;
+'    Browun Out Detect:          ON;
+'    Low Voltage Program:        Disabled;
+'    Data EE Read Protect:       OFF;
+'    Flash Program Write:        Write Protection OFF;
+'    Background Debug:           Disabled;
+'    Code Protect:               OFF
+'*******************************************************************************
+ */
+#define DATA_PORT         A
+#define DATA_POS          3
+#define DATA_PIN          PIN(DATA_PORT, DATA_POS)
+#define DATA              PORTBIT(DATA_PIN)
+
+#define LOAD_PORT         A
+#define LOAD_POS          2
+#define LOAD_PIN          PIN(LOAD_PORT, LOAD_POS)
+#define LOAD              PORTBIT(LOAD_PIN)
+
+#define CLK_PORT          A
+#define CLK_POS           1
+#define CLK_PIN           PIN(CLK_PORT, CLK_POS)
+#define CLK               PORTBIT(CLK_PIN)
+
+// For more space, we don't need byte 0 and byte 7.
+// We have stripped them out, if/when we have a need and a bigger PIC,
+// then we can put them back if we want.
+
+// Here we define row values for each of the six columns corresponding to the
+// Alphabet, from  A through Z.
+unsigned const short Alphabet[156] = {
+    0x7f, 0x88, 0x88, 0x88, 0x88, 0x7f, // A
+    0xC0,	0x60,	0x0,	0x0,	0x0,	0x0, // B
+    0xE0,	0x80,	0x0,	0x0,	0x0,	0x0, // C
+    0xff, 0x81, 0x81, 0x81, 0x81, 0x7e, // D
+    0x81, 0xff, 0x91, 0x91, 0x91, 0x91, // E
+    0x81, 0xff, 0x91, 0x90, 0x90, 0x80, // F
+    0x7e, 0x81, 0x81, 0x89, 0x89, 0x4e, // G
+    0xff, 0x10, 0x10, 0x10, 0x10, 0xff, // H
+    0x00, 0x81, 0xff, 0xff, 0x81, 0x00, // I
+    0x06, 0x01, 0x81, 0xfe, 0x80, 0x00, // J
+    0x81, 0xff, 0x99, 0x24, 0xc3, 0x81, // K
+    0x81, 0xff, 0x81, 0x01, 0x01, 0x03, // L
+    0xff, 0x60, 0x18, 0x18, 0x60, 0xff, // M
+    0xff, 0x60, 0x10, 0x08, 0x06, 0xff, // N
+    0x7e, 0x81, 0x81, 0x81, 0x81, 0x7e, // O
+    0x81, 0xff, 0x89, 0x88, 0x88, 0x70, // P
+    0x7e, 0x81, 0x85, 0x89, 0x87, 0x7e, // Q
+    0xff, 0x98, 0x98, 0x94, 0x93, 0x61, // R
+    0x62, 0x91, 0x91, 0x91, 0x91, 0x4e, // S
+    0xc0, 0x81, 0xff, 0xff, 0x81, 0xc0, // T
+    0xfe, 0x01, 0x01, 0x01, 0x01, 0xfe, // U
+    0xfc, 0x02, 0x01, 0x01, 0x02, 0xfc, // V
+    0xff, 0x02, 0x04, 0x04, 0x02, 0xff, // W
+    0xc3, 0x24, 0x18, 0x18, 0x24, 0xc3, // X
+    0xc0, 0x20, 0x1f, 0x1f, 0x20, 0xc0, // Y
+    0xc3, 0x85, 0x89, 0x91, 0xa1, 0xc3, // Z
+};
+
+unsigned const short Symbols[114] = {
+    0x00, 0x3c, 0x42, 0x81, 0x00, 0x00, // (
+    0x00, 0x00, 0x81, 0x42, 0x3c, 0x00, // )
+    0x00, 0x00, 0xff, 0x81, 0x00, 0x00, // [
+    0x00, 0x00, 0x81, 0xff, 0x00, 0x00, // ]
+    0x00, 0x18, 0xe7, 0x81, 0x00, 0x00, // {
+    0x00, 0x00, 0x81, 0xe7, 0x18, 0x00, // }
+    0x00, 0x18, 0x24, 0x42, 0x81, 0x00, // <
+    0x00, 0x81, 0x42, 0x24, 0x18, 0x00, // >
+    0x00, 0x03, 0x0c, 0x30, 0xc0, 0x00, // /
+    0x00, 0xc0, 0x30, 0x0c, 0x03, 0x00, // \
+                                    0x00, 0x00, 0x00, 0x00, 0x00, 0x00,   //
+    0x00, 0x00, 0xfd, 0xfd, 0x00, 0x00, // !
+    0x60, 0x80, 0x8d, 0x8d, 0x90, 0x60, // ?
+    0x42, 0x24, 0xff, 0xff, 0x24, 0x42, // *
+    0x24, 0xff, 0x24, 0x24, 0xff, 0x24, // #
+    0x62, 0x91, 0xff, 0xff, 0x91, 0x4e, // $
+    0x66, 0x99, 0x99, 0x66, 0x09, 0x00, // &
+    0x42, 0xa4, 0x48, 0x12, 0x25, 0x42, // %
+    0x20, 0x3f, 0x20, 0x20, 0x3e, 0x21, // pi
+};
+
+void SPI1_write(uint8_t data) 
+{
+    uint8_t mask = 0b10000000;
+    for(uint8_t i = 0; i < 8; i++)
+    {
+        if((data & mask) > 0)
+        {
+            DATA = 1;
+//            USARTWriteLine("1");
+        }
+        else
+        {
+            DATA = 0;
+//            USARTWriteLine("0");
+        }
+        mask >>= 1;
+        CLK = 1;
+        __delay_us(10);
+        CLK = 0;
+        __delay_us(10);
+        
+    }
+}
+// Serial 8x8 Matrix Display connections.
+//sbit LOAD at RC0_bit;
+//sbit LOAD_Direction at TRISC0_bit;
+// End Serial 8x8 Matrix Display connections.
+
+// Here we set the configuration of max7219.
+void max7219_init1() {
+    LOAD = 0; // SELECT MAX
+    SPI1_write(0x09); // BCD mode for digit decoding
+    SPI1_write(0x00);
+    LOAD = 1; // DESELECT MAX
+
+    LOAD = 0; // SELECT MAX
+    SPI1_write(0x0A);
+    SPI1_write(0x0F); // Segment luminosity intensity
+    LOAD = 1; // DESELECT MAX
+
+    LOAD = 0; // SELECT MAX
+    SPI1_write(0x0B);
+    SPI1_write(0x07); // Display refresh
+    LOAD = 1; // DESELECT MAX
+
+    LOAD = 0; // SELECT MAX
+    SPI1_write(0x0C);
+    SPI1_write(0x01); // Turn on the display
+    LOAD = 1; // DESELECT MAX
+
+    LOAD = 0; // SELECT MAX
+    SPI1_write(0x00);
+    SPI1_write(0xFF); // No test
+    LOAD = 1; // DESELECT MAX
+}
+
+// This is write Byte function.
+
+void Write_Byte(uint8_t myColumn, uint8_t myValue) {
+    LOAD = 0; // select max7219.
+    SPI1_write(myColumn); // send myColumn value to max7219 (digit place).
+    SPI1_write(myValue); // send myValue value to max7219 (digit place).
+    LOAD = 1; // deselect max7219.
+}
+
+// This is clear matrix function.
+
+void Clear_Matrix(void) {
+    uint8_t x;
+
+    for (x = 1; x < 9; x++) {
+        Write_Byte(x, 0x00);
+    }
+}
+
+void Write_Char(uint8_t myChar) {
+    uint8_t Column, Start_Byte;
+    // We will use only uppercase characters, so we will start from 65
+    // (look at the ascii chart), with an offset of 6, becouse we are using only 6
+    // bytes for each character.
+
+    // Clear the display first.
+    Clear_Matrix();
+
+    // The next line defines our byte, from which to start the array.
+    Start_Byte = (myChar - 65) * 6; // 65 represents the letter "A" in ASCII code.
+
+    // We are using only columns from 2 through 7 for displaying the character.
+    for (Column = 2; Column < 8; Column++) {
+        Write_Byte(Column, Alphabet[Start_Byte++]);
+    }
+}
+
+// This is write char function.
+
+void Write_Symbol(uint8_t mysymbols) {
+    uint8_t Column1, Start_Byte1;
+    // We will use only uppercase characters, so we will start from 65
+    // (look at the ascii chart), with an offset of 6, becouse we are using only 6
+    // bytes for each character.
+
+    // Clear the display first.
+    Clear_Matrix();
+
+    // The next line defines our byte, from which to start the array.
+    Start_Byte1 = (mysymbols - 0) * 6;
+
+    // We are using only columns from 2 through 7 for displaying the character.
+    for (Column1 = 2; Column1 < 8; Column1++) {
+        Write_Byte(Column1, Symbols[Start_Byte1++]);
+    }
+}
+
+// Here we have the main function.
+
+void main() {
+    unsigned int x, y;
+
+    IO_OUTPUT(DATA_PIN);
+
+    IO_OUTPUT(LOAD_PIN);
+
+    IO_OUTPUT(CLK_PIN);
+    
+    ANSELbits.ANS1 = 0;
+    ANSELbits.ANS2 = 0;
+    ANSELbits.ANS3 = 0;
+    LOAD = 1;
+    CLK = 0;
+    
+//    //Initialize USART with baud rate 9600
+//    USARTInit(9600);
+
+    max7219_init1(); // initialize  max7219.
+
+
+//    SPI1_write(0b10100110);    
+//    Write_Char(65);
+    
+    while (1) // infinite loop.
+    {
+//        Write_Char(65);
+        __delay_ms(1000);
+
+//        // You can write the characters this way, one at a time.
+//
+//        /*
+//        Write_Char('R');
+//        __delay_ms(1000);
+//        Write_Char('A');
+//        __delay_ms(1000);
+//        Write_Char('D');
+//        __delay_ms(1000);
+//        Write_Char('U');
+//        __delay_ms(1000);
+//         */
+//        // or
+//
+        for (x = 65; x <= 90; x++) // Increment with 1, from 65 until 90.
+        {
+            Write_Char(x);
+            __delay_ms(1000); // This is our delay, between two consecutive character.
+        }
+//
+//        Clear_Matrix(); // Clear the Matrix display;
+//        __delay_ms(500);
+//
+//        for (y = 0; y <= 18; y++) {
+//            Write_Symbol(y); // This is our delay, between two consecutive character.
+//            __delay_ms(1000);
+//        }
+
+    } ; // do forever.
+}
+//////////////////////////////////////////////////////////
+
+//int tuneTemp = 0;
+//int curTemp = 0;
+//char tuneTempDir = 1;
+
+//void TriggerOutInit()
+//{
+//    // 1. Individual pin configuration
+//    IO_OUTPUT(TRIGGER_DOWN_OUT_PIN);
+////    IO_OUTPUT(TRIGGER_UP_OUT_PIN);
+//    // 2. Digital I/O
+//    ANSELBIT(TRIGGER_DOWN_OUT_PIN) = 0;
+////    ANSELBIT(TRIGGER_UP_OUT_PIN) = 0;
+//    
+////    APFCONbits.SDOSEL = 0;
+////    APFCONbits.T1GSEL = 0;
+////    APFCONbits.TXCKSEL = 0;
+////    CONFIG1bits.MCLRE = 0;
+////    APFCONbits.SSSEL = 0;
+//}
+
+//void TuneButtonInit() {
+//    // 2. Individual pin configuration
+//    IO_INPUT(TUNE_BUTTON_PIN);
+//    ANSELHbits.ANS11 = 0;
+//
+//    OPTION_REGbits.INTEDG = 1;
+//    INTCONbits.PEIE = 1;
+//
+//    ANSELbits.ANS1 = 0;
+//    ANSELbits.ANS2 = 0;
+//    ANSELbits.ANS3 = 0;
+//    ANSELbits.ANS4 = 0;
+//    // 5 Peripheral interrupt
+//
+//    // 1. Interrupt-on-Change enable (Master Switch)
+//    IOCB_ENABLE;
+//    INTB_ENABLE;
+//    INT_ENABLE;
+//
+//    // 3. Rising and falling edge detection
+//    //    TUNE_BUTTON_RAISING_EDGE = 1;
+//    // 4. Individual pin interrupt flags    
+//    INTB_FLAG = 0;
+//    //    TUNE_BUTTON_IOC_FLAG = 0;
+//
+//    // 6. Global Interrupt Enable
+//    GLB_INT_ENABLE = 1;
+//}
+//
+//void interrupt ISR() {
+//    if (RCIF) {
+//        USARTHandleRxInt();
+//        RCIF = 0;
+//    }
+//}
+//
+//void main() {
+//    IO_OUTPUT(DATA_PIN);
+//
+//    IO_OUTPUT(LOAD_PIN);
+//
+//    IO_OUTPUT(CLK_PIN);
+//    
+//    ANSELbits.ANS1 = 0;
+//    ANSELbits.ANS2 = 0;
+//    ANSELbits.ANS3 = 0;
+//    
+//    //Initialize USART with baud rate 9600
+//    USARTInit(9600);
+//
+//    //Write intro text
+//    USARTWriteLine("***********************************************");
+//    USARTWriteLine("USART Test");
+//    USARTWriteLine("----------");
+//    USARTWriteLine("Type a character on keyboard");
+//    USARTWriteLine("it will reach the PIC MCU via the serial line");
+//    USARTWriteLine("PIC MCU will return the same character but ");
+//    USARTWriteLine("enclosed in a <>");
+//    USARTWriteLine("--");
+//    USARTWriteLine("For example if you type 'a' you will see <a>");
+//    USARTWriteLine("appear on serial terminal.");
+//    USARTWriteLine(" ");
+//    USARTWriteLine("This checks both way serial transfers.");
+//    USARTWriteLine("");
+//    USARTWriteLine("Copyright (C) 2008-2013");
+//    USARTWriteLine("www.eXtremeElectronics.co.in");
+//    USARTWriteLine("***********************************************");
+//    USARTGotoNewLine();
+//    USARTGotoNewLine();
+//
+//    while (1) {
+//        //Get the amount of data waiting in USART queue
+//        uint8_t n = USARTDataAvailable();
+//
+//        //If we have some data
+//        if (n != 0) {
+//            //Read it
+//            char data = USARTReadData();
+//
+//            //And send back
+//            USARTWriteChar('<');
+//            USARTWriteChar(data);
+//            USARTWriteChar('>');
+//        }
+//
+//    }
+//}
