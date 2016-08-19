@@ -709,6 +709,80 @@ uint8_t get_high_after_merge(int8_t y, MATRIX44* matrix)
         }
     }
 }
+uint8_t get_holes_after_merge(MATRIX88* matrix)
+{
+	int8_t start = -1;
+	int8_t stop = -1;
+	uint8_t num_hole = 0;
+    for(int8_t col = 0; col < MATRIX88_COLUMN_MAX; col++)
+    {
+    	start = stop = -1;
+        for(int8_t row = 0; row < MATRIX88_ROW_MAX; row++)
+        {
+        	if(col == 0)
+        	{
+        		if((matrix->data[row][col] == 0) && (matrix->data[row][col + 1] == 1))
+        		{
+        			if(start == -1)
+        			{
+            			start = row;
+        			}
+        		}
+        	}
+        	else if(col == MATRIX88_COLUMN_MAX - 1)
+        	{
+        		if((matrix->data[row][col] == 0) && (matrix->data[row][col - 1] == 1))
+        		{
+        			if(start == -1)
+        			{
+            			start = row;
+        			}
+        		}
+        	}
+        	else
+        	{
+        		if((matrix->data[row][col] == 0) && (matrix->data[row][col - 1] == 1) && (matrix->data[row][col + 1] == 1))
+        		{
+        			if(start == -1)
+        			{
+            			start = row;
+        			}
+        		}
+        	}
+    		if(start >= 0)
+    		{
+        		if(row == MATRIX88_ROW_MAX - 1)
+        		{
+        			if(stop == -1)
+        			{
+            			stop = MATRIX88_ROW_MAX;
+        			}
+        		}
+        		else if(matrix->data[row + 1][col] == 1)
+        		{
+        			if(stop == -1)
+        			{
+            			stop = row + 1;
+        			}
+        		}
+    		}
+
+        }
+        if((start >= 0) && (stop >= 0) && (stop - start >= 3))
+        {
+#ifdef WINDOW_BASE
+        	fprintf(fp, "col = %d, start = %d, stop = %d\n", col, start, stop);
+#else
+#endif
+        	num_hole++;
+        }
+    }
+#ifdef WINDOW_BASE
+        	fprintf(fp, "num_hole = (%d)\n", num_hole);
+#else
+#endif
+    return num_hole;
+}
 uint8_t find_best_solution()
 {
 #ifdef WINDOW_BASE
@@ -721,6 +795,7 @@ uint8_t find_best_solution()
     uint16_t temp_risk;
     uint8_t temp_count, temp_pre_count = 0;
     uint8_t temp_high, temp_pre_high = 0xFF;
+    uint8_t temp_hole, temp_pre_hole = 0xFF;
     MATRIX44* temp_cur_matrix44 = NULL;
     MATRIX88 temp_matrix88;
     uint8_t res = 0;
@@ -753,6 +828,7 @@ uint8_t find_best_solution()
             temp_count = delete_matrix(&temp_matrix88);    
             temp_risk = evaluate(&temp_matrix88);
             temp_high = get_high_after_merge(temp_y, temp_cur_matrix44);
+            temp_hole = get_holes_after_merge(&temp_matrix88);
 #ifdef WINDOW_BASE
             printf_MATRIX88(&temp_matrix88);
 #else
@@ -766,6 +842,7 @@ uint8_t find_best_solution()
                 temp_pre_count = temp_count;
                 temp_pre_risk = temp_risk;
                 temp_pre_high = temp_high;
+                temp_pre_hole = temp_hole;
                 tem_pre_sub_index = tem_sub_index;
                 temp_pre_x = temp_x;
             }
@@ -788,6 +865,7 @@ uint8_t find_best_solution()
                         temp_pre_count = temp_count;
                         temp_pre_risk = temp_risk;
                         temp_pre_high = temp_high;
+                        temp_pre_hole = temp_hole;
                         tem_pre_sub_index = tem_sub_index;
                         temp_pre_x = temp_x;
                     }
@@ -806,9 +884,32 @@ uint8_t find_best_solution()
                             temp_pre_count = temp_count;
                             temp_pre_risk = temp_risk;
                             temp_pre_high = temp_high;
+                            temp_pre_hole = temp_hole;
                             tem_pre_sub_index = tem_sub_index;
                             temp_pre_x = temp_x;
                         }
+                        else if(temp_high == temp_pre_high)
+                        {
+#ifdef WINDOW_BASE
+                        	fprintf(fp, "temp_high(%d) == temp_pre_high(%d)\n", temp_high, temp_pre_high);
+#else
+#endif
+							if(temp_hole < temp_pre_hole)
+							{
+#ifdef WINDOW_BASE
+								fprintf(fp, "temp_hole(%d) < temp_pre_hole(%d)\n", temp_hole, temp_pre_hole);
+#else
+#endif
+								temp_pre_count = temp_count;
+								temp_pre_risk = temp_risk;
+								temp_pre_high = temp_high;
+								temp_pre_hole = temp_hole;
+								tem_pre_sub_index = tem_sub_index;
+								temp_pre_x = temp_x;
+							}
+
+                        }
+
                     }
                 }
                 else
@@ -827,32 +928,55 @@ uint8_t find_best_solution()
                         temp_pre_count = temp_count;
                         temp_pre_risk = temp_risk;
                         temp_pre_high = temp_high;
+                        temp_pre_hole = temp_hole;
                         tem_pre_sub_index = tem_sub_index;
                         temp_pre_x = temp_x;
                     }
                     else if(temp_high == temp_pre_high)
                     {
 #ifdef WINDOW_BASE
-                        fprintf(fp, "temp_high(%d) < temp_pre_high(%d)\n", temp_high, temp_pre_high);
+						fprintf(fp, "temp_high(%d) == temp_pre_high(%d)\n", temp_high, temp_pre_high);
 #else
 #endif
-                        if(temp_risk < temp_pre_risk)
+						if(temp_hole < temp_pre_hole)
+						{
+#ifdef WINDOW_BASE
+							fprintf(fp, "temp_hole(%d) < temp_pre_hole(%d)\n", temp_hole, temp_pre_hole);
+#else
+#endif
+							temp_pre_count = temp_count;
+							temp_pre_risk = temp_risk;
+							temp_pre_high = temp_high;
+							temp_pre_hole = temp_hole;
+							tem_pre_sub_index = tem_sub_index;
+							temp_pre_x = temp_x;
+						}
+                        else if(temp_hole == temp_pre_hole)
                         {
 #ifdef WINDOW_BASE
-                            fprintf(fp, "temp_risk(%d) < temp_pre_risk(%d)\n", temp_risk, temp_pre_risk);
+							fprintf(fp, "temp_hole(%d) == temp_pre_hole(%d)\n", temp_hole, temp_pre_hole);
 #else
 #endif
-                            temp_pre_count = temp_count;
-                            temp_pre_risk = temp_risk;
-                            temp_pre_high = temp_high;
-                            tem_pre_sub_index = tem_sub_index;
-                            temp_pre_x = temp_x;
+							if(temp_risk < temp_pre_risk)
+							{
+#ifdef WINDOW_BASE
+								fprintf(fp, "temp_risk(%d) < temp_pre_risk(%d)\n", temp_risk, temp_pre_risk);
+#else
+#endif
+								temp_pre_count = temp_count;
+								temp_pre_risk = temp_risk;
+								temp_pre_high = temp_high;
+								temp_pre_hole = temp_hole;
+								tem_pre_sub_index = tem_sub_index;
+								temp_pre_x = temp_x;
+							}
                         }
                     }
                 }
             }
 #ifdef WINDOW_BASE
-            fprintf(fp, "sub_index = %d, temp_pre_x = %d, temp_pre_count = %d, temp_pre_risk = %d, temp_pre_high = %d\n", tem_pre_sub_index, temp_pre_x, temp_pre_count, temp_pre_risk, temp_pre_high);
+            fprintf(fp, "sub_index = %d, temp_pre_x = %d, temp_pre_count = %d, temp_pre_risk = %d, temp_pre_high = %d, temp_hole = %d\n",
+            		tem_pre_sub_index, temp_pre_x, temp_pre_count, temp_pre_risk, temp_pre_high, temp_hole);
             //			system("PAUSE");
 #else
 #endif
@@ -865,7 +989,8 @@ uint8_t find_best_solution()
 #ifdef WINDOW_BASE
         printf_cur_MATRIX44(cur_x, cur_y);
 
-        fprintf(fp, "chosen sub_index = %d, temp_pre_x = %d, temp_pre_count = %d, temp_pre_risk = %d, temp_pre_high = %d\n", tem_pre_sub_index, temp_pre_x, temp_pre_count, temp_pre_risk, temp_pre_high);
+        fprintf(fp, "chosen sub_index = %d, temp_pre_x = %d, temp_pre_count = %d, temp_pre_risk = %d, temp_pre_high = %d, temp_pre_hole = %d\n",
+        		tem_pre_sub_index, temp_pre_x, temp_pre_count, temp_pre_risk, temp_pre_high, temp_pre_hole);
 #else
 #endif
     }
@@ -878,6 +1003,89 @@ uint8_t find_best_solution()
     }
     return res;
 }
+#ifdef WINDOW_BASE
+void test_is_row_full(const MATRIX88* matrix)
+{
+    for(uint8_t row = 0; row < MATRIX88_ROW_MAX; row++)
+    {
+        fprintf(fp, "row[%d] is %s\n", row, is_row_full(matrix, row) == 0 ? "not full" : "full");
+    }
+}
+void test_is_row_empty(const MATRIX88* matrix)
+{
+    for(uint8_t row = 0; row < MATRIX88_ROW_MAX; row++)
+    {
+        fprintf(fp, "row[%d] is %s\n", row, is_row_empty(matrix, row) == 0 ? "not empty" : "empty");
+    }
+}
+void test_is_col_empty(const MATRIX88* matrix)
+{
+    for(uint8_t col = 0; col < MATRIX88_COLUMN_MAX; col++)
+    {
+        fprintf(fp, "col[%d] is %s\n", col, is_col_empty(matrix, col) == 0 ? "not empty" : "empty");
+    }
+}
+void test_hit_land()
+{
+    int8_t x = 5, y = 6;
+    MATRIX44* matrix44 = get_MATRIX44(1, 0);
+    MATRIX88 matrix88 =
+    {
+            0,  0,  0,  0,  0,  0,  0,  0,
+            0,  0,  0,  0,  0,  0,  0,  0,
+            0,  0,  0,  0,  0,  0,  0,  0,
+            0,  1,  0,  1,  0,  0,  0,  0,
+            1,  0,  0,  1,  0,  0,  0,  0,
+            1,  1,  0,  1,  0,  0,  0,  0,
+            1,  1,  0,  1,  0,  0,  0,  0,
+            1,  1,  0,  0,  1,  0,  0,  0,
+    };
+    printf_MATRIX44(x, y, matrix44);
+    printf_MATRIX88(&matrix88);
+    hit_land(x, y, matrix44, &matrix88);
+}
+void test_is_valid()
+{
+    int8_t x = 5, y = 7;
+    MATRIX44* matrix44 = get_MATRIX44(1, 0);
+    MATRIX88 matrix88 =
+    {
+            0,  0,  0,  0,  0,  0,  0,  0,
+            0,  0,  0,  0,  0,  0,  0,  0,
+            0,  0,  0,  0,  0,  0,  0,  0,
+            0,  1,  0,  1,  0,  0,  0,  0,
+            1,  0,  0,  1,  0,  0,  0,  0,
+            1,  1,  0,  1,  0,  0,  0,  0,
+            1,  1,  0,  1,  0,  0,  0,  0,
+            1,  1,  0,  0,  1,  0,  0,  0,
+    };
+    printf_MATRIX44(x, y, matrix44);
+    printf_MATRIX88(&matrix88);
+    is_valid(x, y, matrix44, &matrix88);
+}
+void test_find_best_solution()
+{
+    g_char_info_index = 1;
+    find_best_solution();
+}
+void test_get_holes_after_merge()
+{
+    MATRIX88 matrix88 =
+    {
+    		0,	0,	0,	0,	0,	0,	0,	0,
+    		0,	0,	0,	0,	0,	0,	0,	0,
+    		0,	0,	0,	0,	0,	0,	0,	0,
+    		0,	0,	0,	0,	0,	0,	1,	0,
+    		0,	0,	1,	0,	1,	0,	1,	0,
+    		0,	1,	1,	0,	1,	0,	1,	0,
+    		0,	1,	1,	0,	1,	0,	1,	0,
+    		0,	1,	1,	1,	1,	1,	1,	0,
+    };
+    printf_MATRIX88(&matrix88);
+    get_holes_after_merge(&matrix88);
+}
+#endif
+
 int main(int argc, char *argv[])
 {
 #ifdef WINDOW_BASE
@@ -899,7 +1107,7 @@ int main(int argc, char *argv[])
     //      g_char_info_index = 8;
     //      find_best_solution();
     //        printf_MATRIX88(&g_matrix88);
-//    test_find_best_solution();
+//    test_get_holes_after_merge();
 //    printf_all_MATRIX44();
 //    goto __exit;
     uint8_t hit_res;
@@ -968,70 +1176,3 @@ __exit:
     return 0;
 #endif
 }
-#ifdef WINDOW_BASE
-void test_is_row_full(const MATRIX88* matrix)
-{
-    for(uint8_t row = 0; row < MATRIX88_ROW_MAX; row++)
-    {
-        fprintf(fp, "row[%d] is %s\n", row, is_row_full(matrix, row) == 0 ? "not full" : "full");
-    }
-}
-void test_is_row_empty(const MATRIX88* matrix)
-{
-    for(uint8_t row = 0; row < MATRIX88_ROW_MAX; row++)
-    {
-        fprintf(fp, "row[%d] is %s\n", row, is_row_empty(matrix, row) == 0 ? "not empty" : "empty");
-    }
-}
-void test_is_col_empty(const MATRIX88* matrix)
-{
-    for(uint8_t col = 0; col < MATRIX88_COLUMN_MAX; col++)
-    {
-        fprintf(fp, "col[%d] is %s\n", col, is_col_empty(matrix, col) == 0 ? "not empty" : "empty");
-    }
-}
-void test_hit_land()
-{
-    int8_t x = 5, y = 6;
-    MATRIX44* matrix44 = get_MATRIX44(1, 0);
-    MATRIX88 matrix88 =
-    {
-            0,  0,  0,  0,  0,  0,  0,  0,
-            0,  0,  0,  0,  0,  0,  0,  0,
-            0,  0,  0,  0,  0,  0,  0,  0,
-            0,  1,  0,  1,  0,  0,  0,  0,
-            1,  0,  0,  1,  0,  0,  0,  0,
-            1,  1,  0,  1,  0,  0,  0,  0,
-            1,  1,  0,  1,  0,  0,  0,  0,
-            1,  1,  0,  0,  1,  0,  0,  0,
-    };
-    printf_MATRIX44(x, y, matrix44);
-    printf_MATRIX88(&matrix88);
-    hit_land(x, y, matrix44, &matrix88);
-}
-void test_is_valid()
-{
-    int8_t x = 5, y = 7;
-    MATRIX44* matrix44 = get_MATRIX44(1, 0);
-    MATRIX88 matrix88 =
-    {
-            0,  0,  0,  0,  0,  0,  0,  0,
-            0,  0,  0,  0,  0,  0,  0,  0,
-            0,  0,  0,  0,  0,  0,  0,  0,
-            0,  1,  0,  1,  0,  0,  0,  0,
-            1,  0,  0,  1,  0,  0,  0,  0,
-            1,  1,  0,  1,  0,  0,  0,  0,
-            1,  1,  0,  1,  0,  0,  0,  0,
-            1,  1,  0,  0,  1,  0,  0,  0,
-    };
-    printf_MATRIX44(x, y, matrix44);
-    printf_MATRIX88(&matrix88);
-    is_valid(x, y, matrix44, &matrix88);
-}
-void test_find_best_solution()
-{
-    g_char_info_index = 1;
-    find_best_solution();
-}
-
-#endif
