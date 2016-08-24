@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V1.37 build -260352376 
-                                                                                               Sat Jul 09 02:18:01 2016
+                                                                                               Mon Aug 22 21:27:20 2016
 
 Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110536
      1                           	processor	16F886
@@ -894,16 +894,16 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
    888  0070                     ?_LCDInit:	
    889                           ; 1 bytes @ 0x0
    890                           
-   891  0070                     ?_MenuInit:	
+   891  0070                     ?_ADCInit:	
    892                           ; 1 bytes @ 0x0
    893                           
-   894  0070                     ?_LCDBusyLoop:	
+   894  0070                     ?_MenuInit:	
    895                           ; 1 bytes @ 0x0
    896                           
-   897  0070                     ?_eeprom_read:	
+   897  0070                     ?_LCDBusyLoop:	
    898                           ; 1 bytes @ 0x0
    899                           
-   900  0070                     ?_ADCInit:	
+   900  0070                     ?_eeprom_read:	
    901                           ; 1 bytes @ 0x0
    902                           
    903  0070                     ?_send_byte:	
@@ -983,13 +983,13 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
    977                           	psect	cstackBANK0
    978  0020                     __pcstackBANK0:	
    979  0020                     ?_memcpy:	
-   980  0020                     ??_LCDBusyLoop:	
+   980  0020                     ??_ADCInit:	
    981                           ; 1 bytes @ 0x0
    982                           
-   983  0020                     ??_eeprom_read:	
+   983  0020                     ??_LCDBusyLoop:	
    984                           ; 1 bytes @ 0x0
    985                           
-   986  0020                     ??_ADCInit:	
+   986  0020                     ??_eeprom_read:	
    987                           ; 1 bytes @ 0x0
    988                           
    989  0020                     ?_send_half_byte:	
@@ -1535,7 +1535,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   1529                           ;do_am.c: 127: dump_conn(&server_conn);
   1530  0EBE  30CF               	movlw	(low (_server_conn| 0))& (0+255)
   1531  0EBF  120A  118A  231F  120A  158A  	fcall	_dump_conn
-  1532  0EC4                     l3611:	
+  1532  0EC4                     l3609:	
   1533                           ;do_am.c: 128: while(1)
   1534                           
   1535                           
@@ -1544,7 +1544,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   1538  0EC4  120A  158A  2560  120A  158A  	fcall	_handle_received_cmds
   1539                           
   1540                           ;do_am.c: 160: {
-  1541  0EC9  2EC4               	goto	l3611
+  1541  0EC9  2EC4               	goto	l3609
   1542  0ECA                     __end_of_main:	
   1543                           
   1544                           	psect	text1
@@ -1597,8 +1597,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   1590  0D68  3A01               	xorlw	1
   1591  0D69  1D03               	skipz
   1592  0D6A  0008               	return
-  1593  0D6B  2D73               	goto	l3365
-  1594  0D6C                     l3361:	
+  1593  0D6B  2D73               	goto	l3363
+  1594  0D6C                     l3359:	
   1595                           ;cmd.h: 39: {
   1596                           ;cmd.h: 46: case HEART_BEAT_RQT:
   1597                           
@@ -1620,7 +1620,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   1613                           
   1614                           ;cmd.h: 48: break;
   1615  0D72  0008               	return
-  1616  0D73                     l3365:	
+  1616  0D73                     l3363:	
   1617  0D73  1283               	bcf	3,5	;RP0=0, select bank0
   1618  0D74  1303               	bcf	3,6	;RP1=0, select bank0
   1619  0D75  0863               	movf	_pmsg_rcv,w
@@ -1639,10 +1639,10 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   1632                           ;	Chosen strategy is simple_byte
   1633  0D7A  3A02               	xorlw	2	; case 2
   1634  0D7B  1903               	skipnz
-  1635  0D7C  2D6C               	goto	l3361
-  1636  0D7D  2D7F               	goto	l236
+  1635  0D7C  2D6C               	goto	l3359
+  1636  0D7D  2D7F               	goto	l213
   1637  0D7E  0008               	return
-  1638  0D7F                     l236:	
+  1638  0D7F                     l213:	
   1639  0D7F  0008               	return
   1640  0D80                     __end_of_handle_received_cmds:	
   1641                           
@@ -1873,7 +1873,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   1865  0D41  1283               	bcf	3,5	;RP0=0, select bank0
   1866  0D42  1303               	bcf	3,6	;RP1=0, select bank0
   1867  0D43  01AB               	clrf	send_string@i
-  1868  0D44                     l3173:	
+  1868  0D44                     l3171:	
   1869  0D44  0829               	movf	send_string@len,w
   1870  0D45  022B               	subwf	send_string@i,w
   1871  0D46  1803               	btfsc	3,0
@@ -1896,7 +1896,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   1888  0D5C  00AA               	movwf	??_send_string
   1889  0D5D  082A               	movf	??_send_string,w
   1890  0D5E  07AB               	addwf	send_string@i,f
-  1891  0D5F  2D44               	goto	l3173
+  1891  0D5F  2D44               	goto	l3171
   1892  0D60                     __end_of_send_string:	
   1893                           
   1894                           	psect	text5
@@ -2042,7 +2042,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   2032  04D3  00A3               	movwf	send_half_byte@byte
   2033  04D4  0320               	decf	send_half_byte@low,w
   2034  04D5  1D03               	btfss	3,2
-  2035  04D6  2D01               	goto	l2979
+  2035  04D6  2D01               	goto	l2977
   2036  04D7  0823               	movf	send_half_byte@byte,w
   2037  04D8  0084               	movwf	4
   2038  04D9  1383               	bcf	3,7	;select IRP bank0
@@ -2091,7 +2091,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   2081  04FE  1980               	btfsc	0,3
   2082  04FF  2D2A               	goto	L1
   2083  0500  2D2E               	goto	u3040
-  2084  0501                     l2979:	
+  2084  0501                     l2977:	
   2085  0501  0823               	movf	send_half_byte@byte,w
   2086  0502  0084               	movwf	4
   2087  0503  1383               	bcf	3,7	;select IRP bank0
@@ -2143,12 +2143,12 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   2133  052A  1283               	bcf	3,5	;RP0=0, select bank0
   2134  052B  1303               	bcf	3,6	;RP1=0, select bank0
   2135  052C  1785               	bsf	5,7	;volatile
-  2136  052D  2D31               	goto	l2981
+  2136  052D  2D31               	goto	l2979
   2137  052E                     u3040:	
   2138  052E  1283               	bcf	3,5	;RP0=0, select bank0
   2139  052F  1303               	bcf	3,6	;RP1=0, select bank0
   2140  0530  1385               	bcf	5,7	;volatile
-  2141  0531                     l2981:	
+  2141  0531                     l2979:	
   2142                           
   2143                           ;packet.h: 17: {RB1 = 0; _delay((unsigned long)((1)*(20000000/4000000.0))); RB1 = 1;};
   2144  0531  1086               	bcf	6,1	;volatile
@@ -2355,8 +2355,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   2342  02F6  3A80               	xorlw	128
   2343  02F7  3E70               	addlw	-144
   2344  02F8  1803               	btfsc	3,0
-  2345  02F9  2B0D               	goto	l3313
-  2346  02FA                     l3307:	
+  2345  02F9  2B0D               	goto	l3311
+  2346  02FA                     l3305:	
   2347  02FA  01A5               	clrf	LCDByte@isdata
   2348  02FB  0AA5               	incf	LCDByte@isdata,f
   2349  02FC  3020               	movlw	32
@@ -2371,8 +2371,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   2358  0309  3A80               	xorlw	128
   2359  030A  3E70               	addlw	-144
   2360  030B  1C03               	skipc
-  2361  030C  2AFA               	goto	l3307
-  2362  030D                     l3313:	
+  2361  030C  2AFA               	goto	l3305
+  2362  030D                     l3311:	
   2363  030D  01AC               	clrf	LCDGotoXY@y
   2364  030E  0AAC               	incf	LCDGotoXY@y,f
   2365  030F  3000               	movlw	0
@@ -2849,7 +2849,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   2836  0E1C  00A4               	movwf	??_memcpy
   2837  0E1D  0824               	movf	??_memcpy,w
   2838  0E1E  00A7               	movwf	memcpy@d
-  2839  0E1F                     l3019:	
+  2839  0E1F                     l3017:	
   2840  0E1F  3001               	movlw	1
   2841  0E20  02A2               	subwf	memcpy@n,f
   2842  0E21  3000               	movlw	0
@@ -2881,7 +2881,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   2868  0E3B  00A4               	movwf	??_memcpy
   2869  0E3C  0824               	movf	??_memcpy,w
   2870  0E3D  07A7               	addwf	memcpy@d,f
-  2871  0E3E  2E1F               	goto	l3019
+  2871  0E3E  2E1F               	goto	l3017
   2872  0E3F                     __end_of_memcpy:	
   2873                           ;	Return value of _memcpy is never used
   2874                           
@@ -3040,7 +3040,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3027                           
   3028                           ;msg.h: 46: for(uint8_t i = 0; i < pmsg->msglen - 7; i++)
   3029  041E  01A8               	clrf	crc_calculate@i
-  3030  041F                     l3003:	
+  3030  041F                     l3001:	
   3031  041F  0820               	movf	crc_calculate@pmsg,w
   3032  0420  0084               	movwf	4
   3033  0421  1783               	bsf	3,7
@@ -3062,7 +3062,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3049  0431  0228               	subwf	crc_calculate@i,w
   3050  0432                     u3065:	
   3051  0432  1803               	btfsc	3,0
-  3052  0433  2C51               	goto	l3005
+  3052  0433  2C51               	goto	l3003
   3053                           
   3054                           ;msg.h: 47: {
   3055                           ;msg.h: 48: crc += (uint8_t)pmsg->data[i];
@@ -3094,8 +3094,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3081  044D  00A2               	movwf	??_crc_calculate
   3082  044E  0822               	movf	??_crc_calculate,w
   3083  044F  07A8               	addwf	crc_calculate@i,f
-  3084  0450  2C1F               	goto	l3003
-  3085  0451                     l3005:	
+  3084  0450  2C1F               	goto	l3001
+  3085  0451                     l3003:	
   3086                           
   3087                           ;msg.h: 49: }
   3088                           ;msg.h: 51: return crc;
@@ -3182,7 +3182,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3169  0F74  120A  118A  2045  120A  158A  	fcall	_get_msg_index
   3170  0F79  3A01               	xorlw	1
   3171  0F7A  1D03               	skipz
-  3172  0F7B  2FB1               	goto	l2401
+  3172  0F7B  2FB1               	goto	l2399
   3173                           
   3174                           ;msg.h: 109: {
   3175                           ;msg.h: 110: temp = start_index;
@@ -3231,7 +3231,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3218  0F9C  120A  158A  24B1  120A  158A  	fcall	_get_distance
   3219  0FA1  3A00               	xorlw	0
   3220  0FA2  1903               	btfsc	3,2
-  3221  0FA3  2FAF               	goto	l2397
+  3221  0FA3  2FAF               	goto	l2395
   3222                           
   3223                           ;msg.h: 118: }
   3224                           ;msg.h: 119: temp = get_next_index(temp);
@@ -3245,13 +3245,13 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3232  0FAC  1283               	bcf	3,5	;RP0=0, select bank0
   3233  0FAD  1303               	bcf	3,6	;RP1=0, select bank0
   3234  0FAE  2F7F               	goto	L2
-  3235  0FAF                     l2397:	
+  3235  0FAF                     l2395:	
   3236                           
   3237                           ;msg.h: 120: }
   3238                           ;msg.h: 122: return 1;
   3239  0FAF  3001               	movlw	1
   3240  0FB0  0008               	return
-  3241  0FB1                     l2401:	
+  3241  0FB1                     l2399:	
   3242                           
   3243                           ;msg.h: 123: }
   3244                           ;msg.h: 125: return 0;
@@ -3331,13 +3331,13 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3318                           ;circle_buffer.h: 109: if(low_half_rcv == 0)
   3319  0055  087D               	movf	_low_half_rcv,w
   3320  0056  1D03               	btfss	3,2
-  3321  0057  285A               	goto	l2291
+  3321  0057  285A               	goto	l2289
   3322                           
   3323                           ;circle_buffer.h: 110: {
   3324                           ;circle_buffer.h: 111: return 0;
   3325  0058  3000               	movlw	0
   3326  0059  0008               	return
-  3327  005A                     l2291:	
+  3327  005A                     l2289:	
   3328                           
   3329                           ;circle_buffer.h: 112: }
   3330                           ;circle_buffer.h: 113: if(get_distance(start_index_rcv, end_index_rcv) <= 7)
@@ -3353,13 +3353,13 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3340  0067  3008               	movlw	8
   3341  0068  0225               	subwf	??_get_msg_index+1,w
   3342  0069  1803               	skipnc
-  3343  006A  286D               	goto	l2297
+  3343  006A  286D               	goto	l2295
   3344                           
   3345                           ;circle_buffer.h: 114: {
   3346                           ;circle_buffer.h: 115: return 0;
   3347  006B  3000               	movlw	0
   3348  006C  0008               	return
-  3349  006D                     l2297:	
+  3349  006D                     l2295:	
   3350                           
   3351                           ;circle_buffer.h: 116: }
   3352                           ;circle_buffer.h: 117: i = start_index_rcv;
@@ -3380,7 +3380,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3367  007E  3003               	movlw	3
   3368  007F  0225               	subwf	??_get_msg_index+1,w
   3369  0080  1C03               	btfss	3,0
-  3370  0081  296A               	goto	l2323
+  3370  0081  296A               	goto	l2321
   3371                           
   3372                           ;circle_buffer.h: 119: {
   3373                           ;circle_buffer.h: 122: if((buffer_rcv[i] == start_mark[0]) && (buffer_rcv[get_plus_index
@@ -3400,7 +3400,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3385  008E  0800               	movf	0,w
   3386  008F  0624               	xorwf	??_get_msg_index,w
   3387  0090  1D03               	skipz
-  3388  0091  28F2               	goto	l2309
+  3388  0091  28F2               	goto	l2307
   3389  0092  300C               	movlw	low (((_start_mark+1)-__stringbase)| (0+32768))
   3390  0093  0084               	movwf	4
   3391  0094  120A  118A  2675  120A  118A  	fcall	stringdir
@@ -3417,7 +3417,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3402  00A7  1303               	bcf	3,6	;RP1=0, select bank0
   3403  00A8  0624               	xorwf	??_get_msg_index,w
   3404  00A9  1D03               	skipz
-  3405  00AA  28F2               	goto	l2309
+  3405  00AA  28F2               	goto	l2307
   3406  00AB  300D               	movlw	low (((_start_mark+2)-__stringbase)| (0+32768))
   3407  00AC  0084               	movwf	4
   3408  00AD  120A  118A  2675  120A  118A  	fcall	stringdir
@@ -3436,7 +3436,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3421  00C2  1303               	bcf	3,6	;RP1=0, select bank0
   3422  00C3  0624               	xorwf	??_get_msg_index,w
   3423  00C4  1D03               	skipz
-  3424  00C5  28F2               	goto	l2309
+  3424  00C5  28F2               	goto	l2307
   3425                           
   3426                           ;circle_buffer.h: 124: {
   3427                           ;circle_buffer.h: 125: if(*start_index != -1)
@@ -3458,7 +3458,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3443  00DD  1303               	bcf	3,6	;RP1=0, select bank0
   3444  00DE  0624               	xorwf	??_get_msg_index,w
   3445  00DF  1D03               	skipz
-  3446  00E0  28F2               	goto	l2309
+  3446  00E0  28F2               	goto	l2307
   3447                           
   3448                           ;circle_buffer.h: 126: {
   3449                           ;circle_buffer.h: 127: *start_index = get_plus_index(i, 4);
@@ -3475,7 +3475,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3460  00EF  0084               	movwf	4
   3461  00F0  0825               	movf	??_get_msg_index+1,w
   3462  00F1  295F               	goto	L4
-  3463  00F2                     l2309:	
+  3463  00F2                     l2307:	
   3464                           ;circle_buffer.h: 128: }
   3465                           ;circle_buffer.h: 129: }
   3466                           
@@ -3495,7 +3495,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3478  00FE  0800               	movf	0,w
   3479  00FF  0624               	xorwf	??_get_msg_index,w
   3480  0100  1D03               	skipz
-  3481  0101  2961               	goto	l2319
+  3481  0101  2961               	goto	l2317
   3482  0102  3010               	movlw	low (((_stop_mark+1)-__stringbase)| (0+32768))
   3483  0103  0084               	movwf	4
   3484  0104  120A  118A  2675  120A  118A  	fcall	stringdir
@@ -3512,7 +3512,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3495  0117  1303               	bcf	3,6	;RP1=0, select bank0
   3496  0118  0624               	xorwf	??_get_msg_index,w
   3497  0119  1D03               	skipz
-  3498  011A  2961               	goto	l2319
+  3498  011A  2961               	goto	l2317
   3499  011B  3011               	movlw	low (((_stop_mark+2)-__stringbase)| (0+32768))
   3500  011C  0084               	movwf	4
   3501  011D  120A  118A  2675  120A  118A  	fcall	stringdir
@@ -3531,7 +3531,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3514  0132  1303               	bcf	3,6	;RP1=0, select bank0
   3515  0133  0624               	xorwf	??_get_msg_index,w
   3516  0134  1D03               	skipz
-  3517  0135  2961               	goto	l2319
+  3517  0135  2961               	goto	l2317
   3518                           
   3519                           ;circle_buffer.h: 132: {
   3520                           ;circle_buffer.h: 133: if(*end_index != -1)
@@ -3553,7 +3553,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3536  014D  1303               	bcf	3,6	;RP1=0, select bank0
   3537  014E  0624               	xorwf	??_get_msg_index,w
   3538  014F  1D03               	skipz
-  3539  0150  2961               	goto	l2319
+  3539  0150  2961               	goto	l2317
   3540                           
   3541                           ;circle_buffer.h: 134: {
   3542                           ;circle_buffer.h: 135: *end_index = get_minus_index(i, 1);
@@ -3570,7 +3570,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3553  015F                     L4:	
   3554  015F  1383               	bcf	3,7	;select IRP bank0
   3555  0160  0080               	movwf	0
-  3556  0161                     l2319:	
+  3556  0161                     l2317:	
   3557                           
   3558                           ;circle_buffer.h: 136: }
   3559                           ;circle_buffer.h: 137: }
@@ -3580,7 +3580,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3563  0167  1283               	bcf	3,5	;RP0=0, select bank0
   3564  0168  1303               	bcf	3,6	;RP1=0, select bank0
   3565  0169  286E               	goto	L3
-  3566  016A                     l2323:	
+  3566  016A                     l2321:	
   3567                           
   3568                           ;circle_buffer.h: 140: }
   3569                           ;circle_buffer.h: 142: if(((*start_index != 0xFF) && (*end_index != 0xFF)) == 1)
@@ -3589,12 +3589,12 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3572  016C  1383               	bcf	3,7	;select IRP bank0
   3573  016D  0A00               	incf	0,w
   3574  016E  1903               	btfsc	3,2
-  3575  016F  2986               	goto	l2333
+  3575  016F  2986               	goto	l2331
   3576  0170  0823               	movf	get_msg_index@end_index,w
   3577  0171  0084               	movwf	4
   3578  0172  0A00               	incf	0,w
   3579  0173  1903               	btfsc	3,2
-  3580  0174  2986               	goto	l2333
+  3580  0174  2986               	goto	l2331
   3581                           
   3582                           ;circle_buffer.h: 143: {
   3583                           ;circle_buffer.h: 144: start_index_rcv = get_plus_index(*end_index, 5);
@@ -3615,7 +3615,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3598                           ;circle_buffer.h: 145: return 1;
   3599  0184  3001               	movlw	1
   3600  0185  0008               	return
-  3601  0186                     l2333:	
+  3601  0186                     l2331:	
   3602                           
   3603                           ;circle_buffer.h: 146: }
   3604                           ;circle_buffer.h: 147: return 0;
@@ -3677,13 +3677,13 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3660  0CA9  3020               	movlw	32
   3661  0CAA  0222               	subwf	get_plus_index@index,w
   3662  0CAB  1C03               	skipc
-  3663  0CAC  2CAF               	goto	l2253
+  3663  0CAC  2CAF               	goto	l2251
   3664                           
   3665                           ;circle_buffer.h: 59: {
   3666                           ;circle_buffer.h: 60: index -= 32;
   3667  0CAD  3020               	movlw	32
   3668  0CAE  02A2               	subwf	get_plus_index@index,f
-  3669  0CAF                     l2253:	
+  3669  0CAF                     l2251:	
   3670                           
   3671                           ;circle_buffer.h: 61: }
   3672                           ;circle_buffer.h: 62: return index;
@@ -3739,7 +3739,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3722  0C99  301F               	movlw	31
   3723  0C9A  0620               	xorwf	get_next_index@index,w
   3724  0C9B  1D03               	btfss	3,2
-  3725  0C9C  2C9F               	goto	l2245
+  3725  0C9C  2C9F               	goto	l2243
   3726                           
   3727                           ;circle_buffer.h: 33: {
   3728                           ;circle_buffer.h: 34: return 0;
@@ -3747,7 +3747,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3730                           
   3731                           ;circle_buffer.h: 35: }
   3732  0C9E  0008               	return
-  3733  0C9F                     l2245:	
+  3733  0C9F                     l2243:	
   3734                           
   3735                           ;circle_buffer.h: 36: else
   3736                           ;circle_buffer.h: 37: {
@@ -3805,7 +3805,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3788  0CC4  0820               	movf	get_minus_index@sub,w
   3789  0CC5  0221               	subwf	get_minus_index@index,w
   3790  0CC6  1803               	skipnc
-  3791  0CC7  2CCD               	goto	l2263
+  3791  0CC7  2CCD               	goto	l2261
   3792                           
   3793                           ;circle_buffer.h: 67: {
   3794                           ;circle_buffer.h: 68: return index + 32 - sub;
@@ -3814,7 +3814,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3797  0CCA  0721               	addwf	get_minus_index@index,w
   3798  0CCB  3E20               	addlw	32
   3799  0CCC  0008               	return
-  3800  0CCD                     l2263:	
+  3800  0CCD                     l2261:	
   3801                           
   3802                           ;circle_buffer.h: 69: }
   3803                           ;circle_buffer.h: 70: return index - sub;
@@ -3873,7 +3873,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3856  0CB4  0821               	movf	get_distance@start_index,w
   3857  0CB5  0220               	subwf	get_distance@end_index,w
   3858  0CB6  1803               	skipnc
-  3859  0CB7  2CBD               	goto	l2275
+  3859  0CB7  2CBD               	goto	l2273
   3860                           
   3861                           ;circle_buffer.h: 75: {
   3862                           ;circle_buffer.h: 76: return end_index + 32 - start_index;
@@ -3884,7 +3884,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   3867                           
   3868                           ;circle_buffer.h: 77: }
   3869  0CBC  0008               	return
-  3870  0CBD                     l2275:	
+  3870  0CBD                     l2273:	
   3871                           
   3872                           ;circle_buffer.h: 78: else
   3873                           ;circle_buffer.h: 79: {
@@ -4051,8 +4051,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4031  038D  3A80               	xorlw	128
   4032  038E  3E70               	addlw	-144
   4033  038F  1803               	btfsc	3,0
-  4034  0390  2BA8               	goto	l3353
-  4035  0391                     l3347:	
+  4034  0390  2BA8               	goto	l3351
+  4035  0391                     l3345:	
   4036  0391  1283               	bcf	3,5	;RP0=0, select bank0
   4037  0392  1303               	bcf	3,6	;RP1=0, select bank0
   4038  0393  01A5               	clrf	LCDByte@isdata
@@ -4071,8 +4071,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4051  03A4  3A80               	xorlw	128
   4052  03A5  3E70               	addlw	-144
   4053  03A6  1C03               	skipc
-  4054  03A7  2B91               	goto	l3347
-  4055  03A8                     l3353:	
+  4054  03A7  2B91               	goto	l3345
+  4055  03A8                     l3351:	
   4056  03A8  1283               	bcf	3,5	;RP0=0, select bank0
   4057  03A9  1303               	bcf	3,6	;RP1=0, select bank0
   4058  03AA  01AC               	clrf	LCDGotoXY@y
@@ -4166,7 +4166,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4146  018B  00BD               	movwf	??_sprintf
   4147  018C  083D               	movf	??_sprintf,w
   4148  018D  00C0               	movwf	sprintf@ap
-  4149  018E                     l3227:	
+  4149  018E                     l3225:	
   4150                           ;doprnt.c: 536: while(c = *f++) {
   4151                           
   4152  018E  3001               	movlw	1
@@ -4180,13 +4180,13 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4160  019A  00C5               	movwf	sprintf@c
   4161  019B  0845               	movf	sprintf@c,w
   4162  019C  1903               	btfsc	3,2
-  4163  019D  2A58               	goto	l3229
+  4163  019D  2A58               	goto	l3227
   4164                           
   4165                           ;doprnt.c: 538: if(c != '%')
   4166  019E  3025               	movlw	37
   4167  019F  0645               	xorwf	sprintf@c,w
   4168  01A0  1903               	btfsc	3,2
-  4169  01A1  29AE               	goto	l3183
+  4169  01A1  29AE               	goto	l3181
   4170                           
   4171                           ;doprnt.c: 540: {
   4172                           ;doprnt.c: 541: ((*sp++ = (c)));
@@ -4203,8 +4203,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4183  01AC  0AAF               	incf	sprintf@sp+1,f
   4184                           
   4185                           ;doprnt.c: 542: continue;
-  4186  01AD  298E               	goto	l3227
-  4187  01AE                     l3183:	
+  4186  01AD  298E               	goto	l3225
+  4187  01AE                     l3181:	
   4188                           
   4189                           ;doprnt.c: 543: }
   4190                           ;doprnt.c: 548: flag = 0;
@@ -4243,15 +4243,15 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4223                           ;	Chosen strategy is simple_byte
   4224  01BA  3A00               	xorlw	0	; case 0
   4225  01BB  1903               	skipnz
-  4226  01BC  2A58               	goto	l3229
+  4226  01BC  2A58               	goto	l3227
   4227  01BD  3A64               	xorlw	100	; case 100
   4228  01BE  1903               	skipnz
-  4229  01BF  29C4               	goto	l3189
+  4229  01BF  29C4               	goto	l3187
   4230  01C0  3A0D               	xorlw	13	; case 105
   4231  01C1  1903               	skipnz
-  4232  01C2  29C4               	goto	l3189
-  4233  01C3  298E               	goto	l3227
-  4234  01C4                     l3189:	
+  4232  01C2  29C4               	goto	l3187
+  4233  01C3  298E               	goto	l3225
+  4234  01C4                     l3187:	
   4235                           
   4236                           ;doprnt.c: 1253: {
   4237                           ;doprnt.c: 1259: val = (int)(*(int *)__va_arg((*(int **)ap), (int)0));
@@ -4270,7 +4270,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4250                           
   4251                           ;doprnt.c: 1261: if((int)val < 0) {
   4252  01D0  1FC4               	btfss	sprintf@val+1,7
-  4253  01D1  29DB               	goto	l3199
+  4253  01D1  29DB               	goto	l3197
   4254                           
   4255                           ;doprnt.c: 1262: flag |= 0x03;
   4256  01D2  3003               	movlw	3
@@ -4284,7 +4284,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4264  01D8  0AC3               	incf	sprintf@val,f
   4265  01D9  1903               	skipnz
   4266  01DA  0AC4               	incf	sprintf@val+1,f
-  4267  01DB                     l3199:	
+  4267  01DB                     l3197:	
   4268                           
   4269                           ;doprnt.c: 1264: }
   4270                           ;doprnt.c: 1266: }
@@ -4294,8 +4294,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4274  01DD  3005               	movlw	5
   4275  01DE  0645               	xorwf	sprintf@c,w
   4276  01DF  1903               	btfsc	3,2
-  4277  01E0  2A02               	goto	l3211
-  4278  01E1                     l3205:	
+  4277  01E0  2A02               	goto	l3209
+  4278  01E1                     l3203:	
   4279                           
   4280                           ;doprnt.c: 1306: if(val < dpowers[c])
   4281  01E1  0845               	movf	sprintf@c,w
@@ -4315,7 +4315,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4295  01F7  0243               	subwf	sprintf@val,w
   4296  01F8                     u3335:	
   4297  01F8  1C03               	btfss	3,0
-  4298  01F9  2A02               	goto	l3211
+  4298  01F9  2A02               	goto	l3209
   4299                           
   4300                           ;doprnt.c: 1307: break;
   4301  01FA  3001               	movlw	1
@@ -4325,15 +4325,15 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4305  01FE  3005               	movlw	5
   4306  01FF  0645               	xorwf	sprintf@c,w
   4307  0200  1D03               	btfss	3,2
-  4308  0201  29E1               	goto	l3205
-  4309  0202                     l3211:	
+  4308  0201  29E1               	goto	l3203
+  4309  0202                     l3209:	
   4310                           
   4311                           ;doprnt.c: 1422: {
   4312                           ;doprnt.c: 1438: if(flag & 0x03)
   4313  0202  0841               	movf	sprintf@flag,w
   4314  0203  3903               	andlw	3
   4315  0204  1903               	btfsc	3,2
-  4316  0205  2A11               	goto	l3217
+  4316  0205  2A11               	goto	l3215
   4317                           
   4318                           ;doprnt.c: 1439: ((*sp++ = ('-')));
   4319  0206  082E               	movf	sprintf@sp,w
@@ -4347,7 +4347,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4327  020E  07AE               	addwf	sprintf@sp,f
   4328  020F  1803               	skipnc
   4329  0210  0AAF               	incf	sprintf@sp+1,f
-  4330  0211                     l3217:	
+  4330  0211                     l3215:	
   4331                           
   4332                           ;doprnt.c: 1469: }
   4333                           ;doprnt.c: 1472: prec = c;
@@ -4355,7 +4355,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4335  0212  00BD               	movwf	??_sprintf
   4336  0213  083D               	movf	??_sprintf,w
   4337  0214  00C2               	movwf	sprintf@prec
-  4338  0215                     l3225:	
+  4338  0215                     l3223:	
   4339                           ;doprnt.c: 1474: while(prec--) {
   4340                           
   4341  0215  30FF               	movlw	255
@@ -4364,7 +4364,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4344  0218  07C2               	addwf	sprintf@prec,f
   4345  0219  0A42               	incf	sprintf@prec,w
   4346  021A  1903               	btfsc	3,2
-  4347  021B  298E               	goto	l3227
+  4347  021B  298E               	goto	l3225
   4348                           
   4349                           ;doprnt.c: 1478: {
   4350                           ;doprnt.c: 1489: c = (val / dpowers[prec]) % 10 + '0';
@@ -4414,8 +4414,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4394  0254  07AE               	addwf	sprintf@sp,f
   4395  0255  1803               	skipnc
   4396  0256  0AAF               	incf	sprintf@sp+1,f
-  4397  0257  2A15               	goto	l3225
-  4398  0258                     l3229:	
+  4397  0257  2A15               	goto	l3223
+  4398  0258                     l3227:	
   4399                           ;doprnt.c: 1525: }
   4400                           ;doprnt.c: 1533: }
   4401                           ;doprnt.c: 1535: alldone:
@@ -4478,12 +4478,12 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4458  0ECC  0828               	movf	___lwmod@divisor,w
   4459  0ECD  0429               	iorwf	___lwmod@divisor+1,w
   4460  0ECE  1903               	btfsc	3,2
-  4461  0ECF  2EF9               	goto	l3163
+  4461  0ECF  2EF9               	goto	l3161
   4462  0ED0  01AD               	clrf	___lwmod@counter
   4463  0ED1  0AAD               	incf	___lwmod@counter,f
-  4464  0ED2                     l3153:	
+  4464  0ED2                     l3151:	
   4465  0ED2  1BA9               	btfsc	___lwmod@divisor+1,7
-  4466  0ED3  2EE0               	goto	l3155
+  4466  0ED3  2EE0               	goto	l3153
   4467  0ED4  3001               	movlw	1
   4468  0ED5                     u3245:	
   4469  0ED5  1003               	clrc
@@ -4496,8 +4496,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4476  0EDC  00AC               	movwf	??___lwmod
   4477  0EDD  082C               	movf	??___lwmod,w
   4478  0EDE  07AD               	addwf	___lwmod@counter,f
-  4479  0EDF  2ED2               	goto	l3153
-  4480  0EE0                     l3155:	
+  4479  0EDF  2ED2               	goto	l3151
+  4480  0EE0                     l3153:	
   4481  0EE0  0829               	movf	___lwmod@divisor+1,w
   4482  0EE1  022B               	subwf	___lwmod@dividend+1,w
   4483  0EE2  1D03               	skipz
@@ -4506,14 +4506,14 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4486  0EE5  022A               	subwf	___lwmod@dividend,w
   4487  0EE6                     u3265:	
   4488  0EE6  1C03               	skipc
-  4489  0EE7  2EEE               	goto	l3159
+  4489  0EE7  2EEE               	goto	l3157
   4490  0EE8  0828               	movf	___lwmod@divisor,w
   4491  0EE9  02AA               	subwf	___lwmod@dividend,f
   4492  0EEA  0829               	movf	___lwmod@divisor+1,w
   4493  0EEB  1C03               	skipc
   4494  0EEC  03AB               	decf	___lwmod@dividend+1,f
   4495  0EED  02AB               	subwf	___lwmod@dividend+1,f
-  4496  0EEE                     l3159:	
+  4496  0EEE                     l3157:	
   4497  0EEE  3001               	movlw	1
   4498  0EEF                     u3275:	
   4499  0EEF  1003               	clrc
@@ -4525,8 +4525,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4505  0EF5  3001               	movlw	1
   4506  0EF6  02AD               	subwf	___lwmod@counter,f
   4507  0EF7  1D03               	btfss	3,2
-  4508  0EF8  2EE0               	goto	l3155
-  4509  0EF9                     l3163:	
+  4508  0EF8  2EE0               	goto	l3153
+  4509  0EF9                     l3161:	
   4510  0EF9  082B               	movf	___lwmod@dividend+1,w
   4511  0EFA  00A9               	movwf	?___lwmod+1
   4512  0EFB  082A               	movf	___lwmod@dividend,w
@@ -4581,12 +4581,12 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4561  07C4  0820               	movf	___lwdiv@divisor,w
   4562  07C5  0421               	iorwf	___lwdiv@divisor+1,w
   4563  07C6  1903               	btfsc	3,2
-  4564  07C7  2FF9               	goto	l3141
+  4564  07C7  2FF9               	goto	l3139
   4565  07C8  01A5               	clrf	___lwdiv@counter
   4566  07C9  0AA5               	incf	___lwdiv@counter,f
-  4567  07CA                     l3129:	
+  4567  07CA                     l3127:	
   4568  07CA  1BA1               	btfsc	___lwdiv@divisor+1,7
-  4569  07CB  2FD8               	goto	l3131
+  4569  07CB  2FD8               	goto	l3129
   4570  07CC  3001               	movlw	1
   4571  07CD                     u3175:	
   4572  07CD  1003               	clrc
@@ -4599,8 +4599,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4579  07D4  00A4               	movwf	??___lwdiv
   4580  07D5  0824               	movf	??___lwdiv,w
   4581  07D6  07A5               	addwf	___lwdiv@counter,f
-  4582  07D7  2FCA               	goto	l3129
-  4583  07D8                     l3131:	
+  4582  07D7  2FCA               	goto	l3127
+  4583  07D8                     l3129:	
   4584  07D8  3001               	movlw	1
   4585  07D9                     u3195:	
   4586  07D9  1003               	clrc
@@ -4617,7 +4617,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4597  07E4  0222               	subwf	___lwdiv@dividend,w
   4598  07E5                     u3205:	
   4599  07E5  1C03               	skipc
-  4600  07E6  2FEE               	goto	l3137
+  4600  07E6  2FEE               	goto	l3135
   4601  07E7  0820               	movf	___lwdiv@divisor,w
   4602  07E8  02A2               	subwf	___lwdiv@dividend,f
   4603  07E9  0821               	movf	___lwdiv@divisor+1,w
@@ -4625,7 +4625,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4605  07EB  03A3               	decf	___lwdiv@dividend+1,f
   4606  07EC  02A3               	subwf	___lwdiv@dividend+1,f
   4607  07ED  1426               	bsf	___lwdiv@quotient,0
-  4608  07EE                     l3137:	
+  4608  07EE                     l3135:	
   4609  07EE  3001               	movlw	1
   4610  07EF                     u3215:	
   4611  07EF  1003               	clrc
@@ -4637,8 +4637,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4617  07F5  3001               	movlw	1
   4618  07F6  02A5               	subwf	___lwdiv@counter,f
   4619  07F7  1D03               	btfss	3,2
-  4620  07F8  2FD8               	goto	l3131
-  4621  07F9                     l3141:	
+  4620  07F8  2FD8               	goto	l3129
+  4621  07F9                     l3139:	
   4622  07F9  0827               	movf	___lwdiv@quotient+1,w
   4623  07FA  00A1               	movwf	?___lwdiv+1
   4624  07FB  0826               	movf	___lwdiv@quotient,w
@@ -4703,7 +4703,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4683  0609  1283               	bcf	3,5	;RP0=0, select bank0
   4684  060A  1303               	bcf	3,6	;RP1=0, select bank0
   4685  060B  01AF               	clrf	LCDWriteString@count
-  4686  060C                     l3277:	
+  4686  060C                     l3275:	
   4687                           ;lcd_hd44780_pic16.c: 286: while(*msg!='\0')
   4688                           
   4689  060C  082D               	movf	LCDWriteString@msg+1,w
@@ -4713,7 +4713,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4693  0610  120A  118A  266B  120A  118A  	fcall	stringtab
   4694  0615  3A00               	xorlw	0
   4695  0616  1903               	btfsc	3,2
-  4696  0617  2E69               	goto	l3279
+  4696  0617  2E69               	goto	l3277
   4697                           
   4698                           ;lcd_hd44780_pic16.c: 287: {
   4699                           ;lcd_hd44780_pic16.c: 289: if(*msg=='%')
@@ -4724,7 +4724,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4704  061C  120A  118A  266B  120A  118A  	fcall	stringtab
   4705  0621  3A25               	xorlw	37
   4706  0622  1D03               	skipz
-  4707  0623  2E4E               	goto	l3271
+  4707  0623  2E4E               	goto	l3269
   4708                           
   4709                           ;lcd_hd44780_pic16.c: 290: {
   4710                           ;lcd_hd44780_pic16.c: 291: msg++;
@@ -4746,12 +4746,12 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4726                           
   4727                           ;lcd_hd44780_pic16.c: 294: if(cc>=0 && cc<=7)
   4728  0635  1BB0               	btfsc	LCDWriteString@cc,7
-  4729  0636  2E40               	goto	l3263
+  4729  0636  2E40               	goto	l3261
   4730  0637  0830               	movf	LCDWriteString@cc,w
   4731  0638  3A80               	xorlw	128
   4732  0639  3E78               	addlw	-136
   4733  063A  1803               	skipnc
-  4734  063B  2E40               	goto	l3263
+  4734  063B  2E40               	goto	l3261
   4735                           
   4736                           ;lcd_hd44780_pic16.c: 295: {
   4737                           ;lcd_hd44780_pic16.c: 296: (LCDByte(cc,1));
@@ -4759,7 +4759,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4739  063D  0AA5               	incf	LCDByte@isdata,f
   4740  063E  0830               	movf	LCDWriteString@cc,w
   4741  063F  2E59               	goto	L5
-  4742  0640                     l3263:	
+  4742  0640                     l3261:	
   4743                           ;lcd_hd44780_pic16.c: 298: }
   4744                           
   4745                           ;lcd_hd44780_pic16.c: 297: count++;
@@ -4780,7 +4780,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4760  064B  00AE               	movwf	??_LCDWriteString
   4761  064C  082E               	movf	??_LCDWriteString,w
   4762  064D  07AF               	addwf	LCDWriteString@count,f
-  4763  064E                     l3271:	
+  4763  064E                     l3269:	
   4764                           ;lcd_hd44780_pic16.c: 305: }
   4765                           ;lcd_hd44780_pic16.c: 306: }
   4766                           
@@ -4816,8 +4816,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4796  0665  07AC               	addwf	LCDWriteString@msg,f
   4797  0666  1803               	skipnc
   4798  0667  0AAD               	incf	LCDWriteString@msg+1,f
-  4799  0668  2E0C               	goto	l3277
-  4800  0669                     l3279:	
+  4799  0668  2E0C               	goto	l3275
+  4800  0669                     l3277:	
   4801                           
   4802                           ;lcd_hd44780_pic16.c: 313: }
   4803                           ;lcd_hd44780_pic16.c: 315: return count;
@@ -4883,8 +4883,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4863  0DF2  022E               	subwf	LCDGotoXY@x,w
   4864  0DF3  1803               	btfsc	3,0
   4865  0DF4  0008               	return
-  4866  0DF5  2DFF               	goto	l3243
-  4867  0DF6                     l351:	
+  4866  0DF5  2DFF               	goto	l3241
+  4867  0DF6                     l328:	
   4868                           ;lcd_hd44780_pic16.c: 377: case 1:
   4869                           
   4870                           ;lcd_hd44780_pic16.c: 376: break;
@@ -4899,15 +4899,15 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4879  0DF6  172E               	bsf	LCDGotoXY@x,6
   4880                           
   4881                           ;lcd_hd44780_pic16.c: 379: break;
-  4882  0DF7  2E0D               	goto	l350
-  4883  0DF8                     l3237:	
+  4882  0DF7  2E0D               	goto	l327
+  4883  0DF8                     l3235:	
   4884                           ;lcd_hd44780_pic16.c: 380: case 2:
   4885                           
   4886                           
   4887                           ;lcd_hd44780_pic16.c: 381: x+=0x14;
   4888  0DF8  3014               	movlw	20
   4889  0DF9  2DFB               	goto	L6
-  4890  0DFA                     l3239:	
+  4890  0DFA                     l3237:	
   4891                           ;lcd_hd44780_pic16.c: 383: case 3:
   4892                           
   4893                           ;lcd_hd44780_pic16.c: 382: break;
@@ -4923,8 +4923,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4903                           ;lcd_hd44780_pic16.c: 386: }
   4904                           
   4905                           ;lcd_hd44780_pic16.c: 385: break;
-  4906  0DFE  2E0D               	goto	l350
-  4907  0DFF                     l3243:	
+  4906  0DFE  2E0D               	goto	l327
+  4907  0DFF                     l3241:	
   4908  0DFF  082C               	movf	LCDGotoXY@y,w
   4909                           
   4910                           ; Switch size 1, requested type "space"
@@ -4937,18 +4937,18 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   4917                           ;	Chosen strategy is simple_byte
   4918  0E00  3A00               	xorlw	0	; case 0
   4919  0E01  1903               	skipnz
-  4920  0E02  2E0D               	goto	l350
+  4920  0E02  2E0D               	goto	l327
   4921  0E03  3A01               	xorlw	1	; case 1
   4922  0E04  1903               	skipnz
-  4923  0E05  2DF6               	goto	l351
+  4923  0E05  2DF6               	goto	l328
   4924  0E06  3A03               	xorlw	3	; case 2
   4925  0E07  1903               	skipnz
-  4926  0E08  2DF8               	goto	l3237
+  4926  0E08  2DF8               	goto	l3235
   4927  0E09  3A01               	xorlw	1	; case 3
   4928  0E0A  1903               	skipnz
-  4929  0E0B  2DFA               	goto	l3239
-  4930  0E0C  2E0D               	goto	l350
-  4931  0E0D                     l350:	
+  4929  0E0B  2DFA               	goto	l3237
+  4930  0E0C  2E0D               	goto	l327
+  4931  0E0D                     l327:	
   4932                           
   4933                           ;lcd_hd44780_pic16.c: 408: x|=0b10000000;
   4934  0E0D  17AE               	bsf	LCDGotoXY@x,7
@@ -5349,17 +5349,17 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   5329                           ;lcd_hd44780_pic16.c: 95: if(isdata==0)
   5330  06D7  0825               	movf	LCDByte@isdata,w
   5331  06D8  1D03               	btfss	3,2
-  5332  06D9  2EDC               	goto	l301
+  5332  06D9  2EDC               	goto	l278
   5333                           
   5334                           ;lcd_hd44780_pic16.c: 96: (RC1=0);
   5335  06DA  1087               	bcf	7,1	;volatile
-  5336  06DB  2EDD               	goto	l302
-  5337  06DC                     l301:	
+  5336  06DB  2EDD               	goto	l279
+  5337  06DC                     l278:	
   5338                           
   5339                           ;lcd_hd44780_pic16.c: 97: else
   5340                           ;lcd_hd44780_pic16.c: 98: (RC1=1);
   5341  06DC  1487               	bsf	7,1	;volatile
-  5342  06DD                     l302:	
+  5342  06DD                     l279:	
   5343                           
   5344                           ;lcd_hd44780_pic16.c: 100: _delay((unsigned long)((0.5)*(20000000/4000000.0)));
   5345  06DD  2EDE               	nop2	;2 cycle nop
@@ -5517,7 +5517,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   5497                           
   5498                           ;lcd_hd44780_pic16.c: 150: _delay((unsigned long)((0.5)*(20000000/4000000.0)));
   5499  05AE  2DAF               	nop2	;2 cycle nop
-  5500  05AF                     l3031:	
+  5500  05AF                     l3029:	
   5501                           ;lcd_hd44780_pic16.c: 153: do
   5502                           
   5503                           
@@ -5639,7 +5639,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   5619  05FD  1303               	bcf	3,6	;RP1=0, select bank0
   5620  05FE  0822               	movf	LCDBusyLoop@busy,w
   5621  05FF  1D03               	btfss	3,2
-  5622  0600  2DAF               	goto	l3031
+  5622  0600  2DAF               	goto	l3029
   5623                           
   5624                           ;lcd_hd44780_pic16.c: 186: (RC2=0);
   5625  0601  1107               	bcf	7,2	;volatile
@@ -6151,7 +6151,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   6131                           
   6132                           ;do_am.c: 99: if(INTCONbits.INTF == 1)
   6133  0F32  1C8B               	btfss	11,1	;volatile
-  6134  0F33  2F5A               	goto	i1l274
+  6134  0F33  2F5A               	goto	i1l251
   6135                           
   6136                           ;do_am.c: 100: {
   6137                           ;do_am.c: 101: { uint8_t value; { value = 0; BITbits_t *byte = (BITbits_t *)&value; byte
@@ -6192,7 +6192,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   6171                           
   6172                           ;do_am.c: 102: INTCONbits.INTF = 0;
   6173  0F59  108B               	bcf	11,1	;volatile
-  6174  0F5A                     i1l274:	
+  6174  0F5A                     i1l251:	
   6175  0F5A  0879               	movf	??_ISR+4,w
   6176  0F5B  1283               	bcf	3,5	;RP0=0, select bank0
   6177  0F5C  1303               	bcf	3,6	;RP1=0, select bank0
@@ -6290,7 +6290,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   6266  0461  00F4               	movwf	receive_input@byte2
   6267  0462  037D               	decf	_low_half_rcv,w
   6268  0463  1D03               	btfss	3,2
-  6269  0464  2C92               	goto	i1l2443
+  6269  0464  2C92               	goto	i1l2433
   6270  0465  0874               	movf	receive_input@byte2,w
   6271  0466  0084               	movwf	4
   6272  0467  1003               	clrc
@@ -6335,8 +6335,8 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   6311  048E  1180               	bcf	0,3
   6312  048F  1803               	btfsc	3,0
   6313  0490  1580               	bsf	0,3
-  6314  0491  2CBE               	goto	i1l2445
-  6315  0492                     i1l2443:	
+  6314  0491  2CBE               	goto	i1l2435
+  6315  0492                     i1l2433:	
   6316  0492  0874               	movf	receive_input@byte2,w
   6317  0493  0084               	movwf	4
   6318  0494  1003               	clrc
@@ -6381,12 +6381,12 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   6357  04BB  1380               	bcf	0,7
   6358  04BC  1803               	btfsc	3,0
   6359  04BD  1780               	bsf	0,7
-  6360  04BE                     i1l2445:	
+  6360  04BE                     i1l2435:	
   6361                           
   6362                           ;circle_buffer.h: 44: if(low_half_rcv == 1)
   6363  04BE  037D               	decf	_low_half_rcv,w
   6364  04BF  1D03               	btfss	3,2
-  6365  04C0  2CC3               	goto	i1l138
+  6365  04C0  2CC3               	goto	i1l115
   6366                           
   6367                           ;circle_buffer.h: 45: {
   6368                           ;circle_buffer.h: 46: low_half_rcv = 0;
@@ -6394,7 +6394,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   6370                           
   6371                           ;circle_buffer.h: 47: }
   6372  04C2  0008               	return
-  6373  04C3                     i1l138:	
+  6373  04C3                     i1l115:	
   6374                           
   6375                           ;circle_buffer.h: 48: else
   6376                           ;circle_buffer.h: 49: {
@@ -6456,7 +6456,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   6432  0C8D  301F               	movlw	31
   6433  0C8E  0670               	xorwf	i1get_next_index@index,w
   6434  0C8F  1D03               	btfss	3,2
-  6435  0C90  2C93               	goto	i1l2423
+  6435  0C90  2C93               	goto	i1l2421
   6436                           
   6437                           ;circle_buffer.h: 33: {
   6438                           ;circle_buffer.h: 34: return 0;
@@ -6464,7 +6464,7 @@ Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110
   6440                           
   6441                           ;circle_buffer.h: 35: }
   6442  0C92  0008               	return
-  6443  0C93                     i1l2423:	
+  6443  0C93                     i1l2421:	
   6444                           
   6445                           ;circle_buffer.h: 36: else
   6446                           ;circle_buffer.h: 37: {
@@ -6535,7 +6535,7 @@ Pointer List with Targets:
     sprintf@ap	PTR void [1] size(1) Largest target is 2
 		 -> ?_sprintf(BANK0[2]), 
 
-    S862$name	PTR unsigned char  size(1) Largest target is 5
+    S760$name	PTR unsigned char  size(1) Largest target is 5
 		 -> STR_18(CODE[5]), STR_17(CODE[5]), STR_16(CODE[5]), STR_15(CODE[5]), 
 
     g_menu.items.name	PTR unsigned char  size(1) Largest target is 5
@@ -6969,7 +6969,7 @@ EEDATA             100      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V1.37 build -260352376 
-Symbol Table                                                                                   Sat Jul 09 02:18:01 2016
+Symbol Table                                                                                   Mon Aug 22 21:27:20 2016
 
                        ?_LCDBusyLoop 0070                           __CFG_CP$ON 0000  
                                   pc 0002                       ?_get_msg_index 0023  
@@ -6977,9 +6977,9 @@ Symbol Table                                                                    
                         __CFG_CPD$ON 0000                                   _WR 0C61  
                                  fsr 0004   __size_of_create_HEART_BEAT_RSP_CMD 002E  
                      create_cmd@pmsg 0038                      ?_get_next_index 0070  
-                        __CFG_LVP$ON 0000                                  l301 06DC  
-                                l302 06DD                                  l236 0D7F  
-                                l350 0E0D                                  l351 0DF6  
+                        __CFG_LVP$ON 0000                                  l213 0D7F  
+                                l327 0E0D                                  l328 0DF6  
+                                l278 06DC                                  l279 06DD  
                                 l457 0D86   __end_of_extract_HEART_BEAT_RQT_CMD 0CE2  
          _extract_HEART_BEAT_RQT_CMD 0CD1                                  _GIE 005F  
                                 _RA0 0028                                  _RA1 0029  
@@ -6995,32 +6995,32 @@ Symbol Table                                                                    
                         get_msg@pmsg 002C                          get_msg@pstr 002A  
                     create_cmd@pconn 003F                      __end_of_LCDByte 071A  
                     __end_of_LCDInit 05A1                                 ?_ISR 0070  
-                        LCDByte@temp 002B                                 l3003 041F  
-                               l3005 0451                                 l3031 05AF  
-                               l2401 0FB1                                 l3131 07D8  
-                               l3211 0202                                 l2323 016A  
-                               l3019 0E1F                                 l3141 07F9  
-                               l3205 01E1                                 l2245 0C9F  
-                               l2253 0CAF                                 l2333 0186  
-                               l2309 00F2                                 l2263 0CCD  
-                               l2319 0161                                 l3137 07EE  
-                               l3129 07CA                                 l3153 0ED2  
-                               l3225 0215                                 l3217 0211  
-                               l3313 030D                                 l3243 0DFF  
-                               l3155 0EE0                                 l3163 0EF9  
-                               l3227 018E                                 l2275 0CBD  
-                               l2291 005A                                 l3307 02FA  
-                               l3237 0DF8                                 l3229 0258  
-                               l3173 0D44                                 l3239 0DFA  
-                               l3263 0640                                 l3271 064E  
-                               l3159 0EEE                                 l3183 01AE  
-                               l3353 03A8                                 l2297 006D  
-                               l3361 0D6C                                 l3347 0391  
-                               l3611 0EC4                                 l3277 060C  
-                               l3189 01C4                                 l2397 0FAF  
-                               l3365 0D73                                 l3279 0669  
-                               l3199 01DB                        ?_LoadMenuItem 0070  
-                               l2981 0531                                 l2979 0501  
+                        LCDByte@temp 002B                                 l3001 041F  
+                               l3003 0451                                 l2321 016A  
+                               l3017 0E1F                                 l3203 01E1  
+                               l2243 0C9F                                 l2251 0CAF  
+                               l2331 0186                                 l2307 00F2  
+                               l3029 05AF                                 l2261 0CCD  
+                               l2317 0161                                 l3135 07EE  
+                               l3127 07CA                                 l3151 0ED2  
+                               l3223 0215                                 l3215 0211  
+                               l3311 030D                                 l3241 0DFF  
+                               l3129 07D8                                 l3153 0EE0  
+                               l3161 0EF9                                 l3209 0202  
+                               l3225 018E                                 l2273 0CBD  
+                               l3305 02FA                                 l3235 0DF8  
+                               l3139 07F9                                 l3227 0258  
+                               l3171 0D44                                 l3237 0DFA  
+                               l3261 0640                                 l3157 0EEE  
+                               l3181 01AE                                 l3351 03A8  
+                               l2295 006D                                 l3345 0391  
+                               l2289 005A                                 l3275 060C  
+                               l3187 01C4                                 l2395 0FAF  
+                               l3363 0D73                                 l3277 0669  
+                               l3269 064E                                 l3197 01DB  
+                               l2399 0FB1                                 l3359 0D6C  
+                               l3609 0EC4                        ?_LoadMenuItem 0070  
+                               l2977 0501                                 l2979 0531  
                        __CFG_WDTE$ON 0000                                 u3000 0516  
                                u3020 0522                                 u3014 0519  
                                u3040 052E                                 u2081 0D84  
@@ -7055,8 +7055,8 @@ Symbol Table                                                                    
                               STR_15 06AF                                STR_16 06B4  
                               STR_17 06B9                                STR_18 06BE  
                               _CARRY 0018                         LCDInit@style 002E  
-                    __end_of___lwdiv 07FE                                i1l138 04C3  
-                    __end_of___lwmod 0EFE                                i1l274 0F5A  
+                    __end_of___lwdiv 07FE                                i1l115 04C3  
+                              i1l251 0F5A                      __end_of___lwmod 0EFE  
   __end_of_create_HEART_BEAT_RSP_CMD 0E98                                _PORTC 0007  
                               _TRISC 0087                      __end_of_get_msg 0FB3  
                     __end_of_compose 07C0                      __end_of_dpowers 0685  
@@ -7079,8 +7079,8 @@ Symbol Table                                                                    
                           ??_LCDInit 002C                         compose@msgid 002B  
                              _ADRESH 001E                               _ADRESL 009E  
                              _EEDATA 010C                               _EECON1 018C  
-                             _EECON2 018D                               i1l2423 0C93  
-                             i1l2443 0492                               i1l2445 04BE  
+                             _EECON2 018D                               i1l2421 0C93  
+                             i1l2433 0492                               i1l2435 04BE  
                        ?_send_string 0027                               _IOInit 0FB3  
                    i1_get_next_index 0C8C                       send_string@len 0029  
                      send_string@str 0027                       __CFG_PWRTE$OFF 0000  

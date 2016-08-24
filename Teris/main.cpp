@@ -1,7 +1,7 @@
 #define WINDOW_BASE
 
-#include <stdint.h>
 #ifdef WINDOW_BASE
+#include <stdint.h>
 #include <iostream>
 #include <windows.h>
 #include <time.h>
@@ -9,11 +9,82 @@
 #include <conio.h>
 #include <cstdlib>
 #include <stdlib.h>
+#else
+#include <xc.h>
+#include <string.h>
+#include <pic16f886.h>
+#include "usart_pic16.h"
+#include "myutils.h"
 #endif
 
 
 #ifdef WINDOW_BASE
 using namespace std;
+#else
+// CONFIG1
+#pragma config FOSC = INTRC_NOCLKOUT// Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
+#pragma config WDTE = ON        // Watchdog Timer Enable bit (WDT enabled)
+#pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
+#pragma config MCLRE = ON       // RE3/MCLR pin function select bit (RE3/MCLR pin function is MCLR)
+#pragma config CP = ON          // Code Protection bit (Program memory code protection is enabled)
+#pragma config CPD = ON         // Data Code Protection bit (Data memory code protection is enabled)
+#pragma config BOREN = ON       // Brown Out Reset Selection bits (BOR enabled)
+#pragma config IESO = ON        // Internal External Switchover bit (Internal/External Switchover mode is enabled)
+#pragma config FCMEN = ON       // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is enabled)
+#pragma config LVP = ON         // Low Voltage Programming Enable bit (RB3/PGM pin has PGM function, low voltage programming enabled)
+
+// CONFIG2
+#pragma config BOR4V = BOR21V   // Brown-out Reset Selection bit (Brown-out Reset set to 2.1V)
+#pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
+
+
+#define NULL 0
+
+#define IOCB_ENABLE      IOCBbits.IOCB4 = 1
+#define IOCB_CLEAR       IOCBbits.IOCB4 = 0
+#define INTB_ENABLE      INTCONbits.RBIE = 1
+#define INTB_FLAG        INTCONbits.RBIF
+#define INT_ENABLE       INTCONbits.INTE = 1
+#define GLB_INT_ENABLE   INTCONbits.GIE
+
+//LM35 is connected to Port A bit 2
+
+#define TUNE_BUTTON_PORT      B
+#define TUNE_BUTTON_POS       4
+#define TUNE_BUTTON_PIN       PIN(TUNE_BUTTON_PORT, TUNE_BUTTON_POS)
+
+#define TUNE_BUTTON                     PORTBIT(TUNE_BUTTON_PIN)
+#define TUNE_BUTTON_TRIS                TRISBIT(TUNE_BUTTON_PIN)
+
+#define TRIGGER_DOWN_OUT_PORT      A
+#define TRIGGER_DOWN_OUT_POS       1
+#define TRIGGER_DOWN_OUT_PIN       PIN(TRIGGER_DOWN_OUT_PORT, TRIGGER_DOWN_OUT_POS)
+#define TRIGGER_DOWN_OUT           PORTBIT(TRIGGER_DOWN_OUT_PIN)
+
+#define TRIGGER_UP_OUT_PORT      A
+#define TRIGGER_UP_OUT_POS       0
+#define TRIGGER_UP_OUT_PIN       PIN(TRIGGER_UP_OUT_PORT, TRIGGER_UP_OUT_POS)
+#define TRIGGER_UP_OUT           PORTBIT(TRIGGER_UP_OUT_PIN)
+
+
+#define TUNE_BUTTON_RAISING_EDGE        IOCPBIT(TUNE_BUTTON_PIN)
+#define TUNE_BUTTON_IOC_FLAG            IOCFBIT(TUNE_BUTTON_PIN)
+
+#define DATA_PORT         A
+#define DATA_POS          3
+#define DATA_PIN          PIN(DATA_PORT, DATA_POS)
+#define DATA              PORTBIT(DATA_PIN)
+
+#define LOAD_PORT         A
+#define LOAD_POS          2
+#define LOAD_PIN          PIN(LOAD_PORT, LOAD_POS)
+#define LOAD              PORTBIT(LOAD_PIN)
+
+#define CLK_PORT          A
+#define CLK_POS           1
+#define CLK_PIN           PIN(CLK_PORT, CLK_POS)
+#define CLK               PORTBIT(CLK_PIN)
+
 #endif
 
 #define MATRIX44_COLUMN_MAX 4
@@ -77,7 +148,11 @@ CHARACTER_INFO g_char_info[CHARACTER_MAX] =
 };
 uint8_t g_char_info_index;
 MATRIX44* g_cur_matrix44;
+#ifdef WINDOW_BASE
 MATRIX44 g_matrix44[] =
+#else
+const MATRIX44 g_matrix44[] =
+#endif
 {
 ////////I/////////////
 {0,	1,	0,	0,
@@ -196,14 +271,12 @@ MATRIX88 g_matrix88 =
         0,  0,  0,  0,  0,  0,  0,  0,
         0,  0,  0,  0,  0,  0,  0,  0,
 };
-MATRIX7219 g_matrix7219;
 int8_t cur_x = 2;
 int8_t cur_y = 0;    
 
 #ifdef WINDOW_BASE
 FILE *fp;
 #endif
-
 
 #ifdef WINDOW_BASE
 void printf_MATRIX44(int8_t x, int8_t y, const MATRIX44* matrix)
@@ -251,46 +324,84 @@ void printf_all_MATRIX44()
         }
     }            
 }     
-void printf_MATRIX88(const MATRIX88* matrix)
+#else
+void SPI1_write(uint8_t data) 
 {
-    fprintf(fp, "<<<<<<<<<<<<<<<<<<<<MATRIX88\n");
-    for(uint8_t row = 0; row < MATRIX88_ROW_MAX; row++)
+    uint8_t mask = 0b10000000;
+    for(uint8_t i = 0; i < 8; i++)
     {
-        for(uint8_t col = 0; col < MATRIX88_COLUMN_MAX; col++)
+        if((data & mask) > 0)
         {
-            if(matrix->data[row][col] == 1)
-            {
-                fprintf(fp, "X");
-            }
-            else
-            {
-                fprintf(fp, "_");
-            }
+            DATA = 1;
+//            USARTWriteLine("1");
         }
-        fprintf(fp, "\n");
-    }
-    fprintf(fp, ">>>>>>>>>>>>>>>>>>>>\n");
-}
-void printf_console_MATRIX88(const MATRIX88* matrix)
-{
-    printf("<<<<<<<<<<<<<<<<<<<<\n");
-    for(uint8_t row = 0; row < MATRIX88_ROW_MAX; row++)
-    {
-        for(uint8_t col = 0; col < MATRIX88_COLUMN_MAX; col++)
+        else
         {
-            if(matrix->data[row][col] == 1)
-            {
-                printf("*");
-            }
-            else
-            {
-                printf("_");
-            }
+            DATA = 0;
+//            USARTWriteLine("0");
         }
-        printf("\n");
+        mask >>= 1;
+        CLK = 1;
+        __delay_us(10);
+        CLK = 0;
+        __delay_us(10);
+        
     }
-    printf(">>>>>>>>>>>>>>>>>>>>\n");
 }
+// Serial 8x8 Matrix Display connections.
+//sbit LOAD at RC0_bit;
+//sbit LOAD_Direction at TRISC0_bit;
+// End Serial 8x8 Matrix Display connections.
+
+// Here we set the configuration of max7219.
+void max7219_init1() {
+    LOAD = 0; // SELECT MAX
+    SPI1_write(0x09); // BCD mode for digit decoding
+    SPI1_write(0x00);
+    LOAD = 1; // DESELECT MAX
+
+    LOAD = 0; // SELECT MAX
+    SPI1_write(0x0A);
+    SPI1_write(0x0F); // Segment luminosity intensity
+    LOAD = 1; // DESELECT MAX
+
+    LOAD = 0; // SELECT MAX
+    SPI1_write(0x0B);
+    SPI1_write(0x07); // Display refresh
+    LOAD = 1; // DESELECT MAX
+
+    LOAD = 0; // SELECT MAX
+    SPI1_write(0x0C);
+    SPI1_write(0x01); // Turn on the display
+    LOAD = 1; // DESELECT MAX
+
+    LOAD = 0; // SELECT MAX
+    SPI1_write(0x00);
+    SPI1_write(0xFF); // No test
+    LOAD = 1; // DESELECT MAX
+}
+
+// This is write Byte function.
+
+void Write_Byte(uint8_t myColumn, uint8_t myValue) {
+    LOAD = 0; // select max7219.
+    SPI1_write(myColumn); // send myColumn value to max7219 (digit place).
+    SPI1_write(myValue); // send myValue value to max7219 (digit place).
+    LOAD = 1; // deselect max7219.
+}
+
+// This is clear matrix function.
+
+void Clear_Matrix(void) {
+    uint8_t x;
+
+    for (x = 1; x < 9; x++) {
+        Write_Byte(x, 0x00);
+    }
+}
+
+#endif
+#ifdef WINDOW_BASE
 void printf_MATRIX7219(const MATRIX7219* matrix)
 {
     uint8_t mask = 0x80;
@@ -314,8 +425,17 @@ void printf_MATRIX7219(const MATRIX7219* matrix)
     }
     fprintf(fp, ">>>>>>>>>>>>>>>>>>>>\n");
 }
+#else
+void printf_MATRIX7219(const MATRIX7219* matrix)
+{
+    uint8_t col;
+
+    for (col = 0; col < MATRIX88_COLUMN_MAX; col++) 
+    {
+        Write_Byte(col + 1, matrix->col[col]);
+    }
+}
 #endif
-#ifndef WINDOW_BASE
 void MATRIX88_to_MATRIX7219(const MATRIX88* matrix88, MATRIX7219* matrix7219)
 {
     uint8_t mask = 0x80;
@@ -334,8 +454,58 @@ void MATRIX88_to_MATRIX7219(const MATRIX88* matrix88, MATRIX7219* matrix7219)
         }
     }
 }
-#endif
 
+#ifdef WINDOW_BASE
+void printf_MATRIX88(const MATRIX88* matrix)
+{
+    fprintf(fp, "<<<<<<<<<<<<<<<<<<<<MATRIX88\n");
+    for(uint8_t row = 0; row < MATRIX88_ROW_MAX; row++)
+    {
+        for(uint8_t col = 0; col < MATRIX88_COLUMN_MAX; col++)
+        {
+            if(matrix->data[row][col] == 1)
+            {
+                fprintf(fp, "X");
+            }
+            else
+            {
+                fprintf(fp, "_");
+            }
+        }
+        fprintf(fp, "\n");
+    }
+    fprintf(fp, ">>>>>>>>>>>>>>>>>>>>\n");
+}
+#else
+void printf_MATRIX88(const MATRIX88* matrix88)
+{
+    MATRIX7219 matrix7219;
+    MATRIX88_to_MATRIX7219(matrix88, &matrix7219);
+    printf_MATRIX7219(&matrix7219);
+}
+#endif
+#ifdef WINDOW_BASE
+void printf_console_MATRIX88(const MATRIX88* matrix)
+{
+    printf("<<<<<<<<<<<<<<<<<<<<\n");
+    for(uint8_t row = 0; row < MATRIX88_ROW_MAX; row++)
+    {
+        for(uint8_t col = 0; col < MATRIX88_COLUMN_MAX; col++)
+        {
+            if(matrix->data[row][col] == 1)
+            {
+                printf("*");
+            }
+            else
+            {
+                printf("_");
+            }
+        }
+        printf("\n");
+    }
+    printf(">>>>>>>>>>>>>>>>>>>>\n");
+}
+#endif
 uint8_t is_row_full(const MATRIX88* matrix, uint8_t row)
 {
     for(uint8_t col = 0; col < MATRIX88_COLUMN_MAX; col++)
@@ -355,7 +525,13 @@ void delete_row(MATRIX88* matrix, uint8_t row)
         {
             if(i > 0)
             {
-                memcpy(matrix->data[i], matrix->data[i - 1], MATRIX88_COLUMN_MAX*sizeof(uint8_t));
+#ifdef WINDOW_BASE
+    size_t len;
+#else
+    register size_t len;
+#endif                
+                len = MATRIX88_COLUMN_MAX*sizeof(uint8_t);
+                memcpy(matrix->data[i], matrix->data[i - 1], len);
             }
             else
             {
@@ -595,7 +771,13 @@ void merge(int8_t x, int8_t y, const MATRIX44* matrix44, MATRIX88* matrix88)
 }     
 void merge1(int8_t x, int8_t y, const MATRIX44* matrix44, const MATRIX88* matrix88_in, MATRIX88* matrix88_out)
 {
-    memcpy(matrix88_out, matrix88_in, sizeof(MATRIX88));
+#ifdef WINDOW_BASE
+    size_t len;
+#else
+    register size_t len;
+#endif    
+    len = sizeof(MATRIX88);
+    memcpy(matrix88_out, matrix88_in, len);
 
     for(uint8_t row = 0; row < MATRIX44_ROW_MAX; row++)
     {
@@ -1086,8 +1268,12 @@ void test_get_holes_after_merge()
 }
 #endif
 
+
+// Here we have the main function.
+
 int main(int argc, char *argv[])
 {
+    uint8_t hit_res;
 #ifdef WINDOW_BASE
     //////////////////////////////////////////////
     fp = fopen("debug.txt", "w");
@@ -1110,15 +1296,32 @@ int main(int argc, char *argv[])
 //    test_get_holes_after_merge();
 //    printf_all_MATRIX44();
 //    goto __exit;
-    uint8_t hit_res;
     srand(time(NULL));
+#else
+    IO_OUTPUT(DATA_PIN);
+
+    IO_OUTPUT(LOAD_PIN);
+
+    IO_OUTPUT(CLK_PIN);
+    
+    ANSELbits.ANS1 = 0;
+    ANSELbits.ANS2 = 0;
+    ANSELbits.ANS3 = 0;
+    LOAD = 1;
+    CLK = 0;
+    
+//    //Initialize USART with baud rate 9600
+//    USARTInit(9600);
+
+    max7219_init1(); // initialize  max7219.
+	
 #endif
 
     while(1)
     {
         cur_y = 0;
         cur_x = 2, cur_y = 0;
-        g_char_info_index = char_info_index_rand();
+        g_char_info_index = 0;//char_info_index_rand();
 
 #ifdef WINDOW_BASE
         fprintf(fp, "g_char_info_index = %d\n", g_char_info_index);
@@ -1148,9 +1351,9 @@ int main(int argc, char *argv[])
 #ifdef WINDOW_BASE
             fprintf(fp, "printf_console_MATRIX88\n");
             printf_console_MATRIX88(&g_matrix88);
-            printf_MATRIX88(&g_matrix88);
 #else
 #endif
+            printf_MATRIX88(&g_matrix88);
             if(hit_res == 0)
             {
                 clear(cur_x, cur_y, g_cur_matrix44, &g_matrix88);
@@ -1162,6 +1365,7 @@ int main(int argc, char *argv[])
 #ifdef WINDOW_BASE
             Sleep(1000);
 #else
+            __delay_ms(1000);
 #endif
             cur_y++;
         }

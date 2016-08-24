@@ -1,0 +1,456 @@
+#define WINDOW_BASE
+
+#ifdef WINDOW_BASE
+#include <stdint.h>
+#include <iostream>
+#include <windows.h>
+#include <time.h>
+#include <stdio.h>
+#include <conio.h>
+#include <cstdlib>
+#include <stdlib.h>
+#else
+#include <xc.h>
+#include <string.h>
+#include <pic16f886.h>
+#include "usart_pic16.h"
+#include "myutils.h"
+#endif
+
+
+#ifdef WINDOW_BASE
+using namespace std;
+#endif
+
+#define MATRIX44_COLUMN_MAX 4
+#define MATRIX44_ROW_MAX 4
+
+#define MATRIX88_COLUMN_MAX 8
+#define MATRIX88_ROW_MAX 8
+
+#define CHARACTER_MAX 9
+
+typedef struct 
+{
+    uint8_t start_index;
+    uint8_t cur_index;
+    uint8_t num;
+} CHARACTER_INFO;
+
+typedef struct 
+{
+    uint8_t  data[MATRIX44_ROW_MAX][MATRIX44_COLUMN_MAX];
+} MATRIX44;
+typedef struct 
+{
+    uint8_t  data[MATRIX88_ROW_MAX][MATRIX88_COLUMN_MAX];
+} MATRIX88;
+
+typedef struct 
+{
+    uint8_t  col[MATRIX88_COLUMN_MAX];
+} MATRIX7219;
+
+typedef enum
+{
+    OK,
+    GAME_OVER,
+    LEFT_OVER_BOUNDARY,
+    RIGHT_OVER_BOUNDARY,
+    HIT_LAND
+};   
+
+CHARACTER_INFO g_char_info[CHARACTER_MAX] =
+{
+////////I/////////////
+{0, 0, 2},
+////////s/////////////
+{2, 0, 2},
+////////back s/////////////
+{4, 0, 2},
+////////back L/////////////
+{6, 0, 4},
+////////L/////////////
+{10, 0, 4},
+////////box/////////////
+{14, 0, 1},
+////////V/////////////
+{15, 0, 4},
+////////+/////////////
+{19, 0, 1},
+////////T/////////////
+{20, 0, 4},
+};
+uint8_t g_char_info_index;
+MATRIX44* g_cur_matrix44;
+const MATRIX44 g_matrix44[] =
+{
+////////I/////////////
+{0,	1,	0,	0,
+0,	1,	0,	0,
+0,	1,	0,	0,
+0,	1,	0,	0},
+{0,	0,	0,	0,
+1,	1,	1,	1,
+0,	0,	0,	0,
+0,	0,	0,	0},
+////////s/////////////
+{0,	1,	1,	0,
+1,	1,	0,	0,
+0,	0,	0,	0,
+0,	0,	0,	0},
+{0,	1,	0,	0,
+0,	1,	1,	0,
+0,	0,	1,	0,
+0,	0,	0,	0},
+////////back s/////////////
+{1,	1,	0,	0,
+0,	1,	1,	0,
+0,	0,	0,	0,
+0,	0,	0,	0},
+{0,	1,	0,	0,
+1,	1,	0,	0,
+1,	0,	0,	0,
+0,	0,	0,	0},
+////////back L/////////////
+{0,	0,	0,	0,
+1,	1,	1,	0,
+0,	0,	1,	0,
+0,	0,	0,	0},
+{0,	1,	1,	0,
+0,	1,	0,	0,
+0,	1,	0,	0,
+0,	0,	0,	0},
+{1,	0,	0,	0,
+1,	1,	1,	0,
+0,	0,	0,	0,
+0,	0,	0,	0},
+{0,	1,	0,	0,
+0,	1,	0,	0,
+1,	1,	0,	0,
+0,	0,	0,	0},
+////////L/////////////
+{0,	0,	0,	0,
+1,	1,	1,	0,
+1,	0,	0,	0,
+0,	0,	0,	0},
+{1,	1,	0,	0,
+0,	1,	0,	0,
+0,	1,	0,	0,
+0,	0,	0,	0},
+{0,	0,	1,	0,
+1,	1,	1,	0,
+0,	0,	0,	0,
+0,	0,	0,	0},
+{0,	1,	0,	0,
+0,	1,	0,	0,
+0,	1,	1,	0,
+0,	0,	0,	0},
+////////box/////////////
+{0,	1,	1,	0,
+0,	1,	1,	0,
+0,	0,	0,	0,
+0,	0,	0,	0},
+////////V/////////////
+{0,	0,	0,	0,
+0,	1,	1,	0,
+0,	1,	0,	0,
+0,	0,	0,	0},
+{0,	0,	0,	0,
+1,	1,	0,	0,
+0,	1,	0,	0,
+0,	0,	0,	0},
+{0,	1,	0,	0,
+1,	1,	0,	0,
+0,	0,	0,	0,
+0,	0,	0,	0},
+{0,	1,	0,	0,
+0,	1,	1,	0,
+0,	0,	0,	0,
+0,	0,	0,	0},
+////////+/////////////
+{0,	1,	0,	0,
+1,	1,	1,	0,
+0,	1,	0,	0,
+0,	0,	0,	0},
+////////T/////////////
+{1,	1,	1,	0,
+0,	1,	0,	0,
+0,	1,	0,	0,
+0,	0,	0,	0},
+{0,	0,	1,	0,
+1,	1,	1,	0,
+0,	0,	1,	0,
+0,	0,	0,	0},
+{0,	1,	0,	0,
+0,	1,	0,	0,
+1,	1,	1,	0,
+0,	0,	0,	0},
+{1,	0,	0,	0,
+1,	1,	1,	0,
+1,	0,	0,	0,
+0,	0,	0,	0},
+};         
+MATRIX88 g_matrix88 = 
+{
+        0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,
+};
+int8_t cur_x = 2;
+int8_t cur_y = 0;    
+
+#ifdef WINDOW_BASE
+FILE *fp;
+#endif
+
+#ifdef WINDOW_BASE
+void printf_MATRIX44(int8_t x, int8_t y, const MATRIX44* matrix)
+{
+    fprintf(fp, "<<<<<<<<<<<<<<<<<<<<MATRIX44\n");
+    for(int8_t row = 0; row < MATRIX88_ROW_MAX; row++)
+    {
+        for(int8_t col = 0; col < MATRIX88_COLUMN_MAX; col++)
+        {
+            if((row - y >= 0) && (row - y < MATRIX44_ROW_MAX)
+            && (col - x >= 0) && (col - x < MATRIX44_COLUMN_MAX)
+            && (matrix->data[row - y][col - x] == 1))
+            {
+                fprintf(fp, "X");
+            }
+            else
+            {
+                fprintf(fp, "_");
+            }
+        }
+        fprintf(fp, "\n");
+    }
+    fprintf(fp, ">>>>>>>>>>>>>>>>>>>>\n");
+}
+void printf_cur_MATRIX44(int8_t x, int8_t y)
+{
+    MATRIX44* matrix = &g_matrix44[g_char_info[g_char_info_index].start_index + g_char_info[g_char_info_index].cur_index];
+    printf_MATRIX44(x, y, matrix);
+}
+MATRIX44* get_MATRIX44(uint8_t index, uint8_t sub_index)
+{
+    return &g_matrix44[g_char_info[index].start_index + sub_index];
+}
+void printf_all_MATRIX44()
+{
+	MATRIX44* matrix;
+    fprintf(fp, "printf_all_MATRIX44 size = %d\n", CHARACTER_MAX);
+    for(uint8_t index = 0; index < CHARACTER_MAX; index++)
+    {
+        for(uint8_t sub_index = 0; sub_index < g_char_info[index].num; sub_index++)
+        {
+            fprintf(fp, "printfMATRIX44 index = %d, sub_index = %d\n", index, sub_index);
+        	matrix = get_MATRIX44(index, sub_index);
+            printf_MATRIX44(0, 0, matrix);
+        }
+    }            
+}     
+#endif
+#ifdef WINDOW_BASE
+void printf_MATRIX7219(const MATRIX7219* matrix)
+{
+    uint8_t mask = 0x80;
+
+    fprintf(fp, "<<<<<<<<<<<<<<<<<<<<\n");
+    for(uint8_t row = 0; row < MATRIX88_ROW_MAX; row++)
+    {
+        for(uint8_t col = 0; col < MATRIX88_COLUMN_MAX; col++)
+        {
+            if((matrix->col[col] & mask) > 0)
+            {
+                fprintf(fp, "*");
+            }
+            else
+            {
+                fprintf(fp, "_");
+            }
+        }
+        fprintf(fp, "\n");
+        mask >>= 1;
+    }
+    fprintf(fp, ">>>>>>>>>>>>>>>>>>>>\n");
+}
+#endif
+void MATRIX88_to_MATRIX7219(const MATRIX88* matrix88, MATRIX7219* matrix7219)
+{
+    uint8_t mask = 0x80;
+
+    for(uint8_t col = 0; col < MATRIX88_ROW_MAX; col++)
+    {
+        mask = 0x80;
+        matrix7219->col[col] = 0;
+        for(uint8_t row = 0; row < MATRIX88_COLUMN_MAX; row++)
+        {
+            if(matrix88->data[row][col] == 1)
+            {
+                matrix7219->col[col] |= mask;
+            }
+            mask >>= 1;
+        }
+    }
+}
+
+#ifdef WINDOW_BASE
+void printf_MATRIX88(const MATRIX88* matrix)
+{
+    fprintf(fp, "<<<<<<<<<<<<<<<<<<<<MATRIX88\n");
+    for(uint8_t row = 0; row < MATRIX88_ROW_MAX; row++)
+    {
+        for(uint8_t col = 0; col < MATRIX88_COLUMN_MAX; col++)
+        {
+            if(matrix->data[row][col] == 1)
+            {
+                fprintf(fp, "X");
+            }
+            else
+            {
+                fprintf(fp, "_");
+            }
+        }
+        fprintf(fp, "\n");
+    }
+    fprintf(fp, ">>>>>>>>>>>>>>>>>>>>\n");
+}
+#endif
+#ifdef WINDOW_BASE
+void printf_console_MATRIX88(const MATRIX88* matrix)
+{
+    printf("<<<<<<<<<<<<<<<<<<<<\n");
+    for(uint8_t row = 0; row < MATRIX88_ROW_MAX; row++)
+    {
+        for(uint8_t col = 0; col < MATRIX88_COLUMN_MAX; col++)
+        {
+            if(matrix->data[row][col] == 1)
+            {
+                printf("*");
+            }
+            else
+            {
+                printf("_");
+            }
+        }
+        printf("\n");
+    }
+    printf(">>>>>>>>>>>>>>>>>>>>\n");
+}
+#endif
+
+
+int main(int argc, char *argv[])
+{
+#ifdef WINDOW_BASE
+    //////////////////////////////////////////////
+    fp = fopen("debug.txt", "w");
+    if(fp==NULL)
+    {
+        fprintf(fp, "File Not Found");
+        exit(-1);
+    }
+
+    //////////////////////////////////////////////
+    //    printf_MATRIX44(&g_matrix44[0]);
+//    printf_MATRIX88(&g_matrix88);
+    //	get_high(&g_matrix88);
+    //    delete_matrix(&g_matrix88);
+    //    printf_MATRIX88(&g_matrix88);
+    //    evaluate(&g_matrix88);
+    //      g_char_info_index = 8;
+    //      find_best_solution();
+    //        printf_MATRIX88(&g_matrix88);
+//    test_get_holes_after_merge();
+//    printf_all_MATRIX44();
+//    goto __exit;
+    uint8_t hit_res;
+    srand(time(NULL));
+#else
+    IO_OUTPUT(DATA_PIN);
+
+    IO_OUTPUT(LOAD_PIN);
+
+    IO_OUTPUT(CLK_PIN);
+    
+    ANSELbits.ANS1 = 0;
+    ANSELbits.ANS2 = 0;
+    ANSELbits.ANS3 = 0;
+    LOAD = 1;
+    CLK = 0;
+    
+//    //Initialize USART with baud rate 9600
+//    USARTInit(9600);
+
+    max7219_init1(); // initialize  max7219.
+	
+#endif
+
+    while(1)
+    {
+        cur_y = 0;
+        cur_x = 2, cur_y = 0;
+        g_char_info_index = char_info_index_rand();
+
+#ifdef WINDOW_BASE
+        fprintf(fp, "g_char_info_index = %d\n", g_char_info_index);
+#else
+#endif
+        if(find_best_solution() == 0)
+        {
+#ifdef WINDOW_BASE
+            printf("GAME OVER!!!\n");
+#else
+#endif
+            goto __exit;
+        }
+        g_cur_matrix44 = &g_matrix44[g_char_info[g_char_info_index].start_index + g_char_info[g_char_info_index].cur_index];
+        while(1)
+        {
+            hit_res = hit_land(cur_x, cur_y, g_cur_matrix44, &g_matrix88);
+#ifdef WINDOW_BASE
+            fprintf(fp, "hit_res = %d\n", hit_res);
+#else
+#endif
+            merge(cur_x, cur_y, g_cur_matrix44, &g_matrix88);
+            if(hit_res == 1)
+            {
+                delete_matrix(&g_matrix88);
+            }
+#ifdef WINDOW_BASE
+            fprintf(fp, "printf_console_MATRIX88\n");
+            printf_console_MATRIX88(&g_matrix88);
+            printf_MATRIX88(&g_matrix88);
+#else
+#endif
+            if(hit_res == 0)
+            {
+                clear(cur_x, cur_y, g_cur_matrix44, &g_matrix88);
+            }
+            else
+            {
+                break;
+            }
+#ifdef WINDOW_BASE
+            Sleep(1000);
+#else
+#endif
+            cur_y++;
+        }
+    }
+__exit:
+
+#ifdef WINDOW_BASE
+    fclose(fp);
+    system("PAUSE");
+    return EXIT_SUCCESS;
+#else
+    return 0;
+#endif
+}
