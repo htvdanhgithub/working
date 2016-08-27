@@ -1,0 +1,1613 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$dist/default/production\teris_16f886.X.production.obj
+cinit CODE 0 7BA 7BA 46 2
+text1 CODE 0 1820 1820 9 2
+text2 CODE 0 1CCA 1CCA 50 2
+text3 CODE 0 1142 1142 B1 2
+text4 CODE 0 29C 29C 51E 2
+text5 CODE 0 1A5B 1A5B 37 2
+text6 CODE 0 1DCE 1DCE 61 2
+text7 CODE 0 1E96 1E96 73 2
+text8 CODE 0 1C 1C 120 2
+text9 CODE 0 DC7 DC7 2A 2
+text10 CODE 0 1028 1028 86 2
+text11 CODE 0 1829 1829 C 2
+text12 CODE 0 1E2F 1E2F 67 2
+text13 CODE 0 1A29 1A29 32 2
+text14 CODE 0 1D6F 1D6F 5F 2
+text15 CODE 0 11F3 11F3 10D 2
+text16 CODE 0 EA9 EA9 157 2
+text17 CODE 0 10AE 10AE 94 2
+text18 CODE 0 1BE5 1BE5 49 2
+text19 CODE 0 1001 1001 27 2
+text20 CODE 0 DF1 DF1 B8 2
+text21 CODE 0 189D 189D 15 2
+text22 CODE 0 1974 1974 29 2
+text23 CODE 0 1F7E 1F7E 82 2
+text24 CODE 0 1B9C 1B9C 49 2
+text25 CODE 0 19C7 19C7 30 2
+text26 CODE 0 1F09 1F09 75 2
+text27 CODE 0 199D 199D 2A 2
+text28 CODE 0 194F 194F 25 2
+text29 CODE 0 1300 1300 500 2
+text30 CODE 0 1835 1835 E 2
+text31 CODE 0 1909 1909 21 2
+text32 CODE 0 19F7 19F7 32 2
+text33 CODE 0 1A92 1A92 3C 2
+text34 CODE 0 1843 1843 11 2
+text35 CODE 0 192A 192A 25 2
+text36 CODE 0 1810 1810 8 2
+text37 CODE 0 1C7B 1C7B 4F 2
+text38 CODE 0 4 4 18 2
+text39 CODE 0 1D1A 1D1A 55 2
+text40 CODE 0 1ACE 1ACE 3F 2
+text41 CODE 0 1C2E 1C2E 4D 2
+text42 CODE 0 1B0D 1B0D 47 2
+text43 CODE 0 1889 1889 14 2
+text44 CODE 0 180B 180B 5 2
+text45 CODE 0 1877 1877 12 2
+text46 CODE 0 18CD 18CD 1C 2
+text47 CODE 0 1865 1865 12 2
+text48 CODE 0 3 3 1 2
+text49 CODE 0 1B54 1B54 48 2
+text50 CODE 0 18B2 18B2 1B 2
+nvBANK0 BANK0 1 6E 6E 2 1
+maintext CODE 0 13C 13C 160 2
+cstackCOMMON COMMON 1 70 70 E 1
+cstackBANK0 BANK0 1 20 20 48 1
+cstackBANK1 BANK1 1 A0 A0 47 1
+inittext CODE 0 1854 1854 11 2
+bssBANK0 BANK0 1 68 68 3 1
+bssBANK1 BANK1 1 E7 E7 6 1
+bssBANK2 BANK2 1 110 110 60 1
+bssBANK3 BANK3 1 190 190 27 1
+stringtext STRCODE 0 800 800 5C3 2
+idataBANK0 CODE 0 DC4 DC4 3 2
+idataBANK1 CODE 0 1808 1808 3 2
+idataBANK3 CODE 0 18E9 18E9 20 2
+dataBANK0 BANK0 1 6B 6B 3 1
+dataBANK1 BANK1 1 ED ED 3 1
+dataBANK3 BANK3 1 1B7 1B7 20 1
+clrtext CODE 0 1818 1818 8 2
+$C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+end_init CODE 0 0 0 3 2
+config CONFIG 0 2007 2007 2 2
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 1D7-1EF 1
+BANK3 1D7-1EF 1
+CONST DC3-DC3 2
+CONST 1000-1000 2
+CONST 1800-1807 2
+ENTRY DC3-DC3 2
+ENTRY 1000-1000 2
+ENTRY 1800-1807 2
+IDLOC 2000-2003 2
+STACK 1D7-1EF 1
+CODE DC3-DC3 2
+CODE 1000-1000 2
+CODE 1800-1807 2
+SFR0 0-1F 1
+SFR1 80-9F 1
+SFR2 100-10F 1
+SFR3 180-18F 1
+EEDATA 2100-21FF 2
+STRCODE DC3-DC3 2
+STRCODE 1000-1000 2
+STRCODE 1800-1807 2
+STRING DC3-DC3 2
+STRING 1000-1000 2
+STRING 1800-1807 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$dist/default/production\teris_16f886.X.production.obj
+7BA cinit CODE >2357:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7BA cinit CODE >2360:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7BA cinit CODE >2485:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7BB cinit CODE >2486:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7BC cinit CODE >2487:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7BD cinit CODE >2490:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7BE cinit CODE >2491:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7BF cinit CODE >2492:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7C0 cinit CODE >2493:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7C1 cinit CODE >2494:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7C2 cinit CODE >2495:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7C3 cinit CODE >2496:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7C4 cinit CODE >2497:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7C5 cinit CODE >2500:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7C6 cinit CODE >2501:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7C7 cinit CODE >2502:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7C8 cinit CODE >2503:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7C9 cinit CODE >2504:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7CE cinit CODE >2507:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7CF cinit CODE >2508:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7D0 cinit CODE >2509:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7D1 cinit CODE >2510:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7D6 cinit CODE >2542:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7D7 cinit CODE >2543:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7D8 cinit CODE >2544:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7D9 cinit CODE >2545:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7DA cinit CODE >2546:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7DB cinit CODE >2547:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7DC cinit CODE >2548:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7DD cinit CODE >2549:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7DE cinit CODE >2550:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7E3 cinit CODE >2554:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7E4 cinit CODE >2555:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7E5 cinit CODE >2556:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7E6 cinit CODE >2557:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7E7 cinit CODE >2558:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7E8 cinit CODE >2559:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7E9 cinit CODE >2560:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7EA cinit CODE >2561:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7EB cinit CODE >2562:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7EC cinit CODE >2563:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7F1 cinit CODE >2567:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7F2 cinit CODE >2568:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7F3 cinit CODE >2569:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7F4 cinit CODE >2570:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7F5 cinit CODE >2571:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7F6 cinit CODE >2572:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7F7 cinit CODE >2573:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7F8 cinit CODE >2574:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7F9 cinit CODE >2575:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7FC cinit CODE >2581:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7FC cinit CODE >2583:C:\Users\Admin\AppData\Local\Temp\s1b0.
+7FD cinit CODE >2584:C:\Users\Admin\AppData\Local\Temp\s1b0.
+18B2 text50 CODE >8:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
+18B2 text50 CODE >18:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
+18B6 text50 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
+18C1 text50 CODE >20:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
+18CC text50 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
+1B54 text49 CODE >531:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B55 text49 CODE >533:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B59 text49 CODE >535:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B5E text49 CODE >537:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B62 text49 CODE >538:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B69 text49 CODE >539:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B6E text49 CODE >541:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B83 text49 CODE >543:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B8D text49 CODE >545:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B8F text49 CODE >539:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B97 text49 CODE >535:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+3 text48 CODE >424:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+3 text48 CODE >446:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1865 text47 CODE >482:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1866 text47 CODE >483:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1869 text47 CODE >484:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+186F text47 CODE >485:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1873 text47 CODE >486:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1876 text47 CODE >487:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+18CD text46 CODE >522:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+18CE text46 CODE >526:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+18D3 text46 CODE >528:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+18E4 text46 CODE >526:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1877 text45 CODE >578:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+187A text45 CODE >581:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1884 text45 CODE >582:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1888 text45 CODE >583:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+180B text44 CODE >584:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+180B text44 CODE >586:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+180F text44 CODE >587:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1889 text43 CODE >601:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1889 text43 CODE >603:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1899 text43 CODE >604:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+189C text43 CODE >605:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B0D text42 CODE >31:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B0D text42 CODE >33:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B14 text42 CODE >36:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B15 text42 CODE >38:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B17 text42 CODE >41:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B19 text42 CODE >44:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B1B text42 CODE >47:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B1F text42 CODE >49:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B20 text42 CODE >36:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B42 text42 CODE >49:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B42 text42 CODE >52:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B45 text42 CODE >53:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B46 text42 CODE >54:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B47 text42 CODE >55:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B48 text42 CODE >58:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B4B text42 CODE >59:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B4C text42 CODE >60:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B4D text42 CODE >61:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B4E text42 CODE >64:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B51 text42 CODE >65:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B52 text42 CODE >67:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1B53 text42 CODE >68:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1C2E text41 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C2E text41 CODE >13:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C31 text41 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C33 text41 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C38 text41 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C3A text41 CODE >18:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C3C text41 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C41 text41 CODE >20:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C45 text41 CODE >21:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C47 text41 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C49 text41 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C50 text41 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C54 text41 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C55 text41 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C5D text41 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C63 text41 CODE >29:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C6A text41 CODE >30:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C6E text41 CODE >32:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C71 text41 CODE >33:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1C76 text41 CODE >34:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+1ACE text40 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul32.c
+1ACE text40 CODE >119:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul32.c
+1AD6 text40 CODE >121:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul32.c
+1AD8 text40 CODE >122:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul32.c
+1AEC text40 CODE >123:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul32.c
+1AF5 text40 CODE >124:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul32.c
+1AFE text40 CODE >125:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul32.c
+1B04 text40 CODE >128:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul32.c
+1D1A text39 CODE >12:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\rand.c
+1D1A text39 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\rand.c
+1D3B text39 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\rand.c
+1D49 text39 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\rand.c
+4 text38 CODE >886:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+4 text38 CODE >888:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1C7B text37 CODE >809:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1C7C text37 CODE >811:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1C81 text37 CODE >813:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1C86 text37 CODE >815:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1CA8 text37 CODE >817:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1CBD text37 CODE >813:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1CC5 text37 CODE >811:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1810 text36 CODE >70:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1811 text36 CODE >71:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1815 text36 CODE >73:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1817 text36 CODE >74:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+192A text35 CODE >76:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+192A text35 CODE >77:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1938 text35 CODE >78:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1948 text35 CODE >79:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+194E text35 CODE >77:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\usart_pic16.c
+1843 text34 CODE >4:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul8.c
+1844 text34 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul8.c
+1845 text34 CODE >43:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul8.c
+1847 text34 CODE >44:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul8.c
+184B text34 CODE >45:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul8.c
+184D text34 CODE >46:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul8.c
+184F text34 CODE >47:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul8.c
+1852 text34 CODE >50:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul8.c
+1A92 text33 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1A92 text33 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1A94 text33 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1A98 text33 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1A9A text33 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1A9C text33 CODE >18:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1AA3 text33 CODE >19:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1AA7 text33 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1AA8 text33 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1AAF text33 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1AB7 text33 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1ABD text33 CODE >25:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1ABE text33 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1AC5 text33 CODE >28:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+1AC9 text33 CODE >30:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+19F7 text32 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+19F7 text32 CODE >13:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+19FB text32 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+19FD text32 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+19FF text32 CODE >16:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+1A06 text32 CODE >17:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+1A0A text32 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+1A0B text32 CODE >20:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+1A13 text32 CODE >21:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+1A19 text32 CODE >22:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+1A20 text32 CODE >23:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+1A24 text32 CODE >25:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+1909 text31 CODE >15:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
+1909 text31 CODE >43:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
+190B text31 CODE >45:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
+190D text31 CODE >46:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
+1913 text31 CODE >47:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
+191A text31 CODE >48:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
+1921 text31 CODE >49:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
+1925 text31 CODE >52:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
+1835 text30 CODE >8:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\isdigit.c
+1836 text30 CODE >14:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\isdigit.c
+1300 text29 CODE >492:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1303 text29 CODE >533:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1307 text29 CODE >536:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+131F text29 CODE >538:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1323 text29 CODE >541:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+132E text29 CODE >542:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+132F text29 CODE >546:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1331 text29 CODE >548:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1333 text29 CODE >551:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1334 text29 CODE >553:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1334 text29 CODE >554:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1336 text29 CODE >560:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1336 text29 CODE >561:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1338 text29 CODE >573:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1338 text29 CODE >574:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+133A text29 CODE >579:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+133A text29 CODE >580:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+133B text29 CODE >581:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+133F text29 CODE >551:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1355 text29 CODE >586:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1355 text29 CODE >593:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1357 text29 CODE >594:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+135B text29 CODE >597:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+136B text29 CODE >598:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+136F text29 CODE >600:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1384 text29 CODE >601:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+139D text29 CODE >602:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13AE text29 CODE >604:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13BC text29 CODE >605:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13C8 text29 CODE >606:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13CC text29 CODE >611:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13DA text29 CODE >612:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13DB text29 CODE >613:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13DF text29 CODE >615:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13EB text29 CODE >616:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13F6 text29 CODE >617:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13FA text29 CODE >618:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13FB text29 CODE >621:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13FC text29 CODE >622:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+13FC text29 CODE >623:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+140C text29 CODE >623:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+142D text29 CODE >622:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+142E text29 CODE >626:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1431 text29 CODE >635:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1432 text29 CODE >689:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1432 text29 CODE >691:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1433 text29 CODE >699:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1434 text29 CODE >712:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1434 text29 CODE >714:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1435 text29 CODE >718:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1435 text29 CODE >721:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1436 text29 CODE >723:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1437 text29 CODE >753:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1447 text29 CODE >754:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+144C text29 CODE >757:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1454 text29 CODE >758:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+145B text29 CODE >760:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+145D text29 CODE >762:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1460 text29 CODE >765:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+146B text29 CODE >764:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1478 text29 CODE >768:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+148A text29 CODE >767:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1496 text29 CODE >770:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1499 text29 CODE >772:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+14A4 text29 CODE >771:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+14B1 text29 CODE >799:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+14BC text29 CODE >805:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+14C0 text29 CODE >806:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+14C4 text29 CODE >807:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+14C5 text29 CODE >818:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+14C9 text29 CODE >822:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+14CA text29 CODE >635:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+14F6 text29 CODE >1251:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1500 text29 CODE >1259:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+150C text29 CODE >1261:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+150E text29 CODE >1262:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1512 text29 CODE >1263:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1517 text29 CODE >1266:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1518 text29 CODE >1286:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1524 text29 CODE >1290:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+152B text29 CODE >1291:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+152F text29 CODE >1294:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1530 text29 CODE >1302:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1530 text29 CODE >1305:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1536 text29 CODE >1306:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1553 text29 CODE >1305:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1558 text29 CODE >1314:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1558 text29 CODE >1316:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+155E text29 CODE >1317:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+157B text29 CODE >1316:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1580 text29 CODE >1326:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1580 text29 CODE >1328:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1586 text29 CODE >1329:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+15A3 text29 CODE >1328:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+15A8 text29 CODE >1294:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+15B7 text29 CODE >1339:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+15BF text29 CODE >1340:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+15C4 text29 CODE >1341:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+15CC text29 CODE >1342:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+15D0 text29 CODE >1345:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+15DE text29 CODE >1346:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+15E4 text29 CODE >1348:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+15E6 text29 CODE >1349:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+15F7 text29 CODE >1350:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1605 text29 CODE >1352:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1609 text29 CODE >1361:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1616 text29 CODE >1362:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+161A text29 CODE >1363:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+161C text29 CODE >1368:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1629 text29 CODE >1372:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1634 text29 CODE >1373:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+163D text29 CODE >1375:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1641 text29 CODE >1381:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1652 text29 CODE >1382:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1660 text29 CODE >1384:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1664 text29 CODE >1387:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1666 text29 CODE >1392:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1670 text29 CODE >1393:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1672 text29 CODE >1396:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1672 text29 CODE >1399:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1674 text29 CODE >1400:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+167B text29 CODE >1403:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1688 text29 CODE >1404:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1693 text29 CODE >1406:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16A5 text29 CODE >1415:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16A9 text29 CODE >1417:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16B4 text29 CODE >1418:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16BB text29 CODE >1428:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16C0 text29 CODE >1430:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16CB text29 CODE >1431:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16D5 text29 CODE >1438:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16DF text29 CODE >1439:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16E1 text29 CODE >1443:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16E3 text29 CODE >1444:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16EE text29 CODE >1448:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16FB text29 CODE >1449:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+16FD text29 CODE >1454:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+170A text29 CODE >1458:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1715 text29 CODE >1460:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1723 text29 CODE >1489:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1750 text29 CODE >1500:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+1775 text29 CODE >1502:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+178E text29 CODE >1518:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+17B4 text29 CODE >1524:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+17BF text29 CODE >1474:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+17C6 text29 CODE >1476:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+17D5 text29 CODE >1474:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+17D6 text29 CODE >1528:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+17E3 text29 CODE >1530:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+17F0 text29 CODE >1531:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+17FB text29 CODE >1538:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\doprnt.c
+194F text28 CODE >314:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1952 text28 CODE >316:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1955 text28 CODE >322:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1963 text28 CODE >323:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+196C text28 CODE >324:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+199D text27 CODE >11:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memcpy.c
+199D text27 CODE >24:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memcpy.c
+19A1 text27 CODE >25:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memcpy.c
+19A5 text27 CODE >26:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memcpy.c
+19B0 text27 CODE >27:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memcpy.c
+19C6 text27 CODE >26:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memcpy.c
+1F09 text26 CODE >618:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F09 text26 CODE >620:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F11 text26 CODE >622:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F1F text26 CODE >624:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F26 text26 CODE >631:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F2A text26 CODE >632:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F58 text26 CODE >633:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F59 text26 CODE >636:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F77 text26 CODE >620:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+19C7 text25 CODE >607:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+19C7 text25 CODE >609:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+19CC text25 CODE >611:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+19EB text25 CODE >613:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+19ED text25 CODE >609:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+19F5 text25 CODE >616:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B9C text24 CODE >641:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B9C text24 CODE >643:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1B9F text24 CODE >644:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BA3 text24 CODE >645:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BA5 text24 CODE >647:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BB5 text24 CODE >649:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BC4 text24 CODE >650:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BCA text24 CODE >651:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BCB text24 CODE >654:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BD1 text24 CODE >645:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BD2 text24 CODE >657:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BE1 text24 CODE >659:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F7E text23 CODE >856:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F81 text23 CODE >858:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F83 text23 CODE >859:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F87 text23 CODE >860:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F8C text23 CODE >862:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F90 text23 CODE >863:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F96 text23 CODE >865:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F99 text23 CODE >867:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1FAC text23 CODE >871:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1FC1 text23 CODE >873:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1FC4 text23 CODE >875:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1FCA text23 CODE >878:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1FDF text23 CODE >863:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1FE5 text23 CODE >860:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1FED text23 CODE >882:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1FF9 text23 CODE >884:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1974 text22 CODE >328:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1977 text22 CODE >330:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+197A text22 CODE >336:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+198C text22 CODE >337:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1995 text22 CODE >338:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+189D text21 CODE >300:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+189E text21 CODE >302:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+18A1 text21 CODE >308:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+18AA text21 CODE >309:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+DF1 text20 CODE >781:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+DF4 text20 CODE >783:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+DF4 text20 CODE >785:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+DFA text20 CODE >787:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+E00 text20 CODE >789:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+E20 text20 CODE >791:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+E38 text20 CODE >793:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+E42 text20 CODE >794:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+E56 text20 CODE >795:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+E5A text20 CODE >797:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+E71 text20 CODE >799:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+E7B text20 CODE >800:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+E8F text20 CODE >801:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+E93 text20 CODE >787:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+E9E text20 CODE >785:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EA4 text20 CODE >806:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EA8 text20 CODE >783:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1001 text19 CODE >662:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1002 text19 CODE >664:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1007 text19 CODE >666:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+101C text19 CODE >668:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+101E text19 CODE >664:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1026 text19 CODE >671:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BE5 text18 CODE >914:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BE8 text18 CODE >916:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BEE text18 CODE >918:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1BFB text18 CODE >920:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1C1C text18 CODE >921:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1C24 text18 CODE >916:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1C2C text18 CODE >924:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+10AE text17 CODE >926:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+10B1 text17 CODE >928:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+10BB text17 CODE >929:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+10C3 text17 CODE >931:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+10C9 text17 CODE >933:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+10E9 text17 CODE >935:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+10F8 text17 CODE >936:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1109 text17 CODE >937:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+112C text17 CODE >938:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1134 text17 CODE >931:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+113D text17 CODE >929:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EA9 text16 CODE >943:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EAC text16 CODE >945:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EAE text16 CODE >946:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EB0 text16 CODE >947:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EB1 text16 CODE >948:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EB7 text16 CODE >950:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EBC text16 CODE >951:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EC2 text16 CODE >953:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EC5 text16 CODE >955:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EE7 text16 CODE >963:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+EEB text16 CODE >965:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F0D text16 CODE >975:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F4C text16 CODE >977:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F4F text16 CODE >979:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F53 text16 CODE >983:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F55 text16 CODE >985:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F59 text16 CODE >987:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F5C text16 CODE >989:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F5E text16 CODE >992:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F73 text16 CODE >994:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F76 text16 CODE >996:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F7B text16 CODE >951:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F7B text16 CODE >999:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+F84 text16 CODE >1002:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+FA9 text16 CODE >1004:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+FBA text16 CODE >1005:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+FCB text16 CODE >1006:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+FDC text16 CODE >1007:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+FE2 text16 CODE >948:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+FED text16 CODE >1010:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+FFC text16 CODE >1011:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+11F3 text15 CODE >711:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+11F6 text15 CODE >713:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1200 text15 CODE >714:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1208 text15 CODE >716:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+120E text15 CODE >718:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+122E text15 CODE >720:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1245 text15 CODE >722:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+124F text15 CODE >723:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1263 text15 CODE >724:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1265 text15 CODE >727:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+128C text15 CODE >729:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1296 text15 CODE >730:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+12AA text15 CODE >731:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+12AC text15 CODE >733:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+12C5 text15 CODE >735:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+12CF text15 CODE >736:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+12E3 text15 CODE >737:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+12E5 text15 CODE >716:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+12F0 text15 CODE >714:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+12F6 text15 CODE >742:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+12FE text15 CODE >743:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1D6F text14 CODE >745:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1D72 text14 CODE >747:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1D78 text14 CODE >749:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1D7E text14 CODE >751:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1D9E text14 CODE >753:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1DB1 text14 CODE >755:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1DB9 text14 CODE >756:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1DBB text14 CODE >749:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1DC6 text14 CODE >747:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1DCC text14 CODE >761:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A29 text13 CODE >890:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A2C text13 CODE >892:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A2C text13 CODE >894:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A3D text13 CODE >896:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A4F text13 CODE >897:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A54 text13 CODE >899:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A5A text13 CODE >892:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E2F text12 CODE >835:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E32 text12 CODE >842:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E36 text12 CODE >843:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E47 text12 CODE >845:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E4E text12 CODE >847:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E53 text12 CODE >849:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E73 text12 CODE >851:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E89 text12 CODE >847:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E91 text12 CODE >845:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1829 text11 CODE >288:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+182A text11 CODE >290:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+182D text11 CODE >295:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1028 text10 CODE >550:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1029 text10 CODE >552:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+102C text10 CODE >554:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1030 text10 CODE >556:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+103A text10 CODE >557:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1044 text10 CODE >558:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1044 text10 CODE >559:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+104E text10 CODE >560:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1053 text10 CODE >562:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1058 text10 CODE >564:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1079 text10 CODE >566:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+107D text10 CODE >570:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1087 text10 CODE >562:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1091 text10 CODE >573:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+109B text10 CODE >560:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+10A5 text10 CODE >575:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+DC7 text9 CODE >588:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+DC8 text9 CODE >590:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+DCB text9 CODE >592:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+DD1 text9 CODE >594:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+DDB text9 CODE >595:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+DE5 text9 CODE >596:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+DE5 text9 CODE >597:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1C text8 CODE >356:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1F text8 CODE >358:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+22 text8 CODE >360:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+26 text8 CODE >362:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+30 text8 CODE >363:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+3A text8 CODE >364:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+3A text8 CODE >365:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+44 text8 CODE >366:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+4C text8 CODE >368:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+52 text8 CODE >372:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+105 text8 CODE >374:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+109 text8 CODE >378:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+113 text8 CODE >368:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+11E text8 CODE >381:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+128 text8 CODE >366:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+133 text8 CODE >383:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E96 text7 CODE >386:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E99 text7 CODE >388:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E9C text7 CODE >390:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1EA0 text7 CODE >392:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1EAA text7 CODE >393:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1EB4 text7 CODE >395:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1EF5 text7 CODE >396:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1DCE text6 CODE >763:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1DD1 text6 CODE >765:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1DD7 text6 CODE >767:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1DDD text6 CODE >769:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1DFD text6 CODE >771:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E12 text6 CODE >773:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E1A text6 CODE >774:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E1C text6 CODE >767:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E27 text6 CODE >765:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E2D text6 CODE >779:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A5B text5 CODE >902:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A5E text5 CODE >904:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A5E text5 CODE >906:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A6F text5 CODE >908:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A86 text5 CODE >909:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A8B text5 CODE >911:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1A91 text5 CODE >904:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+29C text4 CODE >1020:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+29C text4 CODE >1022:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+2A6 text4 CODE >1026:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+2B5 text4 CODE >1031:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+2B8 text4 CODE >1034:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+2BE text4 CODE >1035:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+2C4 text4 CODE >1036:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+2CA text4 CODE >1037:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+2CD text4 CODE >1038:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+2D5 text4 CODE >1039:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+2DD text4 CODE >1042:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+2F4 text4 CODE >1044:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+32B text4 CODE >1045:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+348 text4 CODE >1046:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+365 text4 CODE >1048:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+37B text4 CODE >1050:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+39D text4 CODE >1052:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+3B9 text4 CODE >1053:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+3C5 text4 CODE >1055:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+3E6 text4 CODE >1059:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+3EA text4 CODE >1060:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+40C text4 CODE >1061:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+41E text4 CODE >1062:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+430 text4 CODE >1063:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+447 text4 CODE >1064:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+454 text4 CODE >1066:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+462 text4 CODE >1067:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+46C text4 CODE >1069:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+472 text4 CODE >1071:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+487 text4 CODE >1079:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+48D text4 CODE >1081:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+49A text4 CODE >1083:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+4A8 text4 CODE >1084:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+4CA text4 CODE >1085:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+4DA text4 CODE >1095:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+4E9 text4 CODE >1097:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+505 text4 CODE >1098:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+50B text4 CODE >1108:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+511 text4 CODE >1110:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+533 text4 CODE >1111:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+53A text4 CODE >1128:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+548 text4 CODE >1129:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+56A text4 CODE >1130:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+570 text4 CODE >1132:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+585 text4 CODE >1140:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+58B text4 CODE >1142:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+5AD text4 CODE >1143:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+5B3 text4 CODE >1145:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+5D0 text4 CODE >1153:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+5D6 text4 CODE >1155:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+5F8 text4 CODE >1156:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+608 text4 CODE >1158:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+624 text4 CODE >1159:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+62E text4 CODE >1160:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+638 text4 CODE >1161:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+642 text4 CODE >1162:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+64A text4 CODE >1163:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+652 text4 CODE >1164:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+65A text4 CODE >1175:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+664 text4 CODE >1176:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+679 text4 CODE >1177:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+68A text4 CODE >1178:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+6A1 text4 CODE >1179:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+6B1 text4 CODE >1180:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+6C8 text4 CODE >1181:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+6DF text4 CODE >1048:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+6E8 text4 CODE >1042:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+6EF text4 CODE >1185:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+6F2 text4 CODE >1187:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+70A text4 CODE >1188:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+710 text4 CODE >1189:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+728 text4 CODE >1195:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+732 text4 CODE >1196:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+747 text4 CODE >1197:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+758 text4 CODE >1198:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+76F text4 CODE >1199:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+77F text4 CODE >1200:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+796 text4 CODE >1201:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+7AD text4 CODE >1203:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+7AE text4 CODE >1206:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+7B6 text4 CODE >1208:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1142 text3 CODE >684:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1145 text3 CODE >686:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+114F text3 CODE >688:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1157 text3 CODE >690:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+115D text3 CODE >692:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+117D text3 CODE >694:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1194 text3 CODE >696:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+11A8 text3 CODE >697:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+11AA text3 CODE >700:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+11C4 text3 CODE >702:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+11D6 text3 CODE >703:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+11D8 text3 CODE >690:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+11E3 text3 CODE >688:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+11E9 text3 CODE >708:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+11F1 text3 CODE >709:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1CCA text2 CODE >822:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1CCB text2 CODE >824:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1CD0 text2 CODE >826:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1CD5 text2 CODE >828:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1CF7 text2 CODE >830:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1D0D text2 CODE >826:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1D15 text2 CODE >824:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1820 text1 CODE >6:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\rand.c
+1820 text1 CODE >8:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\rand.c
+1828 text1 CODE >9:C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\rand.c
+13C maintext CODE >1296:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+13C maintext CODE >1323:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+13F maintext CODE >1325:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+140 maintext CODE >1327:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+141 maintext CODE >1329:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+144 maintext CODE >1330:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+145 maintext CODE >1331:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+146 maintext CODE >1332:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+149 maintext CODE >1333:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+14A maintext CODE >1336:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+153 maintext CODE >1340:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+15E maintext CODE >1351:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+15F maintext CODE >1353:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+169 maintext CODE >1343:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+16E maintext CODE >1346:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+171 maintext CODE >1347:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+17A maintext CODE >1348:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+184 maintext CODE >1350:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+195 maintext CODE >1351:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+19D maintext CODE >1356:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1E4 maintext CODE >1359:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+207 maintext CODE >1360:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+218 maintext CODE >1361:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+232 maintext CODE >1362:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+237 maintext CODE >1364:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+23C maintext CODE >1368:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+24B maintext CODE >1370:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+256 maintext CODE >1372:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+264 maintext CODE >1373:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+269 maintext CODE >1374:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+26E maintext CODE >1376:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+286 maintext CODE >1385:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+295 maintext CODE >1387:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+29B maintext CODE >1357:D:\Working\working\MyLocalRepositorywc\Teris_16f886\mplab\teris_16f886.X\teris_16f886.c
+1854 inittext CODE >2516:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1854 inittext CODE >2517:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1855 inittext CODE >2518:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1856 inittext CODE >2519:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1857 inittext CODE >2520:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1858 inittext CODE >2527:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1858 inittext CODE >2528:C:\Users\Admin\AppData\Local\Temp\s1b0.
+185B inittext CODE >2529:C:\Users\Admin\AppData\Local\Temp\s1b0.
+185C inittext CODE >2530:C:\Users\Admin\AppData\Local\Temp\s1b0.
+185D inittext CODE >2531:C:\Users\Admin\AppData\Local\Temp\s1b0.
+185E inittext CODE >2532:C:\Users\Admin\AppData\Local\Temp\s1b0.
+185F inittext CODE >2533:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1860 inittext CODE >2534:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1861 inittext CODE >2535:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1862 inittext CODE >2536:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1863 inittext CODE >2537:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1864 inittext CODE >2538:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1818 clrtext CODE >2472:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1818 clrtext CODE >2473:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1819 clrtext CODE >2474:C:\Users\Admin\AppData\Local\Temp\s1b0.
+1819 clrtext CODE >2475:C:\Users\Admin\AppData\Local\Temp\s1b0.
+181A clrtext CODE >2476:C:\Users\Admin\AppData\Local\Temp\s1b0.
+181B clrtext CODE >2477:C:\Users\Admin\AppData\Local\Temp\s1b0.
+181C clrtext CODE >2478:C:\Users\Admin\AppData\Local\Temp\s1b0.
+181D clrtext CODE >2479:C:\Users\Admin\AppData\Local\Temp\s1b0.
+181E clrtext CODE >2480:C:\Users\Admin\AppData\Local\Temp\s1b0.
+181F clrtext CODE >2481:C:\Users\Admin\AppData\Local\Temp\s1b0.
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+merge@col 7A 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+merge@row 79 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+fall_off@x 4E 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+fall_off@y 46 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+___latbits 2 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+merge1@col 2D 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+merge1@len 2A 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+merge1@row 2C 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+___lwmod@counter 7D 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__LdataBANK0 0 0 ABS 0 dataBANK0 -
+__LdataBANK1 0 0 ABS 0 dataBANK1 -
+__LdataBANK3 0 0 ABS 0 dataBANK3 -
+__Hspace_0 2009 0 ABS 0 - -
+__Hspace_1 1D7 0 ABS 0 - -
+__Hspace_2 0 0 ABS 0 - -
+__Hspace_3 0 0 ABS 0 - -
+__HidataBANK0 0 0 ABS 0 idataBANK0 -
+__HidataBANK1 0 0 ABS 0 idataBANK1 -
+__HidataBANK3 0 0 ABS 0 idataBANK3 -
+_g_debug 197 0 BANK3 1 bssBANK3 dist/default/production\teris_16f886.X.production.obj
+find_best_solution@tem_sub_index E5 0 BANK1 1 cstackBANK1 dist/default/production\teris_16f886.X.production.obj
+_g_char_info_index 69 0 BANK0 1 bssBANK0 dist/default/production\teris_16f886.X.production.obj
+evaluate@col 4E 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+evaluate@row 4F 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__Heeprom_data 0 0 EEDATA 3 eeprom_data -
+?_evaluate 44 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__CFG_MCLRE$ON 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of_printf_MATRIX7219 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__end_of_find_best_solution F74 0 CODE 0 text4 dist/default/production\teris_16f886.X.production.obj
+is_row_full@matrix 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+ltemp0 7E 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+ltemp1 82 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+ltemp2 86 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+ltemp3 80 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__Lstringtext 0 0 ABS 0 stringtext -
+__Hstrings 0 0 ABS 0 strings -
+_PEIE 5E 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_RCIE 465 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+___sp 0 0 STACK 2 stack C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+_main 278 0 CODE 0 maintext dist/default/production\teris_16f886.X.production.obj
+_rand 3A34 0 CODE 0 text39 dist/default/production\teris_16f886.X.production.obj
+btemp 7E 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+is_valid@matrix44 47 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+is_valid@matrix88 49 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+ltemp 7E 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+clear@matrix44 71 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+clear@matrix88 73 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+start 0 0 CODE 0 init C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+ttemp 7E 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+wtemp 7E 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__end_of_delete_matrix 37CA 0 CODE 0 text24 dist/default/production\teris_16f886.X.production.obj
+__size_of___awmod 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+delete_row@i 26 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+delete_row@matrix 7B 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__size_of_main 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of_rand 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of___lwdiv 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of___lwmod 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_delete_row 3E12 0 CODE 0 text26 dist/default/production\teris_16f886.X.production.obj
+debug_str@enable 75 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__size_of_USARTWriteChar 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+printf_debug_cur_MATRIX44@lable 2C 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+?___lmul 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+?___wmul 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+get_holes_after_merge@col 4E 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+get_holes_after_merge@row 4F 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+MATRIX88_to_MATRIX7219@col 77 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+MATRIX88_to_MATRIX7219@row 76 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__LidataBANK0 0 0 ABS 0 idataBANK0 -
+__LidataBANK1 0 0 ABS 0 idataBANK1 -
+__LidataBANK3 0 0 ABS 0 idataBANK3 -
+__Hpowerup 0 0 CODE 0 powerup -
+printf_MATRIX7219@matrix 74 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+_g_matrix44 1060 0 STRCODE 0 stringtext dist/default/production\teris_16f886.X.production.obj
+_g_matrix88 130 0 BANK2 1 bssBANK2 dist/default/production\teris_16f886.X.production.obj
+___awmod@sign 2C 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+evaluate@full 4C 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+evaluate@risk 4A 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+ttemp0 7E 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+ttemp1 81 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+ttemp2 84 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+ttemp3 87 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+ttemp4 7F 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+is_left_boundary@x 20 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_sprintf$713 2B 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_sprintf$714 2D 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_sprintf$720 2F 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_SPI1_write 6 0 CODE 0 text48 dist/default/production\teris_16f886.X.production.obj
+printf_debug_MATRIX44@enable 29 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_find_best_solution 538 0 CODE 0 text4 dist/default/production\teris_16f886.X.production.obj
+intlevel0 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+intlevel1 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+intlevel2 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+intlevel3 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+intlevel4 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+intlevel5 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+___bmul@multiplicand 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+wtemp0 7E 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+wtemp1 80 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+wtemp2 82 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+wtemp3 84 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+wtemp4 86 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+wtemp5 88 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+wtemp6 7F 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__Hfunctab 0 0 CODE 0 functab -
+__size_of_printf_debug_Screen 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_printf_debug_cur_MATRIX44 3D2C 0 CODE 0 text7 dist/default/production\teris_16f886.X.production.obj
+__size_of_char_info_index_rand 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__Hclrtext 0 0 ABS 0 clrtext -
+___wmul@multiplicand 72 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+_Clear_Matrix 3112 0 CODE 0 text43 dist/default/production\teris_16f886.X.production.obj
+printf_debug_MATRIX44@matrix 7A 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+is_left_boundary@matrix44 76 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+is_left_boundary@matrix88 78 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+get_high_after_merge@matrix 44 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+printf_debug_MATRIX88@lable 76 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__end_of_delete_row 3EFC 0 CODE 0 text26 dist/default/production\teris_16f886.X.production.obj
+_is_left_boundary 3ADE 0 CODE 0 text14 dist/default/production\teris_16f886.X.production.obj
+__end_of_char_info_index_rand 38 0 CODE 0 text38 dist/default/production\teris_16f886.X.production.obj
+__end_of___bmul 30A8 0 CODE 0 text34 dist/default/production\teris_16f886.X.production.obj
+__end_of___lmul 361A 0 CODE 0 text40 dist/default/production\teris_16f886.X.production.obj
+__end_of___wmul 3254 0 CODE 0 text31 dist/default/production\teris_16f886.X.production.obj
+__end_of_printf_MATRIX88 3112 0 CODE 0 text45 dist/default/production\teris_16f886.X.production.obj
+__CFG_CP$ON 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_get_high_after_merge 215C 0 CODE 0 text17 dist/default/production\teris_16f886.X.production.obj
+get_high@row 47 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+get_holes_after_merge@stop 4B 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+fall_off@col 4F 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+fall_off@row 50 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__Lmaintext 0 0 ABS 0 maintext -
+__size_of_sprintf 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_g_cur_matrix44 195 0 BANK3 1 bssBANK3 dist/default/production\teris_16f886.X.production.obj
+__end_of_USARTInit 36A8 0 CODE 0 text42 dist/default/production\teris_16f886.X.production.obj
+__LnvBANK0 0 0 ABS 0 nvBANK0 -
+___bmul@multiplier 73 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__end_of_g_matrix44 1360 0 STRCODE 0 stringtext dist/default/production\teris_16f886.X.production.obj
+find_best_solution@right_most_index A1 0 BANK1 1 cstackBANK1 dist/default/production\teris_16f886.X.production.obj
+___lwmod@divisor 78 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__end_of___awmod 38F6 0 CODE 0 text41 dist/default/production\teris_16f886.X.production.obj
+__size_of_USARTInit 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__end_of___lwdiv 359C 0 CODE 0 text33 dist/default/production\teris_16f886.X.production.obj
+__end_of___lwmod 3452 0 CODE 0 text32 dist/default/production\teris_16f886.X.production.obj
+__size_of_isdigit 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_printf_debug_Screen 1B8E 0 CODE 0 text9 dist/default/production\teris_16f886.X.production.obj
+printf_debug_cur_MATRIX44@x 2E 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+printf_debug_cur_MATRIX44@y 2F 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__end_of_SPI1_write 8 0 CODE 0 text48 dist/default/production\teris_16f886.X.production.obj
+hit_land@x 4E 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+hit_land@y 46 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_printf_Screen 3016 0 CODE 0 text44 dist/default/production\teris_16f886.X.production.obj
+__size_of_get_holes_after_merge 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+is_valid@x 4E 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+is_valid@y 46 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__end_of_printf_MATRIX7219 31D2 0 CODE 0 text46 dist/default/production\teris_16f886.X.production.obj
+MATRIX88_to_MATRIX7219@mask 75 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+_dpowers 103C 0 STRCODE 0 stringtext dist/default/production\teris_16f886.X.production.obj
+_MATRIX88_to_MATRIX7219 36A8 0 CODE 0 text49 dist/default/production\teris_16f886.X.production.obj
+__size_of_Clear_Matrix 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+printf_debug_Screen@enable 7D 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+___lwdiv@quotient 75 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__size_of_clear 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of_merge 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of_srand 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+printf_debug_MATRIX44@x 78 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+printf_debug_MATRIX44@y 79 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+is_left_boundary@col 22 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+is_left_boundary@row 21 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_USARTInit 361A 0 CODE 0 text42 dist/default/production\teris_16f886.X.production.obj
+___lwmod@dividend 7A 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+printf_debug_MATRIX44@lable 76 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+start_initialization F74 0 CODE 0 cinit dist/default/production\teris_16f886.X.production.obj
+left_most@matrix44 44 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+left_most@matrix88 46 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__end_of_hexpowers 1060 0 STRCODE 0 stringtext dist/default/production\teris_16f886.X.production.obj
+debug_line@str 73 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+_TRISAbits 85 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_printf_MATRIX88 30EE 0 CODE 0 text45 dist/default/production\teris_16f886.X.production.obj
+__end_of_Clear_Matrix 313A 0 CODE 0 text43 dist/default/production\teris_16f886.X.production.obj
+__end_of_is_row_full 33EE 0 CODE 0 text25 dist/default/production\teris_16f886.X.production.obj
+__end_of_memcpy 338E 0 CODE 0 text27 dist/default/production\teris_16f886.X.production.obj
+__end_of_memset 319A 0 CODE 0 text50 dist/default/production\teris_16f886.X.production.obj
+__end_of_merge1 3D2C 0 CODE 0 text12 dist/default/production\teris_16f886.X.production.obj
+_is_row_empty 2002 0 CODE 0 text19 dist/default/production\teris_16f886.X.production.obj
+right_most@matrix44 44 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+right_most@matrix88 46 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+clear_ram0 3030 0 CODE 0 clrtext dist/default/production\teris_16f886.X.production.obj
+__pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__pcstackBANK1 A0 0 BANK1 1 cstackBANK1 dist/default/production\teris_16f886.X.production.obj
+printf_debug_MATRIX44@col 2B 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+printf_debug_MATRIX44@row 2A 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_temp_count E9 0 BANK1 1 bssBANK1 dist/default/production\teris_16f886.X.production.obj
+__size_of_fall_off 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_temp_pre_x 6D 0 BANK0 1 dataBANK0 dist/default/production\teris_16f886.X.production.obj
+_hexpowers 1050 0 STRCODE 0 stringtext dist/default/production\teris_16f886.X.production.obj
+_URBuff 110 0 BANK2 1 bssBANK2 dist/default/production\teris_16f886.X.production.obj
+is_right_boundary@matrix44 76 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+is_right_boundary@matrix88 78 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+_Write_Byte 30CA 0 CODE 0 text47 dist/default/production\teris_16f886.X.production.obj
+__end_of_is_left_boundary 3B9C 0 CODE 0 text14 dist/default/production\teris_16f886.X.production.obj
+find_best_solution@temp_x E6 0 BANK1 1 cstackBANK1 dist/default/production\teris_16f886.X.production.obj
+_isdigit$906 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+is_right_boundary@x 20 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+printf_debug_MATRIX88@col 7C 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+printf_debug_MATRIX88@row 7B 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+USARTWriteString@str 71 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+_right_most 34B6 0 CODE 0 text5 dist/default/production\teris_16f886.X.production.obj
+___int_sp 0 0 STACK 2 stack C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+__size_of_is_right_boundary 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__Hbank0 0 0 ABS 0 bank0 -
+__Hbank1 0 0 ABS 0 bank1 -
+__Hbank2 0 0 ABS 0 bank2 -
+__Hbank3 0 0 ABS 0 bank3 -
+__Hcinit 1000 0 CODE 0 cinit -
+__Hidloc 0 0 IDLOC 0 idloc -
+__Hstack 0 0 STACK 2 stack -
+__stringbase 1024 0 STRCODE 0 stringtext dist/default/production\teris_16f886.X.production.obj
+__size_of_is_left_boundary 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+___lwdiv@counter 77 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__end_of_printf_debug_MATRIX44 278 0 CODE 0 text8 dist/default/production\teris_16f886.X.production.obj
+__end_of_printf_debug_MATRIX88 215C 0 CODE 0 text10 dist/default/production\teris_16f886.X.production.obj
+__Hmaintext 0 0 ABS 0 maintext -
+__end_of_sprintf 3000 0 CODE 0 text29 dist/default/production\teris_16f886.X.production.obj
+__Hcommon 0 0 ABS 0 common -
+__Hconfig 4012 0 CONFIG 0 config -
+__size_of_is_valid 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+printf_debug_cur_MATRIX44@enable 39 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+right_most@x 49 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__Lbank0 0 0 ABS 0 bank0 -
+__Lbank1 0 0 ABS 0 bank1 -
+__Lbank2 0 0 ABS 0 bank2 -
+__Lbank3 0 0 ABS 0 bank3 -
+__end_of_isdigit 3086 0 CODE 0 text30 dist/default/production\teris_16f886.X.production.obj
+__Lcinit F74 0 CODE 0 cinit -
+find_best_solution@temp_cur_matrix44 E3 0 BANK1 1 cstackBANK1 dist/default/production\teris_16f886.X.production.obj
+__Lidloc 0 0 IDLOC 0 idloc -
+__Lstack 0 0 STACK 2 stack -
+__size_of_is_row_empty 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_printf_MATRIX7219 319A 0 CODE 0 text46 dist/default/production\teris_16f886.X.production.obj
+__end_of_printf_debug_Screen 1BE2 0 CODE 0 text9 dist/default/production\teris_16f886.X.production.obj
+__end_of_octpowers 103C 0 STRCODE 0 stringtext dist/default/production\teris_16f886.X.production.obj
+USARTWriteChar@ch 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__Linittext 0 0 ABS 0 inittext -
+__size_of_printf_Screen 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+memcpy@d1 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+memcpy@s1 72 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+is_row_empty@col 75 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+is_row_empty@row 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__Habs1 0 0 ABS 0 abs1 -
+__Hcode 0 0 ABS 0 code -
+__Hinit 0 0 CODE 0 init -
+__Hsfr0 0 0 ABS 0 sfr0 -
+__Hsfr1 0 0 ABS 0 sfr1 -
+__Hsfr2 0 0 ABS 0 sfr2 -
+__Hsfr3 0 0 ABS 0 sfr3 -
+__Htext 0 0 ABS 0 text -
+__Labs1 0 0 ABS 0 abs1 -
+__Lcode 0 0 ABS 0 code -
+__Linit 0 0 CODE 0 init -
+__Lsfr0 0 0 ABS 0 sfr0 -
+__Lsfr1 0 0 ABS 0 sfr1 -
+__Lsfr2 0 0 ABS 0 sfr2 -
+__Lsfr3 0 0 ABS 0 sfr3 -
+__Ltext 0 0 ABS 0 text -
+memcpy@d 77 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+memcpy@n 74 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+memcpy@s 79 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__pnvBANK0 6E 0 BANK0 1 nvBANK0 dist/default/production\teris_16f886.X.production.obj
+_printf_debug_MATRIX44 38 0 CODE 0 text8 dist/default/production\teris_16f886.X.production.obj
+_printf_debug_MATRIX88 2050 0 CODE 0 text10 dist/default/production\teris_16f886.X.production.obj
+memset@c 72 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+memset@n 74 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+memset@p 76 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+___bmul 3086 0 CODE 0 text34 dist/default/production\teris_16f886.X.production.obj
+___lmul 359C 0 CODE 0 text40 dist/default/production\teris_16f886.X.production.obj
+___wmul 3212 0 CODE 0 text31 dist/default/production\teris_16f886.X.production.obj
+_UQFront 6F 0 BANK0 1 nvBANK0 dist/default/production\teris_16f886.X.production.obj
+_temp_pre_count EC 0 BANK1 1 bssBANK1 dist/default/production\teris_16f886.X.production.obj
+__LcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__LcstackBANK1 0 0 ABS 0 cstackBANK1 -
+delete_matrix@count 48 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+debug_int1@f 3F 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+debug_int1@i 41 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+debug_int2@f 3F 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+_GIE 5F 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_RA1 29 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_RA2 2A 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__S0 2009 0 ABS 0 - -
+__S1 1D7 0 ABS 0 - -
+__S2 0 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+_fall_off 1BE2 0 CODE 0 text20 dist/default/production\teris_16f886.X.production.obj
+__size_of_find_best_solution 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__CFG_BOR4V$BOR21V 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+printf_debug_cur_MATRIX44@matrix 3A 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+is_valid@col 50 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+is_valid@row 4F 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+find_best_solution@res A2 0 BANK1 1 cstackBANK1 dist/default/production\teris_16f886.X.production.obj
+_octpowers 1024 0 STRCODE 0 stringtext dist/default/production\teris_16f886.X.production.obj
+__end_of_is_row_empty 2050 0 CODE 0 text19 dist/default/production\teris_16f886.X.production.obj
+merge1@x 29 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+merge1@y 20 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__size_of_delete_row 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__end_of_fall_off 1D52 0 CODE 0 text20 dist/default/production\teris_16f886.X.production.obj
+__end_of_Write_Byte 30EE 0 CODE 0 text47 dist/default/production\teris_16f886.X.production.obj
+__CFG_FOSC$INTRC_NOCLKOUT 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_USARTWriteChar 3020 0 CODE 0 text36 dist/default/production\teris_16f886.X.production.obj
+_temp_high EA 0 BANK1 1 bssBANK1 dist/default/production\teris_16f886.X.production.obj
+_temp_hole EB 0 BANK1 1 bssBANK1 dist/default/production\teris_16f886.X.production.obj
+_temp_risk E7 0 BANK1 1 bssBANK1 dist/default/production\teris_16f886.X.production.obj
+__size_of_printf_MATRIX88 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__end_of_right_most 3524 0 CODE 0 text5 dist/default/production\teris_16f886.X.production.obj
+sprintf@idx 31 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+sprintf@len 33 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+sprintf@val 36 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+printf_MATRIX88@matrix88 20 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_debug_int1 329E 0 CODE 0 text28 dist/default/production\teris_16f886.X.production.obj
+_debug_int2 32E8 0 CODE 0 text22 dist/default/production\teris_16f886.X.production.obj
+_debug_line 313A 0 CODE 0 text21 dist/default/production\teris_16f886.X.production.obj
+__end_of_printf_Screen 3020 0 CODE 0 text44 dist/default/production\teris_16f886.X.production.obj
+__CFG_BOREN$ON 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_is_valid 23E6 0 CODE 0 text15 dist/default/production\teris_16f886.X.production.obj
+__HnvBANK0 0 0 ABS 0 nvBANK0 -
+__Lintentry 0 0 CODE 0 intentry -
+__stringtab 1000 0 STRCODE 0 stringtext dist/default/production\teris_16f886.X.production.obj
+delete_row@len 24 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+delete_row@row 7D 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__size_of_get_high 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+reset_vec 0 0 CODE 0 reset_vec C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+get_holes_after_merge@num_hole 4A 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__size_of_SPI1_write 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__pdataBANK0 6B 0 BANK0 1 dataBANK0 dist/default/production\teris_16f886.X.production.obj
+__pdataBANK1 ED 0 BANK1 1 dataBANK1 dist/default/production\teris_16f886.X.production.obj
+__pdataBANK3 1B7 0 BANK3 1 dataBANK3 dist/default/production\teris_16f886.X.production.obj
+__size_of___bmul 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of___lmul 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of___wmul 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__LbssBANK0 0 0 ABS 0 bssBANK0 -
+__LbssBANK1 0 0 ABS 0 bssBANK1 -
+__LbssBANK2 0 0 ABS 0 bssBANK2 -
+__LbssBANK3 0 0 ABS 0 bssBANK3 -
+__end_of_is_valid 2600 0 CODE 0 text15 dist/default/production\teris_16f886.X.production.obj
+__CFG_FCMEN$ON 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__end_of_MATRIX88_to_MATRIX7219 3738 0 CODE 0 text49 dist/default/production\teris_16f886.X.production.obj
+___awmod@counter 2B 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_USARTWriteString 3254 0 CODE 0 text35 dist/default/production\teris_16f886.X.production.obj
+_RCSTAbits 18 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+get_holes_after_merge@matrix 4C 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_memcpy 333A 0 CODE 0 text27 dist/default/production\teris_16f886.X.production.obj
+_memset 3164 0 CODE 0 text50 dist/default/production\teris_16f886.X.production.obj
+_merge1 3C5E 0 CODE 0 text12 dist/default/production\teris_16f886.X.production.obj
+sprintf@flag 3D 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+merge1@matrix88_in 23 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+sprintf@prec 38 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+memset@p1 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__ptext10 2050 0 CODE 0 text10 dist/default/production\teris_16f886.X.production.obj
+__ptext11 3052 0 CODE 0 text11 dist/default/production\teris_16f886.X.production.obj
+__ptext12 3C5E 0 CODE 0 text12 dist/default/production\teris_16f886.X.production.obj
+__ptext13 3452 0 CODE 0 text13 dist/default/production\teris_16f886.X.production.obj
+__ptext14 3ADE 0 CODE 0 text14 dist/default/production\teris_16f886.X.production.obj
+__ptext15 23E6 0 CODE 0 text15 dist/default/production\teris_16f886.X.production.obj
+__ptext16 1D52 0 CODE 0 text16 dist/default/production\teris_16f886.X.production.obj
+__ptext17 215C 0 CODE 0 text17 dist/default/production\teris_16f886.X.production.obj
+__ptext18 37CA 0 CODE 0 text18 dist/default/production\teris_16f886.X.production.obj
+__ptext19 2002 0 CODE 0 text19 dist/default/production\teris_16f886.X.production.obj
+__ptext20 1BE2 0 CODE 0 text20 dist/default/production\teris_16f886.X.production.obj
+__ptext21 313A 0 CODE 0 text21 dist/default/production\teris_16f886.X.production.obj
+__ptext22 32E8 0 CODE 0 text22 dist/default/production\teris_16f886.X.production.obj
+__ptext23 3EFC 0 CODE 0 text23 dist/default/production\teris_16f886.X.production.obj
+__ptext24 3738 0 CODE 0 text24 dist/default/production\teris_16f886.X.production.obj
+__ptext25 338E 0 CODE 0 text25 dist/default/production\teris_16f886.X.production.obj
+__ptext26 3E12 0 CODE 0 text26 dist/default/production\teris_16f886.X.production.obj
+__ptext27 333A 0 CODE 0 text27 dist/default/production\teris_16f886.X.production.obj
+__ptext28 329E 0 CODE 0 text28 dist/default/production\teris_16f886.X.production.obj
+__ptext29 2600 0 CODE 0 text29 dist/default/production\teris_16f886.X.production.obj
+__ptext30 306A 0 CODE 0 text30 dist/default/production\teris_16f886.X.production.obj
+__ptext31 3212 0 CODE 0 text31 dist/default/production\teris_16f886.X.production.obj
+__ptext32 33EE 0 CODE 0 text32 dist/default/production\teris_16f886.X.production.obj
+__ptext33 3524 0 CODE 0 text33 dist/default/production\teris_16f886.X.production.obj
+__ptext34 3086 0 CODE 0 text34 dist/default/production\teris_16f886.X.production.obj
+__ptext35 3254 0 CODE 0 text35 dist/default/production\teris_16f886.X.production.obj
+__ptext36 3020 0 CODE 0 text36 dist/default/production\teris_16f886.X.production.obj
+__ptext37 38F6 0 CODE 0 text37 dist/default/production\teris_16f886.X.production.obj
+__ptext38 8 0 CODE 0 text38 dist/default/production\teris_16f886.X.production.obj
+__ptext39 3A34 0 CODE 0 text39 dist/default/production\teris_16f886.X.production.obj
+__ptext40 359C 0 CODE 0 text40 dist/default/production\teris_16f886.X.production.obj
+__ptext41 385C 0 CODE 0 text41 dist/default/production\teris_16f886.X.production.obj
+__ptext42 361A 0 CODE 0 text42 dist/default/production\teris_16f886.X.production.obj
+__ptext43 3112 0 CODE 0 text43 dist/default/production\teris_16f886.X.production.obj
+__ptext44 3016 0 CODE 0 text44 dist/default/production\teris_16f886.X.production.obj
+__ptext45 30EE 0 CODE 0 text45 dist/default/production\teris_16f886.X.production.obj
+__ptext46 319A 0 CODE 0 text46 dist/default/production\teris_16f886.X.production.obj
+__ptext47 30CA 0 CODE 0 text47 dist/default/production\teris_16f886.X.production.obj
+__ptext48 6 0 CODE 0 text48 dist/default/production\teris_16f886.X.production.obj
+__ptext49 36A8 0 CODE 0 text49 dist/default/production\teris_16f886.X.production.obj
+__ptext50 3164 0 CODE 0 text50 dist/default/production\teris_16f886.X.production.obj
+merge@matrix44 71 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+merge@matrix88 73 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+___awmod 385C 0 CODE 0 text41 dist/default/production\teris_16f886.X.production.obj
+___lwdiv 3524 0 CODE 0 text33 dist/default/production\teris_16f886.X.production.obj
+___lwmod 33EE 0 CODE 0 text32 dist/default/production\teris_16f886.X.production.obj
+__size_of_is_row_full 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__pmaintext 278 0 CODE 0 maintext dist/default/production\teris_16f886.X.production.obj
+get_high_after_merge@y 4A 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+___lmul@multiplier 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+find_best_solution@left_most_index A0 0 BANK1 1 cstackBANK1 dist/default/production\teris_16f886.X.production.obj
+?_rand 20 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__Lcommon 0 0 ABS 0 common -
+__Lconfig 400E 0 CONFIG 0 config -
+__end_of_is_right_boundary 3C5E 0 CODE 0 text6 dist/default/production\teris_16f886.X.production.obj
+__CFG_CPD$ON 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+USARTInit@baud_rate 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__CFG_IESO$ON 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+printf_debug_MATRIX88@enable 7A 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__Hinittext 0 0 ABS 0 inittext -
+___wmul@multiplier 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__end_of_USARTWriteChar 3030 0 CODE 0 text36 dist/default/production\teris_16f886.X.production.obj
+_char_info_index_rand 8 0 CODE 0 text38 dist/default/production\teris_16f886.X.production.obj
+main@Seed 65 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__size_of_evaluate 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+___lwdiv@divisor 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+srand@x 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+_temp_y 6A 0 BANK0 1 bssBANK0 dist/default/production\teris_16f886.X.production.obj
+__end_of_debug_int1 32E8 0 CODE 0 text28 dist/default/production\teris_16f886.X.production.obj
+__end_of_debug_int2 333A 0 CODE 0 text22 dist/default/production\teris_16f886.X.production.obj
+__end_of_debug_line 3164 0 CODE 0 text21 dist/default/production\teris_16f886.X.production.obj
+stackhi 0 0 ABS 0 - C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+stacklo 0 0 ABS 0 - C:\Users\Admin\AppData\Local\Temp\s1b0.obj
+_temp_pre_high EE 0 BANK1 1 dataBANK1 dist/default/production\teris_16f886.X.production.obj
+_temp_pre_hole EF 0 BANK1 1 dataBANK1 dist/default/production\teris_16f886.X.production.obj
+_temp_pre_risk 6B 0 BANK0 1 dataBANK0 dist/default/production\teris_16f886.X.production.obj
+_get_high 37CA 0 CODE 0 text18 dist/default/production\teris_16f886.X.production.obj
+USARTWriteInt@F1617 190 0 BANK3 1 bssBANK3 dist/default/production\teris_16f886.X.production.obj
+__size_of_hit_land 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__end_of__stringtab 1024 0 STRCODE 0 stringtext dist/default/production\teris_16f886.X.production.obj
+is_row_full@col 78 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+is_row_full@row 72 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+find_best_solution@temp_matrix88 A3 0 BANK1 1 cstackBANK1 dist/default/production\teris_16f886.X.production.obj
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_2 0 0 ABS 0 - -
+__Lspace_3 0 0 ABS 0 - -
+printf_debug_MATRIX88@matrix 78 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__size_of_memcpy 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of_memset 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of_merge1 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+debug_line@enable 75 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+init_fetch0 30A8 0 CODE 0 inittext dist/default/production\teris_16f886.X.production.obj
+__HcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__HcstackBANK1 0 0 ABS 0 cstackBANK1 -
+__end_of_get_high 385C 0 CODE 0 text18 dist/default/production\teris_16f886.X.production.obj
+MATRIX88_to_MATRIX7219@matrix7219 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+_PIR1bits C 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__Lend_init 0 0 CODE 0 end_init -
+__CFG_LVP$ON 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+end_of_initialization FF8 0 CODE 0 cinit dist/default/production\teris_16f886.X.production.obj
+__Hintentry 0 0 CODE 0 intentry -
+printf_MATRIX88@matrix7219 21 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+merge@x 78 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+merge@y 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__Lstrings 0 0 ABS 0 strings -
+?___awmod 27 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+___lwdiv@dividend 72 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+is_right_boundary@col 22 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+is_right_boundary@row 21 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+get_high@matrix 46 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+?___lwdiv 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+?___lwmod 78 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__Hreset_vec 0 0 CODE 0 reset_vec -
+main@hit_res 67 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__HbssBANK0 0 0 ABS 0 bssBANK0 -
+__HbssBANK1 0 0 ABS 0 bssBANK1 -
+__HbssBANK2 0 0 ABS 0 bssBANK2 -
+__HbssBANK3 0 0 ABS 0 bssBANK3 -
+__size_of_get_high_after_merge 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__end_of_left_most 34B6 0 CODE 0 text13 dist/default/production\teris_16f886.X.production.obj
+___awmod@dividend 29 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__size_of_left_most 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__end_of_USARTWriteString 329E 0 CODE 0 text35 dist/default/production\teris_16f886.X.production.obj
+__ptext1 3040 0 CODE 0 text1 dist/default/production\teris_16f886.X.production.obj
+__ptext2 3994 0 CODE 0 text2 dist/default/production\teris_16f886.X.production.obj
+__ptext3 2284 0 CODE 0 text3 dist/default/production\teris_16f886.X.production.obj
+__ptext4 538 0 CODE 0 text4 dist/default/production\teris_16f886.X.production.obj
+__ptext5 34B6 0 CODE 0 text5 dist/default/production\teris_16f886.X.production.obj
+__ptext6 3B9C 0 CODE 0 text6 dist/default/production\teris_16f886.X.production.obj
+__ptext7 3D2C 0 CODE 0 text7 dist/default/production\teris_16f886.X.production.obj
+__ptext8 38 0 CODE 0 text8 dist/default/production\teris_16f886.X.production.obj
+__ptext9 1B8E 0 CODE 0 text9 dist/default/production\teris_16f886.X.production.obj
+_evaluate 3EFC 0 CODE 0 text23 dist/default/production\teris_16f886.X.production.obj
+__end_of_printf_debug_cur_MATRIX44 3E12 0 CODE 0 text7 dist/default/production\teris_16f886.X.production.obj
+get_high_after_merge@col 4B 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+get_high_after_merge@row 4C 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+printf_MATRIX7219@col 75 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+_sprintf 2600 0 CODE 0 text29 dist/default/production\teris_16f886.X.production.obj
+_delete_matrix 3738 0 CODE 0 text24 dist/default/production\teris_16f886.X.production.obj
+debug_int2@i1 41 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+debug_int2@i2 43 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+evaluate@matrix 4D 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__size_of_USARTWriteString 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+clear@x 78 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+clear@y 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__Lpowerup 0 0 CODE 0 powerup -
+__end_of_get_holes_after_merge 2000 0 CODE 0 text16 dist/default/production\teris_16f886.X.production.obj
+__Leeprom_data 0 0 EEDATA 3 eeprom_data -
+__pstringtext 1000 0 STRCODE 0 stringtext dist/default/production\teris_16f886.X.production.obj
+sprintf@ap 35 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+sprintf@cp 32 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+sprintf@sp 3C 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_isdigit 306A 0 CODE 0 text30 dist/default/production\teris_16f886.X.production.obj
+__end_of_get_high_after_merge 2284 0 CODE 0 text17 dist/default/production\teris_16f886.X.production.obj
+get_holes_after_merge@start 4D 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__end_of_evaluate 4000 0 CODE 0 text23 dist/default/production\teris_16f886.X.production.obj
+_hit_land 2284 0 CODE 0 text3 dist/default/production\teris_16f886.X.production.obj
+__Lreset_vec 0 0 CODE 0 reset_vec -
+_left_most 3452 0 CODE 0 text13 dist/default/production\teris_16f886.X.production.obj
+_is_right_boundary 3B9C 0 CODE 0 text6 dist/default/production\teris_16f886.X.production.obj
+__size_of_Write_Byte 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+left_most@x 48 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__CFG_WDTE$ON 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__end_of_hit_land 23E6 0 CODE 0 text3 dist/default/production\teris_16f886.X.production.obj
+__end_of__initialization FF8 0 CODE 0 cinit dist/default/production\teris_16f886.X.production.obj
+___awmod@divisor 27 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__Lfunctab 0 0 CODE 0 functab -
+__size_of_right_most 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+delete_matrix@matrix 44 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_get_holes_after_merge 1D52 0 CODE 0 text16 dist/default/production\teris_16f886.X.production.obj
+debug_str@str 73 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__pidataBANK0 1B88 0 CODE 0 idataBANK0 dist/default/production\teris_16f886.X.production.obj
+__pidataBANK1 3010 0 CODE 0 idataBANK1 dist/default/production\teris_16f886.X.production.obj
+__pidataBANK3 31D2 0 CODE 0 idataBANK3 dist/default/production\teris_16f886.X.production.obj
+delete_matrix@row 49 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+hit_land@col 4F 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+hit_land@row 50 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__Lclrtext 0 0 ABS 0 clrtext -
+Write_Byte@myColumn 71 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+___lmul@product 79 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+___lmul@multiplicand 74 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+_ANSELbits 188 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+fall_off@matrix44 47 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+fall_off@matrix88 49 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__size_of_printf_debug_MATRIX44 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of_printf_debug_MATRIX88 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_TXSTAbits 98 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+debug_int2@enable 45 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_tem_pre_sub_index 1D6 0 BANK3 1 dataBANK3 dist/default/production\teris_16f886.X.production.obj
+__Hend_init 6 0 CODE 0 end_init -
+merge1@matrix44 21 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+init_ram0 30B0 0 CODE 0 inittext dist/default/production\teris_16f886.X.production.obj
+sprintf@c 3B 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+sprintf@f 20 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__size_of_MATRIX88_to_MATRIX7219 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__end_of_main 538 0 CODE 0 maintext dist/default/production\teris_16f886.X.production.obj
+__end_of_rand 3ADE 0 CODE 0 text39 dist/default/production\teris_16f886.X.production.obj
+isdigit@c 71 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+Write_Byte@myValue 70 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__end_of_dpowers 1050 0 STRCODE 0 stringtext dist/default/production\teris_16f886.X.production.obj
+__end_of_clear 3994 0 CODE 0 text37 dist/default/production\teris_16f886.X.production.obj
+?_sprintf 20 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_RCREG 1A 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__end_of_merge 3A34 0 CODE 0 text2 dist/default/production\teris_16f886.X.production.obj
+printf_debug_Screen@lable 25 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+_SPBRG 99 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_TXREG 19 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_UQEnd 6E 0 BANK0 1 nvBANK0 dist/default/production\teris_16f886.X.production.obj
+__end_of_srand 3052 0 CODE 0 text1 dist/default/production\teris_16f886.X.production.obj
+__Hram 0 0 ABS 0 ram -
+__Lram 0 0 ABS 0 ram -
+_clear 38F6 0 CODE 0 text37 dist/default/production\teris_16f886.X.production.obj
+_cur_x ED 0 BANK1 1 dataBANK1 dist/default/production\teris_16f886.X.production.obj
+_cur_y 68 0 BANK0 1 bssBANK0 dist/default/production\teris_16f886.X.production.obj
+_merge 3994 0 CODE 0 text2 dist/default/production\teris_16f886.X.production.obj
+_g_char_info 1B7 0 BANK3 1 dataBANK3 dist/default/production\teris_16f886.X.production.obj
+_randx 1D2 0 BANK3 1 dataBANK3 dist/default/production\teris_16f886.X.production.obj
+_srand 3040 0 CODE 0 text1 dist/default/production\teris_16f886.X.production.obj
+__end_of_debug_str 306A 0 CODE 0 text11 dist/default/production\teris_16f886.X.production.obj
+merge1@matrix88_out 24 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+sprintf@width 39 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+__size_of_debug_str 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+MATRIX88_to_MATRIX7219@matrix88 74 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__HdataBANK0 0 0 ABS 0 dataBANK0 -
+__HdataBANK1 0 0 ABS 0 dataBANK1 -
+__HdataBANK3 0 0 ABS 0 dataBANK3 -
+__size_of_printf_debug_cur_MATRIX44 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+clear@col 7A 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+clear@row 79 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+_is_row_full 338E 0 CODE 0 text25 dist/default/production\teris_16f886.X.production.obj
+__initialization F74 0 CODE 0 cinit dist/default/production\teris_16f886.X.production.obj
+___bmul@product 72 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__CFG_PWRTE$OFF 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__pbssBANK0 68 0 BANK0 1 bssBANK0 dist/default/production\teris_16f886.X.production.obj
+__pbssBANK1 E7 0 BANK1 1 bssBANK1 dist/default/production\teris_16f886.X.production.obj
+__pbssBANK2 110 0 BANK2 1 bssBANK2 dist/default/production\teris_16f886.X.production.obj
+__pbssBANK3 190 0 BANK3 1 bssBANK3 dist/default/production\teris_16f886.X.production.obj
+__Hstringtext 0 0 ABS 0 stringtext -
+__CFG_WRT$OFF 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+debug_int1@enable 43 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+___wmul@product 74 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+__size_of_debug_int1 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of_debug_int2 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+__size_of_debug_line 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+_debug_str 3052 0 CODE 0 text11 dist/default/production\teris_16f886.X.production.obj
+__size_of_delete_matrix 0 0 ABS 0 - dist/default/production\teris_16f886.X.production.obj
+hit_land@matrix44 47 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+hit_land@matrix88 49 0 BANK0 1 cstackBANK0 dist/default/production\teris_16f886.X.production.obj
+is_row_empty@matrix 74 0 COMMON 1 cstackCOMMON dist/default/production\teris_16f886.X.production.obj
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+- 1 7E 2
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+cinit 0 7BA F74 46 2
+text1 0 1820 3040 9 2
+text2 0 1CCA 3994 50 2
+text3 0 1142 2284 B1 2
+text4 0 29C 538 51E 2
+text5 0 1A5B 34B6 37 2
+text6 0 1DCE 3B9C 61 2
+text7 0 1E96 3D2C 73 2
+text8 0 1C 38 120 2
+text9 0 DC7 1B8E 2A 2
+text10 0 1028 2050 86 2
+text11 0 1829 3052 C 2
+text12 0 1E2F 3C5E 67 2
+text13 0 1A29 3452 32 2
+text14 0 1D6F 3ADE 5F 2
+text15 0 11F3 23E6 10D 2
+text16 0 EA9 1D52 157 2
+text17 0 10AE 215C 94 2
+text18 0 1BE5 37CA 49 2
+text19 0 1001 2002 27 2
+text20 0 DF1 1BE2 B8 2
+text21 0 189D 313A 15 2
+text22 0 1974 32E8 29 2
+text23 0 1F7E 3EFC 82 2
+text24 0 1B9C 3738 49 2
+text25 0 19C7 338E 30 2
+text26 0 1F09 3E12 75 2
+text27 0 199D 333A 2A 2
+text28 0 194F 329E 25 2
+text29 0 1300 2600 500 2
+text30 0 1835 306A E 2
+text31 0 1909 3212 21 2
+text32 0 19F7 33EE 32 2
+text33 0 1A92 3524 3C 2
+text34 0 1843 3086 11 2
+text35 0 192A 3254 25 2
+text36 0 1810 3020 8 2
+text37 0 1C7B 38F6 4F 2
+text38 0 4 8 18 2
+text39 0 1D1A 3A34 55 2
+text40 0 1ACE 359C 3F 2
+text41 0 1C2E 385C 4D 2
+text42 0 1B0D 361A 47 2
+text43 0 1889 3112 14 2
+text44 0 180B 3016 5 2
+text45 0 1877 30EE 12 2
+text46 0 18CD 319A 1C 2
+text47 0 1865 30CA 12 2
+text49 0 1B54 36A8 48 2
+text50 0 18B2 3164 1B 2
+maintext 0 13C 278 160 2
+cstackCOMMON 1 70 70 E 1
+cstackBANK0 1 20 20 50 1
+cstackBANK1 1 A0 A0 50 1
+inittext 0 1854 30A8 11 2
+reset_vec 0 0 0 4 2
+bssBANK2 1 110 110 60 1
+bssBANK3 1 190 190 47 1
+stringtext 0 800 1000 5C3 2
+idataBANK0 0 DC4 1B88 3 2
+idataBANK1 0 1808 3010 3 2
+idataBANK3 0 18E9 31D2 20 2
+clrtext 0 1818 3030 8 2
+config 0 2007 400E 2 2
