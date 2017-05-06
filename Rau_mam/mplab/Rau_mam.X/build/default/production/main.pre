@@ -4,8 +4,8 @@
 
 # 12
 #pragma config FOSC = INTRCIO
-#pragma config WDTE = ON
-#pragma config PWRTE = ON
+#pragma config WDTE = OFF
+#pragma config PWRTE = OFF
 #pragma config MCLRE = OFF
 #pragma config BOREN = OFF
 #pragma config CP = ON
@@ -767,26 +767,16 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 31 "main.c"
-void delay_n_secs(int second)
-{
-for (int i = 0; i < second; i++)
-{
-_delay((unsigned long)((1000)*(4000000/4000.0)));
-}
-}
-
+# 61 "main.c"
 void main(void) {
-
 TRISIObits.TRISIO4 = 0;
 GPIObits.GP4 = 1;
-delay_n_secs(300);
-GPIObits.GP4 = 0;
 while(1)
 {
-delay_n_secs(3600);
-GPIObits.GP4 = 1;
-delay_n_secs(300);
+{ _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0)));};
 GPIObits.GP4 = 0;
+{ { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0)));}; { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0)));}; { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0)));}; { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0)));}; { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0)));}; { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0)));}; { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0)));}; { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0)));}; { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0)));};};
+GPIObits.GP4 = 1;
 }
 }
+

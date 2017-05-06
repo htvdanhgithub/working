@@ -1,8 +1,4 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F575 `(v ~T0 @X0 1 tf1`ul ]
-"152 C:\Program Files\Microchip\xc8\v1.41\include\pic.h
-[v __delay `JF575 ~T0 @X0 0 e ]
-[p i __delay ]
 [p mainexit ]
 "681 C:\Program Files\Microchip\xc8\v1.41\include\pic12f629.h
 [s S38 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -23,12 +19,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S13 . . . ]
 "233
 [v _GPIObits `VS13 ~T0 @X0 0 e@5 ]
+[v F575 `(v ~T0 @X0 1 tf1`ul ]
+"152 C:\Program Files\Microchip\xc8\v1.41\include\pic.h
+[v __delay `JF575 ~T0 @X0 0 e ]
+[p i __delay ]
 "12 main.c
 [p x FOSC=INTRCIO ]
 "13
-[p x WDTE=ON ]
+[p x WDTE=OFF ]
 "14
-[p x PWRTE=ON ]
+[p x PWRTE=OFF ]
 "15
 [p x MCLRE=OFF ]
 "16
@@ -580,88 +580,134 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 192: extern unsigned char __resetbits;
 [; ;pic.h: 193: extern __bit __powerdown;
 [; ;pic.h: 194: extern __bit __timeout;
-"31 main.c
-[v _delay_n_secs `(v ~T0 @X0 1 ef1`i ]
-"32
-{
-[; ;main.c: 31: void delay_n_secs(int second)
-[; ;main.c: 32: {
-[e :U _delay_n_secs ]
-"31
-[v _second `i ~T0 @X0 1 r1 ]
-"32
-[f ]
-[; ;main.c: 33: for (int i = 0; i < second; i++)
-"33
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $U 73  ]
-"34
-[e :U 70 ]
-[; ;main.c: 34: {
-{
-[; ;main.c: 35: _delay((unsigned long)((1000)*(4000000/4000.0)));
-"35
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"36
-}
-"33
-[e ++ _i -> 1 `i ]
-[e :U 73 ]
-[e $ < _i _second 70  ]
-[e :U 71 ]
-"36
-}
-[; ;main.c: 36: }
-[; ;main.c: 37: }
-"37
-[e :UE 69 ]
-}
-"39
+"61 main.c
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 39: void main(void) {
+[; ;main.c: 61: void main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 41: TRISIObits.TRISIO4 = 0;
-"41
+[; ;main.c: 62: TRISIObits.TRISIO4 = 0;
+"62
 [e = . . _TRISIObits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 42: GPIObits.GP4 = 1;
-"42
+[; ;main.c: 63: GPIObits.GP4 = 1;
+"63
 [e = . . _GPIObits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 43: delay_n_secs(300);
-"43
-[e ( _delay_n_secs (1 -> 300 `i ]
-[; ;main.c: 44: GPIObits.GP4 = 0;
-"44
-[e = . . _GPIObits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 45: while(1)
-"45
-[e :U 76 ]
-[; ;main.c: 46: {
-"46
+[; ;main.c: 64: while(1)
+"64
+[e :U 71 ]
+[; ;main.c: 65: {
+"65
 {
-[; ;main.c: 47: delay_n_secs(3600);
-"47
-[e ( _delay_n_secs (1 -> 3600 `i ]
-[; ;main.c: 48: GPIObits.GP4 = 1;
-"48
-[e = . . _GPIObits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 49: delay_n_secs(300);
-"49
-[e ( _delay_n_secs (1 -> 300 `i ]
-[; ;main.c: 50: GPIObits.GP4 = 0;
-"50
-[e = . . _GPIObits 0 4 -> -> 0 `i `uc ]
-"51
+[; ;main.c: 66: { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000
+"66
+{
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
 }
-[e :U 75 ]
-"45
-[e $U 76  ]
-[e :U 77 ]
-[; ;main.c: 51: }
-[; ;main.c: 52: }
-"52
-[e :UE 74 ]
+[; ;main.c: 67: GPIObits.GP4 = 0;
+"67
+[e = . . _GPIObits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 68: { { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/40
+"68
+{
+{
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+}
+{
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+}
+{
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+}
+{
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+}
+{
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+}
+{
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+}
+{
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+}
+{
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+}
+{
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 50000 `l `d / -> -> 4000000 `l `d .4000.0 `ul ]
+}
+}
+[; ;main.c: 69: GPIObits.GP4 = 1;
+"69
+[e = . . _GPIObits 0 4 -> -> 1 `i `uc ]
+"70
+}
+[e :U 70 ]
+"64
+[e $U 71  ]
+[e :U 72 ]
+[; ;main.c: 70: }
+[; ;main.c: 71: }
+"71
+[e :UE 69 ]
 }

@@ -3,31 +3,31 @@
 [d edition pro ]
 [d chip 16F1823 ]
 [d frameptr 6 ]
-"7 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+"7 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
 [v _ADCInit ADCInit `(v  1 e 1 0 ]
 "40
 [v _ReadADC ReadADC `(ui  1 e 2 0 ]
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+"6 C:\Program Files\Microchip\xc8\v1.41\sources\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
 [v i1___awdiv __awdiv `(i  1 e 2 0 ]
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+"6 C:\Program Files\Microchip\xc8\v1.41\sources\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
 [v i1___awmod __awmod `(i  1 e 2 0 ]
-"62 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+"62 C:\Program Files\Microchip\xc8\v1.41\sources\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
-"86 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftadd.c
+"86 C:\Program Files\Microchip\xc8\v1.41\sources\common\ftadd.c
 [v ___ftadd __ftadd `(f  1 e 3 0 ]
-"62 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+"62 C:\Program Files\Microchip\xc8\v1.41\sources\common\ftmul.c
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
-"44 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+"44 C:\Program Files\Microchip\xc8\v1.41\sources\common\fttol.c
 [v ___fttol __fttol `(l  1 e 4 0 ]
-"28 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwtoft.c
+"28 C:\Program Files\Microchip\xc8\v1.41\sources\common\lwtoft.c
 [v ___lwtoft __lwtoft `(f  1 e 3 0 ]
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\pic\eeprom.c
+"6 C:\Program Files\Microchip\xc8\v1.41\sources\pic\eeprom.c
 [v _eecpymem eecpymem `(v  1 e 1 0 ]
 "39
 [v _memcpyee memcpyee `(v  1 e 1 0 ]
-"64 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+"64 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
 [v _TriggerOutInit TriggerOutInit `(v  1 e 1 0 ]
 "79
 [v _TuneButtonInit TuneButtonInit `(v  1 e 1 0 ]
@@ -35,7 +35,7 @@
 [v _ISR ISR `II(v  1 e 1 0 ]
 "134
 [v _main main `(v  1 e 1 0 ]
-"80 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+"80 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
 [v _LCDByte LCDByte `(v  1 e 1 0 ]
 [v i1_LCDByte LCDByte `(v  1 e 1 0 ]
 "135
@@ -51,7 +51,7 @@
 "355
 [v _LCDGotoXY LCDGotoXY `(v  1 e 1 0 ]
 [v i1_LCDGotoXY LCDGotoXY `(v  1 e 1 0 ]
-"8 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lm35_pic16.c
+"8 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\lm35_pic16.c
 [v _LM35ReadTemp LM35ReadTemp `(i  1 e 2 0 ]
 [s S138 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
@@ -62,7 +62,7 @@
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-"360 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1823.h
+"358 C:\Program Files\Microchip\xc8\v1.41\include\pic16f1823.h
 [s S147 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
@@ -70,7 +70,7 @@
 ]
 [u S152 . 1 `S138 1 . 1 0 `S147 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES152  1 e 1 @11 ]
-"668
+"666
 [v _PORTC PORTC `VEuc  1 e 1 @14 ]
 [s S51 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
@@ -79,10 +79,10 @@
 `uc 1 TRISA4 1 0 :1:4 
 `uc 1 TRISA5 1 0 :1:5 
 ]
-"1476
+"1474
 [u S58 . 1 `S51 1 . 1 0 ]
 [v _TRISAbits TRISAbits `VES58  1 e 1 @140 ]
-"1510
+"1508
 [v _TRISC TRISC `VEuc  1 e 1 @142 ]
 [s S34 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
@@ -91,12 +91,12 @@
 `uc 1 TRISC4 1 0 :1:4 
 `uc 1 TRISC5 1 0 :1:5 
 ]
-"1525
+"1523
 [u S41 . 1 `S34 1 . 1 0 ]
 [v _TRISCbits TRISCbits `VES41  1 e 1 @142 ]
-"2049
+"2047
 [v _ADRESL ADRESL `VEuc  1 e 1 @155 ]
-"2068
+"2066
 [v _ADRESH ADRESH `VEuc  1 e 1 @156 ]
 [s S273 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
@@ -106,7 +106,7 @@
 `uc 1 CHS3 1 0 :1:5 
 `uc 1 CHS4 1 0 :1:6 
 ]
-"2116
+"2114
 [s S281 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 ADGO 1 0 :1:1 
 `uc 1 CHS 1 0 :5:2 
@@ -127,7 +127,7 @@
 `uc 1 ADCS2 1 0 :1:6 
 `uc 1 ADFM 1 0 :1:7 
 ]
-"2196
+"2194
 [s S323 . 1 `uc 1 ADPREF 1 0 :2:0 
 `uc 1 . 1 0 :2:2 
 `uc 1 ADCS 1 0 :3:4 
@@ -140,7 +140,7 @@
 `uc 1 . 1 0 :1:3 
 `uc 1 ANSA4 1 0 :1:4 
 ]
-"3073
+"3071
 [s S124 . 1 `uc 1 ANSELA 1 0 :5:0 
 ]
 [u S126 . 1 `S118 1 . 1 0 `S124 1 . 1 0 ]
@@ -152,26 +152,26 @@
 `uc 1 IOCAF4 1 0 :1:4 
 `uc 1 IOCAF5 1 0 :1:5 
 ]
-"4961
+"4959
 [s S177 . 1 `uc 1 IOCAF 1 0 :6:0 
 ]
 [u S179 . 1 `S170 1 . 1 0 `S177 1 . 1 0 ]
 [v _IOCAFbits IOCAFbits `VES179  1 e 1 @915 ]
-"6070
+"6068
 [v _RA0 RA0 `VEb  1 e 0 @96 ]
-"6072
+"6070
 [v _RA1 RA1 `VEb  1 e 0 @97 ]
-"6078
+"6076
 [v _RA4 RA4 `VEb  1 e 0 @100 ]
-"6080
+"6078
 [v _RA5 RA5 `VEb  1 e 0 @101 ]
-"6082
+"6080
 [v _RC0 RC0 `VEb  1 e 0 @112 ]
-"6084
+"6082
 [v _RC1 RC1 `VEb  1 e 0 @113 ]
-"15 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\custom_char.h
+"15 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\custom_char.h
 [v ___cgram __cgram `[8]uc  1 e 8 0 ]
-"60 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+"60 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
 [v _tuneUpTemp tuneUpTemp `i  1 e 2 0 ]
 "61
 [v _curTemp curTemp `i  1 e 2 0 ]
@@ -192,120 +192,120 @@
 {
 "78
 } 0
-"8 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lm35_pic16.c
+"8 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\lm35_pic16.c
 [v _LM35ReadTemp LM35ReadTemp `(i  1 e 2 0 ]
 {
 "14
-[v LM35ReadTemp@adc_value adc_value `ui  1 a 2 53 ]
+[v LM35ReadTemp@adc_value adc_value `ui  1 a 2 2 ]
 "29
 } 0
-"28 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwtoft.c
+"28 C:\Program Files\Microchip\xc8\v1.41\sources\common\lwtoft.c
 [v ___lwtoft __lwtoft `(f  1 e 3 0 ]
 {
-[v ___lwtoft@c c `ui  1 p 2 23 ]
+[v ___lwtoft@c c `ui  1 p 2 22 ]
 "31
 } 0
-"44 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\fttol.c
+"44 C:\Program Files\Microchip\xc8\v1.41\sources\common\fttol.c
 [v ___fttol __fttol `(l  1 e 4 0 ]
 {
 "47
-[v ___fttol@lval lval `ul  1 a 4 1 ]
+[v ___fttol@lval lval `ul  1 a 4 51 ]
 "46
-[v ___fttol@exp1 exp1 `uc  1 a 1 5 ]
-[v ___fttol@sign1 sign1 `uc  1 a 1 0 ]
+[v ___fttol@exp1 exp1 `uc  1 a 1 55 ]
+[v ___fttol@sign1 sign1 `uc  1 a 1 50 ]
 "44
-[v ___fttol@f1 f1 `f  1 p 3 43 ]
+[v ___fttol@f1 f1 `f  1 p 3 42 ]
 "73
 } 0
-"62 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftmul.c
+"62 C:\Program Files\Microchip\xc8\v1.41\sources\common\ftmul.c
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
 {
 "65
-[v ___ftmul@f3_as_product f3_as_product `um  1 a 3 38 ]
+[v ___ftmul@f3_as_product f3_as_product `um  1 a 3 37 ]
 "64
-[v ___ftmul@sign sign `uc  1 a 1 42 ]
-[v ___ftmul@cntr cntr `uc  1 a 1 41 ]
-[v ___ftmul@exp exp `uc  1 a 1 37 ]
+[v ___ftmul@sign sign `uc  1 a 1 41 ]
+[v ___ftmul@cntr cntr `uc  1 a 1 40 ]
+[v ___ftmul@exp exp `uc  1 a 1 36 ]
 "62
-[v ___ftmul@f1 f1 `f  1 p 3 27 ]
-[v ___ftmul@f2 f2 `f  1 p 3 30 ]
+[v ___ftmul@f1 f1 `f  1 p 3 26 ]
+[v ___ftmul@f2 f2 `f  1 p 3 29 ]
 "157
 } 0
-"62 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+"62 C:\Program Files\Microchip\xc8\v1.41\sources\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
 {
-[v ___ftpack@arg arg `um  1 p 3 15 ]
-[v ___ftpack@exp exp `uc  1 p 1 18 ]
-[v ___ftpack@sign sign `uc  1 p 1 19 ]
+[v ___ftpack@arg arg `um  1 p 3 14 ]
+[v ___ftpack@exp exp `uc  1 p 1 17 ]
+[v ___ftpack@sign sign `uc  1 p 1 18 ]
 "86
 } 0
-"40 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+"40 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
 [v _ReadADC ReadADC `(ui  1 e 2 0 ]
 {
 [v ReadADC@ch ch `uc  1 a 1 wreg ]
 [v ReadADC@ch ch `uc  1 a 1 wreg ]
 "42
-[v ReadADC@ch ch `uc  1 a 1 18 ]
+[v ReadADC@ch ch `uc  1 a 1 17 ]
 "57
 } 0
-"279 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+"279 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
 [v _LCDWriteString LCDWriteString `(v  1 e 1 0 ]
 {
 "287
-[v LCDWriteString@cc cc `c  1 a 1 30 ]
+[v LCDWriteString@cc cc `c  1 a 1 29 ]
 "279
-[v LCDWriteString@msg msg `*.25DCCuc  1 p 2 27 ]
+[v LCDWriteString@msg msg `*.25DCCuc  1 p 2 26 ]
 "305
 } 0
 "317
 [v _LCDWriteInt LCDWriteInt `(v  1 e 1 0 ]
 {
 "319
-[v LCDWriteInt@str str `[5]uc  1 a 5 32 ]
+[v LCDWriteInt@str str `[5]uc  1 a 5 31 ]
 "320
-[v LCDWriteInt@i i `i  1 a 2 39 ]
-[v LCDWriteInt@j j `i  1 a 2 37 ]
+[v LCDWriteInt@i i `i  1 a 2 38 ]
+[v LCDWriteInt@j j `i  1 a 2 36 ]
 "317
-[v LCDWriteInt@val val `i  1 p 2 27 ]
-[v LCDWriteInt@field_length field_length `c  1 p 1 29 ]
+[v LCDWriteInt@val val `i  1 p 2 26 ]
+[v LCDWriteInt@field_length field_length `c  1 p 1 28 ]
 "318
-[v LCDWriteInt@F2516 F2516 `[5]uc  1 s 5 F2516 ]
+[v LCDWriteInt@F2520 F2520 `[5]uc  1 s 5 F2520 ]
 "349
 } 0
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+"6 C:\Program Files\Microchip\xc8\v1.41\sources\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
 {
 "11
-[v ___awmod@sign sign `uc  1 a 1 21 ]
-[v ___awmod@counter counter `uc  1 a 1 20 ]
+[v ___awmod@sign sign `uc  1 a 1 20 ]
+[v ___awmod@counter counter `uc  1 a 1 19 ]
 "6
-[v ___awmod@divisor divisor `i  1 p 2 15 ]
-[v ___awmod@dividend dividend `i  1 p 2 17 ]
+[v ___awmod@divisor divisor `i  1 p 2 14 ]
+[v ___awmod@dividend dividend `i  1 p 2 16 ]
 "35
 } 0
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+"6 C:\Program Files\Microchip\xc8\v1.41\sources\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
 {
 "11
-[v ___awdiv@quotient quotient `i  1 a 2 22 ]
+[v ___awdiv@quotient quotient `i  1 a 2 21 ]
 "12
-[v ___awdiv@sign sign `uc  1 a 1 21 ]
-[v ___awdiv@counter counter `uc  1 a 1 20 ]
+[v ___awdiv@sign sign `uc  1 a 1 20 ]
+[v ___awdiv@counter counter `uc  1 a 1 19 ]
 "6
-[v ___awdiv@divisor divisor `i  1 p 2 15 ]
-[v ___awdiv@dividend dividend `i  1 p 2 17 ]
+[v ___awdiv@divisor divisor `i  1 p 2 14 ]
+[v ___awdiv@dividend dividend `i  1 p 2 16 ]
 "42
 } 0
-"207 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+"207 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
 [v _LCDInit LCDInit `(v  1 e 1 0 ]
 {
 [v LCDInit@style style `uc  1 a 1 wreg ]
 "245
-[v LCDInit@__i __i `uc  1 a 1 30 ]
+[v LCDInit@__i __i `uc  1 a 1 28 ]
 "207
 [v LCDInit@style style `uc  1 a 1 wreg ]
 "209
-[v LCDInit@style style `uc  1 a 1 29 ]
+[v LCDInit@style style `uc  1 a 1 27 ]
 "250
 } 0
 "355
@@ -313,9 +313,9 @@
 {
 [v LCDGotoXY@x x `uc  1 a 1 wreg ]
 [v LCDGotoXY@x x `uc  1 a 1 wreg ]
-[v LCDGotoXY@y y `uc  1 p 1 27 ]
+[v LCDGotoXY@y y `uc  1 p 1 26 ]
 "357
-[v LCDGotoXY@x x `uc  1 a 1 29 ]
+[v LCDGotoXY@x x `uc  1 a 1 28 ]
 "398
 } 0
 "80
@@ -323,37 +323,37 @@
 {
 [v LCDByte@c c `uc  1 a 1 wreg ]
 "90
-[v LCDByte@temp temp `uc  1 a 1 26 ]
+[v LCDByte@temp temp `uc  1 a 1 25 ]
 "89
-[v LCDByte@ln ln `uc  1 a 1 24 ]
-[v LCDByte@hn hn `uc  1 a 1 23 ]
+[v LCDByte@ln ln `uc  1 a 1 23 ]
+[v LCDByte@hn hn `uc  1 a 1 22 ]
 "80
 [v LCDByte@c c `uc  1 a 1 wreg ]
-[v LCDByte@isdata isdata `uc  1 p 1 20 ]
+[v LCDByte@isdata isdata `uc  1 p 1 19 ]
 "92
-[v LCDByte@c c `uc  1 a 1 25 ]
+[v LCDByte@c c `uc  1 a 1 24 ]
 "133
 } 0
 "135
 [v _LCDBusyLoop LCDBusyLoop `(v  1 e 1 0 ]
 {
 "139
-[v LCDBusyLoop@status status `uc  1 a 1 19 ]
-[v LCDBusyLoop@temp temp `uc  1 a 1 18 ]
-[v LCDBusyLoop@busy busy `uc  1 a 1 17 ]
+[v LCDBusyLoop@status status `uc  1 a 1 18 ]
+[v LCDBusyLoop@temp temp `uc  1 a 1 17 ]
+[v LCDBusyLoop@busy busy `uc  1 a 1 16 ]
 "191
 } 0
-"7 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
+"7 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\adc_pic16.c
 [v _ADCInit ADCInit `(v  1 e 1 0 ]
 {
 "39
 } 0
-"98 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
+"98 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\do_am.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
 "133
 } 0
-"317 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+"317 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
 [v i1_LCDWriteInt LCDWriteInt `(v  1 e 1 0 ]
 {
 [v i1LCDWriteInt@str LCDWriteInt `[5]uc  1 a 5 3 ]
@@ -363,7 +363,7 @@
 [v i1LCDWriteInt@field_length field_length `c  1 p 1 2 ]
 "349
 } 0
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+"6 C:\Program Files\Microchip\xc8\v1.41\sources\common\awmod.c
 [v i1___awmod __awmod `(i  1 e 2 0 ]
 {
 [v i1___awmod@sign __awmod `uc  1 a 1 6 ]
@@ -372,7 +372,7 @@
 [v i1___awmod@dividend dividend `i  1 p 2 2 ]
 "35
 } 0
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+"6 C:\Program Files\Microchip\xc8\v1.41\sources\common\awdiv.c
 [v i1___awdiv __awdiv `(i  1 e 2 0 ]
 {
 [v i1___awdiv@quotient __awdiv `i  1 a 2 7 ]
@@ -382,7 +382,7 @@
 [v i1___awdiv@dividend dividend `i  1 p 2 2 ]
 "42
 } 0
-"355 D:\Working\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
+"355 D:\Github\working\May_do_do_am_dat\mplab\do_am.X\lcd_hd44780_pic16.c
 [v i1_LCDGotoXY LCDGotoXY `(v  1 e 1 0 ]
 {
 [v i1LCDGotoXY@x x `uc  1 a 1 wreg ]
