@@ -63,9 +63,11 @@ void main(void) {
     GPIObits.GP4 = 1;
     while(1)
     {
-        DELAY_5_MINS;
+        //DELAY_5_MINS;
+        DELAY_40_SECS;
         GPIObits.GP4 = 0;
-        DELAY_1_HOUR;
+        //DELAY_1_HOUR;
+        DELAY_40_SECS;
         GPIObits.GP4 = 1;
     }    
 }
