@@ -1,10 +1,10 @@
 __S0 2008 0 ABS 0
-__S1 23 0 ABS 0
+__S1 25 0 ABS 0
 __S2 0 0 ABS 0
 __S3 0 0 ABS 0
 __Hintentry 0 0 CODE 0
 __Lintentry 0 0 CODE 0
-_main 3DC 0 CODE 0
+_main F 0 CODE 0
 ___sp 0 0 STACK 2
 btemp 5E 0 ABS 0
 start 0 0 CODE 0
@@ -14,6 +14,7 @@ __Hosccal 3FF 0 CODE 0
 __Losccal 3FF 0 CODE 0
 __Hconfig 2008 0 CONFIG 0
 __Lconfig 2007 0 CONFIG 0
+main@i 23 0 BANK0 1
 ___osccal_val 3FF 0 CODE 0
 __CFG_CP$ON 0 0 ABS 0
 __Hram 7FE 0 ABS 0
@@ -91,27 +92,29 @@ intlevel5 0 0 CODE 0
 start_initialization 3FD 0 CODE 0
 __Hmaintext 7FE 0 ABS 0
 __Lmaintext 7FE 0 ABS 0
-__pmaintext 3DC 0 CODE 0
+__pmaintext F 0 CODE 0
 __initialization 3FD 0 CODE 0
 __CFG_FOSC$INTRCIO 0 0 ABS 0
 %segments
 reset_vec 0 1 CODE 0 0
 cinit 7FA 7FD CODE 7FA 0
 config 400E 400F CONFIG 400E 0
-cstackBANK0 20 22 BANK0 20 1
-maintext 7B8 7F9 CODE 7B8 0
+cstackBANK0 20 24 BANK0 20 1
+maintext 1E 7F9 CODE 1E 0
 %locals
 dist/default/production\Rau_mam.X.production.obj
-C:\Users\Admin\AppData\Local\Temp\s1hs.
+C:\Users\Admin\AppData\Local\Temp\s3v0.
 105 3FD 0 CODE 0
 108 3FD 0 CODE 0
 114 3FD 0 CODE 0
 116 3FD 0 CODE 0
 117 3FE 0 CODE 0
 main.c
-61 3DC 0 CODE 0
-62 3DC 0 CODE 0
-63 3DE 0 CODE 0
-67 3E0 0 CODE 0
-68 3ED 0 CODE 0
-70 3EF 0 CODE 0
+63 F 0 CODE 0
+64 F 0 CODE 0
+65 11 0 CODE 0
+71 13 0 CODE 0
+73 74 0 CODE 0
+77 76 0 CODE 0
+79 83 0 CODE 0
+77 3F5 0 CODE 0

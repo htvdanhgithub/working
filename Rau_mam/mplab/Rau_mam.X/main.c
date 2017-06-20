@@ -58,17 +58,28 @@
     DELAY_5_MINS;\
 }
 
+//#define TEST
+
 void main(void) {
-    TRISIObits.TRISIO4 = 0;
-    GPIObits.GP4 = 1;
+    TRISIObits.TRISIO1 = 0;
+    GPIObits.GP1 = 1;
     while(1)
     {
-        //DELAY_5_MINS;
+#ifdef TEST
         DELAY_40_SECS;
-        GPIObits.GP4 = 0;
-        //DELAY_1_HOUR;
-        DELAY_40_SECS;
-        GPIObits.GP4 = 1;
+#else
+        DELAY_5_MINS;
+#endif        
+        GPIObits.GP1 = 0;
+#ifdef TEST
+            DELAY_40_SECS;
+#else
+        for(int i = 0; i < 2; i++)
+        {
+            DELAY_1_HOUR;
+        }
+#endif        
+        GPIObits.GP1 = 1;
     }    
 }
 /*void main(void) {

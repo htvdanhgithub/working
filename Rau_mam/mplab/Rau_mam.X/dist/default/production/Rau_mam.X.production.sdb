@@ -11,7 +11,7 @@
 [v _eecpymem eecpymem `(v  1 e 1 0 ]
 "39
 [v _memcpyee memcpyee `(v  1 e 1 0 ]
-"61 D:\Github\working\Rau_mam\mplab\Rau_mam.X\main.c
+"63 D:\Github\working\Rau_mam\mplab\Rau_mam.X\main.c
 [v _main main `(v  1 e 1 0 ]
 [s S36 . 1 `uc 1 GP0 1 0 :1:0 
 `uc 1 GP1 1 0 :1:1 
@@ -40,8 +40,10 @@
 "690
 [u S26 . 1 `S19 1 . 1 0 ]
 [v _TRISIObits TRISIObits `VES26  1 e 1 @133 ]
-"61 D:\Github\working\Rau_mam\mplab\Rau_mam.X\main.c
+"63 D:\Github\working\Rau_mam\mplab\Rau_mam.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"73
+"77
+[v main@i i `i  1 a 2 3 ]
+"84
 } 0
