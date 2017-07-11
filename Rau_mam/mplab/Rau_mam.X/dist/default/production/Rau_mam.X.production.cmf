@@ -15,7 +15,7 @@ $dist/default/production\Rau_mam.X.production.obj
 cinit CODE 0 3FD 3FD 2 2
 maintext CODE 0 F F 3EE 2
 cstackBANK0 BANK0 1 20 20 5 1
-$C:\Users\Admin\AppData\Local\Temp\s3v0.obj
+$C:\Users\Admin\AppData\Local\Temp\s33c.obj
 end_init CODE 0 0 0 1 2
 config CONFIG 0 2007 2007 1 2
 # %UNUSED Section
@@ -50,11 +50,11 @@ STRING 1-E 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Rau_mam.X.production.obj
-3FD cinit CODE >105:C:\Users\Admin\AppData\Local\Temp\s3v0.
-3FD cinit CODE >108:C:\Users\Admin\AppData\Local\Temp\s3v0.
-3FD cinit CODE >114:C:\Users\Admin\AppData\Local\Temp\s3v0.
-3FD cinit CODE >116:C:\Users\Admin\AppData\Local\Temp\s3v0.
-3FE cinit CODE >117:C:\Users\Admin\AppData\Local\Temp\s3v0.
+3FD cinit CODE >105:C:\Users\Admin\AppData\Local\Temp\s33c.
+3FD cinit CODE >108:C:\Users\Admin\AppData\Local\Temp\s33c.
+3FD cinit CODE >114:C:\Users\Admin\AppData\Local\Temp\s33c.
+3FD cinit CODE >116:C:\Users\Admin\AppData\Local\Temp\s33c.
+3FE cinit CODE >117:C:\Users\Admin\AppData\Local\Temp\s33c.
 F maintext CODE >63:D:\Github\working\Rau_mam\mplab\Rau_mam.X\main.c
 F maintext CODE >64:D:\Github\working\Rau_mam\mplab\Rau_mam.X\main.c
 11 maintext CODE >65:D:\Github\working\Rau_mam\mplab\Rau_mam.X\main.c
@@ -83,20 +83,20 @@ __Hspace_3 0 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 main@i 23 0 BANK0 1 cstackBANK0 dist/default/production\Rau_mam.X.production.obj
 __Hstrings 7FE 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\Admin\AppData\Local\Temp\s3v0.obj
+___sp 0 0 STACK 2 stack C:\Users\Admin\AppData\Local\Temp\s33c.obj
 _main 1E 0 CODE 0 maintext dist/default/production\Rau_mam.X.production.obj
 btemp 5E 0 ABS 0 - dist/default/production\Rau_mam.X.production.obj
 _TRISIObits 85 0 ABS 0 - dist/default/production\Rau_mam.X.production.obj
-start 0 0 CODE 0 init C:\Users\Admin\AppData\Local\Temp\s3v0.obj
+start 0 0 CODE 0 init C:\Users\Admin\AppData\Local\Temp\s33c.obj
 __CFG_BOREN$OFF 0 0 ABS 0 - dist/default/production\Rau_mam.X.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\Rau_mam.X.production.obj
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s3v0.obj
-intlevel1 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s3v0.obj
-intlevel2 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s3v0.obj
-intlevel3 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s3v0.obj
-intlevel4 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s3v0.obj
-intlevel5 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s3v0.obj
+intlevel0 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s33c.obj
+intlevel1 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s33c.obj
+intlevel2 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s33c.obj
+intlevel3 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s33c.obj
+intlevel4 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s33c.obj
+intlevel5 0 0 CODE 0 functab C:\Users\Admin\AppData\Local\Temp\s33c.obj
 wtemp0 5E 0 ABS 0 - dist/default/production\Rau_mam.X.production.obj
 __Hfunctab 0 0 CODE 0 functab -
 __Hclrtext 7FE 0 ABS 0 clrtext -
@@ -106,7 +106,7 @@ __Lmaintext 7FE 0 ABS 0 maintext -
 __CFG_MCLRE$OFF 0 0 ABS 0 - dist/default/production\Rau_mam.X.production.obj
 start_initialization 7FA 0 CODE 0 cinit dist/default/production\Rau_mam.X.production.obj
 __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\Rau_mam.X.production.obj
-___int_sp 0 0 STACK 2 stack C:\Users\Admin\AppData\Local\Temp\s3v0.obj
+___int_sp 0 0 STACK 2 stack C:\Users\Admin\AppData\Local\Temp\s33c.obj
 __Hbank0 7FE 0 ABS 0 bank0 -
 __Hbank1 7FE 0 BANK1 1 bank1 -
 __Hcinit 7FE 0 CODE 0 cinit -
@@ -140,15 +140,15 @@ __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 __Hosccal 7FE 0 CODE 0 osccal -
 __Lintentry 0 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\Admin\AppData\Local\Temp\s3v0.obj
+reset_vec 0 0 CODE 0 reset_vec C:\Users\Admin\AppData\Local\Temp\s33c.obj
 __pmaintext 1E 0 CODE 0 maintext dist/default/production\Rau_mam.X.production.obj
 __Lcommon 7FE 0 ABS 0 common -
 __Lconfig 400E 0 CONFIG 0 config -
 __CFG_CPD$ON 0 0 ABS 0 - dist/default/production\Rau_mam.X.production.obj
 __CFG_WDTE$OFF 0 0 ABS 0 - dist/default/production\Rau_mam.X.production.obj
-___osccal_val 7FE 0 CODE 0 osccal C:\Users\Admin\AppData\Local\Temp\s3v0.obj
-stackhi 0 0 ABS 0 - C:\Users\Admin\AppData\Local\Temp\s3v0.obj
-stacklo 0 0 ABS 0 - C:\Users\Admin\AppData\Local\Temp\s3v0.obj
+___osccal_val 7FE 0 CODE 0 osccal C:\Users\Admin\AppData\Local\Temp\s33c.obj
+stackhi 0 0 ABS 0 - C:\Users\Admin\AppData\Local\Temp\s33c.obj
+stacklo 0 0 ABS 0 - C:\Users\Admin\AppData\Local\Temp\s33c.obj
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -

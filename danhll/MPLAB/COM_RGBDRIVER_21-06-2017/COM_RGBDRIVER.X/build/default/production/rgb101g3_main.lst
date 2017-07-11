@@ -1,4 +1,4 @@
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE  1
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -57,7 +57,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00051 ;  Ensure that MCLR is pulled to Vdd using 1K resistor for 12F629/675. 
                       00052 ;
                       00053 ; Sw1 performs multiple functions.
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE  2
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -116,7 +116,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 2007   3FA4           00093      __CONFIG       _CP_OFF & _WDT_OFF & _BODEN_OFF & _PWRTE_ON & _INTRC_OSC_NOCLKOUT & _MCLRE_ON & _CPD
                             _OFF
                       00094   ENDIF
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE  3
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -175,7 +175,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
   0000004E            00145                  bpwm           ; blue pwm level
                       00146 
                       00147         endc
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE  4
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -234,7 +234,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0005   0090           00016                 movwf           OSCCAL          ; write to OSCCAL register
                       00017                                                 ; If using a 12F629/675 this value must be present
                       00018                                                 ; and correct, or the code will not function properly
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE  5
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -293,7 +293,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0019   0081           00069                 movwf           TMR0
 001A   110B           00070                 bcf             INTCON,T0IF
 001B   300A           00071                 movlw           cHOLDPRESCALER
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE  6
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -352,7 +352,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00010 ;               Input on GPIO,4 determines whether active drive is high or low
                       00011 ;               The input is only read at power-on / reset.
                       00012 ;
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE  7
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -411,7 +411,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 003D   084D           00063                 movfw           gpwm
 003E   00AB           00064                 movwf           gpwmWkg
 003F   0F2B           00065                 incfsz          gpwmWkg,W
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE  8
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -470,7 +470,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0062   0AB2           00116                 incf            seql,F          ; otherwise increment seq data pointer
 0063   1903           00117                 skpnz                           ; ready for next
 0064   0AB3           00118                 incf            seqh,F          ; call to get seq data
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE  9
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -529,7 +529,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 008C   00B2           00169                 movwf           seql
 008D   38FF           00170                 iorlw           0xFF            ; return with W != 0
 008E   0008           00171                 return
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 10
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -588,7 +588,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00B1   1803 2???      00222                 bc              _gabs           ; branch if C=1  (current > new)
 00B3   03A1           00223                 decf            gdir,F          ; rdir is 1, decrement twice
 00B4   03A1           00224                 decf            gdir,F          ; to make rdir -1.
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 11
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -647,7 +647,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00D9   0085           00275         movwf   GPIO    ; turn off all outputs
                       00276                 
 00DA   1E85           00277 _waitSwRelSleep btfss           GPIO,seqSw      ; test seqSw
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 12
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 12
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -706,7 +706,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 00FE   141C           00328                 bsf             EECON1,RD       ; initiate EEPROM read
 00FF   081A           00329                 movf            EEDATA,W        ; load EEPROM data into W
 0100   1283           00330         setbank0
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 13
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 13
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -765,7 +765,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0125   084C           00381                 movfw           rpwm            ; get next variable to save
 0126   00C2           00382                 movwf           base+.1         ; write to base+1
 0127   07C6           00383                 addwf           base+.5,F       ; add to checksum
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 14
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 14
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -824,7 +824,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 014D   2???           00434                 call            _eeRead
 014E   00CE           00435                 movwf           bpwm
 014F   07C7           00436                 addwf           saveCnt,F
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 15
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 15
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -883,7 +883,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 016A   2???           00042                 goto            _seqSwUp        
                       00043                                 
 016B   0ABB           00044 _seqSwDown      incf            seqSwCnt,F      ; increment seqSwCnt counter variable
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 16
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 16
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -942,7 +942,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00095 ;------------------------------------------------------
                       00096 ; fade          
                       00097                 
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 17
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 17
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1001,7 +1001,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 01B9   07A8           00148                 addwf           Bcnt,F
 01BA   0822           00149                 movfw           bdir
 01BB   07CE           00150                 addwf           bpwm,F
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 18
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 18
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1060,7 +1060,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00026 ;       max fade time with increments of 5mS x fade_rate.
                       00027 ;         1 x 5mS x 255 = 1.27 secs
                       00028 ;         2 x 5mS x 255 = 2.50 secs
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 19
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 19
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -1090,51 +1090,52 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00050 ;      |    |    |    |    |
                       00051 
                       00052 
-01C9   3432 3405 34FF 00053         dt   50 , 5,255,   0,  0
+01C9   3464 3405 34FF 00053         dt   100 , 5,255,   0,  0
        3400 3400 
-01CE   3432 3405 34FF 00054         dt   50 , 5,255,  2,  0
+01CE   3464 3405 34FF 00054         dt   100 , 5,255,  2,  0
        3402 3400 
-01D3   3432 3405 34FF 00055         dt   50 , 5,255,  5,  0
+01D3   3464 3405 34FF 00055         dt   100 , 5,255,  5,  0
        3405 3400 
-01D8   3432 3405 34FF 00056         dt   50 , 5,255,  10,  0
+01D8   3464 3405 34FF 00056         dt   100 , 5,255,  10,  0
        340A 3400 
-01DD   3432 3405 34FF 00057         dt   50 , 5,255,  20,  0
+01DD   3464 3405 34FF 00057         dt   100 , 5,255,  20,  0
        3414 3400 
-01E2   3432 3405 34FF 00058         dt   50 , 5,255,  80,  0
+01E2   3464 3405 34FF 00058         dt   100 , 5,255,  80,  0
        3450 3400 
-01E7   3432 3405 34FF 00059         dt   50 , 5,255, 100,  0
+01E7   3464 3405 34FF 00059         dt   100 , 5,255, 100,  0
        3464 3400 
                       00060         
-01EC   3432 340A 34FF 00061         dt   50 ,10,255,255,  0
+01EC   3464 340A 34FF 00061         dt   100 ,10,255,255,  0
        34FF 3400 
-01F1   3432 340F 3400 00062         dt   50 ,15,  0,255,  0
+01F1   3464 340F 3400 00062         dt   100 ,15,  0,255,  0
        34FF 3400 
-01F6   3432 340A 3400 00063         dt   50 ,10,  0,255,255
+01F6   3464 340A 3400 00063         dt   100 ,10,  0,255,255
        34FF 34FF 
-01FB   3432 340F 3400 00064         dt   50 ,15,  0,  0,255
+01FB   3464 340F 3400 00064         dt   100 ,15,  0,  0,255
        3400 34FF 
-0200   3432 340A 34FF 00065         dt   50 ,10,255,255,255
+0200   3464 340A 34FF 00065         dt   100 ,10,255,255,255
        34FF 34FF 
                       00066 
-0205   3432 340A 34C8 00067         dt   50,10,200,  0,  0
+0205   3432 3405 34C8 00067         dt   50,5,200,  0,  0
        3400 3400 
-020A   3432 340A 34FF 00068         dt   50 ,10,255,  0,  0
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 20
+020A   3432 3405 34FF 00068         dt   50 ,5,255,  0,  0
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 20
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
        3400 3400 
-020F   3432 340A 34FF 00069         dt   50 ,10,255,  2,  0
-       3402 3400 
-0214   3432 340A 34FF 00070         dt   50,10,255,  0,5
+Warning[202]: Argument out of range.  Least significant bits used.
+020F   342C 3405 34FF 00069         dt   300 ,5,255,  0,  2
+       3400 3402 
+0214   34C8 3405 34FF 00070         dt   200,5,255,  0,5
        3400 3405 
-0219   3432 340A 34FF 00071         dt   50,10,255,  0,10
+0219   3464 3405 34FF 00071         dt   100,5,255,  0,10
        3400 340A 
-021E   3432 340A 34FF 00072         dt   50,10,255,  0,100
+021E   3464 3405 34FF 00072         dt   100,5,255,  0,100
        3400 3464 
-0223   3432 340A 34FF 00073         dt   50 ,10,255,  0,255
+0223   3464 3405 34FF 00073         dt   100 ,5,255,  0,255
        3400 34FF 
                       00074 
 0228   34FF           00075         dt   255                ;seq 1
@@ -1154,7 +1155,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00196                 ;fill 00, 0x3FF-$
                       00197                 
 3FA4                  00198                 end
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 21
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 21
 
 
 SYMBOL TABLE
@@ -1213,7 +1214,7 @@ Gdif                              00000024
 INDF                              00000000
 INTCON                            0000000B
 INTE                              00000004
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 22
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 22
 
 
 SYMBOL TABLE
@@ -1272,7 +1273,7 @@ T1IE                              00000000
 T1IF                              00000000
 T1OSCEN                           00000003
 TMR0                              00000001
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 23
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 23
 
 
 SYMBOL TABLE
@@ -1331,7 +1332,7 @@ _DEVID1                           00002006
 _EC_OSC                           00003FFB
 _EXTRC_OSC_CLKOUT                 00003FFF
 _EXTRC_OSC_NOCLKOUT               00003FFE
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 24
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 24
 
 
 SYMBOL TABLE
@@ -1390,7 +1391,7 @@ _findNoSeq                        0000001D
 _gabs                             000000B6
 _getSavedSeq                      00000022
 _holdSeqNext                      000001C6
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 25
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 25
 
 
 SYMBOL TABLE
@@ -1449,7 +1450,7 @@ holdTimerHi                       00000040
 holdTimerPS                       0000003F
 pwmramp                           0000002E
 rate                              00000036
-MPASM 5.73                 RGB101G3_MAIN.ASM   6-21-2017  1:47:43         PAGE 26
+MPASM 5.73                 RGB101G3_MAIN.ASM   1-10-2010  0:57:34         PAGE 26
 
 
 SYMBOL TABLE
@@ -1474,7 +1475,7 @@ setbank0                          bcf             STATUS,RP0
 setbank1                          bsf             STATUS,RP0
 
 Errors   :     0
-Warnings :     0 reported,     0 suppressed
+Warnings :     1 reported,     0 suppressed
 Messages :     0 reported,    19 suppressed
 
 
