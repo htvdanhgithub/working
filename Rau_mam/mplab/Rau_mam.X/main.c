@@ -25,27 +25,27 @@
 #include <xc.h>
 #include <pic12f629.h>
 
+
 #define PUMPING   0  // Pumping
 #define WAITING   1  // Waiting
 
 #define PUMP_5_MINS   10  // 300 seconds
 #define WAIT_1_HOUR   60 // 3600 seconds
 
-#define DELAY_40_SECS __delay_ms(50000)
+#define DELAY_50_SECS __delay_ms(50000)
 
 #define DELAY_5_MINS \
 {\
-    DELAY_40_SECS;\
-    DELAY_40_SECS;\
-    DELAY_40_SECS;\
-    DELAY_40_SECS;\
-    DELAY_40_SECS;\
-    DELAY_40_SECS;\
-    DELAY_40_SECS;\
+    DELAY_50_SECS;\
+    DELAY_50_SECS;\
+    DELAY_50_SECS;\
+    DELAY_50_SECS;\
+    DELAY_50_SECS;\
+    DELAY_50_SECS;\
 }
 
 
-#define DELAY_1_HOUR \
+#define DELAY_50_MINS \
 {\
     DELAY_5_MINS;\
     DELAY_5_MINS;\
@@ -56,60 +56,30 @@
     DELAY_5_MINS;\
     DELAY_5_MINS;\
     DELAY_5_MINS;\
+    DELAY_5_MINS;\
 }
 
-//#define TEST
 
 void main(void) {
     TRISIObits.TRISIO1 = 0;
     GPIObits.GP1 = 1;
     while(1)
     {
+        OSCCALbits.CAL = 0b000000;
 #ifdef TEST
-        DELAY_40_SECS;
+        DELAY_50_SECS;
 #else
         DELAY_5_MINS;
 #endif        
         GPIObits.GP1 = 0;
-#ifdef TEST
-            DELAY_40_SECS;
-#else
-        for(int i = 0; i < 2; i++)
+        for(int i = 0; i < 3; i++)
         {
-            DELAY_1_HOUR;
-        }
+#ifdef TEST
+            DELAY_50_SECS;
+#else
+            DELAY_50_MINS;
 #endif        
+        }
         GPIObits.GP1 = 1;
     }    
 }
-/*void main(void) {
-    // Initial
-    int count = 0;
-    char mode = PUMPING; // 0: pumping, 1: waiting
-    TRISIObits.TRISIO0 = 0;
-    GPIObits.GP0 = 1;
-    while(1)
-    {
-        count++;
-        __delay_ms (1000);
-        switch (mode)
-        {
-            case PUMPING:
-                if (count == PUMP_5_MINS)
-                {
-                    count = 0;
-                    mode = WAIT_1_HOUR;
-                    GPIObits.GP0 = 0;
-                }
-                break;
-            case WAITING:
-                if (count == WAIT_1_HOUR)
-                {
-                    count = 0;
-                    mode = PUMP_5_MINS;
-                    GPIObits.GP0 = 0;
-                }
-                break;
-        }
-    }
-}*/

@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V1.41 build -162212810 
-                                                                                               Tue Jul 11 23:42:51 2017
+                                                                                               Mon Aug 07 22:13:18 2017
 
 Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250102
      1                           	processor	12F629
@@ -83,1178 +83,1125 @@ Microchip Technology Omniscient Code Generator v1.41 (Free mode) build 201701250
     69  009C                     	;# 
     70  009D                     	;# 
     71  0005                     _GPIObits	set	5
-    72  0085                     _TRISIObits	set	133
-    73                           
-    74                           ; #config settings
-    75  0000                     
-    76                           	psect	cinit
-    77  03FD                     start_initialization:	
-    78  03FD                     __initialization:	
-    79  03FD                     end_of_initialization:	
-    80                           ;End of C runtime variable initialization code
-    81                           
-    82  03FD                     __end_of__initialization:	
-    83  03FD  0183               	clrf	3
-    84  03FE  280F               	ljmp	_main	;jump to C main() function
-    85                           
-    86                           	psect	cstackBANK0
-    87  0020                     __pcstackBANK0:	
-    88  0020                     ?_main:	
-    89  0020                     ??_main:	
-    90                           ; 1 bytes @ 0x0
-    91                           
+    72  0090                     _OSCCALbits	set	144
+    73  0085                     _TRISIObits	set	133
+    74                           
+    75                           ; #config settings
+    76  0000                     
+    77                           	psect	cinit
+    78  03FD                     start_initialization:	
+    79  03FD                     __initialization:	
+    80  03FD                     end_of_initialization:	
+    81                           ;End of C runtime variable initialization code
+    82                           
+    83  03FD                     __end_of__initialization:	
+    84  03FD  0183               	clrf	3
+    85  03FE  2843               	ljmp	_main	;jump to C main() function
+    86                           
+    87                           	psect	cstackBANK0
+    88  0020                     __pcstackBANK0:	
+    89  0020                     ?_main:	
+    90  0020                     ??_main:	
+    91                           ; 1 bytes @ 0x0
     92                           
-    93                           ; 1 bytes @ 0x0
-    94  0020                     	ds	3
-    95  0023                     main@i:	
-    96                           
-    97                           ; 2 bytes @ 0x3
-    98  0023                     	ds	2
-    99                           
-   100                           	psect	maintext
-   101  000F                     __pmaintext:	
-   102 ;;
-   103 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
-   104 ;;
-   105 ;; *************** function _main *****************
-   106 ;; Defined at:
-   107 ;;		line 63 in file "main.c"
-   108 ;; Parameters:    Size  Location     Type
-   109 ;;		None
-   110 ;; Auto vars:     Size  Location     Type
-   111 ;;  i               2    3[BANK0 ] int 
-   112 ;; Return value:  Size  Location     Type
-   113 ;;                  1    wreg      void 
-   114 ;; Registers used:
-   115 ;;		wreg, status,2, btemp+1
-   116 ;; Tracked objects:
-   117 ;;		On entry : B00/0
-   118 ;;		On exit  : 0/0
-   119 ;;		Unchanged: 0/0
-   120 ;; Data sizes:     COMMON   BANK0
-   121 ;;      Params:         0       0
-   122 ;;      Locals:         0       2
-   123 ;;      Temps:          0       3
-   124 ;;      Totals:         0       5
-   125 ;;Total ram usage:        5 bytes
-   126 ;; This function calls:
-   127 ;;		Nothing
-   128 ;; This function is called by:
-   129 ;;		Startup code after reset
-   130 ;; This function uses a non-reentrant model
-   131 ;;
-   132                           
+    93                           
+    94                           ; 1 bytes @ 0x0
+    95  0020                     	ds	3
+    96  0023                     main@i:	
+    97                           
+    98                           ; 2 bytes @ 0x3
+    99  0023                     	ds	2
+   100                           
+   101                           	psect	maintext
+   102  0043                     __pmaintext:	
+   103 ;;
+   104 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   105 ;;
+   106 ;; *************** function _main *****************
+   107 ;; Defined at:
+   108 ;;		line 63 in file "main.c"
+   109 ;; Parameters:    Size  Location     Type
+   110 ;;		None
+   111 ;; Auto vars:     Size  Location     Type
+   112 ;;  i               2    3[BANK0 ] int 
+   113 ;; Return value:  Size  Location     Type
+   114 ;;                  1    wreg      void 
+   115 ;; Registers used:
+   116 ;;		wreg, status,2, status,0, btemp+1
+   117 ;; Tracked objects:
+   118 ;;		On entry : B00/0
+   119 ;;		On exit  : 0/0
+   120 ;;		Unchanged: 0/0
+   121 ;; Data sizes:     COMMON   BANK0
+   122 ;;      Params:         0       0
+   123 ;;      Locals:         0       2
+   124 ;;      Temps:          0       3
+   125 ;;      Totals:         0       5
+   126 ;;Total ram usage:        5 bytes
+   127 ;; This function calls:
+   128 ;;		Nothing
+   129 ;; This function is called by:
+   130 ;;		Startup code after reset
+   131 ;; This function uses a non-reentrant model
+   132 ;;
    133                           
-   134                           ;psect for function _main
-   135  000F                     _main:	
-   136                           
-   137                           ;main.c: 64: TRISIObits.TRISIO1 = 0;
-   138                           
-   139                           ;incstack = 0
-   140                           ; Regs used in _main: [wreg+status,2+btemp+1]
-   141  000F  1683               	bsf	3,5	;RP0=1, select bank1
-   142  0010  1085               	bcf	5,1	;volatile
-   143  0011                     L1:	
-   144                           
-   145                           ;main.c: 65: GPIObits.GP1 = 1;
-   146  0011  1283               	bcf	3,5	;RP0=0, select bank0
-   147  0012  1485               	bsf	5,1	;volatile
-   148                           
-   149                           ;main.c: 67: {
-   150                           ;main.c: 71: { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)
+   134                           
+   135                           ;psect for function _main
+   136  0043                     _main:	
+   137                           
+   138                           ;main.c: 64: TRISIObits.TRISIO1 = 0;
+   139                           
+   140                           ;incstack = 0
+   141                           ; Regs used in _main: [wreg+status,2+status,0+btemp+1]
+   142  0043  1683               	bsf	3,5	;RP0=1, select bank1
+   143  0044  1085               	bcf	5,1	;volatile
+   144  0045                     L1:	
+   145                           
+   146                           ;main.c: 65: GPIObits.GP1 = 1;
+   147  0045  1283               	bcf	3,5	;RP0=0, select bank0
+   148  0046  1485               	bsf	5,1	;volatile
+   149                           
+   150                           ;main.c: 67: {
+   151                           ;main.c: 68: OSCCALbits.CAL = 0b000000;
+   152                           
+   153                           ;main.c: 66: while(1)
+   154  0047  3003               	movlw	-253
+   155  0048  1683               	bsf	3,5	;RP0=1, select bank1
+   156  0049  0590               	andwf	16,f	;volatile
+   157                           
+   158                           ;main.c: 72: { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)
       +                          ((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((
       +                          unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000
-   151                           
-   152                           ;main.c: 66: while(1)
-   153  0013  30FE               	movlw	254
-   154  0014  00A2               	movwf	??_main+2
-   155  0015  30A7               	movlw	167
-   156  0016  00A1               	movwf	??_main+1
-   157  0017  3065               	movlw	101
-   158  0018  00A0               	movwf	??_main
-   159  0019                     u57:	
-   160  0019  0BA0               	decfsz	??_main,f
-   161  001A  2819               	goto	u57
-   162  001B  0BA1               	decfsz	??_main+1,f
-   163  001C  2819               	goto	u57
-   164  001D  0BA2               	decfsz	??_main+2,f
-   165  001E  2819               	goto	u57
-   166  001F  2820               	nop2
-   167  0020  30FE               	movlw	254
-   168  0021  1283               	bcf	3,5	;RP0=0, select bank0
-   169  0022  00A2               	movwf	??_main+2
-   170  0023  30A7               	movlw	167
-   171  0024  00A1               	movwf	??_main+1
-   172  0025  3065               	movlw	101
-   173  0026  00A0               	movwf	??_main
-   174  0027                     u67:	
-   175  0027  0BA0               	decfsz	??_main,f
-   176  0028  2827               	goto	u67
-   177  0029  0BA1               	decfsz	??_main+1,f
-   178  002A  2827               	goto	u67
-   179  002B  0BA2               	decfsz	??_main+2,f
-   180  002C  2827               	goto	u67
-   181  002D  282E               	nop2
-   182  002E  30FE               	movlw	254
-   183  002F  1283               	bcf	3,5	;RP0=0, select bank0
-   184  0030  00A2               	movwf	??_main+2
-   185  0031  30A7               	movlw	167
-   186  0032  00A1               	movwf	??_main+1
-   187  0033  3065               	movlw	101
-   188  0034  00A0               	movwf	??_main
-   189  0035                     u77:	
-   190  0035  0BA0               	decfsz	??_main,f
-   191  0036  2835               	goto	u77
-   192  0037  0BA1               	decfsz	??_main+1,f
-   193  0038  2835               	goto	u77
-   194  0039  0BA2               	decfsz	??_main+2,f
-   195  003A  2835               	goto	u77
-   196  003B  283C               	nop2
-   197  003C  30FE               	movlw	254
-   198  003D  1283               	bcf	3,5	;RP0=0, select bank0
-   199  003E  00A2               	movwf	??_main+2
-   200  003F  30A7               	movlw	167
-   201  0040  00A1               	movwf	??_main+1
-   202  0041  3065               	movlw	101
-   203  0042  00A0               	movwf	??_main
-   204  0043                     u87:	
-   205  0043  0BA0               	decfsz	??_main,f
-   206  0044  2843               	goto	u87
-   207  0045  0BA1               	decfsz	??_main+1,f
-   208  0046  2843               	goto	u87
-   209  0047  0BA2               	decfsz	??_main+2,f
-   210  0048  2843               	goto	u87
-   211  0049  284A               	nop2
-   212  004A  30FE               	movlw	254
-   213  004B  1283               	bcf	3,5	;RP0=0, select bank0
-   214  004C  00A2               	movwf	??_main+2
-   215  004D  30A7               	movlw	167
-   216  004E  00A1               	movwf	??_main+1
-   217  004F  3065               	movlw	101
-   218  0050  00A0               	movwf	??_main
-   219  0051                     u97:	
-   220  0051  0BA0               	decfsz	??_main,f
-   221  0052  2851               	goto	u97
-   222  0053  0BA1               	decfsz	??_main+1,f
-   223  0054  2851               	goto	u97
-   224  0055  0BA2               	decfsz	??_main+2,f
-   225  0056  2851               	goto	u97
-   226  0057  2858               	nop2
-   227  0058  30FE               	movlw	254
-   228  0059  1283               	bcf	3,5	;RP0=0, select bank0
-   229  005A  00A2               	movwf	??_main+2
-   230  005B  30A7               	movlw	167
-   231  005C  00A1               	movwf	??_main+1
-   232  005D  3065               	movlw	101
-   233  005E  00A0               	movwf	??_main
-   234  005F                     u107:	
-   235  005F  0BA0               	decfsz	??_main,f
-   236  0060  285F               	goto	u107
-   237  0061  0BA1               	decfsz	??_main+1,f
-   238  0062  285F               	goto	u107
-   239  0063  0BA2               	decfsz	??_main+2,f
-   240  0064  285F               	goto	u107
-   241  0065  2866               	nop2
-   242  0066  30FE               	movlw	254
-   243  0067  1283               	bcf	3,5	;RP0=0, select bank0
-   244  0068  00A2               	movwf	??_main+2
-   245  0069  30A7               	movlw	167
-   246  006A  00A1               	movwf	??_main+1
-   247  006B  3065               	movlw	101
-   248  006C  00A0               	movwf	??_main
-   249  006D                     u117:	
-   250  006D  0BA0               	decfsz	??_main,f
-   251  006E  286D               	goto	u117
-   252  006F  0BA1               	decfsz	??_main+1,f
-   253  0070  286D               	goto	u117
-   254  0071  0BA2               	decfsz	??_main+2,f
-   255  0072  286D               	goto	u117
-   256  0073  2874               	nop2
-   257                           
-   258                           ;main.c: 73: GPIObits.GP1 = 0;
-   259  0074  1283               	bcf	3,5	;RP0=0, select bank0
-   260  0075  1085               	bcf	5,1	;volatile
-   261                           
-   262                           ;main.c: 77: for(int i = 0; i < 2; i++)
-   263  0076  01A3               	clrf	main@i
-   264  0077  01A4               	clrf	main@i+1
-   265  0078                     L2:	
-   266  0078  0824               	movf	main@i+1,w
-   267  0079  3A80               	xorlw	128
-   268  007A  00DF               	movwf	95
-   269  007B  3080               	movlw	128
-   270  007C  025F               	subwf	95,w
-   271  007D  1D03               	skipz
-   272  007E  2881               	goto	u35
-   273  007F  3002               	movlw	2
-   274  0080  0223               	subwf	main@i,w
-   275  0081                     u35:	
-   276  0081  1803               	btfsc	3,0
-   277  0082  2811               	goto	L1
-   278                           
-   279                           ;main.c: 78: {
-   280                           ;main.c: 79: { { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned lon
+   159  004A  30FE               	movlw	254
+   160  004B  1283               	bcf	3,5	;RP0=0, select bank0
+   161  004C  00A2               	movwf	??_main+2
+   162  004D  30A7               	movlw	167
+   163  004E  00A1               	movwf	??_main+1
+   164  004F  3065               	movlw	101
+   165  0050  00A0               	movwf	??_main
+   166  0051                     u57:	
+   167  0051  0BA0               	decfsz	??_main,f
+   168  0052  2851               	goto	u57
+   169  0053  0BA1               	decfsz	??_main+1,f
+   170  0054  2851               	goto	u57
+   171  0055  0BA2               	decfsz	??_main+2,f
+   172  0056  2851               	goto	u57
+   173  0057  2858               	nop2
+   174  0058  30FE               	movlw	254
+   175  0059  1283               	bcf	3,5	;RP0=0, select bank0
+   176  005A  00A2               	movwf	??_main+2
+   177  005B  30A7               	movlw	167
+   178  005C  00A1               	movwf	??_main+1
+   179  005D  3065               	movlw	101
+   180  005E  00A0               	movwf	??_main
+   181  005F                     u67:	
+   182  005F  0BA0               	decfsz	??_main,f
+   183  0060  285F               	goto	u67
+   184  0061  0BA1               	decfsz	??_main+1,f
+   185  0062  285F               	goto	u67
+   186  0063  0BA2               	decfsz	??_main+2,f
+   187  0064  285F               	goto	u67
+   188  0065  2866               	nop2
+   189  0066  30FE               	movlw	254
+   190  0067  1283               	bcf	3,5	;RP0=0, select bank0
+   191  0068  00A2               	movwf	??_main+2
+   192  0069  30A7               	movlw	167
+   193  006A  00A1               	movwf	??_main+1
+   194  006B  3065               	movlw	101
+   195  006C  00A0               	movwf	??_main
+   196  006D                     u77:	
+   197  006D  0BA0               	decfsz	??_main,f
+   198  006E  286D               	goto	u77
+   199  006F  0BA1               	decfsz	??_main+1,f
+   200  0070  286D               	goto	u77
+   201  0071  0BA2               	decfsz	??_main+2,f
+   202  0072  286D               	goto	u77
+   203  0073  2874               	nop2
+   204  0074  30FE               	movlw	254
+   205  0075  1283               	bcf	3,5	;RP0=0, select bank0
+   206  0076  00A2               	movwf	??_main+2
+   207  0077  30A7               	movlw	167
+   208  0078  00A1               	movwf	??_main+1
+   209  0079  3065               	movlw	101
+   210  007A  00A0               	movwf	??_main
+   211  007B                     u87:	
+   212  007B  0BA0               	decfsz	??_main,f
+   213  007C  287B               	goto	u87
+   214  007D  0BA1               	decfsz	??_main+1,f
+   215  007E  287B               	goto	u87
+   216  007F  0BA2               	decfsz	??_main+2,f
+   217  0080  287B               	goto	u87
+   218  0081  2882               	nop2
+   219  0082  30FE               	movlw	254
+   220  0083  1283               	bcf	3,5	;RP0=0, select bank0
+   221  0084  00A2               	movwf	??_main+2
+   222  0085  30A7               	movlw	167
+   223  0086  00A1               	movwf	??_main+1
+   224  0087  3065               	movlw	101
+   225  0088  00A0               	movwf	??_main
+   226  0089                     u97:	
+   227  0089  0BA0               	decfsz	??_main,f
+   228  008A  2889               	goto	u97
+   229  008B  0BA1               	decfsz	??_main+1,f
+   230  008C  2889               	goto	u97
+   231  008D  0BA2               	decfsz	??_main+2,f
+   232  008E  2889               	goto	u97
+   233  008F  2890               	nop2
+   234  0090  30FE               	movlw	254
+   235  0091  1283               	bcf	3,5	;RP0=0, select bank0
+   236  0092  00A2               	movwf	??_main+2
+   237  0093  30A7               	movlw	167
+   238  0094  00A1               	movwf	??_main+1
+   239  0095  3065               	movlw	101
+   240  0096  00A0               	movwf	??_main
+   241  0097                     u107:	
+   242  0097  0BA0               	decfsz	??_main,f
+   243  0098  2897               	goto	u107
+   244  0099  0BA1               	decfsz	??_main+1,f
+   245  009A  2897               	goto	u107
+   246  009B  0BA2               	decfsz	??_main+2,f
+   247  009C  2897               	goto	u107
+   248  009D  289E               	nop2
+   249                           
+   250                           ;main.c: 74: GPIObits.GP1 = 0;
+   251  009E  1283               	bcf	3,5	;RP0=0, select bank0
+   252  009F  1085               	bcf	5,1	;volatile
+   253                           
+   254                           ;main.c: 75: for(int i = 0; i < 3; i++)
+   255  00A0  01A3               	clrf	main@i
+   256  00A1  01A4               	clrf	main@i+1
+   257  00A2                     L2:	
+   258  00A2  0824               	movf	main@i+1,w
+   259  00A3  3A80               	xorlw	128
+   260  00A4  00DF               	movwf	95
+   261  00A5  3080               	movlw	128
+   262  00A6  025F               	subwf	95,w
+   263  00A7  1D03               	skipz
+   264  00A8  28AB               	goto	u35
+   265  00A9  3003               	movlw	3
+   266  00AA  0223               	subwf	main@i,w
+   267  00AB                     u35:	
+   268  00AB  1803               	btfsc	3,0
+   269  00AC  2845               	goto	L1
+   270                           
+   271                           ;main.c: 76: {
+   272                           ;main.c: 80: { { _delay((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned lon
       +                          g)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/4000.0))); _delay
       +                          ((unsigned long)((50000)*(4000000/4000.0))); _delay((unsigned long)((50000)*(4000000/40
-   281  0083  30FE               	movlw	254
-   282  0084  1283               	bcf	3,5	;RP0=0, select bank0
-   283  0085  00A2               	movwf	??_main+2
-   284  0086  30A7               	movlw	167
-   285  0087  00A1               	movwf	??_main+1
-   286  0088  3065               	movlw	101
-   287  0089  00A0               	movwf	??_main
-   288  008A                     u127:	
-   289  008A  0BA0               	decfsz	??_main,f
-   290  008B  288A               	goto	u127
-   291  008C  0BA1               	decfsz	??_main+1,f
-   292  008D  288A               	goto	u127
-   293  008E  0BA2               	decfsz	??_main+2,f
-   294  008F  288A               	goto	u127
-   295  0090  2891               	nop2
-   296  0091  30FE               	movlw	254
-   297  0092  1283               	bcf	3,5	;RP0=0, select bank0
-   298  0093  00A2               	movwf	??_main+2
-   299  0094  30A7               	movlw	167
-   300  0095  00A1               	movwf	??_main+1
-   301  0096  3065               	movlw	101
-   302  0097  00A0               	movwf	??_main
-   303  0098                     u137:	
-   304  0098  0BA0               	decfsz	??_main,f
-   305  0099  2898               	goto	u137
-   306  009A  0BA1               	decfsz	??_main+1,f
-   307  009B  2898               	goto	u137
-   308  009C  0BA2               	decfsz	??_main+2,f
-   309  009D  2898               	goto	u137
-   310  009E  289F               	nop2
-   311  009F  30FE               	movlw	254
-   312  00A0  1283               	bcf	3,5	;RP0=0, select bank0
-   313  00A1  00A2               	movwf	??_main+2
-   314  00A2  30A7               	movlw	167
-   315  00A3  00A1               	movwf	??_main+1
-   316  00A4  3065               	movlw	101
-   317  00A5  00A0               	movwf	??_main
-   318  00A6                     u147:	
-   319  00A6  0BA0               	decfsz	??_main,f
-   320  00A7  28A6               	goto	u147
-   321  00A8  0BA1               	decfsz	??_main+1,f
-   322  00A9  28A6               	goto	u147
-   323  00AA  0BA2               	decfsz	??_main+2,f
-   324  00AB  28A6               	goto	u147
-   325  00AC  28AD               	nop2
-   326  00AD  30FE               	movlw	254
-   327  00AE  1283               	bcf	3,5	;RP0=0, select bank0
-   328  00AF  00A2               	movwf	??_main+2
-   329  00B0  30A7               	movlw	167
-   330  00B1  00A1               	movwf	??_main+1
-   331  00B2  3065               	movlw	101
-   332  00B3  00A0               	movwf	??_main
-   333  00B4                     u157:	
-   334  00B4  0BA0               	decfsz	??_main,f
-   335  00B5  28B4               	goto	u157
-   336  00B6  0BA1               	decfsz	??_main+1,f
-   337  00B7  28B4               	goto	u157
-   338  00B8  0BA2               	decfsz	??_main+2,f
-   339  00B9  28B4               	goto	u157
-   340  00BA  28BB               	nop2
-   341  00BB  30FE               	movlw	254
-   342  00BC  1283               	bcf	3,5	;RP0=0, select bank0
-   343  00BD  00A2               	movwf	??_main+2
-   344  00BE  30A7               	movlw	167
-   345  00BF  00A1               	movwf	??_main+1
-   346  00C0  3065               	movlw	101
-   347  00C1  00A0               	movwf	??_main
-   348  00C2                     u167:	
-   349  00C2  0BA0               	decfsz	??_main,f
-   350  00C3  28C2               	goto	u167
-   351  00C4  0BA1               	decfsz	??_main+1,f
-   352  00C5  28C2               	goto	u167
-   353  00C6  0BA2               	decfsz	??_main+2,f
-   354  00C7  28C2               	goto	u167
-   355  00C8  28C9               	nop2
-   356  00C9  30FE               	movlw	254
-   357  00CA  1283               	bcf	3,5	;RP0=0, select bank0
-   358  00CB  00A2               	movwf	??_main+2
-   359  00CC  30A7               	movlw	167
-   360  00CD  00A1               	movwf	??_main+1
-   361  00CE  3065               	movlw	101
-   362  00CF  00A0               	movwf	??_main
-   363  00D0                     u177:	
-   364  00D0  0BA0               	decfsz	??_main,f
-   365  00D1  28D0               	goto	u177
-   366  00D2  0BA1               	decfsz	??_main+1,f
-   367  00D3  28D0               	goto	u177
-   368  00D4  0BA2               	decfsz	??_main+2,f
-   369  00D5  28D0               	goto	u177
-   370  00D6  28D7               	nop2
-   371  00D7  30FE               	movlw	254
-   372  00D8  1283               	bcf	3,5	;RP0=0, select bank0
-   373  00D9  00A2               	movwf	??_main+2
-   374  00DA  30A7               	movlw	167
-   375  00DB  00A1               	movwf	??_main+1
-   376  00DC  3065               	movlw	101
-   377  00DD  00A0               	movwf	??_main
-   378  00DE                     u187:	
-   379  00DE  0BA0               	decfsz	??_main,f
-   380  00DF  28DE               	goto	u187
-   381  00E0  0BA1               	decfsz	??_main+1,f
-   382  00E1  28DE               	goto	u187
-   383  00E2  0BA2               	decfsz	??_main+2,f
-   384  00E3  28DE               	goto	u187
-   385  00E4  28E5               	nop2
-   386  00E5  30FE               	movlw	254
-   387  00E6  1283               	bcf	3,5	;RP0=0, select bank0
-   388  00E7  00A2               	movwf	??_main+2
-   389  00E8  30A7               	movlw	167
-   390  00E9  00A1               	movwf	??_main+1
-   391  00EA  3065               	movlw	101
-   392  00EB  00A0               	movwf	??_main
-   393  00EC                     u197:	
-   394  00EC  0BA0               	decfsz	??_main,f
-   395  00ED  28EC               	goto	u197
-   396  00EE  0BA1               	decfsz	??_main+1,f
-   397  00EF  28EC               	goto	u197
-   398  00F0  0BA2               	decfsz	??_main+2,f
-   399  00F1  28EC               	goto	u197
-   400  00F2  28F3               	nop2
-   401  00F3  30FE               	movlw	254
-   402  00F4  1283               	bcf	3,5	;RP0=0, select bank0
-   403  00F5  00A2               	movwf	??_main+2
-   404  00F6  30A7               	movlw	167
-   405  00F7  00A1               	movwf	??_main+1
-   406  00F8  3065               	movlw	101
-   407  00F9  00A0               	movwf	??_main
-   408  00FA                     u207:	
-   409  00FA  0BA0               	decfsz	??_main,f
-   410  00FB  28FA               	goto	u207
-   411  00FC  0BA1               	decfsz	??_main+1,f
-   412  00FD  28FA               	goto	u207
-   413  00FE  0BA2               	decfsz	??_main+2,f
-   414  00FF  28FA               	goto	u207
-   415  0100  2901               	nop2
-   416  0101  30FE               	movlw	254
-   417  0102  1283               	bcf	3,5	;RP0=0, select bank0
-   418  0103  00A2               	movwf	??_main+2
-   419  0104  30A7               	movlw	167
-   420  0105  00A1               	movwf	??_main+1
-   421  0106  3065               	movlw	101
-   422  0107  00A0               	movwf	??_main
-   423  0108                     u217:	
-   424  0108  0BA0               	decfsz	??_main,f
-   425  0109  2908               	goto	u217
-   426  010A  0BA1               	decfsz	??_main+1,f
-   427  010B  2908               	goto	u217
-   428  010C  0BA2               	decfsz	??_main+2,f
-   429  010D  2908               	goto	u217
-   430  010E  290F               	nop2
-   431  010F  30FE               	movlw	254
-   432  0110  1283               	bcf	3,5	;RP0=0, select bank0
-   433  0111  00A2               	movwf	??_main+2
-   434  0112  30A7               	movlw	167
-   435  0113  00A1               	movwf	??_main+1
-   436  0114  3065               	movlw	101
-   437  0115  00A0               	movwf	??_main
-   438  0116                     u227:	
-   439  0116  0BA0               	decfsz	??_main,f
-   440  0117  2916               	goto	u227
-   441  0118  0BA1               	decfsz	??_main+1,f
-   442  0119  2916               	goto	u227
-   443  011A  0BA2               	decfsz	??_main+2,f
-   444  011B  2916               	goto	u227
-   445  011C  291D               	nop2
-   446  011D  30FE               	movlw	254
-   447  011E  1283               	bcf	3,5	;RP0=0, select bank0
-   448  011F  00A2               	movwf	??_main+2
-   449  0120  30A7               	movlw	167
-   450  0121  00A1               	movwf	??_main+1
-   451  0122  3065               	movlw	101
-   452  0123  00A0               	movwf	??_main
-   453  0124                     u237:	
-   454  0124  0BA0               	decfsz	??_main,f
-   455  0125  2924               	goto	u237
-   456  0126  0BA1               	decfsz	??_main+1,f
-   457  0127  2924               	goto	u237
-   458  0128  0BA2               	decfsz	??_main+2,f
-   459  0129  2924               	goto	u237
-   460  012A  292B               	nop2
-   461  012B  30FE               	movlw	254
-   462  012C  1283               	bcf	3,5	;RP0=0, select bank0
-   463  012D  00A2               	movwf	??_main+2
-   464  012E  30A7               	movlw	167
-   465  012F  00A1               	movwf	??_main+1
-   466  0130  3065               	movlw	101
-   467  0131  00A0               	movwf	??_main
-   468  0132                     u247:	
-   469  0132  0BA0               	decfsz	??_main,f
-   470  0133  2932               	goto	u247
-   471  0134  0BA1               	decfsz	??_main+1,f
-   472  0135  2932               	goto	u247
-   473  0136  0BA2               	decfsz	??_main+2,f
-   474  0137  2932               	goto	u247
-   475  0138  2939               	nop2
-   476  0139  30FE               	movlw	254
-   477  013A  1283               	bcf	3,5	;RP0=0, select bank0
-   478  013B  00A2               	movwf	??_main+2
-   479  013C  30A7               	movlw	167
-   480  013D  00A1               	movwf	??_main+1
-   481  013E  3065               	movlw	101
-   482  013F  00A0               	movwf	??_main
-   483  0140                     u257:	
-   484  0140  0BA0               	decfsz	??_main,f
-   485  0141  2940               	goto	u257
-   486  0142  0BA1               	decfsz	??_main+1,f
-   487  0143  2940               	goto	u257
-   488  0144  0BA2               	decfsz	??_main+2,f
-   489  0145  2940               	goto	u257
-   490  0146  2947               	nop2
-   491  0147  30FE               	movlw	254
-   492  0148  1283               	bcf	3,5	;RP0=0, select bank0
-   493  0149  00A2               	movwf	??_main+2
-   494  014A  30A7               	movlw	167
-   495  014B  00A1               	movwf	??_main+1
-   496  014C  3065               	movlw	101
-   497  014D  00A0               	movwf	??_main
-   498  014E                     u267:	
-   499  014E  0BA0               	decfsz	??_main,f
-   500  014F  294E               	goto	u267
-   501  0150  0BA1               	decfsz	??_main+1,f
-   502  0151  294E               	goto	u267
-   503  0152  0BA2               	decfsz	??_main+2,f
-   504  0153  294E               	goto	u267
-   505  0154  2955               	nop2
-   506  0155  30FE               	movlw	254
-   507  0156  1283               	bcf	3,5	;RP0=0, select bank0
-   508  0157  00A2               	movwf	??_main+2
-   509  0158  30A7               	movlw	167
-   510  0159  00A1               	movwf	??_main+1
-   511  015A  3065               	movlw	101
-   512  015B  00A0               	movwf	??_main
-   513  015C                     u277:	
-   514  015C  0BA0               	decfsz	??_main,f
-   515  015D  295C               	goto	u277
-   516  015E  0BA1               	decfsz	??_main+1,f
-   517  015F  295C               	goto	u277
-   518  0160  0BA2               	decfsz	??_main+2,f
-   519  0161  295C               	goto	u277
-   520  0162  2963               	nop2
-   521  0163  30FE               	movlw	254
-   522  0164  1283               	bcf	3,5	;RP0=0, select bank0
-   523  0165  00A2               	movwf	??_main+2
-   524  0166  30A7               	movlw	167
-   525  0167  00A1               	movwf	??_main+1
-   526  0168  3065               	movlw	101
-   527  0169  00A0               	movwf	??_main
-   528  016A                     u287:	
-   529  016A  0BA0               	decfsz	??_main,f
-   530  016B  296A               	goto	u287
-   531  016C  0BA1               	decfsz	??_main+1,f
-   532  016D  296A               	goto	u287
-   533  016E  0BA2               	decfsz	??_main+2,f
-   534  016F  296A               	goto	u287
-   535  0170  2971               	nop2
-   536  0171  30FE               	movlw	254
-   537  0172  1283               	bcf	3,5	;RP0=0, select bank0
-   538  0173  00A2               	movwf	??_main+2
-   539  0174  30A7               	movlw	167
-   540  0175  00A1               	movwf	??_main+1
-   541  0176  3065               	movlw	101
-   542  0177  00A0               	movwf	??_main
-   543  0178                     u297:	
-   544  0178  0BA0               	decfsz	??_main,f
-   545  0179  2978               	goto	u297
-   546  017A  0BA1               	decfsz	??_main+1,f
-   547  017B  2978               	goto	u297
-   548  017C  0BA2               	decfsz	??_main+2,f
-   549  017D  2978               	goto	u297
-   550  017E  297F               	nop2
-   551  017F  30FE               	movlw	254
-   552  0180  1283               	bcf	3,5	;RP0=0, select bank0
-   553  0181  00A2               	movwf	??_main+2
-   554  0182  30A7               	movlw	167
-   555  0183  00A1               	movwf	??_main+1
-   556  0184  3065               	movlw	101
-   557  0185  00A0               	movwf	??_main
-   558  0186                     u307:	
-   559  0186  0BA0               	decfsz	??_main,f
-   560  0187  2986               	goto	u307
-   561  0188  0BA1               	decfsz	??_main+1,f
-   562  0189  2986               	goto	u307
-   563  018A  0BA2               	decfsz	??_main+2,f
-   564  018B  2986               	goto	u307
-   565  018C  298D               	nop2
-   566  018D  30FE               	movlw	254
-   567  018E  1283               	bcf	3,5	;RP0=0, select bank0
-   568  018F  00A2               	movwf	??_main+2
-   569  0190  30A7               	movlw	167
-   570  0191  00A1               	movwf	??_main+1
-   571  0192  3065               	movlw	101
-   572  0193  00A0               	movwf	??_main
-   573  0194                     u317:	
-   574  0194  0BA0               	decfsz	??_main,f
-   575  0195  2994               	goto	u317
-   576  0196  0BA1               	decfsz	??_main+1,f
-   577  0197  2994               	goto	u317
-   578  0198  0BA2               	decfsz	??_main+2,f
-   579  0199  2994               	goto	u317
-   580  019A  299B               	nop2
-   581  019B  30FE               	movlw	254
-   582  019C  1283               	bcf	3,5	;RP0=0, select bank0
-   583  019D  00A2               	movwf	??_main+2
-   584  019E  30A7               	movlw	167
-   585  019F  00A1               	movwf	??_main+1
-   586  01A0  3065               	movlw	101
-   587  01A1  00A0               	movwf	??_main
-   588  01A2                     u327:	
-   589  01A2  0BA0               	decfsz	??_main,f
-   590  01A3  29A2               	goto	u327
-   591  01A4  0BA1               	decfsz	??_main+1,f
-   592  01A5  29A2               	goto	u327
-   593  01A6  0BA2               	decfsz	??_main+2,f
-   594  01A7  29A2               	goto	u327
-   595  01A8  29A9               	nop2
-   596  01A9  30FE               	movlw	254
-   597  01AA  1283               	bcf	3,5	;RP0=0, select bank0
-   598  01AB  00A2               	movwf	??_main+2
-   599  01AC  30A7               	movlw	167
-   600  01AD  00A1               	movwf	??_main+1
-   601  01AE  3065               	movlw	101
-   602  01AF  00A0               	movwf	??_main
-   603  01B0                     u337:	
-   604  01B0  0BA0               	decfsz	??_main,f
-   605  01B1  29B0               	goto	u337
-   606  01B2  0BA1               	decfsz	??_main+1,f
-   607  01B3  29B0               	goto	u337
-   608  01B4  0BA2               	decfsz	??_main+2,f
-   609  01B5  29B0               	goto	u337
-   610  01B6  29B7               	nop2
-   611  01B7  30FE               	movlw	254
-   612  01B8  1283               	bcf	3,5	;RP0=0, select bank0
-   613  01B9  00A2               	movwf	??_main+2
-   614  01BA  30A7               	movlw	167
-   615  01BB  00A1               	movwf	??_main+1
-   616  01BC  3065               	movlw	101
-   617  01BD  00A0               	movwf	??_main
-   618  01BE                     u347:	
-   619  01BE  0BA0               	decfsz	??_main,f
-   620  01BF  29BE               	goto	u347
-   621  01C0  0BA1               	decfsz	??_main+1,f
-   622  01C1  29BE               	goto	u347
-   623  01C2  0BA2               	decfsz	??_main+2,f
-   624  01C3  29BE               	goto	u347
-   625  01C4  29C5               	nop2
-   626  01C5  30FE               	movlw	254
-   627  01C6  1283               	bcf	3,5	;RP0=0, select bank0
-   628  01C7  00A2               	movwf	??_main+2
-   629  01C8  30A7               	movlw	167
-   630  01C9  00A1               	movwf	??_main+1
-   631  01CA  3065               	movlw	101
-   632  01CB  00A0               	movwf	??_main
-   633  01CC                     u357:	
-   634  01CC  0BA0               	decfsz	??_main,f
-   635  01CD  29CC               	goto	u357
-   636  01CE  0BA1               	decfsz	??_main+1,f
-   637  01CF  29CC               	goto	u357
-   638  01D0  0BA2               	decfsz	??_main+2,f
-   639  01D1  29CC               	goto	u357
-   640  01D2  29D3               	nop2
-   641  01D3  30FE               	movlw	254
-   642  01D4  1283               	bcf	3,5	;RP0=0, select bank0
-   643  01D5  00A2               	movwf	??_main+2
-   644  01D6  30A7               	movlw	167
-   645  01D7  00A1               	movwf	??_main+1
-   646  01D8  3065               	movlw	101
-   647  01D9  00A0               	movwf	??_main
-   648  01DA                     u367:	
-   649  01DA  0BA0               	decfsz	??_main,f
-   650  01DB  29DA               	goto	u367
-   651  01DC  0BA1               	decfsz	??_main+1,f
-   652  01DD  29DA               	goto	u367
-   653  01DE  0BA2               	decfsz	??_main+2,f
-   654  01DF  29DA               	goto	u367
-   655  01E0  29E1               	nop2
-   656  01E1  30FE               	movlw	254
-   657  01E2  1283               	bcf	3,5	;RP0=0, select bank0
-   658  01E3  00A2               	movwf	??_main+2
-   659  01E4  30A7               	movlw	167
-   660  01E5  00A1               	movwf	??_main+1
-   661  01E6  3065               	movlw	101
-   662  01E7  00A0               	movwf	??_main
-   663  01E8                     u377:	
-   664  01E8  0BA0               	decfsz	??_main,f
-   665  01E9  29E8               	goto	u377
-   666  01EA  0BA1               	decfsz	??_main+1,f
-   667  01EB  29E8               	goto	u377
-   668  01EC  0BA2               	decfsz	??_main+2,f
-   669  01ED  29E8               	goto	u377
-   670  01EE  29EF               	nop2
-   671  01EF  30FE               	movlw	254
-   672  01F0  1283               	bcf	3,5	;RP0=0, select bank0
-   673  01F1  00A2               	movwf	??_main+2
-   674  01F2  30A7               	movlw	167
-   675  01F3  00A1               	movwf	??_main+1
-   676  01F4  3065               	movlw	101
-   677  01F5  00A0               	movwf	??_main
-   678  01F6                     u387:	
-   679  01F6  0BA0               	decfsz	??_main,f
-   680  01F7  29F6               	goto	u387
-   681  01F8  0BA1               	decfsz	??_main+1,f
-   682  01F9  29F6               	goto	u387
-   683  01FA  0BA2               	decfsz	??_main+2,f
-   684  01FB  29F6               	goto	u387
-   685  01FC  29FD               	nop2
-   686  01FD  30FE               	movlw	254
-   687  01FE  1283               	bcf	3,5	;RP0=0, select bank0
-   688  01FF  00A2               	movwf	??_main+2
-   689  0200  30A7               	movlw	167
-   690  0201  00A1               	movwf	??_main+1
-   691  0202  3065               	movlw	101
-   692  0203  00A0               	movwf	??_main
-   693  0204                     u397:	
-   694  0204  0BA0               	decfsz	??_main,f
-   695  0205  2A04               	goto	u397
-   696  0206  0BA1               	decfsz	??_main+1,f
-   697  0207  2A04               	goto	u397
-   698  0208  0BA2               	decfsz	??_main+2,f
-   699  0209  2A04               	goto	u397
-   700  020A  2A0B               	nop2
-   701  020B  30FE               	movlw	254
-   702  020C  1283               	bcf	3,5	;RP0=0, select bank0
-   703  020D  00A2               	movwf	??_main+2
-   704  020E  30A7               	movlw	167
-   705  020F  00A1               	movwf	??_main+1
-   706  0210  3065               	movlw	101
-   707  0211  00A0               	movwf	??_main
-   708  0212                     u407:	
-   709  0212  0BA0               	decfsz	??_main,f
-   710  0213  2A12               	goto	u407
-   711  0214  0BA1               	decfsz	??_main+1,f
-   712  0215  2A12               	goto	u407
-   713  0216  0BA2               	decfsz	??_main+2,f
-   714  0217  2A12               	goto	u407
-   715  0218  2A19               	nop2
-   716  0219  30FE               	movlw	254
-   717  021A  1283               	bcf	3,5	;RP0=0, select bank0
-   718  021B  00A2               	movwf	??_main+2
-   719  021C  30A7               	movlw	167
-   720  021D  00A1               	movwf	??_main+1
-   721  021E  3065               	movlw	101
-   722  021F  00A0               	movwf	??_main
-   723  0220                     u417:	
-   724  0220  0BA0               	decfsz	??_main,f
-   725  0221  2A20               	goto	u417
-   726  0222  0BA1               	decfsz	??_main+1,f
-   727  0223  2A20               	goto	u417
-   728  0224  0BA2               	decfsz	??_main+2,f
-   729  0225  2A20               	goto	u417
-   730  0226  2A27               	nop2
-   731  0227  30FE               	movlw	254
-   732  0228  1283               	bcf	3,5	;RP0=0, select bank0
-   733  0229  00A2               	movwf	??_main+2
-   734  022A  30A7               	movlw	167
-   735  022B  00A1               	movwf	??_main+1
-   736  022C  3065               	movlw	101
-   737  022D  00A0               	movwf	??_main
-   738  022E                     u427:	
-   739  022E  0BA0               	decfsz	??_main,f
-   740  022F  2A2E               	goto	u427
-   741  0230  0BA1               	decfsz	??_main+1,f
-   742  0231  2A2E               	goto	u427
-   743  0232  0BA2               	decfsz	??_main+2,f
-   744  0233  2A2E               	goto	u427
-   745  0234  2A35               	nop2
-   746  0235  30FE               	movlw	254
-   747  0236  1283               	bcf	3,5	;RP0=0, select bank0
-   748  0237  00A2               	movwf	??_main+2
-   749  0238  30A7               	movlw	167
-   750  0239  00A1               	movwf	??_main+1
-   751  023A  3065               	movlw	101
-   752  023B  00A0               	movwf	??_main
-   753  023C                     u437:	
-   754  023C  0BA0               	decfsz	??_main,f
-   755  023D  2A3C               	goto	u437
-   756  023E  0BA1               	decfsz	??_main+1,f
-   757  023F  2A3C               	goto	u437
-   758  0240  0BA2               	decfsz	??_main+2,f
-   759  0241  2A3C               	goto	u437
-   760  0242  2A43               	nop2
-   761  0243  30FE               	movlw	254
-   762  0244  1283               	bcf	3,5	;RP0=0, select bank0
-   763  0245  00A2               	movwf	??_main+2
-   764  0246  30A7               	movlw	167
-   765  0247  00A1               	movwf	??_main+1
-   766  0248  3065               	movlw	101
-   767  0249  00A0               	movwf	??_main
-   768  024A                     u447:	
-   769  024A  0BA0               	decfsz	??_main,f
-   770  024B  2A4A               	goto	u447
-   771  024C  0BA1               	decfsz	??_main+1,f
-   772  024D  2A4A               	goto	u447
-   773  024E  0BA2               	decfsz	??_main+2,f
-   774  024F  2A4A               	goto	u447
-   775  0250  2A51               	nop2
-   776  0251  30FE               	movlw	254
-   777  0252  1283               	bcf	3,5	;RP0=0, select bank0
-   778  0253  00A2               	movwf	??_main+2
-   779  0254  30A7               	movlw	167
-   780  0255  00A1               	movwf	??_main+1
-   781  0256  3065               	movlw	101
-   782  0257  00A0               	movwf	??_main
-   783  0258                     u457:	
-   784  0258  0BA0               	decfsz	??_main,f
-   785  0259  2A58               	goto	u457
-   786  025A  0BA1               	decfsz	??_main+1,f
-   787  025B  2A58               	goto	u457
-   788  025C  0BA2               	decfsz	??_main+2,f
-   789  025D  2A58               	goto	u457
-   790  025E  2A5F               	nop2
-   791  025F  30FE               	movlw	254
-   792  0260  1283               	bcf	3,5	;RP0=0, select bank0
-   793  0261  00A2               	movwf	??_main+2
-   794  0262  30A7               	movlw	167
-   795  0263  00A1               	movwf	??_main+1
-   796  0264  3065               	movlw	101
-   797  0265  00A0               	movwf	??_main
-   798  0266                     u467:	
-   799  0266  0BA0               	decfsz	??_main,f
-   800  0267  2A66               	goto	u467
-   801  0268  0BA1               	decfsz	??_main+1,f
-   802  0269  2A66               	goto	u467
-   803  026A  0BA2               	decfsz	??_main+2,f
-   804  026B  2A66               	goto	u467
-   805  026C  2A6D               	nop2
-   806  026D  30FE               	movlw	254
-   807  026E  1283               	bcf	3,5	;RP0=0, select bank0
-   808  026F  00A2               	movwf	??_main+2
-   809  0270  30A7               	movlw	167
-   810  0271  00A1               	movwf	??_main+1
-   811  0272  3065               	movlw	101
-   812  0273  00A0               	movwf	??_main
-   813  0274                     u477:	
-   814  0274  0BA0               	decfsz	??_main,f
-   815  0275  2A74               	goto	u477
-   816  0276  0BA1               	decfsz	??_main+1,f
-   817  0277  2A74               	goto	u477
-   818  0278  0BA2               	decfsz	??_main+2,f
-   819  0279  2A74               	goto	u477
-   820  027A  2A7B               	nop2
-   821  027B  30FE               	movlw	254
-   822  027C  1283               	bcf	3,5	;RP0=0, select bank0
-   823  027D  00A2               	movwf	??_main+2
-   824  027E  30A7               	movlw	167
-   825  027F  00A1               	movwf	??_main+1
-   826  0280  3065               	movlw	101
-   827  0281  00A0               	movwf	??_main
-   828  0282                     u487:	
-   829  0282  0BA0               	decfsz	??_main,f
-   830  0283  2A82               	goto	u487
-   831  0284  0BA1               	decfsz	??_main+1,f
-   832  0285  2A82               	goto	u487
-   833  0286  0BA2               	decfsz	??_main+2,f
-   834  0287  2A82               	goto	u487
-   835  0288  2A89               	nop2
-   836  0289  30FE               	movlw	254
-   837  028A  1283               	bcf	3,5	;RP0=0, select bank0
-   838  028B  00A2               	movwf	??_main+2
-   839  028C  30A7               	movlw	167
-   840  028D  00A1               	movwf	??_main+1
-   841  028E  3065               	movlw	101
-   842  028F  00A0               	movwf	??_main
-   843  0290                     u497:	
-   844  0290  0BA0               	decfsz	??_main,f
-   845  0291  2A90               	goto	u497
-   846  0292  0BA1               	decfsz	??_main+1,f
-   847  0293  2A90               	goto	u497
-   848  0294  0BA2               	decfsz	??_main+2,f
-   849  0295  2A90               	goto	u497
-   850  0296  2A97               	nop2
-   851  0297  30FE               	movlw	254
-   852  0298  1283               	bcf	3,5	;RP0=0, select bank0
-   853  0299  00A2               	movwf	??_main+2
-   854  029A  30A7               	movlw	167
-   855  029B  00A1               	movwf	??_main+1
-   856  029C  3065               	movlw	101
-   857  029D  00A0               	movwf	??_main
-   858  029E                     u507:	
-   859  029E  0BA0               	decfsz	??_main,f
-   860  029F  2A9E               	goto	u507
-   861  02A0  0BA1               	decfsz	??_main+1,f
-   862  02A1  2A9E               	goto	u507
-   863  02A2  0BA2               	decfsz	??_main+2,f
-   864  02A3  2A9E               	goto	u507
-   865  02A4  2AA5               	nop2
-   866  02A5  30FE               	movlw	254
-   867  02A6  1283               	bcf	3,5	;RP0=0, select bank0
-   868  02A7  00A2               	movwf	??_main+2
-   869  02A8  30A7               	movlw	167
-   870  02A9  00A1               	movwf	??_main+1
-   871  02AA  3065               	movlw	101
-   872  02AB  00A0               	movwf	??_main
-   873  02AC                     u517:	
-   874  02AC  0BA0               	decfsz	??_main,f
-   875  02AD  2AAC               	goto	u517
-   876  02AE  0BA1               	decfsz	??_main+1,f
-   877  02AF  2AAC               	goto	u517
-   878  02B0  0BA2               	decfsz	??_main+2,f
-   879  02B1  2AAC               	goto	u517
-   880  02B2  2AB3               	nop2
-   881  02B3  30FE               	movlw	254
-   882  02B4  1283               	bcf	3,5	;RP0=0, select bank0
-   883  02B5  00A2               	movwf	??_main+2
-   884  02B6  30A7               	movlw	167
-   885  02B7  00A1               	movwf	??_main+1
-   886  02B8  3065               	movlw	101
-   887  02B9  00A0               	movwf	??_main
-   888  02BA                     u527:	
-   889  02BA  0BA0               	decfsz	??_main,f
-   890  02BB  2ABA               	goto	u527
-   891  02BC  0BA1               	decfsz	??_main+1,f
-   892  02BD  2ABA               	goto	u527
-   893  02BE  0BA2               	decfsz	??_main+2,f
-   894  02BF  2ABA               	goto	u527
-   895  02C0  2AC1               	nop2
-   896  02C1  30FE               	movlw	254
-   897  02C2  1283               	bcf	3,5	;RP0=0, select bank0
-   898  02C3  00A2               	movwf	??_main+2
-   899  02C4  30A7               	movlw	167
-   900  02C5  00A1               	movwf	??_main+1
-   901  02C6  3065               	movlw	101
-   902  02C7  00A0               	movwf	??_main
-   903  02C8                     u537:	
-   904  02C8  0BA0               	decfsz	??_main,f
-   905  02C9  2AC8               	goto	u537
-   906  02CA  0BA1               	decfsz	??_main+1,f
-   907  02CB  2AC8               	goto	u537
-   908  02CC  0BA2               	decfsz	??_main+2,f
-   909  02CD  2AC8               	goto	u537
-   910  02CE  2ACF               	nop2
-   911  02CF  30FE               	movlw	254
-   912  02D0  1283               	bcf	3,5	;RP0=0, select bank0
-   913  02D1  00A2               	movwf	??_main+2
-   914  02D2  30A7               	movlw	167
-   915  02D3  00A1               	movwf	??_main+1
-   916  02D4  3065               	movlw	101
-   917  02D5  00A0               	movwf	??_main
-   918  02D6                     u547:	
-   919  02D6  0BA0               	decfsz	??_main,f
-   920  02D7  2AD6               	goto	u547
-   921  02D8  0BA1               	decfsz	??_main+1,f
-   922  02D9  2AD6               	goto	u547
-   923  02DA  0BA2               	decfsz	??_main+2,f
-   924  02DB  2AD6               	goto	u547
-   925  02DC  2ADD               	nop2
-   926  02DD  30FE               	movlw	254
-   927  02DE  1283               	bcf	3,5	;RP0=0, select bank0
-   928  02DF  00A2               	movwf	??_main+2
-   929  02E0  30A7               	movlw	167
-   930  02E1  00A1               	movwf	??_main+1
-   931  02E2  3065               	movlw	101
-   932  02E3  00A0               	movwf	??_main
-   933  02E4                     u557:	
-   934  02E4  0BA0               	decfsz	??_main,f
-   935  02E5  2AE4               	goto	u557
-   936  02E6  0BA1               	decfsz	??_main+1,f
-   937  02E7  2AE4               	goto	u557
-   938  02E8  0BA2               	decfsz	??_main+2,f
-   939  02E9  2AE4               	goto	u557
-   940  02EA  2AEB               	nop2
-   941  02EB  30FE               	movlw	254
-   942  02EC  1283               	bcf	3,5	;RP0=0, select bank0
-   943  02ED  00A2               	movwf	??_main+2
-   944  02EE  30A7               	movlw	167
-   945  02EF  00A1               	movwf	??_main+1
-   946  02F0  3065               	movlw	101
-   947  02F1  00A0               	movwf	??_main
-   948  02F2                     u567:	
-   949  02F2  0BA0               	decfsz	??_main,f
-   950  02F3  2AF2               	goto	u567
-   951  02F4  0BA1               	decfsz	??_main+1,f
-   952  02F5  2AF2               	goto	u567
-   953  02F6  0BA2               	decfsz	??_main+2,f
-   954  02F7  2AF2               	goto	u567
-   955  02F8  2AF9               	nop2
-   956  02F9  30FE               	movlw	254
-   957  02FA  1283               	bcf	3,5	;RP0=0, select bank0
-   958  02FB  00A2               	movwf	??_main+2
-   959  02FC  30A7               	movlw	167
-   960  02FD  00A1               	movwf	??_main+1
-   961  02FE  3065               	movlw	101
-   962  02FF  00A0               	movwf	??_main
-   963  0300                     u577:	
-   964  0300  0BA0               	decfsz	??_main,f
-   965  0301  2B00               	goto	u577
-   966  0302  0BA1               	decfsz	??_main+1,f
-   967  0303  2B00               	goto	u577
-   968  0304  0BA2               	decfsz	??_main+2,f
-   969  0305  2B00               	goto	u577
-   970  0306  2B07               	nop2
-   971  0307  30FE               	movlw	254
-   972  0308  1283               	bcf	3,5	;RP0=0, select bank0
-   973  0309  00A2               	movwf	??_main+2
-   974  030A  30A7               	movlw	167
-   975  030B  00A1               	movwf	??_main+1
-   976  030C  3065               	movlw	101
-   977  030D  00A0               	movwf	??_main
-   978  030E                     u587:	
-   979  030E  0BA0               	decfsz	??_main,f
-   980  030F  2B0E               	goto	u587
-   981  0310  0BA1               	decfsz	??_main+1,f
-   982  0311  2B0E               	goto	u587
-   983  0312  0BA2               	decfsz	??_main+2,f
-   984  0313  2B0E               	goto	u587
-   985  0314  2B15               	nop2
-   986  0315  30FE               	movlw	254
-   987  0316  1283               	bcf	3,5	;RP0=0, select bank0
-   988  0317  00A2               	movwf	??_main+2
-   989  0318  30A7               	movlw	167
-   990  0319  00A1               	movwf	??_main+1
-   991  031A  3065               	movlw	101
-   992  031B  00A0               	movwf	??_main
-   993  031C                     u597:	
-   994  031C  0BA0               	decfsz	??_main,f
-   995  031D  2B1C               	goto	u597
-   996  031E  0BA1               	decfsz	??_main+1,f
-   997  031F  2B1C               	goto	u597
-   998  0320  0BA2               	decfsz	??_main+2,f
-   999  0321  2B1C               	goto	u597
-  1000  0322  2B23               	nop2
-  1001  0323  30FE               	movlw	254
-  1002  0324  1283               	bcf	3,5	;RP0=0, select bank0
-  1003  0325  00A2               	movwf	??_main+2
-  1004  0326  30A7               	movlw	167
-  1005  0327  00A1               	movwf	??_main+1
-  1006  0328  3065               	movlw	101
-  1007  0329  00A0               	movwf	??_main
-  1008  032A                     u607:	
-  1009  032A  0BA0               	decfsz	??_main,f
-  1010  032B  2B2A               	goto	u607
-  1011  032C  0BA1               	decfsz	??_main+1,f
-  1012  032D  2B2A               	goto	u607
-  1013  032E  0BA2               	decfsz	??_main+2,f
-  1014  032F  2B2A               	goto	u607
-  1015  0330  2B31               	nop2
-  1016  0331  30FE               	movlw	254
-  1017  0332  1283               	bcf	3,5	;RP0=0, select bank0
-  1018  0333  00A2               	movwf	??_main+2
-  1019  0334  30A7               	movlw	167
-  1020  0335  00A1               	movwf	??_main+1
-  1021  0336  3065               	movlw	101
-  1022  0337  00A0               	movwf	??_main
-  1023  0338                     u617:	
-  1024  0338  0BA0               	decfsz	??_main,f
-  1025  0339  2B38               	goto	u617
-  1026  033A  0BA1               	decfsz	??_main+1,f
-  1027  033B  2B38               	goto	u617
-  1028  033C  0BA2               	decfsz	??_main+2,f
-  1029  033D  2B38               	goto	u617
-  1030  033E  2B3F               	nop2
-  1031  033F  30FE               	movlw	254
-  1032  0340  1283               	bcf	3,5	;RP0=0, select bank0
-  1033  0341  00A2               	movwf	??_main+2
-  1034  0342  30A7               	movlw	167
-  1035  0343  00A1               	movwf	??_main+1
-  1036  0344  3065               	movlw	101
-  1037  0345  00A0               	movwf	??_main
-  1038  0346                     u627:	
-  1039  0346  0BA0               	decfsz	??_main,f
-  1040  0347  2B46               	goto	u627
-  1041  0348  0BA1               	decfsz	??_main+1,f
-  1042  0349  2B46               	goto	u627
-  1043  034A  0BA2               	decfsz	??_main+2,f
-  1044  034B  2B46               	goto	u627
-  1045  034C  2B4D               	nop2
-  1046  034D  30FE               	movlw	254
-  1047  034E  1283               	bcf	3,5	;RP0=0, select bank0
-  1048  034F  00A2               	movwf	??_main+2
-  1049  0350  30A7               	movlw	167
-  1050  0351  00A1               	movwf	??_main+1
-  1051  0352  3065               	movlw	101
-  1052  0353  00A0               	movwf	??_main
-  1053  0354                     u637:	
-  1054  0354  0BA0               	decfsz	??_main,f
-  1055  0355  2B54               	goto	u637
-  1056  0356  0BA1               	decfsz	??_main+1,f
-  1057  0357  2B54               	goto	u637
-  1058  0358  0BA2               	decfsz	??_main+2,f
-  1059  0359  2B54               	goto	u637
-  1060  035A  2B5B               	nop2
-  1061  035B  30FE               	movlw	254
-  1062  035C  1283               	bcf	3,5	;RP0=0, select bank0
-  1063  035D  00A2               	movwf	??_main+2
-  1064  035E  30A7               	movlw	167
-  1065  035F  00A1               	movwf	??_main+1
-  1066  0360  3065               	movlw	101
-  1067  0361  00A0               	movwf	??_main
-  1068  0362                     u647:	
-  1069  0362  0BA0               	decfsz	??_main,f
-  1070  0363  2B62               	goto	u647
-  1071  0364  0BA1               	decfsz	??_main+1,f
-  1072  0365  2B62               	goto	u647
-  1073  0366  0BA2               	decfsz	??_main+2,f
-  1074  0367  2B62               	goto	u647
-  1075  0368  2B69               	nop2
-  1076  0369  30FE               	movlw	254
-  1077  036A  1283               	bcf	3,5	;RP0=0, select bank0
-  1078  036B  00A2               	movwf	??_main+2
-  1079  036C  30A7               	movlw	167
-  1080  036D  00A1               	movwf	??_main+1
-  1081  036E  3065               	movlw	101
-  1082  036F  00A0               	movwf	??_main
-  1083  0370                     u657:	
-  1084  0370  0BA0               	decfsz	??_main,f
-  1085  0371  2B70               	goto	u657
-  1086  0372  0BA1               	decfsz	??_main+1,f
-  1087  0373  2B70               	goto	u657
-  1088  0374  0BA2               	decfsz	??_main+2,f
-  1089  0375  2B70               	goto	u657
-  1090  0376  2B77               	nop2
-  1091  0377  30FE               	movlw	254
-  1092  0378  1283               	bcf	3,5	;RP0=0, select bank0
-  1093  0379  00A2               	movwf	??_main+2
-  1094  037A  30A7               	movlw	167
-  1095  037B  00A1               	movwf	??_main+1
-  1096  037C  3065               	movlw	101
-  1097  037D  00A0               	movwf	??_main
-  1098  037E                     u667:	
-  1099  037E  0BA0               	decfsz	??_main,f
-  1100  037F  2B7E               	goto	u667
-  1101  0380  0BA1               	decfsz	??_main+1,f
-  1102  0381  2B7E               	goto	u667
-  1103  0382  0BA2               	decfsz	??_main+2,f
-  1104  0383  2B7E               	goto	u667
-  1105  0384  2B85               	nop2
-  1106  0385  30FE               	movlw	254
-  1107  0386  1283               	bcf	3,5	;RP0=0, select bank0
-  1108  0387  00A2               	movwf	??_main+2
-  1109  0388  30A7               	movlw	167
-  1110  0389  00A1               	movwf	??_main+1
-  1111  038A  3065               	movlw	101
-  1112  038B  00A0               	movwf	??_main
-  1113  038C                     u677:	
-  1114  038C  0BA0               	decfsz	??_main,f
-  1115  038D  2B8C               	goto	u677
-  1116  038E  0BA1               	decfsz	??_main+1,f
-  1117  038F  2B8C               	goto	u677
-  1118  0390  0BA2               	decfsz	??_main+2,f
-  1119  0391  2B8C               	goto	u677
-  1120  0392  2B93               	nop2
-  1121  0393  30FE               	movlw	254
-  1122  0394  1283               	bcf	3,5	;RP0=0, select bank0
-  1123  0395  00A2               	movwf	??_main+2
-  1124  0396  30A7               	movlw	167
-  1125  0397  00A1               	movwf	??_main+1
-  1126  0398  3065               	movlw	101
-  1127  0399  00A0               	movwf	??_main
-  1128  039A                     u687:	
-  1129  039A  0BA0               	decfsz	??_main,f
-  1130  039B  2B9A               	goto	u687
-  1131  039C  0BA1               	decfsz	??_main+1,f
-  1132  039D  2B9A               	goto	u687
-  1133  039E  0BA2               	decfsz	??_main+2,f
-  1134  039F  2B9A               	goto	u687
-  1135  03A0  2BA1               	nop2
-  1136  03A1  30FE               	movlw	254
-  1137  03A2  1283               	bcf	3,5	;RP0=0, select bank0
-  1138  03A3  00A2               	movwf	??_main+2
-  1139  03A4  30A7               	movlw	167
-  1140  03A5  00A1               	movwf	??_main+1
-  1141  03A6  3065               	movlw	101
-  1142  03A7  00A0               	movwf	??_main
-  1143  03A8                     u697:	
-  1144  03A8  0BA0               	decfsz	??_main,f
-  1145  03A9  2BA8               	goto	u697
-  1146  03AA  0BA1               	decfsz	??_main+1,f
-  1147  03AB  2BA8               	goto	u697
-  1148  03AC  0BA2               	decfsz	??_main+2,f
-  1149  03AD  2BA8               	goto	u697
-  1150  03AE  2BAF               	nop2
-  1151  03AF  30FE               	movlw	254
-  1152  03B0  1283               	bcf	3,5	;RP0=0, select bank0
-  1153  03B1  00A2               	movwf	??_main+2
-  1154  03B2  30A7               	movlw	167
-  1155  03B3  00A1               	movwf	??_main+1
-  1156  03B4  3065               	movlw	101
-  1157  03B5  00A0               	movwf	??_main
-  1158  03B6                     u707:	
-  1159  03B6  0BA0               	decfsz	??_main,f
-  1160  03B7  2BB6               	goto	u707
-  1161  03B8  0BA1               	decfsz	??_main+1,f
-  1162  03B9  2BB6               	goto	u707
-  1163  03BA  0BA2               	decfsz	??_main+2,f
-  1164  03BB  2BB6               	goto	u707
-  1165  03BC  2BBD               	nop2
-  1166  03BD  30FE               	movlw	254
-  1167  03BE  1283               	bcf	3,5	;RP0=0, select bank0
-  1168  03BF  00A2               	movwf	??_main+2
-  1169  03C0  30A7               	movlw	167
-  1170  03C1  00A1               	movwf	??_main+1
-  1171  03C2  3065               	movlw	101
-  1172  03C3  00A0               	movwf	??_main
-  1173  03C4                     u717:	
-  1174  03C4  0BA0               	decfsz	??_main,f
-  1175  03C5  2BC4               	goto	u717
-  1176  03C6  0BA1               	decfsz	??_main+1,f
-  1177  03C7  2BC4               	goto	u717
-  1178  03C8  0BA2               	decfsz	??_main+2,f
-  1179  03C9  2BC4               	goto	u717
-  1180  03CA  2BCB               	nop2
-  1181  03CB  30FE               	movlw	254
-  1182  03CC  1283               	bcf	3,5	;RP0=0, select bank0
-  1183  03CD  00A2               	movwf	??_main+2
-  1184  03CE  30A7               	movlw	167
-  1185  03CF  00A1               	movwf	??_main+1
-  1186  03D0  3065               	movlw	101
-  1187  03D1  00A0               	movwf	??_main
-  1188  03D2                     u727:	
-  1189  03D2  0BA0               	decfsz	??_main,f
-  1190  03D3  2BD2               	goto	u727
-  1191  03D4  0BA1               	decfsz	??_main+1,f
-  1192  03D5  2BD2               	goto	u727
-  1193  03D6  0BA2               	decfsz	??_main+2,f
-  1194  03D7  2BD2               	goto	u727
-  1195  03D8  2BD9               	nop2
-  1196  03D9  30FE               	movlw	254
-  1197  03DA  1283               	bcf	3,5	;RP0=0, select bank0
-  1198  03DB  00A2               	movwf	??_main+2
-  1199  03DC  30A7               	movlw	167
-  1200  03DD  00A1               	movwf	??_main+1
-  1201  03DE  3065               	movlw	101
-  1202  03DF  00A0               	movwf	??_main
-  1203  03E0                     u737:	
-  1204  03E0  0BA0               	decfsz	??_main,f
-  1205  03E1  2BE0               	goto	u737
-  1206  03E2  0BA1               	decfsz	??_main+1,f
-  1207  03E3  2BE0               	goto	u737
-  1208  03E4  0BA2               	decfsz	??_main+2,f
-  1209  03E5  2BE0               	goto	u737
-  1210  03E6  2BE7               	nop2
-  1211  03E7  30FE               	movlw	254
-  1212  03E8  1283               	bcf	3,5	;RP0=0, select bank0
-  1213  03E9  00A2               	movwf	??_main+2
-  1214  03EA  30A7               	movlw	167
-  1215  03EB  00A1               	movwf	??_main+1
-  1216  03EC  3065               	movlw	101
-  1217  03ED  00A0               	movwf	??_main
-  1218  03EE                     u747:	
-  1219  03EE  0BA0               	decfsz	??_main,f
-  1220  03EF  2BEE               	goto	u747
-  1221  03F0  0BA1               	decfsz	??_main+1,f
-  1222  03F1  2BEE               	goto	u747
-  1223  03F2  0BA2               	decfsz	??_main+2,f
-  1224  03F3  2BEE               	goto	u747
-  1225  03F4  2BF5               	nop2
-  1226  03F5  3001               	movlw	1
-  1227  03F6  1283               	bcf	3,5	;RP0=0, select bank0
-  1228  03F7  07A3               	addwf	main@i,f
-  1229  03F8  1803               	skipnc
-  1230  03F9  0AA4               	incf	main@i+1,f
-  1231  03FA  3000               	movlw	0
-  1232  03FB  07A4               	addwf	main@i+1,f
-  1233  03FC  2878               	goto	L2
-  1234  03FD                     __end_of_main:	
-  1235                           ;main.c: 80: }
-  1236                           ;main.c: 82: GPIObits.GP1 = 1;
-  1237                           
-  1238  005E                     btemp	set	94	;btemp
-  1239  005E                     wtemp0	set	94
+   273  00AD  30FE               	movlw	254
+   274  00AE  1283               	bcf	3,5	;RP0=0, select bank0
+   275  00AF  00A2               	movwf	??_main+2
+   276  00B0  30A7               	movlw	167
+   277  00B1  00A1               	movwf	??_main+1
+   278  00B2  3065               	movlw	101
+   279  00B3  00A0               	movwf	??_main
+   280  00B4                     u117:	
+   281  00B4  0BA0               	decfsz	??_main,f
+   282  00B5  28B4               	goto	u117
+   283  00B6  0BA1               	decfsz	??_main+1,f
+   284  00B7  28B4               	goto	u117
+   285  00B8  0BA2               	decfsz	??_main+2,f
+   286  00B9  28B4               	goto	u117
+   287  00BA  28BB               	nop2
+   288  00BB  30FE               	movlw	254
+   289  00BC  1283               	bcf	3,5	;RP0=0, select bank0
+   290  00BD  00A2               	movwf	??_main+2
+   291  00BE  30A7               	movlw	167
+   292  00BF  00A1               	movwf	??_main+1
+   293  00C0  3065               	movlw	101
+   294  00C1  00A0               	movwf	??_main
+   295  00C2                     u127:	
+   296  00C2  0BA0               	decfsz	??_main,f
+   297  00C3  28C2               	goto	u127
+   298  00C4  0BA1               	decfsz	??_main+1,f
+   299  00C5  28C2               	goto	u127
+   300  00C6  0BA2               	decfsz	??_main+2,f
+   301  00C7  28C2               	goto	u127
+   302  00C8  28C9               	nop2
+   303  00C9  30FE               	movlw	254
+   304  00CA  1283               	bcf	3,5	;RP0=0, select bank0
+   305  00CB  00A2               	movwf	??_main+2
+   306  00CC  30A7               	movlw	167
+   307  00CD  00A1               	movwf	??_main+1
+   308  00CE  3065               	movlw	101
+   309  00CF  00A0               	movwf	??_main
+   310  00D0                     u137:	
+   311  00D0  0BA0               	decfsz	??_main,f
+   312  00D1  28D0               	goto	u137
+   313  00D2  0BA1               	decfsz	??_main+1,f
+   314  00D3  28D0               	goto	u137
+   315  00D4  0BA2               	decfsz	??_main+2,f
+   316  00D5  28D0               	goto	u137
+   317  00D6  28D7               	nop2
+   318  00D7  30FE               	movlw	254
+   319  00D8  1283               	bcf	3,5	;RP0=0, select bank0
+   320  00D9  00A2               	movwf	??_main+2
+   321  00DA  30A7               	movlw	167
+   322  00DB  00A1               	movwf	??_main+1
+   323  00DC  3065               	movlw	101
+   324  00DD  00A0               	movwf	??_main
+   325  00DE                     u147:	
+   326  00DE  0BA0               	decfsz	??_main,f
+   327  00DF  28DE               	goto	u147
+   328  00E0  0BA1               	decfsz	??_main+1,f
+   329  00E1  28DE               	goto	u147
+   330  00E2  0BA2               	decfsz	??_main+2,f
+   331  00E3  28DE               	goto	u147
+   332  00E4  28E5               	nop2
+   333  00E5  30FE               	movlw	254
+   334  00E6  1283               	bcf	3,5	;RP0=0, select bank0
+   335  00E7  00A2               	movwf	??_main+2
+   336  00E8  30A7               	movlw	167
+   337  00E9  00A1               	movwf	??_main+1
+   338  00EA  3065               	movlw	101
+   339  00EB  00A0               	movwf	??_main
+   340  00EC                     u157:	
+   341  00EC  0BA0               	decfsz	??_main,f
+   342  00ED  28EC               	goto	u157
+   343  00EE  0BA1               	decfsz	??_main+1,f
+   344  00EF  28EC               	goto	u157
+   345  00F0  0BA2               	decfsz	??_main+2,f
+   346  00F1  28EC               	goto	u157
+   347  00F2  28F3               	nop2
+   348  00F3  30FE               	movlw	254
+   349  00F4  1283               	bcf	3,5	;RP0=0, select bank0
+   350  00F5  00A2               	movwf	??_main+2
+   351  00F6  30A7               	movlw	167
+   352  00F7  00A1               	movwf	??_main+1
+   353  00F8  3065               	movlw	101
+   354  00F9  00A0               	movwf	??_main
+   355  00FA                     u167:	
+   356  00FA  0BA0               	decfsz	??_main,f
+   357  00FB  28FA               	goto	u167
+   358  00FC  0BA1               	decfsz	??_main+1,f
+   359  00FD  28FA               	goto	u167
+   360  00FE  0BA2               	decfsz	??_main+2,f
+   361  00FF  28FA               	goto	u167
+   362  0100  2901               	nop2
+   363  0101  30FE               	movlw	254
+   364  0102  1283               	bcf	3,5	;RP0=0, select bank0
+   365  0103  00A2               	movwf	??_main+2
+   366  0104  30A7               	movlw	167
+   367  0105  00A1               	movwf	??_main+1
+   368  0106  3065               	movlw	101
+   369  0107  00A0               	movwf	??_main
+   370  0108                     u177:	
+   371  0108  0BA0               	decfsz	??_main,f
+   372  0109  2908               	goto	u177
+   373  010A  0BA1               	decfsz	??_main+1,f
+   374  010B  2908               	goto	u177
+   375  010C  0BA2               	decfsz	??_main+2,f
+   376  010D  2908               	goto	u177
+   377  010E  290F               	nop2
+   378  010F  30FE               	movlw	254
+   379  0110  1283               	bcf	3,5	;RP0=0, select bank0
+   380  0111  00A2               	movwf	??_main+2
+   381  0112  30A7               	movlw	167
+   382  0113  00A1               	movwf	??_main+1
+   383  0114  3065               	movlw	101
+   384  0115  00A0               	movwf	??_main
+   385  0116                     u187:	
+   386  0116  0BA0               	decfsz	??_main,f
+   387  0117  2916               	goto	u187
+   388  0118  0BA1               	decfsz	??_main+1,f
+   389  0119  2916               	goto	u187
+   390  011A  0BA2               	decfsz	??_main+2,f
+   391  011B  2916               	goto	u187
+   392  011C  291D               	nop2
+   393  011D  30FE               	movlw	254
+   394  011E  1283               	bcf	3,5	;RP0=0, select bank0
+   395  011F  00A2               	movwf	??_main+2
+   396  0120  30A7               	movlw	167
+   397  0121  00A1               	movwf	??_main+1
+   398  0122  3065               	movlw	101
+   399  0123  00A0               	movwf	??_main
+   400  0124                     u197:	
+   401  0124  0BA0               	decfsz	??_main,f
+   402  0125  2924               	goto	u197
+   403  0126  0BA1               	decfsz	??_main+1,f
+   404  0127  2924               	goto	u197
+   405  0128  0BA2               	decfsz	??_main+2,f
+   406  0129  2924               	goto	u197
+   407  012A  292B               	nop2
+   408  012B  30FE               	movlw	254
+   409  012C  1283               	bcf	3,5	;RP0=0, select bank0
+   410  012D  00A2               	movwf	??_main+2
+   411  012E  30A7               	movlw	167
+   412  012F  00A1               	movwf	??_main+1
+   413  0130  3065               	movlw	101
+   414  0131  00A0               	movwf	??_main
+   415  0132                     u207:	
+   416  0132  0BA0               	decfsz	??_main,f
+   417  0133  2932               	goto	u207
+   418  0134  0BA1               	decfsz	??_main+1,f
+   419  0135  2932               	goto	u207
+   420  0136  0BA2               	decfsz	??_main+2,f
+   421  0137  2932               	goto	u207
+   422  0138  2939               	nop2
+   423  0139  30FE               	movlw	254
+   424  013A  1283               	bcf	3,5	;RP0=0, select bank0
+   425  013B  00A2               	movwf	??_main+2
+   426  013C  30A7               	movlw	167
+   427  013D  00A1               	movwf	??_main+1
+   428  013E  3065               	movlw	101
+   429  013F  00A0               	movwf	??_main
+   430  0140                     u217:	
+   431  0140  0BA0               	decfsz	??_main,f
+   432  0141  2940               	goto	u217
+   433  0142  0BA1               	decfsz	??_main+1,f
+   434  0143  2940               	goto	u217
+   435  0144  0BA2               	decfsz	??_main+2,f
+   436  0145  2940               	goto	u217
+   437  0146  2947               	nop2
+   438  0147  30FE               	movlw	254
+   439  0148  1283               	bcf	3,5	;RP0=0, select bank0
+   440  0149  00A2               	movwf	??_main+2
+   441  014A  30A7               	movlw	167
+   442  014B  00A1               	movwf	??_main+1
+   443  014C  3065               	movlw	101
+   444  014D  00A0               	movwf	??_main
+   445  014E                     u227:	
+   446  014E  0BA0               	decfsz	??_main,f
+   447  014F  294E               	goto	u227
+   448  0150  0BA1               	decfsz	??_main+1,f
+   449  0151  294E               	goto	u227
+   450  0152  0BA2               	decfsz	??_main+2,f
+   451  0153  294E               	goto	u227
+   452  0154  2955               	nop2
+   453  0155  30FE               	movlw	254
+   454  0156  1283               	bcf	3,5	;RP0=0, select bank0
+   455  0157  00A2               	movwf	??_main+2
+   456  0158  30A7               	movlw	167
+   457  0159  00A1               	movwf	??_main+1
+   458  015A  3065               	movlw	101
+   459  015B  00A0               	movwf	??_main
+   460  015C                     u237:	
+   461  015C  0BA0               	decfsz	??_main,f
+   462  015D  295C               	goto	u237
+   463  015E  0BA1               	decfsz	??_main+1,f
+   464  015F  295C               	goto	u237
+   465  0160  0BA2               	decfsz	??_main+2,f
+   466  0161  295C               	goto	u237
+   467  0162  2963               	nop2
+   468  0163  30FE               	movlw	254
+   469  0164  1283               	bcf	3,5	;RP0=0, select bank0
+   470  0165  00A2               	movwf	??_main+2
+   471  0166  30A7               	movlw	167
+   472  0167  00A1               	movwf	??_main+1
+   473  0168  3065               	movlw	101
+   474  0169  00A0               	movwf	??_main
+   475  016A                     u247:	
+   476  016A  0BA0               	decfsz	??_main,f
+   477  016B  296A               	goto	u247
+   478  016C  0BA1               	decfsz	??_main+1,f
+   479  016D  296A               	goto	u247
+   480  016E  0BA2               	decfsz	??_main+2,f
+   481  016F  296A               	goto	u247
+   482  0170  2971               	nop2
+   483  0171  30FE               	movlw	254
+   484  0172  1283               	bcf	3,5	;RP0=0, select bank0
+   485  0173  00A2               	movwf	??_main+2
+   486  0174  30A7               	movlw	167
+   487  0175  00A1               	movwf	??_main+1
+   488  0176  3065               	movlw	101
+   489  0177  00A0               	movwf	??_main
+   490  0178                     u257:	
+   491  0178  0BA0               	decfsz	??_main,f
+   492  0179  2978               	goto	u257
+   493  017A  0BA1               	decfsz	??_main+1,f
+   494  017B  2978               	goto	u257
+   495  017C  0BA2               	decfsz	??_main+2,f
+   496  017D  2978               	goto	u257
+   497  017E  297F               	nop2
+   498  017F  30FE               	movlw	254
+   499  0180  1283               	bcf	3,5	;RP0=0, select bank0
+   500  0181  00A2               	movwf	??_main+2
+   501  0182  30A7               	movlw	167
+   502  0183  00A1               	movwf	??_main+1
+   503  0184  3065               	movlw	101
+   504  0185  00A0               	movwf	??_main
+   505  0186                     u267:	
+   506  0186  0BA0               	decfsz	??_main,f
+   507  0187  2986               	goto	u267
+   508  0188  0BA1               	decfsz	??_main+1,f
+   509  0189  2986               	goto	u267
+   510  018A  0BA2               	decfsz	??_main+2,f
+   511  018B  2986               	goto	u267
+   512  018C  298D               	nop2
+   513  018D  30FE               	movlw	254
+   514  018E  1283               	bcf	3,5	;RP0=0, select bank0
+   515  018F  00A2               	movwf	??_main+2
+   516  0190  30A7               	movlw	167
+   517  0191  00A1               	movwf	??_main+1
+   518  0192  3065               	movlw	101
+   519  0193  00A0               	movwf	??_main
+   520  0194                     u277:	
+   521  0194  0BA0               	decfsz	??_main,f
+   522  0195  2994               	goto	u277
+   523  0196  0BA1               	decfsz	??_main+1,f
+   524  0197  2994               	goto	u277
+   525  0198  0BA2               	decfsz	??_main+2,f
+   526  0199  2994               	goto	u277
+   527  019A  299B               	nop2
+   528  019B  30FE               	movlw	254
+   529  019C  1283               	bcf	3,5	;RP0=0, select bank0
+   530  019D  00A2               	movwf	??_main+2
+   531  019E  30A7               	movlw	167
+   532  019F  00A1               	movwf	??_main+1
+   533  01A0  3065               	movlw	101
+   534  01A1  00A0               	movwf	??_main
+   535  01A2                     u287:	
+   536  01A2  0BA0               	decfsz	??_main,f
+   537  01A3  29A2               	goto	u287
+   538  01A4  0BA1               	decfsz	??_main+1,f
+   539  01A5  29A2               	goto	u287
+   540  01A6  0BA2               	decfsz	??_main+2,f
+   541  01A7  29A2               	goto	u287
+   542  01A8  29A9               	nop2
+   543  01A9  30FE               	movlw	254
+   544  01AA  1283               	bcf	3,5	;RP0=0, select bank0
+   545  01AB  00A2               	movwf	??_main+2
+   546  01AC  30A7               	movlw	167
+   547  01AD  00A1               	movwf	??_main+1
+   548  01AE  3065               	movlw	101
+   549  01AF  00A0               	movwf	??_main
+   550  01B0                     u297:	
+   551  01B0  0BA0               	decfsz	??_main,f
+   552  01B1  29B0               	goto	u297
+   553  01B2  0BA1               	decfsz	??_main+1,f
+   554  01B3  29B0               	goto	u297
+   555  01B4  0BA2               	decfsz	??_main+2,f
+   556  01B5  29B0               	goto	u297
+   557  01B6  29B7               	nop2
+   558  01B7  30FE               	movlw	254
+   559  01B8  1283               	bcf	3,5	;RP0=0, select bank0
+   560  01B9  00A2               	movwf	??_main+2
+   561  01BA  30A7               	movlw	167
+   562  01BB  00A1               	movwf	??_main+1
+   563  01BC  3065               	movlw	101
+   564  01BD  00A0               	movwf	??_main
+   565  01BE                     u307:	
+   566  01BE  0BA0               	decfsz	??_main,f
+   567  01BF  29BE               	goto	u307
+   568  01C0  0BA1               	decfsz	??_main+1,f
+   569  01C1  29BE               	goto	u307
+   570  01C2  0BA2               	decfsz	??_main+2,f
+   571  01C3  29BE               	goto	u307
+   572  01C4  29C5               	nop2
+   573  01C5  30FE               	movlw	254
+   574  01C6  1283               	bcf	3,5	;RP0=0, select bank0
+   575  01C7  00A2               	movwf	??_main+2
+   576  01C8  30A7               	movlw	167
+   577  01C9  00A1               	movwf	??_main+1
+   578  01CA  3065               	movlw	101
+   579  01CB  00A0               	movwf	??_main
+   580  01CC                     u317:	
+   581  01CC  0BA0               	decfsz	??_main,f
+   582  01CD  29CC               	goto	u317
+   583  01CE  0BA1               	decfsz	??_main+1,f
+   584  01CF  29CC               	goto	u317
+   585  01D0  0BA2               	decfsz	??_main+2,f
+   586  01D1  29CC               	goto	u317
+   587  01D2  29D3               	nop2
+   588  01D3  30FE               	movlw	254
+   589  01D4  1283               	bcf	3,5	;RP0=0, select bank0
+   590  01D5  00A2               	movwf	??_main+2
+   591  01D6  30A7               	movlw	167
+   592  01D7  00A1               	movwf	??_main+1
+   593  01D8  3065               	movlw	101
+   594  01D9  00A0               	movwf	??_main
+   595  01DA                     u327:	
+   596  01DA  0BA0               	decfsz	??_main,f
+   597  01DB  29DA               	goto	u327
+   598  01DC  0BA1               	decfsz	??_main+1,f
+   599  01DD  29DA               	goto	u327
+   600  01DE  0BA2               	decfsz	??_main+2,f
+   601  01DF  29DA               	goto	u327
+   602  01E0  29E1               	nop2
+   603  01E1  30FE               	movlw	254
+   604  01E2  1283               	bcf	3,5	;RP0=0, select bank0
+   605  01E3  00A2               	movwf	??_main+2
+   606  01E4  30A7               	movlw	167
+   607  01E5  00A1               	movwf	??_main+1
+   608  01E6  3065               	movlw	101
+   609  01E7  00A0               	movwf	??_main
+   610  01E8                     u337:	
+   611  01E8  0BA0               	decfsz	??_main,f
+   612  01E9  29E8               	goto	u337
+   613  01EA  0BA1               	decfsz	??_main+1,f
+   614  01EB  29E8               	goto	u337
+   615  01EC  0BA2               	decfsz	??_main+2,f
+   616  01ED  29E8               	goto	u337
+   617  01EE  29EF               	nop2
+   618  01EF  30FE               	movlw	254
+   619  01F0  1283               	bcf	3,5	;RP0=0, select bank0
+   620  01F1  00A2               	movwf	??_main+2
+   621  01F2  30A7               	movlw	167
+   622  01F3  00A1               	movwf	??_main+1
+   623  01F4  3065               	movlw	101
+   624  01F5  00A0               	movwf	??_main
+   625  01F6                     u347:	
+   626  01F6  0BA0               	decfsz	??_main,f
+   627  01F7  29F6               	goto	u347
+   628  01F8  0BA1               	decfsz	??_main+1,f
+   629  01F9  29F6               	goto	u347
+   630  01FA  0BA2               	decfsz	??_main+2,f
+   631  01FB  29F6               	goto	u347
+   632  01FC  29FD               	nop2
+   633  01FD  30FE               	movlw	254
+   634  01FE  1283               	bcf	3,5	;RP0=0, select bank0
+   635  01FF  00A2               	movwf	??_main+2
+   636  0200  30A7               	movlw	167
+   637  0201  00A1               	movwf	??_main+1
+   638  0202  3065               	movlw	101
+   639  0203  00A0               	movwf	??_main
+   640  0204                     u357:	
+   641  0204  0BA0               	decfsz	??_main,f
+   642  0205  2A04               	goto	u357
+   643  0206  0BA1               	decfsz	??_main+1,f
+   644  0207  2A04               	goto	u357
+   645  0208  0BA2               	decfsz	??_main+2,f
+   646  0209  2A04               	goto	u357
+   647  020A  2A0B               	nop2
+   648  020B  30FE               	movlw	254
+   649  020C  1283               	bcf	3,5	;RP0=0, select bank0
+   650  020D  00A2               	movwf	??_main+2
+   651  020E  30A7               	movlw	167
+   652  020F  00A1               	movwf	??_main+1
+   653  0210  3065               	movlw	101
+   654  0211  00A0               	movwf	??_main
+   655  0212                     u367:	
+   656  0212  0BA0               	decfsz	??_main,f
+   657  0213  2A12               	goto	u367
+   658  0214  0BA1               	decfsz	??_main+1,f
+   659  0215  2A12               	goto	u367
+   660  0216  0BA2               	decfsz	??_main+2,f
+   661  0217  2A12               	goto	u367
+   662  0218  2A19               	nop2
+   663  0219  30FE               	movlw	254
+   664  021A  1283               	bcf	3,5	;RP0=0, select bank0
+   665  021B  00A2               	movwf	??_main+2
+   666  021C  30A7               	movlw	167
+   667  021D  00A1               	movwf	??_main+1
+   668  021E  3065               	movlw	101
+   669  021F  00A0               	movwf	??_main
+   670  0220                     u377:	
+   671  0220  0BA0               	decfsz	??_main,f
+   672  0221  2A20               	goto	u377
+   673  0222  0BA1               	decfsz	??_main+1,f
+   674  0223  2A20               	goto	u377
+   675  0224  0BA2               	decfsz	??_main+2,f
+   676  0225  2A20               	goto	u377
+   677  0226  2A27               	nop2
+   678  0227  30FE               	movlw	254
+   679  0228  1283               	bcf	3,5	;RP0=0, select bank0
+   680  0229  00A2               	movwf	??_main+2
+   681  022A  30A7               	movlw	167
+   682  022B  00A1               	movwf	??_main+1
+   683  022C  3065               	movlw	101
+   684  022D  00A0               	movwf	??_main
+   685  022E                     u387:	
+   686  022E  0BA0               	decfsz	??_main,f
+   687  022F  2A2E               	goto	u387
+   688  0230  0BA1               	decfsz	??_main+1,f
+   689  0231  2A2E               	goto	u387
+   690  0232  0BA2               	decfsz	??_main+2,f
+   691  0233  2A2E               	goto	u387
+   692  0234  2A35               	nop2
+   693  0235  30FE               	movlw	254
+   694  0236  1283               	bcf	3,5	;RP0=0, select bank0
+   695  0237  00A2               	movwf	??_main+2
+   696  0238  30A7               	movlw	167
+   697  0239  00A1               	movwf	??_main+1
+   698  023A  3065               	movlw	101
+   699  023B  00A0               	movwf	??_main
+   700  023C                     u397:	
+   701  023C  0BA0               	decfsz	??_main,f
+   702  023D  2A3C               	goto	u397
+   703  023E  0BA1               	decfsz	??_main+1,f
+   704  023F  2A3C               	goto	u397
+   705  0240  0BA2               	decfsz	??_main+2,f
+   706  0241  2A3C               	goto	u397
+   707  0242  2A43               	nop2
+   708  0243  30FE               	movlw	254
+   709  0244  1283               	bcf	3,5	;RP0=0, select bank0
+   710  0245  00A2               	movwf	??_main+2
+   711  0246  30A7               	movlw	167
+   712  0247  00A1               	movwf	??_main+1
+   713  0248  3065               	movlw	101
+   714  0249  00A0               	movwf	??_main
+   715  024A                     u407:	
+   716  024A  0BA0               	decfsz	??_main,f
+   717  024B  2A4A               	goto	u407
+   718  024C  0BA1               	decfsz	??_main+1,f
+   719  024D  2A4A               	goto	u407
+   720  024E  0BA2               	decfsz	??_main+2,f
+   721  024F  2A4A               	goto	u407
+   722  0250  2A51               	nop2
+   723  0251  30FE               	movlw	254
+   724  0252  1283               	bcf	3,5	;RP0=0, select bank0
+   725  0253  00A2               	movwf	??_main+2
+   726  0254  30A7               	movlw	167
+   727  0255  00A1               	movwf	??_main+1
+   728  0256  3065               	movlw	101
+   729  0257  00A0               	movwf	??_main
+   730  0258                     u417:	
+   731  0258  0BA0               	decfsz	??_main,f
+   732  0259  2A58               	goto	u417
+   733  025A  0BA1               	decfsz	??_main+1,f
+   734  025B  2A58               	goto	u417
+   735  025C  0BA2               	decfsz	??_main+2,f
+   736  025D  2A58               	goto	u417
+   737  025E  2A5F               	nop2
+   738  025F  30FE               	movlw	254
+   739  0260  1283               	bcf	3,5	;RP0=0, select bank0
+   740  0261  00A2               	movwf	??_main+2
+   741  0262  30A7               	movlw	167
+   742  0263  00A1               	movwf	??_main+1
+   743  0264  3065               	movlw	101
+   744  0265  00A0               	movwf	??_main
+   745  0266                     u427:	
+   746  0266  0BA0               	decfsz	??_main,f
+   747  0267  2A66               	goto	u427
+   748  0268  0BA1               	decfsz	??_main+1,f
+   749  0269  2A66               	goto	u427
+   750  026A  0BA2               	decfsz	??_main+2,f
+   751  026B  2A66               	goto	u427
+   752  026C  2A6D               	nop2
+   753  026D  30FE               	movlw	254
+   754  026E  1283               	bcf	3,5	;RP0=0, select bank0
+   755  026F  00A2               	movwf	??_main+2
+   756  0270  30A7               	movlw	167
+   757  0271  00A1               	movwf	??_main+1
+   758  0272  3065               	movlw	101
+   759  0273  00A0               	movwf	??_main
+   760  0274                     u437:	
+   761  0274  0BA0               	decfsz	??_main,f
+   762  0275  2A74               	goto	u437
+   763  0276  0BA1               	decfsz	??_main+1,f
+   764  0277  2A74               	goto	u437
+   765  0278  0BA2               	decfsz	??_main+2,f
+   766  0279  2A74               	goto	u437
+   767  027A  2A7B               	nop2
+   768  027B  30FE               	movlw	254
+   769  027C  1283               	bcf	3,5	;RP0=0, select bank0
+   770  027D  00A2               	movwf	??_main+2
+   771  027E  30A7               	movlw	167
+   772  027F  00A1               	movwf	??_main+1
+   773  0280  3065               	movlw	101
+   774  0281  00A0               	movwf	??_main
+   775  0282                     u447:	
+   776  0282  0BA0               	decfsz	??_main,f
+   777  0283  2A82               	goto	u447
+   778  0284  0BA1               	decfsz	??_main+1,f
+   779  0285  2A82               	goto	u447
+   780  0286  0BA2               	decfsz	??_main+2,f
+   781  0287  2A82               	goto	u447
+   782  0288  2A89               	nop2
+   783  0289  30FE               	movlw	254
+   784  028A  1283               	bcf	3,5	;RP0=0, select bank0
+   785  028B  00A2               	movwf	??_main+2
+   786  028C  30A7               	movlw	167
+   787  028D  00A1               	movwf	??_main+1
+   788  028E  3065               	movlw	101
+   789  028F  00A0               	movwf	??_main
+   790  0290                     u457:	
+   791  0290  0BA0               	decfsz	??_main,f
+   792  0291  2A90               	goto	u457
+   793  0292  0BA1               	decfsz	??_main+1,f
+   794  0293  2A90               	goto	u457
+   795  0294  0BA2               	decfsz	??_main+2,f
+   796  0295  2A90               	goto	u457
+   797  0296  2A97               	nop2
+   798  0297  30FE               	movlw	254
+   799  0298  1283               	bcf	3,5	;RP0=0, select bank0
+   800  0299  00A2               	movwf	??_main+2
+   801  029A  30A7               	movlw	167
+   802  029B  00A1               	movwf	??_main+1
+   803  029C  3065               	movlw	101
+   804  029D  00A0               	movwf	??_main
+   805  029E                     u467:	
+   806  029E  0BA0               	decfsz	??_main,f
+   807  029F  2A9E               	goto	u467
+   808  02A0  0BA1               	decfsz	??_main+1,f
+   809  02A1  2A9E               	goto	u467
+   810  02A2  0BA2               	decfsz	??_main+2,f
+   811  02A3  2A9E               	goto	u467
+   812  02A4  2AA5               	nop2
+   813  02A5  30FE               	movlw	254
+   814  02A6  1283               	bcf	3,5	;RP0=0, select bank0
+   815  02A7  00A2               	movwf	??_main+2
+   816  02A8  30A7               	movlw	167
+   817  02A9  00A1               	movwf	??_main+1
+   818  02AA  3065               	movlw	101
+   819  02AB  00A0               	movwf	??_main
+   820  02AC                     u477:	
+   821  02AC  0BA0               	decfsz	??_main,f
+   822  02AD  2AAC               	goto	u477
+   823  02AE  0BA1               	decfsz	??_main+1,f
+   824  02AF  2AAC               	goto	u477
+   825  02B0  0BA2               	decfsz	??_main+2,f
+   826  02B1  2AAC               	goto	u477
+   827  02B2  2AB3               	nop2
+   828  02B3  30FE               	movlw	254
+   829  02B4  1283               	bcf	3,5	;RP0=0, select bank0
+   830  02B5  00A2               	movwf	??_main+2
+   831  02B6  30A7               	movlw	167
+   832  02B7  00A1               	movwf	??_main+1
+   833  02B8  3065               	movlw	101
+   834  02B9  00A0               	movwf	??_main
+   835  02BA                     u487:	
+   836  02BA  0BA0               	decfsz	??_main,f
+   837  02BB  2ABA               	goto	u487
+   838  02BC  0BA1               	decfsz	??_main+1,f
+   839  02BD  2ABA               	goto	u487
+   840  02BE  0BA2               	decfsz	??_main+2,f
+   841  02BF  2ABA               	goto	u487
+   842  02C0  2AC1               	nop2
+   843  02C1  30FE               	movlw	254
+   844  02C2  1283               	bcf	3,5	;RP0=0, select bank0
+   845  02C3  00A2               	movwf	??_main+2
+   846  02C4  30A7               	movlw	167
+   847  02C5  00A1               	movwf	??_main+1
+   848  02C6  3065               	movlw	101
+   849  02C7  00A0               	movwf	??_main
+   850  02C8                     u497:	
+   851  02C8  0BA0               	decfsz	??_main,f
+   852  02C9  2AC8               	goto	u497
+   853  02CA  0BA1               	decfsz	??_main+1,f
+   854  02CB  2AC8               	goto	u497
+   855  02CC  0BA2               	decfsz	??_main+2,f
+   856  02CD  2AC8               	goto	u497
+   857  02CE  2ACF               	nop2
+   858  02CF  30FE               	movlw	254
+   859  02D0  1283               	bcf	3,5	;RP0=0, select bank0
+   860  02D1  00A2               	movwf	??_main+2
+   861  02D2  30A7               	movlw	167
+   862  02D3  00A1               	movwf	??_main+1
+   863  02D4  3065               	movlw	101
+   864  02D5  00A0               	movwf	??_main
+   865  02D6                     u507:	
+   866  02D6  0BA0               	decfsz	??_main,f
+   867  02D7  2AD6               	goto	u507
+   868  02D8  0BA1               	decfsz	??_main+1,f
+   869  02D9  2AD6               	goto	u507
+   870  02DA  0BA2               	decfsz	??_main+2,f
+   871  02DB  2AD6               	goto	u507
+   872  02DC  2ADD               	nop2
+   873  02DD  30FE               	movlw	254
+   874  02DE  1283               	bcf	3,5	;RP0=0, select bank0
+   875  02DF  00A2               	movwf	??_main+2
+   876  02E0  30A7               	movlw	167
+   877  02E1  00A1               	movwf	??_main+1
+   878  02E2  3065               	movlw	101
+   879  02E3  00A0               	movwf	??_main
+   880  02E4                     u517:	
+   881  02E4  0BA0               	decfsz	??_main,f
+   882  02E5  2AE4               	goto	u517
+   883  02E6  0BA1               	decfsz	??_main+1,f
+   884  02E7  2AE4               	goto	u517
+   885  02E8  0BA2               	decfsz	??_main+2,f
+   886  02E9  2AE4               	goto	u517
+   887  02EA  2AEB               	nop2
+   888  02EB  30FE               	movlw	254
+   889  02EC  1283               	bcf	3,5	;RP0=0, select bank0
+   890  02ED  00A2               	movwf	??_main+2
+   891  02EE  30A7               	movlw	167
+   892  02EF  00A1               	movwf	??_main+1
+   893  02F0  3065               	movlw	101
+   894  02F1  00A0               	movwf	??_main
+   895  02F2                     u527:	
+   896  02F2  0BA0               	decfsz	??_main,f
+   897  02F3  2AF2               	goto	u527
+   898  02F4  0BA1               	decfsz	??_main+1,f
+   899  02F5  2AF2               	goto	u527
+   900  02F6  0BA2               	decfsz	??_main+2,f
+   901  02F7  2AF2               	goto	u527
+   902  02F8  2AF9               	nop2
+   903  02F9  30FE               	movlw	254
+   904  02FA  1283               	bcf	3,5	;RP0=0, select bank0
+   905  02FB  00A2               	movwf	??_main+2
+   906  02FC  30A7               	movlw	167
+   907  02FD  00A1               	movwf	??_main+1
+   908  02FE  3065               	movlw	101
+   909  02FF  00A0               	movwf	??_main
+   910  0300                     u537:	
+   911  0300  0BA0               	decfsz	??_main,f
+   912  0301  2B00               	goto	u537
+   913  0302  0BA1               	decfsz	??_main+1,f
+   914  0303  2B00               	goto	u537
+   915  0304  0BA2               	decfsz	??_main+2,f
+   916  0305  2B00               	goto	u537
+   917  0306  2B07               	nop2
+   918  0307  30FE               	movlw	254
+   919  0308  1283               	bcf	3,5	;RP0=0, select bank0
+   920  0309  00A2               	movwf	??_main+2
+   921  030A  30A7               	movlw	167
+   922  030B  00A1               	movwf	??_main+1
+   923  030C  3065               	movlw	101
+   924  030D  00A0               	movwf	??_main
+   925  030E                     u547:	
+   926  030E  0BA0               	decfsz	??_main,f
+   927  030F  2B0E               	goto	u547
+   928  0310  0BA1               	decfsz	??_main+1,f
+   929  0311  2B0E               	goto	u547
+   930  0312  0BA2               	decfsz	??_main+2,f
+   931  0313  2B0E               	goto	u547
+   932  0314  2B15               	nop2
+   933  0315  30FE               	movlw	254
+   934  0316  1283               	bcf	3,5	;RP0=0, select bank0
+   935  0317  00A2               	movwf	??_main+2
+   936  0318  30A7               	movlw	167
+   937  0319  00A1               	movwf	??_main+1
+   938  031A  3065               	movlw	101
+   939  031B  00A0               	movwf	??_main
+   940  031C                     u557:	
+   941  031C  0BA0               	decfsz	??_main,f
+   942  031D  2B1C               	goto	u557
+   943  031E  0BA1               	decfsz	??_main+1,f
+   944  031F  2B1C               	goto	u557
+   945  0320  0BA2               	decfsz	??_main+2,f
+   946  0321  2B1C               	goto	u557
+   947  0322  2B23               	nop2
+   948  0323  30FE               	movlw	254
+   949  0324  1283               	bcf	3,5	;RP0=0, select bank0
+   950  0325  00A2               	movwf	??_main+2
+   951  0326  30A7               	movlw	167
+   952  0327  00A1               	movwf	??_main+1
+   953  0328  3065               	movlw	101
+   954  0329  00A0               	movwf	??_main
+   955  032A                     u567:	
+   956  032A  0BA0               	decfsz	??_main,f
+   957  032B  2B2A               	goto	u567
+   958  032C  0BA1               	decfsz	??_main+1,f
+   959  032D  2B2A               	goto	u567
+   960  032E  0BA2               	decfsz	??_main+2,f
+   961  032F  2B2A               	goto	u567
+   962  0330  2B31               	nop2
+   963  0331  30FE               	movlw	254
+   964  0332  1283               	bcf	3,5	;RP0=0, select bank0
+   965  0333  00A2               	movwf	??_main+2
+   966  0334  30A7               	movlw	167
+   967  0335  00A1               	movwf	??_main+1
+   968  0336  3065               	movlw	101
+   969  0337  00A0               	movwf	??_main
+   970  0338                     u577:	
+   971  0338  0BA0               	decfsz	??_main,f
+   972  0339  2B38               	goto	u577
+   973  033A  0BA1               	decfsz	??_main+1,f
+   974  033B  2B38               	goto	u577
+   975  033C  0BA2               	decfsz	??_main+2,f
+   976  033D  2B38               	goto	u577
+   977  033E  2B3F               	nop2
+   978  033F  30FE               	movlw	254
+   979  0340  1283               	bcf	3,5	;RP0=0, select bank0
+   980  0341  00A2               	movwf	??_main+2
+   981  0342  30A7               	movlw	167
+   982  0343  00A1               	movwf	??_main+1
+   983  0344  3065               	movlw	101
+   984  0345  00A0               	movwf	??_main
+   985  0346                     u587:	
+   986  0346  0BA0               	decfsz	??_main,f
+   987  0347  2B46               	goto	u587
+   988  0348  0BA1               	decfsz	??_main+1,f
+   989  0349  2B46               	goto	u587
+   990  034A  0BA2               	decfsz	??_main+2,f
+   991  034B  2B46               	goto	u587
+   992  034C  2B4D               	nop2
+   993  034D  30FE               	movlw	254
+   994  034E  1283               	bcf	3,5	;RP0=0, select bank0
+   995  034F  00A2               	movwf	??_main+2
+   996  0350  30A7               	movlw	167
+   997  0351  00A1               	movwf	??_main+1
+   998  0352  3065               	movlw	101
+   999  0353  00A0               	movwf	??_main
+  1000  0354                     u597:	
+  1001  0354  0BA0               	decfsz	??_main,f
+  1002  0355  2B54               	goto	u597
+  1003  0356  0BA1               	decfsz	??_main+1,f
+  1004  0357  2B54               	goto	u597
+  1005  0358  0BA2               	decfsz	??_main+2,f
+  1006  0359  2B54               	goto	u597
+  1007  035A  2B5B               	nop2
+  1008  035B  30FE               	movlw	254
+  1009  035C  1283               	bcf	3,5	;RP0=0, select bank0
+  1010  035D  00A2               	movwf	??_main+2
+  1011  035E  30A7               	movlw	167
+  1012  035F  00A1               	movwf	??_main+1
+  1013  0360  3065               	movlw	101
+  1014  0361  00A0               	movwf	??_main
+  1015  0362                     u607:	
+  1016  0362  0BA0               	decfsz	??_main,f
+  1017  0363  2B62               	goto	u607
+  1018  0364  0BA1               	decfsz	??_main+1,f
+  1019  0365  2B62               	goto	u607
+  1020  0366  0BA2               	decfsz	??_main+2,f
+  1021  0367  2B62               	goto	u607
+  1022  0368  2B69               	nop2
+  1023  0369  30FE               	movlw	254
+  1024  036A  1283               	bcf	3,5	;RP0=0, select bank0
+  1025  036B  00A2               	movwf	??_main+2
+  1026  036C  30A7               	movlw	167
+  1027  036D  00A1               	movwf	??_main+1
+  1028  036E  3065               	movlw	101
+  1029  036F  00A0               	movwf	??_main
+  1030  0370                     u617:	
+  1031  0370  0BA0               	decfsz	??_main,f
+  1032  0371  2B70               	goto	u617
+  1033  0372  0BA1               	decfsz	??_main+1,f
+  1034  0373  2B70               	goto	u617
+  1035  0374  0BA2               	decfsz	??_main+2,f
+  1036  0375  2B70               	goto	u617
+  1037  0376  2B77               	nop2
+  1038  0377  30FE               	movlw	254
+  1039  0378  1283               	bcf	3,5	;RP0=0, select bank0
+  1040  0379  00A2               	movwf	??_main+2
+  1041  037A  30A7               	movlw	167
+  1042  037B  00A1               	movwf	??_main+1
+  1043  037C  3065               	movlw	101
+  1044  037D  00A0               	movwf	??_main
+  1045  037E                     u627:	
+  1046  037E  0BA0               	decfsz	??_main,f
+  1047  037F  2B7E               	goto	u627
+  1048  0380  0BA1               	decfsz	??_main+1,f
+  1049  0381  2B7E               	goto	u627
+  1050  0382  0BA2               	decfsz	??_main+2,f
+  1051  0383  2B7E               	goto	u627
+  1052  0384  2B85               	nop2
+  1053  0385  30FE               	movlw	254
+  1054  0386  1283               	bcf	3,5	;RP0=0, select bank0
+  1055  0387  00A2               	movwf	??_main+2
+  1056  0388  30A7               	movlw	167
+  1057  0389  00A1               	movwf	??_main+1
+  1058  038A  3065               	movlw	101
+  1059  038B  00A0               	movwf	??_main
+  1060  038C                     u637:	
+  1061  038C  0BA0               	decfsz	??_main,f
+  1062  038D  2B8C               	goto	u637
+  1063  038E  0BA1               	decfsz	??_main+1,f
+  1064  038F  2B8C               	goto	u637
+  1065  0390  0BA2               	decfsz	??_main+2,f
+  1066  0391  2B8C               	goto	u637
+  1067  0392  2B93               	nop2
+  1068  0393  30FE               	movlw	254
+  1069  0394  1283               	bcf	3,5	;RP0=0, select bank0
+  1070  0395  00A2               	movwf	??_main+2
+  1071  0396  30A7               	movlw	167
+  1072  0397  00A1               	movwf	??_main+1
+  1073  0398  3065               	movlw	101
+  1074  0399  00A0               	movwf	??_main
+  1075  039A                     u647:	
+  1076  039A  0BA0               	decfsz	??_main,f
+  1077  039B  2B9A               	goto	u647
+  1078  039C  0BA1               	decfsz	??_main+1,f
+  1079  039D  2B9A               	goto	u647
+  1080  039E  0BA2               	decfsz	??_main+2,f
+  1081  039F  2B9A               	goto	u647
+  1082  03A0  2BA1               	nop2
+  1083  03A1  30FE               	movlw	254
+  1084  03A2  1283               	bcf	3,5	;RP0=0, select bank0
+  1085  03A3  00A2               	movwf	??_main+2
+  1086  03A4  30A7               	movlw	167
+  1087  03A5  00A1               	movwf	??_main+1
+  1088  03A6  3065               	movlw	101
+  1089  03A7  00A0               	movwf	??_main
+  1090  03A8                     u657:	
+  1091  03A8  0BA0               	decfsz	??_main,f
+  1092  03A9  2BA8               	goto	u657
+  1093  03AA  0BA1               	decfsz	??_main+1,f
+  1094  03AB  2BA8               	goto	u657
+  1095  03AC  0BA2               	decfsz	??_main+2,f
+  1096  03AD  2BA8               	goto	u657
+  1097  03AE  2BAF               	nop2
+  1098  03AF  30FE               	movlw	254
+  1099  03B0  1283               	bcf	3,5	;RP0=0, select bank0
+  1100  03B1  00A2               	movwf	??_main+2
+  1101  03B2  30A7               	movlw	167
+  1102  03B3  00A1               	movwf	??_main+1
+  1103  03B4  3065               	movlw	101
+  1104  03B5  00A0               	movwf	??_main
+  1105  03B6                     u667:	
+  1106  03B6  0BA0               	decfsz	??_main,f
+  1107  03B7  2BB6               	goto	u667
+  1108  03B8  0BA1               	decfsz	??_main+1,f
+  1109  03B9  2BB6               	goto	u667
+  1110  03BA  0BA2               	decfsz	??_main+2,f
+  1111  03BB  2BB6               	goto	u667
+  1112  03BC  2BBD               	nop2
+  1113  03BD  30FE               	movlw	254
+  1114  03BE  1283               	bcf	3,5	;RP0=0, select bank0
+  1115  03BF  00A2               	movwf	??_main+2
+  1116  03C0  30A7               	movlw	167
+  1117  03C1  00A1               	movwf	??_main+1
+  1118  03C2  3065               	movlw	101
+  1119  03C3  00A0               	movwf	??_main
+  1120  03C4                     u677:	
+  1121  03C4  0BA0               	decfsz	??_main,f
+  1122  03C5  2BC4               	goto	u677
+  1123  03C6  0BA1               	decfsz	??_main+1,f
+  1124  03C7  2BC4               	goto	u677
+  1125  03C8  0BA2               	decfsz	??_main+2,f
+  1126  03C9  2BC4               	goto	u677
+  1127  03CA  2BCB               	nop2
+  1128  03CB  30FE               	movlw	254
+  1129  03CC  1283               	bcf	3,5	;RP0=0, select bank0
+  1130  03CD  00A2               	movwf	??_main+2
+  1131  03CE  30A7               	movlw	167
+  1132  03CF  00A1               	movwf	??_main+1
+  1133  03D0  3065               	movlw	101
+  1134  03D1  00A0               	movwf	??_main
+  1135  03D2                     u687:	
+  1136  03D2  0BA0               	decfsz	??_main,f
+  1137  03D3  2BD2               	goto	u687
+  1138  03D4  0BA1               	decfsz	??_main+1,f
+  1139  03D5  2BD2               	goto	u687
+  1140  03D6  0BA2               	decfsz	??_main+2,f
+  1141  03D7  2BD2               	goto	u687
+  1142  03D8  2BD9               	nop2
+  1143  03D9  30FE               	movlw	254
+  1144  03DA  1283               	bcf	3,5	;RP0=0, select bank0
+  1145  03DB  00A2               	movwf	??_main+2
+  1146  03DC  30A7               	movlw	167
+  1147  03DD  00A1               	movwf	??_main+1
+  1148  03DE  3065               	movlw	101
+  1149  03DF  00A0               	movwf	??_main
+  1150  03E0                     u697:	
+  1151  03E0  0BA0               	decfsz	??_main,f
+  1152  03E1  2BE0               	goto	u697
+  1153  03E2  0BA1               	decfsz	??_main+1,f
+  1154  03E3  2BE0               	goto	u697
+  1155  03E4  0BA2               	decfsz	??_main+2,f
+  1156  03E5  2BE0               	goto	u697
+  1157  03E6  2BE7               	nop2
+  1158  03E7  30FE               	movlw	254
+  1159  03E8  1283               	bcf	3,5	;RP0=0, select bank0
+  1160  03E9  00A2               	movwf	??_main+2
+  1161  03EA  30A7               	movlw	167
+  1162  03EB  00A1               	movwf	??_main+1
+  1163  03EC  3065               	movlw	101
+  1164  03ED  00A0               	movwf	??_main
+  1165  03EE                     u707:	
+  1166  03EE  0BA0               	decfsz	??_main,f
+  1167  03EF  2BEE               	goto	u707
+  1168  03F0  0BA1               	decfsz	??_main+1,f
+  1169  03F1  2BEE               	goto	u707
+  1170  03F2  0BA2               	decfsz	??_main+2,f
+  1171  03F3  2BEE               	goto	u707
+  1172  03F4  2BF5               	nop2
+  1173  03F5  3001               	movlw	1
+  1174  03F6  1283               	bcf	3,5	;RP0=0, select bank0
+  1175  03F7  07A3               	addwf	main@i,f
+  1176  03F8  1803               	skipnc
+  1177  03F9  0AA4               	incf	main@i+1,f
+  1178  03FA  3000               	movlw	0
+  1179  03FB  07A4               	addwf	main@i+1,f
+  1180  03FC  28A2               	goto	L2
+  1181  03FD                     __end_of_main:	
+  1182                           ;main.c: 82: }
+  1183                           ;main.c: 83: GPIObits.GP1 = 1;
+  1184                           
+  1185  005E                     btemp	set	94	;btemp
+  1186  005E                     wtemp0	set	94
 
 
 Data Sizes:
@@ -1316,38 +1263,37 @@ DATA                 0      0       0       6        0.0%
 
 
 Microchip Technology PIC Macro Assembler V1.41 build -162212810 
-Symbol Table                                                                                   Tue Jul 11 23:42:51 2017
+Symbol Table                                                                                   Mon Aug 07 22:13:18 2017
 
-             __CFG_CP$ON 0000              __CFG_CPD$ON 0000                       u35 0081  
-                     u57 0019                       u67 0027                       u77 0035  
-                     u87 0043                       u97 0051                      u107 005F  
-                    u117 006D                      u207 00FA                      u127 008A  
-                    u217 0108                      u137 0098                      u307 0186  
-                    u227 0116                      u147 00A6                      u317 0194  
-                    u237 0124                      u157 00B4                      u407 0212  
-                    u327 01A2                      u247 0132                      u167 00C2  
-                    u417 0220                      u337 01B0                      u257 0140  
-                    u177 00D0                      u507 029E                      u427 022E  
-                    u347 01BE                      u267 014E                      u187 00DE  
-                    u517 02AC                      u437 023C                      u357 01CC  
-                    u277 015C                      u197 00EC                      u607 032A  
-                    u527 02BA                      u447 024A                      u367 01DA  
-                    u287 016A                      u617 0338                      u537 02C8  
-                    u457 0258                      u377 01E8                      u297 0178  
-                    u707 03B6                      u627 0346                      u547 02D6  
-                    u467 0266                      u387 01F6                      u717 03C4  
-                    u637 0354                      u557 02E4                      u477 0274  
-                    u397 0204                      u727 03D2                      u647 0362  
-                    u567 02F2                      u487 0282                      u737 03E0  
-                    u657 0370                      u577 0300                      u497 0290  
-                    u747 03EE                      u667 037E                      u587 030E  
-                    u677 038C                      u597 031C                      u687 039A  
-                    u697 03A8                     _main 000F                     btemp 005E  
-                   start 0000                    ?_main 0020            __CFG_WDTE$OFF 0000  
-                  main@i 0023           __CFG_BOREN$OFF 0000                    status 0003  
-                  wtemp0 005E           __CFG_MCLRE$OFF 0000          __initialization 03FD  
-           __end_of_main 03FD                   ??_main 0020           __CFG_PWRTE$OFF 0000  
-__end_of__initialization 03FD               __pmaintext 000F     end_of_initialization 03FD  
-    start_initialization 03FD                ___latbits 0000            __pcstackBANK0 0020  
-               _GPIObits 0005            __size_of_main 03EE        __CFG_FOSC$INTRCIO 0000  
+             __CFG_CP$ON 0000              __CFG_CPD$ON 0000                       u35 00AB  
+                     u57 0051                       u67 005F                       u77 006D  
+                     u87 007B                       u97 0089                      u107 0097  
+                    u117 00B4                      u207 0132                      u127 00C2  
+                    u217 0140                      u137 00D0                      u307 01BE  
+                    u227 014E                      u147 00DE                      u317 01CC  
+                    u237 015C                      u157 00EC                      u407 024A  
+                    u327 01DA                      u247 016A                      u167 00FA  
+                    u417 0258                      u337 01E8                      u257 0178  
+                    u177 0108                      u507 02D6                      u427 0266  
+                    u347 01F6                      u267 0186                      u187 0116  
+                    u517 02E4                      u437 0274                      u357 0204  
+                    u277 0194                      u197 0124                      u607 0362  
+                    u527 02F2                      u447 0282                      u367 0212  
+                    u287 01A2                      u617 0370                      u537 0300  
+                    u457 0290                      u377 0220                      u297 01B0  
+                    u707 03EE                      u627 037E                      u547 030E  
+                    u467 029E                      u387 022E                      u637 038C  
+                    u557 031C                      u477 02AC                      u397 023C  
+                    u647 039A                      u567 032A                      u487 02BA  
+                    u657 03A8                      u577 0338                      u497 02C8  
+                    u667 03B6                      u587 0346                      u677 03C4  
+                    u597 0354                      u687 03D2                      u697 03E0  
+                   _main 0043                     btemp 005E                     start 0000  
+                  ?_main 0020            __CFG_WDTE$OFF 0000                    main@i 0023  
+         __CFG_BOREN$OFF 0000                    status 0003                    wtemp0 005E  
+         __CFG_MCLRE$OFF 0000          __initialization 03FD             __end_of_main 03FD  
+                 ??_main 0020           __CFG_PWRTE$OFF 0000  __end_of__initialization 03FD  
+             __pmaintext 0043     end_of_initialization 03FD      start_initialization 03FD  
+              ___latbits 0000            __pcstackBANK0 0020                 _GPIObits 0005  
+          __size_of_main 03BA               _OSCCALbits 0090        __CFG_FOSC$INTRCIO 0000  
              _TRISIObits 0085  
