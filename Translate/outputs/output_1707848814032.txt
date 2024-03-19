@@ -1,0 +1,1075 @@
+                                 Doanh nghiệp
+Đặc tả chức năng phần mềm
+
+
+Đại lý Net-SNMP
+
+Tác giả: Bernadette Eyre
+Cập nhật: Danh Hoàng
+Bản sửa đổi: 3.8
+Ngày: 03/04/2020
+
+
+
+
+
+
+
+
+Bản quyền  1995-2019 ALE USA, Incorporated
+Đã đăng ký Bản quyền
+
+ALE Hoa Kỳ, Inc.
+26801 Đường Tây Agoura, Calabasas, CA 91301
+818 880 3500
+
+
+
+
+ 
+MỤC LỤC
+1. GIỚI THIỆU 7
+1.1. Mục đích 7
+1.2. Phạm vi 7
+1.3. Đối tượng dự kiến ​​7
+1.4. Thuật ngữ 7
+1.5. Từ viết tắt 7
+1.6. Bảng thuật ngữ 8
+1.7. Tài liệu nội bộ 8
+1.7.1. Tài liệu bên ngoài 9
+IETF RFC 9
+2. YÊU CẦU TỔNG QUAN 9
+2.1. Yêu cầu và hạn chế về phần cứng 9
+2.2. Yêu cầu và hạn chế của phần mềm 9
+2.3. Yêu cầu và hạn chế của người dùng trong SNMP 11
+2.3.1. Khung SNMP v1 và v2c 11
+Bản đồ cộng đồng 11
+2.3.2. Khung SNMP v3 11
+2.4. Tuân thủ SNMPv3 RFC 12
+2.5. Yêu cầu bảo mật 12
+2.5.1. Cấp độ bảo mật 12
+2.5.2. Yêu cầu VRF 13
+2.5.3. Yêu cầu khung gầm ảo 14
+2.5.4. Yêu cầu xử lý IfIndex 14
+2.5.5. SNMP qua TLS 14
+3. MÔ TẢ CHỨC NĂNG 16
+3.1. Hoạt động cơ bản 16
+3.2. Kiến trúc cơ bản 16
+3.3. Mối quan hệ với các sản phẩm hiện có 19
+3.3.1. Giao diện phần mềm 19
+PMD 19
+Dự phòng và tiếp quản 19
+Số 19
+3.3.2. Giao diện quản lý 19
+SNMP 19
+Phạm vi Vlan 19
+Cải tiến MIB 20
+1.1.1.1.1 Thay đổi OID cơ sở 20
+1.2.1.1.1 Tuân thủ tiêu chuẩn MIB 21
+Đổi tên File MIB để khớp với tên nội bộ 21
+1.3.1.1.1 21
+Giao diện dòng lệnh (CLI) 22
+1.4.1.1.1 Danh sách lệnh 22
+1.5.1.1.1 Ví dụ về cấu hình 22
+1.6.1.1.1 Cách thêm người dùng SNMP 22
+Giao diện dựa trên web 22
+3.4. Cấu hình kiên trì 23
+4. THÔNG SỐ YÊU CẦU HỆ THỐNG 24
+4.1. Phần thứ ba nâng cấp phần mềm 24
+4.2. Yêu cầu cấu hình 24
+4.2.1. Yêu cầu CLI 24
+4.2.2. Yêu cầu về Web 24
+4.2.3. Yêu cầu chức năng 24
+4.2.4. Yêu cầu giao diện 24
+4.2.5. Yêu cầu bảo mật 24
+4.2.6. Kích thước 24
+4.2.7. Khả năng mở rộng và hiệu quả 25
+4.2.8. Nền tảng được hỗ trợ 25
+4.3. Khả năng hỗ trợ 25
+5. TÁC ĐỘNG HỆ THỐNG 25
+5.1. Yêu cầu bộ nhớ 25
+5.2. Hệ thống hiện có 25
+5.3. Hiệu suất 25
+5.4. Cài đặt 26
+5.5. Mối quan ngại về an ninh 26
+6. KIỂM TRA VÀ XÁC MINH 26
+6.1. Phương pháp kiểm tra 26
+6.2. Kiểm tra mặt phẳng quản lý 28
+6.3. Kiểm tra chức năng 28
+6.3.1. SNMPv3 28
+6.3.2. SNMPv2 28
+6.3.3. SNMPv1 28
+6.3.4. Thử nghiệm trong môi trường IPSec 28
+6.3.5. SNMP qua TLS 29
+6.4. Kiểm tra nền tảng 29
+6.5. Kiểm tra hồi quy Omini Vista 29
+6.6. Kiểm tra giới hạn và căng thẳng 29
+6.7. Tiêu chí chấp nhận 29
+7. CON ĐƯỜNG DI CƯ VÀ NHỮNG NÂNG CAO TRONG TƯƠNG LAI 30
+7.1. Thay thế Phạm vi INTEGER bằng Integer32 30
+7.1.1. TRUY CẬP TỐI ĐA 30
+7.1.2. Xóa các giao diện không được dùng nữa 30
+8. PHÁT HÀNH SẢN PHẨM 31
+8.1. Quan sát phát hành 31
+PHỤ LỤC 1 CẤU HÌNH ID ĐỘNG CƠ SNMP 32
+Tổng quan 32
+Lệnh CLI mới 32
+PHỤ LỤC 2 SNMP VỀ YÊU CẦU MÁY CHỦ TLS Ở CHẾ ĐỘ TIÊU CHÍ CHUNG 35
+PHỤ LỤC 3 CLIS HỖ TRỢ SNMP TRÊN TLS 36
+Tùy chọn CLI mới: 36
+Lệnh mới: 37
+Tùy chọn CLI mới: 38
+PHỤ LỤC 4 KHỐI SNMP TLS PORT 10161 42
+LỊCH SỬ SỬA ĐỔI
+
+Ngày sửa đổi Cập nhật theo bản sửa đổi Mô tả Trạng thái phát hành
+28/05/09 1.0
+Dự thảo 711R01
+17/06/09 1.1 Bernadette Eyre Incorporated G. Nhận xét của Andrade – cung cấp 2 hình ảnh jpeg xem trên web 711R01 Đã đánh giá
+Bản nháp
+22/6/09 1.2 Bernadette Eyre Incorporated Nhận xét của R. Trevor
+Về bảo mật VC và ifIndex 711R01 đã được đánh giá
+Bản nháp
+25/6/09 1.3
+Agile Rev. 1 Bernadette Eyre Incorporated C. Ravenscroft nhận xét về tệp .s2m 711R01 Đã đánh giá
+Bản nháp
+3/8/09 1.4
+Bernadette
+Eyre Incorporated Bình luận cuộc họp đánh giá 711R01 Cập nhật
+8/12/09 1,5
+Linh mục Agile A Bernadette
+Eyre Cập nhật theo nhận xét nhận được. Phát hành 711R01
+2/11/2016 2
+Nhanh nhẹn
+Rev. 1 B. Eyre Đã thêm Phụ lục 1 Dự thảo 8.4.1R01
+17/1/2017 2.1 Nhanh nhẹn
+Linh mục A Vaishnavi. Phiên bản phát hành Y 8.4.1.R01
+P/N: 011708-01 8.4.1.R01 Phát hành
+30/10/2018 3.1 Agile Rev. 1 Danh Hoàng Đã thêm SNMP qua TLS 8.6.R01 Dự thảo rà soát
+11/1/2019 3.2 Agile Rev. A Danh Hoàng Cập nhật cli “snmp security tsm” và “snmp tsm-map” và “snmp station” 8.6.R01 Cập nhật
+28/1/2019 3.3 Cập nhật Agile Rev.A1 Sabarinathan V sau khi xem xét
+P/N: 011708-02 8.6.R01 Chung kết
+21/06/2019 3.6 Agile Rev. B
+Danh Hoàng 1. Xóa dấu vân tay khỏi “{show} snmp tsm-map” và “{show} snmp station” và thay đổi định dạng của “{show} snmp tsm-map”. Thêm "hiển thị chi tiết trạm snmp"
+2. Ghi chú cập nhật cho “snmp tsm-map” và “snmp station” liên quan đến việc tải lại bắt buộc nếu chứng chỉ thay đổi
+3. Lưu ý cập nhật đối với việc sao chép chứng chỉ thủ công sang phụ/phụ 8.6.R01 Cập nhật
+28/08/2019 3.7 Agile Rev. B
+Danh Hoàng Thêm tính năng “Chặn snmp tls port 10161” 8.6.R01 post GA Update
+03/04/2020
+3.8 Agile Rev. B
+Danh Hoàng Thêm tính năng “hỗ trợ thuật toán xác thực SHA384” cho AOSDEV-312 87R01 Final
+1. GIỚI THIỆU
+1.1. Mục đích
+Tài liệu này cung cấp định nghĩa sản phẩm và đặc tả chức năng để triển khai Tác nhân và tác nhân phụ SNMP dựa trên phiên bản Net-SNMP 5.4.2 cho sản phẩm Rushmore.
+1.2. Phạm vi
+Phạm vi của tài liệu này là trình bày mô tả chức năng đầy đủ của tác nhân con net-snmp như dự kiến ​​cho lần phát hành đầu tiên. Cũng bao gồm chức năng có thể được triển khai trong các bản phát hành tiếp theo. Bất kỳ mục tiếp theo nào như vậy đều được xác định rõ ràng. Tài liệu này được biên soạn theo Quy trình Phát triển Sản phẩm của Alcatel-Lucent.
+Chức năng quản lý bẫy cho tác nhân net-snmp 5.4.2 được xử lý bởi một hệ thống con riêng biệt và nó có tài liệu đặc tả chức năng phần mềm riêng.
+1.3. Đối tượng dự định
+Đối tượng dự kiến ​​của tài liệu này bao gồm nhóm thiết kế kỹ thuật, nhóm thử nghiệm sản phẩm, Đảm bảo chất lượng, nhóm viết kỹ thuật chịu trách nhiệm phát triển tài liệu dành cho người dùng và tổ chức hỗ trợ cung cấp hỗ trợ cho người dùng cuối.
+1.4. Thuật ngữ
+1.5. Các từ viết tắt
+
+Giải thích từ viết tắt
+Hệ điều hành AOS Alcatel
+Giao diện lập trình ứng dụng API
+Phân phối phần mềm BSD Berkley
+Giao diện dòng lệnh CLI
+Hệ thống tên miền DNS
+Phòng Giải pháp Doanh nghiệp ESD
+Phần mềm mã nguồn mở và miễn phí FOSS
+Hệ thống quản lý mạng NMS
+Hệ điều hành hệ điều hành
+Yêu cầu bình luận RFC
+Bản ghi tài nguyên RR
+Đặc tả thiết kế phần mềm SDS
+Đặc tả chức năng phần mềm SFS
+Kiểm tra tích hợp phần mềm SIT
+Giao thức quản lý mạng đơn giản SNMP
+Đặc tả yêu cầu hệ thống SRS
+Kiểm tra đơn vị UT
+Bảo mật lớp vận chuyển TLS
+Mô hình bảo mật vận chuyển TSM
+Bảng 1 Danh sách các từ viết tắt
+1.6. Bảng chú giải
+
+Giải thích thuật ngữ
+Rushmore Rushmore là tên nội bộ và không chính thức được đặt cho dòng Alcatel Omni Switch 9x00, là nền tảng chuyển mạch nhiều lớp thông minh dựa trên khung máy.
+Thiết bị được quản lý Thiết bị được quản lý là một nút mạng chứa tác nhân SNMP và nằm trên mạng được quản lý. Các thiết bị được quản lý thu thập và lưu trữ thông tin quản lý cũng như cung cấp thông tin này cho NMS bằng SNMP. Các thiết bị được quản lý, đôi khi được gọi là thành phần mạng, có thể là bộ định tuyến và máy chủ truy cập, bộ chuyển mạch và cầu nối, trung tâm, máy chủ hoặc máy in.
+Tác nhân SNMP Tác nhân SNMP là mô-đun phần mềm quản lý mạng nằm trong một thiết bị được quản lý. Một tác nhân có kiến ​​thức cục bộ về thông tin quản lý và chuyển thông tin đó sang dạng tương thích với SNMP. Trong tài liệu này, nó đề cập đến cả tác nhân net-snmp chính và tác nhân phụ độc quyền của Rushmore.
+
+Trình quản lý hoặc Trạm quản lý SNMP Trình quản lý hoặc trạm quản lý SNMP đưa ra các yêu cầu cho hoạt động quản lý thay mặt cho quản trị viên hoặc ứng dụng và cũng nhận các bẫy từ các tác nhân.
+Hệ thống quản lý mạng (NMS) NMS thực thi các ứng dụng giám sát và điều khiển các thiết bị được quản lý. NMS cung cấp phần lớn tài nguyên xử lý và bộ nhớ cần thiết cho việc quản lý mạng. Một hoặc nhiều NMS phải tồn tại trên bất kỳ mạng được quản lý nào.
+Bẫy Lệnh bẫy được sử dụng bởi các thiết bị được quản lý để báo cáo không đồng bộ các sự kiện tới NMS. Khi xảy ra một số loại sự kiện nhất định, thiết bị được quản lý sẽ gửi bẫy tới NMS.
+Bảng 2 Bảng chú giải thuật ngữ
+1.7. Tài liệu nội bộ
+Sau đây là các tài liệu độc quyền ảnh hưởng đến thiết kế:
+1. Quy trình phát triển kỹ thuật. Agile™, 020004-00
+2. Giám sát khung gầm Rushmore, Bản sửa đổi Rev.09. Ngày 29 tháng 6 năm 2009
+3. Đặc tả chức năng phần mềm SNMP Agent trên Ipv6 – 16/08/2007
+4. Đặc tả thiết kế hệ thống phần mềm SNMP Agent để triển khai SNMPv3 ver1.3 Alcatel Internetworking, tháng 1 năm 2003
+5. Thư viện Giao thức Nội bộ (MIP) Quản lý 21/9/2001
+6. Hướng dẫn tham khảo OminSwitch CLI 08/07/2008
+1.7.1. Tài liệu bên ngoài
+RFC của IETF
+1. Giao thức quản lý mạng đơn giản (SNMP) [RFC 1157]
+2. Giới thiệu về Network Management Framework phiên bản 3 chuẩn Internet [RFC 3410]
+3. Định nghĩa Phiên bản 2 của Cấu trúc thông tin quản lý (SMIv2) [RFC 2578].
+4. Kiến trúc mô tả Khung quản lý SNMP [RFC 3411]
+5. Xử lý và gửi tin nhắn cho Giao thức quản lý mạng đơn giản [RFC 3412]
+6. Ứng dụng SNMPv3 [RFC 3413]
+7. Mô hình kiểm soát truy cập dựa trên chế độ xem (VACM) cho Giao thức quản lý mạng đơn giản [RFC 3415]
+8. Cùng tồn tại giữa các phiên bản SNMP [RFC 3584]
+9. Mô hình bảo mật dựa trên người dùng, tin nhắn SNMP được xác thực và riêng tư (được mã hóa) [RFC 3414].
+10. Mô hình kiểm soát truy cập dựa trên chế độ xem (VACM), cung cấp khả năng giới hạn quyền truy cập vào các đối tượng MIB khác nhau trên cơ sở mỗi người dùng [RFC 3415].
+11. Định nghĩa các thực thể xử lý được gọi là tác nhân chính và tác nhân phụ, một giao thức (AgentX) [RFC 2741].
+12. Mô hình bảo mật truyền tải cho Giao thức quản lý mạng đơn giản (SNMP) [RFC 5591]
+13. Mô hình truyền tải TLS cho SNMP [RFC 5953]
+2. Tổng quan về yêu cầu
+Mục tiêu là chuyển chức năng AOS6 SNMP Agent bằng cách phát triển và triển khai net-snmp Agent dựa trên Linux bằng giao thức AgentX. Việc triển khai tổng thể sẽ cung cấp chức năng giao thức SNMPv1, SNMPv2 và SNMPv3.
+2.1. Yêu cầu và hạn chế về phần cứng
+Sản phẩm này chỉ chạy trên dòng thiết bị chuyển mạch Rushmore.
+2.2. Yêu cầu và hạn chế của phần mềm
+Net-SNMP Agent được phát triển sử dụng phiên bản net-snmp 5.4.2 mã nguồn mở, phân phối dựa trên Linux. Phân phối nguồn mở Net-SNMP được cấp phép dưới dạng giấy phép giống BSD và được FOSS phê duyệt. Là một bản phân phối nguồn mở, nó có các tùy chọn cấu hình tính năng thời gian biên dịch rất linh hoạt. Điều này chuyển thành kích thước nhị phân thời gian chạy có thể định cấu hình.
+
+Bộ phân phối cơ sở Net-SNMP được kiểm tra trong thư mục “tps” (Phần mềm phần thứ ba). Mục đích là giữ cho mã nguồn mở nguyên chất và không bị sửa đổi. Điều này giúp đơn giản hóa việc cập nhật và bảo trì phần mềm khi thấy cần phải nâng cấp một bản phân phối.
+
+Do được cấp phép và phê duyệt FOSS, bản phân phối Net-SNMP đã được chọn làm gói cơ sở phần mềm để phát triển Đại lý SNMP cho sản phẩm Rushmore.
+
+Chức năng tổng thể của Net-SNMP Agent được chia thành hai phần chính, tác nhân phân phối net-snmp chính (chính) và tác nhân phụ Alcatel-Lucent độc quyền.
+
+Tác nhân phụ được phát triển phụ thuộc vào tác nhân chính (chính) của phân phối để cung cấp chức năng tác nhân tiêu chuẩn như cấu hình tác nhân, phân tích và tải tệp MIB cũng như triển khai giao thức SNMP. Nó cũng phụ thuộc vào tác nhân chính để cung cấp khả năng kiểm soát truy cập và bảo mật thông qua tệp cấu hình daemon net-snmp chính, cụ thể là snmpd.conf. Tệp cấu hình tác nhân chính nằm ở /etc/netsnmp. Tại thời điểm cài đặt, tệp này hầu như trống và được cập nhật khi cấu hình tác nhân SNMP được thêm và xóa bằng CLI trong thời gian chạy.
+
+Tuy nhiên thiết kế trên có một số vấn đề và thách thức. Mặc dù việc phụ thuộc vào tác nhân chính để thực hiện hầu hết các chức năng kiểm soát truy cập và bảo mật người dùng là một cách tiếp cận mong muốn nhưng đây không phải là một nhiệm vụ dễ dàng thực hiện. Do yêu cầu sửa đổi các tham số cấu hình SNMP từ CLI và Web View, các tham số cấu hình SNMP thường được kiểm soát và truy cập bởi tác nhân chính, giờ đây chúng cũng được yêu cầu (hoặc dự kiến) có thể truy cập và sửa đổi từ tác nhân phụ.
+Người ta hy vọng rằng thiết kế mã Tác nhân SNMP sẽ tận dụng tối đa mã tác nhân chính hiện có. Việc thực hiện cách tiếp cận như vậy sẽ tiết kiệm thời gian phát triển và nỗ lực thử nghiệm. Tuy nhiên, cũng có khả năng là phần lớn chức năng của tác nhân chính có thể phải được di chuyển sang tác nhân phụ để cung cấp khả năng kiểm soát tốt hơn đối với các tham số cấu hình cũng như cơ sở dữ liệu được liên kết với cấu hình này.
+
+Hỗ trợ Ipv6 sẽ được thêm vào sau khi Ipv4 ổn định và sẵn sàng cho phiên bản phát hành.
+2.3. Yêu cầu và hạn chế của người dùng trong SNMP
+Chỉ các khung SNMP đến từ người dùng đã khai báo trước đó với Net-SNMP Agent mới có thể được xử lý thành công. Các khung hình từ người dùng không xác định sẽ bị loại bỏ. Cơ sở dữ liệu net-snmp (UsmUserTable) phải mô tả tất cả người dùng được phép truy cập vào switch thông qua SNMP.
+
+Theo mặc định, SNMP bị tắt trên công tắc Rushmore. Sử dụng lệnh người dùng CLI Người dùng SNMP có thể được thêm vào. Khi cơ sở dữ liệu người dùng AAA được xác định thì cơ sở dữ liệu người dùng SNMP có thể được làm mới bằng cơ sở dữ liệu người dùng AAA.
+
+Đối với bất kỳ người dùng không xác định nào, tác nhân Net-SNMP sẽ yêu cầu AAA xác thực người dùng bằng cách gọi API AAA.
+
+Sau đó, tác nhân sẽ ủy quyền cho người dùng thực hiện thao tác cụ thể và (các) đối tượng MIB trong yêu cầu bằng cách gọi API Trình quản lý phân vùng.
+
+2.3.1. Khung SNMP v1 và v2c
+Tính năng bản đồ cộng đồng chỉ tác động đến các khung SNMP v1 và v2c.
+Bản đồ cộng đồng
+Các khung SNMP v1 và v2c có thể được xử lý chính xác với điều kiện tên cộng đồng trong khung là tên của người dùng được khai báo với net-snmp là không có xác thực.
+Để có hành vi tương tự như SNMPv3, giá trị được cung cấp trong chuỗi cộng đồng phải giống với tên người dùng có trong các tin nhắn SNMPv3.
+2.3.2. Khung SNMP v3
+Tác nhân Net-SNMP coi tên người dùng của khung SNMP v3 là tên người dùng (tức là tên bảo mật của một mục nhập của UsmUserTable).
+Các khung SNMPv3/noAuthNoPriv có thể được xử lý chính xác với điều kiện tên người dùng trong khung là tên bảo mật của một mục trong UsmUserTable được khai báo với Net-SNMP là không có xác thực.
+Các khung SNMPv3/AuthNoPriv có thể được xử lý chính xác với điều kiện tên người dùng trong khung là tên bảo mật của một mục trong UsmUserTable được khai báo với Net-SNMP vì có cùng thuật toán xác thực với khung và không mã hóa.
+Các khung SNMPv3/AuthPriv có thể được xử lý chính xác với điều kiện tên người dùng trong khung là tên bảo mật của một mục trong UsmUserTable được khai báo với Net-SNMP là có cùng thuật toán xác thực với khung có mã hóa DES hoặc AES.
+2.4. Tuân thủ RFC SNMPv3
+Quá trình chuyển đổi cụm từ mật khẩu sang khóa do SNMPv3 cung cấp cho phép sử dụng mật khẩu người dùng làm cụm mật khẩu để tạo khóa mã hóa.
+Vì việc triển khai SNMPv3 được liên kết với việc quản lý tài khoản nên các MIB được mô tả trong SNMPv3 (RFC 3414 và 3415) không được hỗ trợ đầy đủ (chỉ hỗ trợ thao tác Nhận). Hạn chế này cũng tồn tại ở sản phẩm cũ.
+Phần mềm Net-SNMP hỗ trợ tất cả các MIB và RFC SNMPv3. Do các yêu cầu bảo mật của bộ chuyển đổi, hãy xem phần “Yêu cầu bảo mật” bên dưới, có một số hạn chế đối với việc triển khai được thực hiện trong bộ chuyển đổi:
+• SNMP Set hoạt động trên các bảng RFC 3414 của người dùng không được hỗ trợ: (chỉ cho phép Gets).
+• Hoạt động cài đặt SNMP trên bảng vacm của RFC 3415 không được hỗ trợ: (chỉ cho phép Nhận).
+2.5. Yêu cầu bảo mật
+Như trường hợp của các bản phát hành AOS cũ hơn, do mối quan hệ giữa mật khẩu được sử dụng để truy cập chế độ đăng nhập (telnet, console, ftp…) và khóa được SNMPv3 sử dụng để mã hóa, sửa đổi khóa thông qua thao tác SNMP Set trên bảng RFC 3414 không được hỗ trợ. Điều này cho phép người dùng chỉ ghi nhớ mật khẩu để kết nối với các thiết bị chuyển mạch độc lập với cách được sử dụng cho: CLI hoặc SNMPv3.
+2.5.1. Cấp độ bảo mật
+Net-snmp thực hiện mức độ bảo mật sau:
+➢ SNMPv1/NoAuth,
+➢ SNMPv2c/NoAuth,
+➢ SNMPv3/NoAuth,
+➢ SNMPv3/AuthNoPriv,
+➢ SNMPv3/AuthPriv
+
+Điều này thể hiện sự di chuyển từ các cấp độ bảo mật đã được triển khai trước đó. Trong các bản phát hành AOS6 có thêm hai cấp độ bảo mật nữa là SNMPV3/SetPriv và Trap-Only. Để hỗ trợ hai cấp độ bảo mật bổ sung này và để cung cấp một cổng hoàn chỉnh cho tính năng này, tác nhân phụ sẽ bổ sung chức năng của tác nhân chính bằng cách hỗ trợ tệp ALCATEL-IND1-SNMP-AGENT-MIB độc quyền đã được triển khai. Bằng cách triển khai tệp mib này, tác nhân phụ có thể cung cấp tất cả các cấp độ bảo mật đã triển khai trước đó cũng như cung cấp cơ chế bật và tắt quá trình xử lý khung v1 và v2 bằng cách bật và tắt biến chế độ cộng đồng.
+Tham số “mức độ bảo mật” được thêm vào bộ chuyển mạch để xác định loại khung SNMP được bộ chuyển mạch chấp nhận.
+Các cấp độ khác nhau là:
+1. Không bảo mật (tất cả PDU có id người dùng đã biết đều được chấp nhận)
+2. Xác thực cho bộ (tất cả các nhận đều được chấp nhận, nhưng đối với bộ chỉ có xác thực snmpv3 mới được chấp nhận)
+3. Đã được xác thực cho tất cả (chỉ các khung được xác thực snmpv3 mới được chấp nhận)
+4. Được mã hóa cho bộ (bộ phải được xác thực và bộ được mã hóa)
+5. Được mã hóa cho tất cả (chỉ chấp nhận các khung được mã hóa snmpv3)
+6. Chỉ bẫy (không chấp nhận nhận hoặc đặt)
+Lưu ý*: các thuật toán xác thực hiện tại được hỗ trợ trong snmp: MD5, MD5+DES, SHA, SHA+DES, SHA+AES, SHA384.
+
+Các loại khung SNMP khác nhau được chấp nhận tùy thuộc vào mức độ bảo mật như:
+
+Cấp độ Nhận v1/v2 Đặt v1/v2 Nhận v3 noauth Đặt v3 noauth Nhận v3 auth Đặt v3 auth Nhận mã hóa v3 Đặt mã hóa v3
+1 x x x x x x x x
+2 x x x x x x
+3 x x x x
+4 x x x
+5 x x
+6
+
+Lưu ý: “auth” có nghĩa là xác thực không cần mã hóa và “encrypt” có nghĩa là mã hóa có xác thực.
+Việc xử lý cấp độ bảo mật được thực hiện bằng cách sử dụng hỗ trợ Net-SNMP RFC 3415 VACM và trước khi quá trình xử lý ủy quyền được thực hiện.
+
+
+
+
+
+
+2.5.2. Yêu cầu VRF
+Tác nhân Net-SNMP được triển khai hoạt động như cả hai, máy chủ và máy khách trong triển vọng triển khai MIP.
+Với tư cách là máy khách, Tác nhân Net-Snmp sẽ phụ thuộc vào ngữ cảnh SNMPv3 trong mỗi thông báo và thư viện nhận biết VRF để chọn phiên bản kết hợp APPID/VRF chính xác nhằm gửi lệnh đến phiên bản VRF chính xác. Ngữ cảnh SNMPv3 sẽ là tên của VRF hoặc khoảng trống (“”) cho VRF mặc định.
+
+Chỉ mục VRF duy nhất sẽ được truy xuất bằng cách sử dụng API vrfNameToIndex làm phiên bản VRF được liên kết với tên.
+
+Thông tin liên quan đến các VRF khác nhau có thể được truy cập thông qua SNMP bằng cách đặt trường vacmContextName trong SNMP_VIEW_BASED_VACM MIB.
+
+Theo văn bản này, việc triển khai VRF được lên kế hoạch là một phần của Giám sát khung gầm (Tài liệu nội bộ 2) và là TBD.
+
+
+2.5.3. Yêu cầu khung gầm ảo
+
+Người ta hy vọng rằng hầu hết các mib bao gồm ifIndex sẽ không thay đổi, id khung cho khung ảo sẽ được nhúng trong ifIndex đó và một số lượng tương đối nhỏ mibs sẽ có id khung ảo rõ ràng được thêm vào.
+Dựa trên điều này, tác động lên Net-SNMP được coi là ở mức tối thiểu.
+Yêu cầu và thông số kỹ thuật triển khai Khung gầm ảo là TBD.
+
+
+2.5.4. Yêu cầu xử lý IfIndex
+
+Như đã nêu trong SFS của Trình quản lý cấu hình, “đối với Rushmore, mục đích là mã cụ thể xử lý các bảng phân tán phải được giữ ở cấp ứng dụng. Một ứng dụng duy nhất đăng ký bảng chia sẻ và chịu trách nhiệm phân phối các yêu cầu đến ứng dụng quản lý chính xác. Mối quan hệ giữa các ứng dụng có thể là chủ và phụ hoặc người quản lý bên thứ ba.”
+
+Các tác nhân phụ Net-SNMP giả định và phụ thuộc vào hệ thống con bên ngoài đó (chẳng hạn như Trình quản lý cổng và thư viện cổng trong các bản phát hành AOS6 cũ) để có thể xử lý IfIndex và ánh xạ chỉ mục để sửa loại IfIndex để có được chỉ mục cuối cùng và kiểu bảng phân tán của nó.
+
+2.5.5. SNMP qua TLS
+Sử dụng lợi thế bảo mật của TLS, tính năng “SNMP over TLS” sẽ được bật trong NET-SNMP 5.6 trở lên.
+Nó hỗ trợ ở hai chế độ:
+➢ Chế độ mặc định:
+Ở chế độ này, TSM được bật/tắt thông qua CLI. Nếu bật, kết nối sẽ được mã hóa bằng TLS. Theo mặc định, SNMP qua TLS bị tắt.
+➢ Chế độ Tiêu chí chung (TSM được bật theo mặc định):
+Đáp ứng tất cả các yêu cầu Tiêu chí chung cho vai trò máy chủ TLS.
+Ghi chú*:
+- Chế độ TSM được bật, tất cả các yêu cầu và bẫy USM đều bị loại bỏ, chỉ cho phép các yêu cầu và bẫy TSM.
+- Chế độ TSM bị tắt, tất cả các yêu cầu và bẫy USM và TSM đều được cho phép.
+- Khi bật chế độ TSM, tác nhân SNMP sẽ xử lý tất cả các yêu cầu SNMP hiện được hỗ trợ chỉ qua truyền tải IPv4. Việc hỗ trợ truyền tải IPv6 được lên kế hoạch phát hành trong tương lai.
+Vui lòng tham khảo Phụ lục 2 để biết các yêu cầu chi tiết.
+
+3. MÔ TẢ CHỨC NĂNG
+Phần này sẽ cung cấp mô tả về sản phẩm/tính năng.
+3.1. Hoạt động cơ bản
+Việc triển khai tác nhân net-snmp được chia thành hai quy trình hệ điều hành Linux chính.
+Quy trình chính, snmpd, là tác nhân phân phối net-snmp 5.4.2 chính và tác nhân phụ hoặc tác nhân phụ, aluSubagent, là quy trình thứ hai. Mỗi quy trình này là một quy trình Linux độc lập với không gian bộ nhớ riêng và bối cảnh không gian người dùng Linux. Cả hai quy trình đều chạy ở chế độ nền dưới dạng các quy trình nền Linux được thiết kế đầy đủ (daemon).
+Mục tiêu đằng sau thiết kế hai tác nhân là tách mã nguồn mở khỏi mã độc quyền và tránh thay đổi việc phân phối nguồn mở. Ngoài ra, thiết kế của tác nhân phụ tận dụng mã tác nhân net-snmp chính đã được viết và thử nghiệm hiện có.
+Các tệp MIB, net-snmp được phân phối so với các tệp Alcatel-Lucent, cũng được lưu giữ riêng biệt trong hai thư mục hệ điều hành Linux khác nhau trên switch.
+Trong môi trường phần mềm chuyển mạch hiện tại, SNMP Agent là hệ thống con duy nhất của switch biết giao thức SNMP. Các hệ thống con của switch không biết gì về giao thức SNMP và bảng MIB. Các hệ thống con chỉ biết về bảng MIP và giao thức MIP. Tác nhân SNMP phải dịch một yêu cầu SNMP (có thể trên một số phiên bản của một số bảng MIB) thành một hoặc nhiều yêu cầu MIP (mỗi yêu cầu đó chỉ trên một phiên bản của một bảng MIP). Các yêu cầu MIP được xử lý tuần tự lần lượt ở chế độ bị chặn bởi Tác nhân SNMP thông qua các lệnh gọi thư viện MIP.
+SNMP là một giao thức yêu cầu/phản hồi đơn giản. Hệ thống quản lý mạng đưa ra yêu cầu và các thiết bị được quản lý sẽ phản hồi lại. Hành vi này được thực hiện bằng cách sử dụng một trong bốn thao tác giao thức: Get, GetNext, GetBulk, Set và Trap. Hoạt động Get được NMS sử dụng để truy xuất giá trị của một hoặc nhiều phiên bản đối tượng từ một tác nhân. Nếu tác nhân phản hồi thao tác Nhận không thể cung cấp giá trị cho tất cả các phiên bản đối tượng trong danh sách thì tác nhân đó sẽ không cung cấp bất kỳ giá trị nào. Hoạt động GetNext được NMS sử dụng để truy xuất giá trị của phiên bản đối tượng tiếp theo trong một bảng hoặc danh sách trong một tác nhân. Thao tác Set được NMS sử dụng để đặt giá trị của các phiên bản đối tượng trong một tác nhân. Hoạt động Bẫy được các tác nhân SNMP sử dụng để thông báo không đồng bộ cho NMS về một sự kiện quan trọng. Tất cả các hoạt động giao thức này được chỉ định bởi SNMPv1.
+
+3.2. Kiến trúc cơ bản
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+Hình 1: Kiến trúc cơ bản
+3.3. Mối quan hệ với các sản phẩm hiện có
+Hai tác nhân (tác nhân chính và tác nhân phụ) là các tác nhân SNMP dựa trên Linux phiên bản net-snmp 5.4.2. Cả hai sẽ cùng nhau hỗ trợ (các) nền tảng chuyển đổi Rushmore.
+Tác nhân phụ có sự phụ thuộc vào tác nhân net-snmp chính. Nếu đại lý chính thoát ra thì đại lý phụ cũng phải thoát ra. Điều này có nghĩa là một quy trình bên ngoài phải hủy và khởi động lại các quy trình của tác nhân chính và tác nhân phụ khi tác nhân chính thoát ra. Có vẻ như Trình giám sát khung gầm, dựa trên SFS Giám sát khung gầm (tài liệu nội bộ (2)), sẽ triển khai logic để xử lý quá trình khởi động lại các phần phụ thuộc. Nếu không, quy trình thứ ba sẽ được thiết kế để giám sát, khởi động và khởi động lại hai tác nhân nếu cần.
+Ngoài ra, khi bất kỳ tham số cấu hình nào, chẳng hạn như tùy chọn bật/tắt chế độ cộng đồng, người dùng đã được thêm hoặc xóa hoặc chuyển đổi chế độ bảo mật đã được sửa đổi, tác nhân phụ sẽ cập nhật một hoặc cả hai cấu hình (snmpd.conf và snmp.conf) nếu cần và gửi tín hiệu SIGHUP đến tác nhân chính để đọc lại tệp cấu hình và cập nhật cơ sở dữ liệu cấu hình nội bộ của nó cho phù hợp.
+3.3.1. Giao diện phần mềm
+PMD
+Sử dụng thư viện PMD, tác nhân Net-SNMP có thể được thiết kế để kết xuất thông tin trạng thái trong trường hợp ứng dụng gặp sự cố hoặc nếu và khi PMD được yêu cầu.
+Dự phòng và tiếp quản
+Tác nhân Net-SNMP sẽ sử dụng cslib để đăng ký với Người giám sát khung gầm nhằm nhận các sự kiện tiếp quản và hành động tương ứng.
+ISSU
+Bản cập nhật phần mềm trong dịch vụ sẽ được hỗ trợ nếu và khi có nhu cầu về thiết kế tác nhân Net-SNMP trong tương lai. Tác nhân Net-SNMP sẽ hỗ trợ giao tiếp giữa các snmp và biến toàn cục loại bảng chính/phụ CMM để xử lý việc tiếp quản cũng như các yêu cầu ISSU.
+
+3.3.2. Giao diện quản lý
+SNMP
+Tất cả các tệp MIB được hỗ trợ trước đó sẽ được hỗ trợ.
+Phạm vi Vlan
+Miễn là các phạm vi hỗ trợ tệp MIB (số chỉ mục bắt đầu và kết thúc) cũng như thư viện MIP và các hệ thống con được thiết kế để xử lý các phạm vi thì tác nhân Net-SNMP có thể được sửa đổi để hỗ trợ các phạm vi mà không cần sửa đổi mã lớn.
+Cải tiến MIB
+Các cải tiến sẽ được thực hiện để giúp MIB Alcatel-Lucent ESD tuân thủ các tiêu chuẩn. Những thay đổi sau đây sẽ được thực hiện:
+1.1.1.1.1 Thay đổi OID cơ sở
+Để giúp giảm bớt các vấn đề liên quan đến việc giữ cho nhiều nhánh tương thích, OID cơ sở cho sản phẩm Rushmore sẽ được thay đổi. Điều này sẽ ngắt kết nối cây OID khỏi dòng sản phẩm BOP. Thay đổi đơn giản này sẽ loại bỏ xung đột do phát triển trong nhiều bản phát hành trong khi vẫn cung cấp cho chúng tôi khả năng hợp nhất mã vì sử dụng cùng tên biến MIB.
+
+OID doanh nghiệp được phân bổ cho Alcatel-Lucent ESD là 6486. Khi phát triển thiết bị BOP, ID doanh nghiệp Xylan (800) cũng được thêm vào để xác định các thiết bị này do bộ phận Xylan tạo ra. Do đó OID gốc cho thiết bị BOP trở thành .1.3.6.1.4.1.6486.800. Thêm 800 là không cần thiết chút nào.
+
+Cây BOP OID hiện tại trông như thế này:
+
+doanh nghiệp (.1.3.6.1.4.1.)
+|
+---6486 (Alcatel)
+    |
+    -----800 (Xylan)
+        |
+        ----1(alcatelIND1Quản lý)
+            |
+            ----1(quản lýIND1Phần cứng)
+            |
+            ----2(Phần mềm quản lýIND1)
+            |
+            ----3(quản lýIND1Thông báo)
+            |
+            ----4(managementIND1AgentCapabilities)
+
+Với sự thay đổi này, dòng sản phẩm Rushmore sẽ sử dụng Cây MIB sau:
+
+Doanh nghiệp
+|
+---6486 (Alcatel)
+    |
+    ----1 (Quản lý alcatelIND1)
+        |
+        ----1 (quản lýIND1Phần cứng)
+        |
+        ----2 (Phần mềm quản lýIND1)
+        |
+        ----3 (quản lýIND1Thông báo)
+        |
+        ----4 (managementIND1AgentCapabilities)
+        
+Ưu điểm:
+ Thực hiện thay đổi này sẽ cắt đứt sự phụ thuộc vào sự phát triển 5.x và 6.x và cho phép chúng tôi tiếp tục phát triển ở cả hai nhánh mà không tạo ra xung đột giữa các nhánh.
+ Nó sẽ không thay đổi đáng kể việc Quản lý vì tất cả các biến MIB hiện có vẫn có cùng tên.
+
+Nhược điểm:
+ Tất cả các tập lệnh kiểm thử và tham chiếu OID quản lý, nếu có, cho các tương tác MIB sẽ cần được sửa đổi như sau:
+Trong tất cả các tập lệnh, Thay thế OID Enterprise.6486.800.* bằng Enterprise.6486.* cho thiết bị Rushmore.
+ NMS sẽ cần một bộ MIB bổ sung cho các thiết bị Rushmore – Chi phí nhỏ. Cả OmniVista và 5620 SAM của IPD đều duy trì nhiều Bộ MIB để quản lý. IPD đã duy trì nhiều Bộ MIB cho từng loại thiết bị và phiên bản!
+
+1.2.1.1.1 Tuân thủ tiêu chuẩn MIB
+Các thay đổi bổ sung sẽ được thực hiện để tuân thủ Tiêu chuẩn MIB như được lưu ý trong RFC 4181. Một số thay đổi được liệt kê bên dưới:
+
+Thay đổi tên tệp MIB để khớp với tên nội bộ
+Để tuân thủ tiêu chuẩn, tên tệp đề xuất của mỗi MIB sẽ được đổi thành tên nội bộ và phần mở rộng “.mib”. Thay đổi này có nghĩa là Tệp MIB AlcatelIND1Base.mib sẽ được đổi tên thành ALCATEL-IND1-BASE.mib.
+Tên tệp s2m cũng sẽ thay đổi để hỗ trợ quy ước tương tự. Điều này có nghĩa là tệp AlcatelIND1Base.s2m sẽ được đổi tên thành
+ALCATEL-IND1-BASE.s2m.
+    
+ IPD đã sử dụng quy ước này nên tất cả các MIB MPLS của chúng tôi đều ổn.
+ Thay đổi này sẽ giúp Trình biên dịch MIB giải quyết việc nhập hiệu quả hơn.
+ alcatel.arf sẽ được cập nhật để sử dụng tên MIB mới.
+ Các thay đổi từ 6.x vẫn có thể được hợp nhất với ánh xạ tên MIB.
+1.3.1.1.1
+
+Giao diện dòng lệnh (CLI)
+1.4.1.1.1 Danh sách lệnh
+Tất cả các lệnh CLI-to-SNMP được xác định trước đó đều được hỗ trợ.
+Để biết định dạng của từng lệnh, hãy tham khảo tài liệu nội bộ (5).
+
+bản đồ cộng đồng snmp <community_string> {[tên tài khoản người dùng] | {kích hoạt | vô hiệu hóa}}
+không có bản đồ cộng đồng snmp <community_string>
+chế độ bản đồ cộng đồng snmp {bật | vô hiệu hóa}
+hiển thị bản đồ cộng đồng snmp
+bảo mật snmp {không bảo mật | bộ xác thực | xác thực tất cả | bộ quyền riêng tư | tất cả quyền riêng tư |
+chỉ bẫy | tsm {bật | vô hiệu hóa}}
+hiển thị bảo mật snmp
+hiển thị tsm bảo mật snmp
+hiển thị số liệu thống kê snmp
+hiển thị họ snmp mib [tên bảng]
+bẫy xác thực snmp {bật | vô hiệu hóa}
+snmp tsm-map nhận dạng từ xa < chuỗi> người dùng < chuỗi>
+hiển thị bản đồ tsm snmp
+trạm snmp localhost v3 tsm người dùng < string> local-identity < string> remote-identity < string> {enable | vô hiệu hóa}
+hiển thị trạm snmp
+hiển thị chi tiết trạm snmp
+
+*Lưu ý: CLI hỗ trợ SNMP qua TLS:
++ tsm bảo mật snmp {bật | vô hiệu hóa}: Tùy chọn tsm này là để định cấu hình chức năng tsm (bật/tắt). Mặc định là TSM bị vô hiệu hóa.
++ show snmp security: Phần này cũng hiển thị trạng thái cấu hình tsm (bật/tắt).
++ local-identity và remote-identity: tên file của chứng chỉ
+
+Vui lòng tham khảo chi tiết Phụ lục 3 CLI về SNMP qua TLS
+1.5.1.1.1 Ví dụ về cấu hình
+
+Định dạng của các lệnh cấu hình CLI-to-SNMP được duy trì dưới dạng
+Được hỗ trợ trước đây và ghi lại trong tài liệu nội bộ (6).
+1.6.1.1.1 Cách thêm người dùng SNMP
+Để tạo người dùng SNMP, hãy tham khảo tài liệu hướng dẫn tham khảo OminSwitch CLI.
+
+Giao diện dựa trên web
+Giao diện giữa SNMP và Web-View được duy trì như cũ.
+ 
+  Hình 2: Trang cấu hình SNMP Web-View-to-Snmp
+
+
+ 
+
+Hình 3: Trang Thống kê Web-View-to-Snmp
+
+3.4. Cấu hình kiên trì
+TBD.
+4. THÔNG SỐ YÊU CẦU HỆ THỐNG
+4.1. Nâng cấp phần mềm phần thứ ba
+Quá trình nâng cấp phần mềm của bên thứ ba được coi là vấn đề tuân thủ của NSA. Cả Thực tiễn tốt nhất và Kế hoạch kiểm tra bảo mật đều bao gồm việc “củng cố hệ điều hành”. Định nghĩa của điều này là kết hợp các bản cập nhật bảo mật hoặc độ tin cậy cho tất cả các mã quan trọng của bên thứ ba, bao gồm cả FOSS. Theo văn bản này, quá trình này là TBD.
+
+4.2. Yêu cầu cấu hình
+4.2.1. Yêu cầu CLI
+SNMP-CFG-110: Các lệnh cấu hình CLI-to-SNMP vẫn hoạt động.
+4.2.2. Yêu cầu về Web
+SNMP-CFG-120: Tất cả các lệnh cấu hình Web-View-to-SNMP có sẵn vẫn hoạt động.
+4.2.3. Yêu cầu chức năng
+SNMP-FUN-110: Tác nhân SNMP sẽ xử lý tất cả các yêu cầu SNMP hiện được hỗ trợ qua IPv4 cũng như qua truyền tải IPv6. Đối với mô hình TSM (SNMP qua TLS), các yêu cầu SNMP chỉ được hỗ trợ qua truyền tải IPv4, IPv6 được lên kế hoạch phát hành trong tương lai.
+
+4.2.4. Yêu cầu về giao diện
+SNMP-FUN-130: Tác nhân chính SNMP phải đợi các gói trên ổ cắm gói dữ liệu SNMP cho IFNET và IFNET6, đồng thời phải gửi tin nhắn đến tác nhân phụ khi nhận được gói trên một trong hai ổ cắm này.
+4.2.5. Yêu cầu bảo mật
+SNMP-SEC-110 Tất cả ba chế độ truy cập khác nhau sẽ được cung cấp, không xác thực (NoAuthNoPriv), xác thực (AuthNoPriv), Xác thực bằng mã hóa (AuthPriv). Ngoài ra, hai yếu tố thúc đẩy y, cụ thể là SetPriv ad TrapOnly, các cấp độ cũng sẽ hoạt động.
+
+4.2.6. Đo kích thước
+Kích thước là:
+Kích thước tối đa của tên Cộng đồng = 256
+Kích thước tối đa của tên người dùng hoặc mật khẩu = 32
+Giới hạn phiên = không
+Giới hạn người dùng = không
+Kích thước tối đa của SNMP PDU đến hoặc đi = 1477
+
+4.2.7. Khả năng mở rộng và hiệu quả
+Không có.
+4.2.8. Nền tảng được hỗ trợ
+SNMP-ARCH-110: Các tác nhân net-snmp sẽ được hỗ trợ trên nền tảng AOS7 Rushmore.
+4.3. Khả năng hỗ trợ
+SNMP-SUPP-110: Dấu vết gỡ lỗi trong SNMP sẽ được cung cấp để ghi/hiển thị bất cứ khi nào có thể.
+5. TÁC ĐỘNG HỆ THỐNG
+Giống như AOS6, các tệp s2m sẽ được sử dụng để cung cấp mảng cơ sở dữ liệu tĩnh về bản địa hóa người dùng và ủy quyền chức năng. Nó sẽ được xây dựng như thư viện chia sẻ. Điều này sẽ cho phép cả tác nhân Net-SNMP và Web View sử dụng nó để tạo điều kiện thuận lợi cho việc ủy ​​quyền người dùng của họ trên bất kỳ đối tượng MIB nào.
+
+5.1. Yêu cầu bộ nhớ
+Như đã đề cập trước đó, bộ phân phối phần mềm Net-SNMP được kiểm tra trong thư mục tps trong cây kiểm soát nguồn AOS 7.1.x Perforce.
+Phần sau đây cung cấp dung lượng ổ đĩa của các thư viện và kích thước gần đúng của các nhị phân tác nhân chính và tác nhân phụ.
+
+Thành phần Net-SNMP Dấu chân đĩa
+snmpd ~32KB
+aluSubagent ~40KB
+Libnetsnmp.so.15.1.2 760KB
+Libnetsnmpagent.so.15.1.2 296KB
+Libnetsnmphelpers.so.15.1.2 188KB
+Libnetsnmpmibs.so.15.1.2 1.4MB
+Libnetsnmptrapd.so.15.1.2 64KB
+
+5.2. Hệ thống hiện có
+Hai tác nhân không tương thích ngược với các nền tảng trước đó.
+5.3. Hiệu suất
+Chức năng tác nhân SNMP được phân phối giữa hai quy trình khác nhau.
+Mỗi quy trình trong số hai quy trình này, quy trình chính và tác nhân phụ, có tối thiểu 4% yêu cầu bộ nhớ chuyển đổi Rushmore khi chạy trong trình mô phỏng có kích thước bộ nhớ 512 MB. Quá trình đại lý phụ được chia thành hai chức năng chính. Mỗi chức năng của tác nhân phụ được xử lý bởi một luồng riêng biệt. Luồng chính xử lý các tin nhắn đến của tiện ích lệnh NMS và SNMP và luồng phụ xử lý các tin nhắn và yêu cầu liên quan đến MIP, bao gồm các lệnh CLI-to-SNMP và Web-View-to-SNMP.
+5.4. Cài đặt
+Master, tác nhân phụ, các lệnh liên quan đến net-snmp và thư viện là một phần của hình ảnh chuyển đổi chính (AOS7) và được cài đặt tự động khi hình ảnh chuyển đổi được cài đặt.
+Cả hai tác nhân sẽ được cài đặt với cấu hình mặc định bằng cách sử dụng các tệp snmpd.conf và snmp.conf tiêu chuẩn. Các thông số cấu hình chính như trước có thể được cấu hình bằng giao diện Web và CLI. Một mẫu tệp cấu hình tiêu chuẩn net-snmp được liệt kê trong phụ lục A
+Do mã hóa SNMPv3 nên có thể xảy ra rủi ro khi xuất khẩu sản phẩm này sang một số quốc gia nhất định.
+Đối với SNMP/TLS, phiên bản NET-SNMP phải từ 5.6 trở lên.
+Để hỗ trợ xác thực SHA384, NET-SNMP cần được nâng cấp lên phiên bản 5.8.
+5.5. Mối quan tâm về bảo mật
+Dựa trên cách triển khai cũ, tác nhân phụ Net-SNMP mong muốn nhận được thông báo tiếp quản từ Người giám sát khung gầm để thông báo về việc tiếp quản và hành động tương ứng.
+6. Kiểm tra và xác minh
+      Việc thử nghiệm các tác nhân dựa trên net-snmp sẽ được thực hiện trên nền tảng Rushmore.
+6.1. Phương pháp kiểm tra
+Cả hai tác nhân đều có khả năng ghi nhật ký thông báo gỡ lỗi. Quá trình của cả hai tác nhân có thể bị hủy và khởi động lại bằng các tùy chọn dòng lệnh khác nhau để giúp gỡ lỗi khi cần thiết.
+aluSubagent có thể chạy với tùy chọn –h cho tính năng sử dụng.
+Tác nhân chính/chính (snmpd) có thể được khởi động bằng tùy chọn -Lf <filename> để đăng nhập vào một tệp nhật ký riêng cũng như ghi nhật ký vào cơ sở swlog. snmpd có nhiều tùy chọn gỡ lỗi dòng lệnh phong phú có thể được sử dụng theo yêu cầu để trợ giúp gỡ lỗi.
+Tác nhân phụ (aluSubagent) có thể được bắt đầu như một quy trình nền trước (không có tùy chọn -f) và với tùy chọn -d để đăng nhập vào cả hai, vào cơ sở ghi nhật ký net-snmp bằng cách sử dụng tệp nhật ký riêng và cơ sở swlog. Khi thiếu tùy chọn -f và tùy chọn -d hiện diện, aluSubagent sẽ chạy ở nền trước ở chế độ dài dòng để theo dõi tất cả các hoạt động. Chức năng ghi nhật ký aluSubagent sử dụng mức độ nghiêm trọng của cơ sở swlog. Mức độ nghiêm trọng được xác định bởi hệ thống con swlog. Mức độ nghiêm trọng mặc định của aluSubagent có thể được sửa đổi thành bất kỳ mức độ nghiêm trọng nào được xác định để xem nhiều thông báo gỡ lỗi như mong muốn.
+Cấu trúc liên kết cơ sở để thử nghiệm SNMP Agent qua IPv4/IPv6 được hiển thị bên dưới.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hình 2: Cấu trúc liên kết thử nghiệm
+
+6.2. Kiểm tra mặt phẳng quản lý
+Sau đây là các tình huống mà thử nghiệm quản lý sẽ được thực hiện:
+1. Cấu hình và hiển thị trạm snmp IPv4/IPv6 thông qua giao diện CLI, SNMP và WEB.
+2. Áp dụng cấu hình cài đặt SNMP trên switch thông qua CLI.
+3. Áp dụng cấu hình SNMP khi khởi động lại switch.
+4. Kiểm tra cấu hình cài đặt SNMP sau khi thực hiện tiếp quản.
+5. Hiển thị cấu hình SNMP khi hiển thị ảnh chụp nhanh CLI trên switch.
+6. Gửi cấu hình sai qua CLI cho cài đặt SNMP.
+7. Gửi cấu hình sai qua giao diện WEB cho cài đặt SNMP.
+8. Gửi cấu hình sai qua giao diện SNMP cho cài đặt SNMP.
+6.3. Thử nghiệm chức năng
+Các tình huống sau sẽ được đề cập trong thử nghiệm chức năng:
+6.3.1. SNMPv3
+1. Kiểm tra yêu cầu/phản hồi SNMP get/set/getnext/getbulk trên truyền tải IPv4/IPv6 cho SNMPv3.
+2. Kiểm tra get/set/getnext/getbulk trên truyền tải IPv4/IPv6 để tìm SNMPv3 bằng xác thực.
+3. Kiểm tra get/set/getnext/getbulk trên đường truyền IPv4/IPv6 cho SNMPv3 bằng tính năng xác thực và quyền riêng tư (mã hóa).
+6.3.2. SNMPv2
+1. Kiểm tra yêu cầu/phản hồi SNMP get/set/getnext trên truyền tải IPv4/IPv6 cho SNMPv2.
+6.3.3. SNMPv1
+1. Kiểm tra yêu cầu/phản hồi SNMP get/set/getnext trên truyền tải IPv4/IPv6 cho SNMPv1.
+6.3.4. Thử nghiệm trong môi trường IPSec
+1. Tất cả các trường hợp thử nghiệm cũng sẽ được thực hiện trong môi trường nơi một số quy tắc và chính sách của IPSec được cấu hình trong mạng.
+6.3.5. SNMP qua TLS
+1. Kiểm tra SNMP/TLS ở hai chế độ: chế độ mặc định (bật/tắt tsm) và chế độ Tiêu chí chung (tsm luôn bật).
+2. Chuẩn bị chứng chỉ chính xác, bật chế độ tls
+3. Kiểm tra SNMP v3 get/set/getnext/getbulk/walk /trap trên truyền tải IPv4. Vận chuyển IPv6 được lên kế hoạch phát hành trong tương lai.
+4. Chế độ TSM được bật, tất cả các yêu cầu và bẫy USM đều bị loại bỏ, chỉ cho phép các yêu cầu và bẫy TSM. Chế độ TSM bị tắt, tất cả các yêu cầu và bẫy USM và TSM đều được phép.
+5. Omni Vista chưa hỗ trợ mô hình TSM, việc kiểm tra được thực hiện bằng cách sử dụng net-snmp-5.7.3 nguồn mở hoặc cao hơn được cài đặt trên Linux dưới dạng máy khách SNMP.
+Vui lòng tham khảo Phụ lục 2 để biết các yêu cầu chi tiết.
+
+
+6.4. Kiểm tra nền tảng
+1. Chỉ thực hiện các trường hợp trên trên Rushmore hoặc cho Rushmore switch.
+6.5. Kiểm tra hồi quy Omini Vista
+
+1. Điều này sẽ đòi hỏi phải thử nghiệm các ứng dụng Khám phá, Cấu trúc liên kết, Thông báo, Vlan và QoS, v.v.
+
+6.6. Kiểm tra giới hạn và căng thẳng
+Kịch bản sau đây sẽ được đề cập trong thử nghiệm giới hạn và căng thẳng:
+1. Số lượng tối đa Trình quản lý SNMP IPv6/v4 – không có.
+2. Thực hiện MIB Walk từ Trình quản lý SNMP IPv4.
+3. Thực hiện MIB Walk từ Trình quản lý SNMP IPv6.
+4. Thực hiện MIB Walk đồng thời từ nhiều Trình quản lý SNMP bao gồm một số Trình quản lý SNMP IPv4 và một số Trình quản lý SNMP IPv6.
+5. Số phiên snmp đồng thời tối đa – không có phiên nào.
+6.7. Tiêu chí chấp nhận
+Các yêu cầu chức năng, giới hạn và kiểm tra sức chịu đựng được liệt kê ở trên phải được đáp ứng và thông qua đối với các tiêu chí chấp nhận.
+7. Lộ trình di chuyển và những cải tiến trong tương lai
+Mục đích là hoàn thành tất cả các yêu cầu chức năng của sản phẩm này nếu lịch trình cho phép. Một trong những tính năng có thể chưa sẵn có ngay lập tức và có thể được lên lịch phát hành tiếp theo là hỗ trợ IPv6.
+
+Tài liệu này không tương thích ngược với bất kỳ bản phát hành nào cũ hơn AOS7.x
+
+7.1. Thay thế phạm vi INTEGER bằng Integer32
+Tất cả các khai báo biến INTEGER MIB cho các giá trị phạm vi như (1..200), v.v. sẽ được thay đổi thành Integer32. Thay đổi này được khuyến nghị để duy trì tính di động trên các hệ thống 32/64 bit. (Lưu ý: VxWorks là 32 bit).
+
+7.1.1. TRUY CẬP TỐI ĐA
+Một số biến SNMP không được đặt MAX-ACCESS theo tiêu chuẩn dẫn đến nhiều cảnh báo.
+
+1. Biến chỉ mục bảng
+Theo tiêu chuẩn, các biến Chỉ mục Bảng sẽ là MAX-ACCESS "không thể truy cập được". Một số MIB tuyên bố chúng là "đọc-ghi". Ví dụ: Hãy xem các biến MIB sau từ MIB: AlcatelIND1Dot1Q.mib
+qPortVlanKhe cắm
+qPortVlanPort
+qPortVlanTagValue
+qAggregateVlanAggregateId
+qAggregateVlanTagValue
+qAtmIfIndex
+qAtmVpiGiá trị
+qAtmVciGiá trị
+qAtmIfIndexVpiVciVlanTagValue
+
+2. Biến bảng có RowStatus
+Theo tiêu chuẩn, tất cả các Bảng MIB chứa biến RowStatus sẽ sử dụng "đọc-tạo" MAX-ACCESS cho tất cả các biến có thể được sửa đổi.
+
+7.1.2. Xóa giao diện không được dùng nữa
+Hiện tại, một số giao diện SNMP không được dùng nữa sẽ bị loại bỏ để giúp dọn dẹp MIB của chúng tôi.
+
+
+
+8. PHÁT HÀNH SẢN PHẨM
+8.1. Quan sát phát hành
+Việc phát hành tính năng này bám sát lịch trình dành cho AOS 7.1.1.R01.
+
+PHỤ LỤC 1 CẤU HÌNH ID ĐỘNG CƠ SNMP
+Tổng quan
+
+AOS 8.4.1.R01 dự kiến ​​sẽ đáp ứng yêu cầu của JITC. JITC là cơ quan chứng nhận cung cấp các dịch vụ, công cụ và môi trường Đánh giá & Chứng nhận Kiểm tra dựa trên rủi ro để chứng nhận các sản phẩm CNTT được sử dụng trong mạng quân sự và quốc phòng. Việc tạo cấu hình id công cụ SNMP là một phần của bộ yêu cầu này.
+
+Độ dài tối đa được phép của id công cụ SNMP là 32 octet như được chỉ định bởi SNMP-FRAMEWORK-MIB tiêu chuẩn. Từ CLI, chỉ cho phép chỉ định độ dài id động cơ 27 octet. 5 octet còn lại tạo thành 5 octet đầu tiên của id công cụ SNMP được phần mềm gán nội bộ.
+
+27 octet của giá trị id công cụ SNMP được phép nhập từ CLI, sử dụng lệnh mới, có thể là bất kỳ địa chỉ IPv4, địa chỉ IPv6, địa chỉ Mac hoặc văn bản hợp lệ nào.
+
+Khi tác nhân SNMP được khởi tạo lần đầu tiên (lúc khởi động hoặc thời gian tiếp quản), id công cụ SNMP được đặt thành địa chỉ MAC của chuyển đổi (giá trị mặc định như trong tất cả các bản phát hành 7.X). Trong quá trình cấu hình tác nhân SNMP (trình quản lý cấu hình áp dụng cấu hình đã lưu), nếu lệnh cấu hình id công cụ được lưu trong tệp cấu hình (sử dụng lệnh CLI ghi bộ nhớ) thì id công cụ tác nhân SNMP sẽ được định cấu hình lại để khớp với những gì có trong tập tin cấu hình và những gì người dùng đã thiết lập.
+
+Các loại id công cụ tuân theo thông số kỹ thuật tiêu chuẩn cho quy ước văn bản Engine ID như được nêu trong SNMP-FRAMEWORK-MIB.
+
+ Giá trị id công cụ tác nhân SNMP có thể được chuyển đổi giữa giá trị mặc định và một trong các loại giá trị khác. Giá trị mặc định chỉ dành riêng cho loại Địa chỉ MAC. Điều này sẽ duy trì khả năng tương thích ngược với các phiên bản trước.
+
+Lệnh CLI mới
+
+Để triển khai tính năng mới này, một bộ lệnh CLI mới được cung cấp.
+
+• Lệnh cấu hình id công cụ SNMP
+
+Snmp snmp-engineid-type <snmp-engine-id-type> snmp-engineid <snmp-engine-id>
+
+Lệnh CLI này cung cấp khả năng thay đổi loại id công cụ SNMP hiện có thành một trong các loại sau:
+
+địa chỉ ipv4
+địa chỉ ipv6
+địa chỉ MAC
+chữ
+
+Chuỗi Id công cụ phải là địa chỉ IPv4 hợp lệ, địa chỉ IPv6 hợp lệ, địa chỉ Mac hợp lệ hoặc chỉ là văn bản. Id công cụ Snmp có thể được khôi phục về giá trị ban đầu bằng cách sử dụng tùy chọn mặc định như hiển thị bên dưới.
+
+Định nghĩa bảng MIB:
+
+
+> Snmp snmp-engineid-type <snmp-engine-id-type> snmp-engineid <snmp-engine-id>
+ID bảng: alcatelIND1SNMPAgentMIBObjects
+
+Đầu vào CLI Loại đối tượng MIB Tên đối tượng MIB Mô tả
+Snmp-engineid-type Uint32 snmpAgtEngineIdType Loại id động cơ
+(Một trong những loại được liệt kê ở trên)
+Chuỗi động cơ Snmp
+snmpAgtEngineId Tác nhân SNMP Giá trị Engine-ID
+
+
+Ví dụ:
+snmp snmp-engineid-loại địa chỉ ipv4 snmp-engineid 192.124.15.14
+snmp snmp-engineid-type ipv6-địa chỉ snmp-engineid 2001:0:3238:DFE1:0063::FEFB
+snmp snmp-engineid-type địa chỉ mac snmp-engineid mặc định
+
+ 
+• Hiển thị lệnh
+
+Hiển thị snmp snmp-engineid
+
+Hiển thị id công cụ tác nhân SNMP được cấu hình hiện tại.
+
+Định nghĩa bảng MIB:
+
+> hiển thị id động cơ snmp
+ID bảng: alcatelIND1SNMPAgentMIBObjects
+
+Cột hiển thị CLI Tên đối tượng MIB Định dạng hiển thị Mô tả
+Giá trị Engine-id snmpAgtEngineId Tùy thuộc vào loại.
+Nó có thể là chuỗi thập phân (như trong Ipv4) hoặc giá trị hex (như trong MAC và IPv6)
+Loại id công cụ snmpAgtEngineIdType
+Số SNMP loại id công cụ
+(Một trong những loại được chỉ định)
+
+
+Ví dụ về kết quả của lệnh show:
+
+Id động cơ Snmp loại snmp engineId
+--------------------------+---------------------- ---------------
+Mac mặc định 800019560300e0b1e7067f
+
+• Hiển thị ảnh chụp nhanh cấu hình snmp
+
+Như trước lệnh này sẽ liệt kê cấu hình snmp nếu khác với giá trị mặc định. Nếu Id công cụ snmp khác với giá trị mặc định, nó sẽ liệt kê cấu hình id công cụ snmp cũng như mọi cấu hình snmp không mặc định khác.
+
+Ví dụ về kết quả lệnh hiển thị ảnh chụp nhanh:
+Bảo mật Snmp không bảo mật
+Snmp snmp-engineid-type địa chỉ ipv4 snmp-engineid 192.168.34.12
+Bật chế độ bản đồ cộng đồng Snmp
+Bật bản đồ cộng đồng Snmp “riêng tư” người dùng “riêng tư”
+
+
+
+
+PHỤ LỤC 2 SNMP VỀ YÊU CẦU MÁY CHỦ TLS Ở CHẾ ĐỘ TIÊU CHÍ CHUNG
+
+Trong 86R01 đối với RTR 5376 quyền truy cập SNMP được thực hiện qua kết nối được mã hóa TLS theo mặc định ở Chế độ tiêu chí chung.
+
+Vui lòng tham khảo chi tiết các phần bên dưới để biết chi tiết về các yêu cầu của máy chủ TLS trong Tiêu chí chung:
+
+1. B.2.1.5 FCS_TLSS_EXT.2 (Giao thức máy chủ TLS có xác thực lẫn nhau):
+Đoạn từ FCS_TLSS_EXT.2.1 đến FCS_TLSS_EXT.2.5 (trang 114-116).
+
+2. B.3 Nhận dạng và xác thực (FIA)
+Đoạn từ B.3.1.1 FIA_X509_EXT.1 đến B.3.1.3 FIA_X509_EXT.3 (trang 116-119)
+
+Trong tài liệu: https://www.commoncriteriaportal.org/files/ppfiles/CPP_ND_V2.01.pdf
+
+Vui lòng tham khảo các phần bên dưới để biết việc triển khai AOS của cơ sở hạ tầng chứng chỉ X.509v3 cần thiết để hỗ trợ SNMP qua TLS ở chế độ Tiêu chí chung.
+
+Mục 4.3.4 Xác thực bằng chứng chỉ X.509
+
+Mục 4.7.1 Kênh đáng tin cậy (FTP_ITC)
+
+Trong tài liệu Đánh giá tiêu chí chung SFS cho 8x SW phát hành Agile P/N: 014477-00. Dự kiến, bản cập nhật của tài liệu này bao gồm các thay đổi đối với các yêu cầu Tiêu chí chung 86R01 sẽ sớm được cung cấp.
+PHỤ LỤC 3 CLIS HỖ TRỢ SNMP QUA TLS
+
+Trong 86R01 để truy cập RTR 5376 SNMP qua kết nối được mã hóa TLS được hỗ trợ thông qua cấu hình CLI.
+Tùy chọn CLI mới:
+
+Để triển khai tính năng mới này, một tùy chọn mới sẽ được thêm vào các lệnh CLI hiện có.
+
+• Lệnh tsm bảo mật SNMP
+
+bảo mật snmp tsm <tsm-status>
+
+Trạng thái Tsm có các giá trị dưới đây:
+
+cho phép
+vô hiệu hóa
+
+Enable: kết nối được mã hóa bởi tls
+Tắt: kết nối không được mã hóa bởi tls
+
+Lưu ý: Theo mặc định, kết nối không được mã hóa bởi TLS.
+
+Định nghĩa bảng MIB:
+
+
+> bảo mật snmp tsm <tsm-status>
+ID bảng: snmpAgtConfig
+
+Đầu vào CLI Loại đối tượng MIB Tên đối tượng MIB Mô tả
+tls INTEGER { đã bật(1), bị vô hiệu hóa(2) } snmpAgtTsmAdminState Trạng thái Tsm (bật/tắt)
+
+
+Ví dụ:
+kích hoạt tsm bảo mật snmp
+snmp bảo mật tsm vô hiệu hóa
+
+• Hiển thị lệnh
+
+Hiển thị tsm bảo mật snmp
+
+Hiển thị trạng thái tsm SNMP được cấu hình hiện tại (bật/tắt).
+
+Định nghĩa bảng MIB:
+
+> hiển thị tsm bảo mật snmp
+ID bảng: snmpAgtConfig
+
+Cột hiển thị CLI Tên đối tượng MIB Định dạng hiển thị Mô tả
+tsm snmpAgtTsmAdminState Chuỗi (bật | tắt) Trạng thái Tsm (bật/tắt)
+
+Ví dụ về kết quả của lệnh show:
+
+-> hiển thị tsm bảo mật snmp
+bảo mật snmp tsm = kích hoạt
+
+
+• Hiển thị ảnh chụp nhanh cấu hình snmp
+
+Ví dụ về kết quả lệnh hiển thị ảnh chụp nhanh:
+
+Kích hoạt tsm bảo mật Snmp
+Vô hiệu hóa tsm bảo mật Snmp
+
+Lệnh mới:
+
+• Lệnh tsm-map SNMP
+
+snmp tsm-map nhận dạng từ xa <string> người dùng <string>
+
+Lệnh này dùng để ánh xạ remote_identity tới người dùng ở chế độ TSM ở chế độ máy chủ. remote_identity chỉ có thể là tên tệp.
+
+Định nghĩa bảng MIB:
+
+
+> snmp tsm-map nhận dạng từ xa <string> người dùng <string>
+ID bảng: alaSnmpTsmUserTable
+
+Đầu vào CLI Loại đối tượng MIB Tên đối tượng MIB Mô tả
+nhận dạng từ xa SnmpAdminString (SIZE(1..256)) alaSnmpTsmUserRemoteIdentity tên tệp của chứng chỉ
+người dùng SnmpAdminString (SIZE(0..32)) alaSnmpTsmUserName Tên người dùng
+
+
+*Lưu ý: Nếu nội dung của chứng chỉ từ xa bị thay đổi, các chứng chỉ đã thay đổi phải được sao chép thủ công từ chính/chính sang tất cả phụ và phụ trước khi cần khởi động lại để áp dụng các thay đổi.
+
+
+Ví dụ:
+snmp tsm-map nhận dạng từ xa "manager.crt" người dùng "joecool"
+
+snmp tsm-map nhận dạng từ xa "manager.pem" người dùng "joecool"
+
+• Hiển thị lệnh
+
+hiển thị bản đồ snmp tsm
+
+Hiển thị bản đồ tsm SNMP được cấu hình hiện tại.
+
+Định nghĩa bảng MIB:
+> hiển thị bản đồ tsm snmp
+ID bảng: alaSnmpTsmUserTable
+
+Đầu vào CLI Loại đối tượng MIB Tên đối tượng MIB Mô tả
+nhận dạng từ xa SnmpAdminString (SIZE(1..256)) alaSnmpTsmUserRemoteIdentity tên tệp của chứng chỉ
+người dùng SnmpAdminString (SIZE(0..32)) alaSnmpTsmUserName Tên người dùng
+
+
+Ví dụ về kết quả của lệnh show:
+
+-> hiển thị bản đồ tsm snmp
+Người dùng nhận dạng từ xa
+--------------------------+-------------- -------------------------------------------------- --
+quản lý.crt joecool
+
+-> hiển thị bản đồ tsm snmp
+Người dùng nhận dạng từ xa
+--------------------------+-------------- -------------------------------------------------- --
+quản lý.pem joecool
+
+Tùy chọn CLI mới:
+• Lệnh trạm SNMP snmp
+
+trạm snmp localhost v3 tsm người dùng <string> danh tính cục bộ <string> danh tính từ xa <string> {bật | vô hiệu hóa}
+
+Lệnh này được sử dụng để cấu hình trạm bẫy chế độ v3 tsm. local_identity và remote_identity là tên tệp của chứng chỉ.
+
+Định nghĩa bảng MIB:
+
+
+> trạm snmp localhost v3 tsm người dùng <string> danh tính cục bộ <string> danh tính từ xa <string> {bật | vô hiệu hóa}
+ID bảng: alaTrapInetStationTable
+
+Đầu vào CLI Loại đối tượng MIB Tên đối tượng MIB Mô tả
+người dùng SnmpAdminString (SIZE(1..32)) alaSnmpTsmUserName Tên người dùng
+SnmpAdminString nhận dạng cục bộ (SIZE(0..256)) tên tệp alaTrapInetStationLocalIdentity của chứng chỉ
+nhận dạng từ xa SnmpAdminString (SIZE(0..256)) alaTrapInetStationRemoteIdentity tên tệp của chứng chỉ
+
+*Lưu ý: Nếu nội dung của chứng chỉ cục bộ hoặc từ xa bị thay đổi, các chứng chỉ đã thay đổi phải được sao chép thủ công từ chính/chính sang tất cả phụ và phụ trước khi cần khởi động lại để áp dụng các thay đổi.
+
+Ví dụ:
+trạm snmp localhost v3 tsm người dùng "joecool" nhận dạng cục bộ "aluSubagent.crt" nhận dạng từ xa "manager.crt" bật
+
+trạm snmp localhost v3 tsm người dùng "joecool" nhận dạng cục bộ "aluSubagent.crt" nhận dạng từ xa "manager.crt" vô hiệu hóa
+
+trạm snmp localhost v3 tsm người dùng "joecool" nhận dạng cục bộ "aluSubagent.pem" nhận dạng từ xa "manager.pem" bật
+
+trạm snmp localhost v3 tsm người dùng "joecool" nhận dạng cục bộ "aluSubagent.pem" nhận dạng từ xa "manager.pem" vô hiệu hóa
+
+• Hiển thị lệnh
+
+hiển thị trạm snmp
+
+Hiển thị trạm bẫy được cấu hình hiện tại.
+
+Định nghĩa bảng MIB:
+> hiển thị trạm snmp
+ID bảng: alaTrapInetStationTable
+
+Đầu vào CLI Loại đối tượng MIB Tên đối tượng MIB Mô tả
+người dùng SnmpAdminString (SIZE(1..32)) alaSnmpTsmUserName Tên người dùng
+SnmpAdminString nhận dạng cục bộ (SIZE(0..256)) tên tệp alaTrapInetStationLocalIdentity của chứng chỉ
+nhận dạng từ xa SnmpAdminString (SIZE(0..256)) alaTrapInetStationRemoteIdentity tên tệp của chứng chỉ
+
+
+Ví dụ về kết quả của lệnh show:
+
+-> hiển thị trạm snmp
+người dùng giao thức trạng thái ipAddress/port
+-------------------------------------------------- -+----------+--------+-------
+localhost/10162 kích hoạt v3 joecool
+
+• Hiển thị lệnh
+
+hiển thị chi tiết trạm snmp
+
+Hiển thị trạm bẫy được cấu hình hiện tại.
+
+Định nghĩa bảng MIB:
+> hiển thị chi tiết trạm snmp
+ID bảng: alaTrapInetStationTable
+
+Đầu vào CLI Loại đối tượng MIB Tên đối tượng MIB Mô tả
+người dùng SnmpAdminString (SIZE(1..32)) alaSnmpTsmUserName Tên người dùng
+SnmpAdminString nhận dạng cục bộ (SIZE(0..256)) tên tệp alaTrapInetStationLocalIdentity của chứng chỉ
+nhận dạng từ xa SnmpAdminString (SIZE(0..256)) alaTrapInetStationRemoteIdentity tên tệp của chứng chỉ
+
+
+Ví dụ về kết quả của lệnh show:
+
+-> hiển thị chi tiết trạm snmp
+địa chỉ ip/cổng: 10.255.24.59/162,
+  trạng thái: vô hiệu hóa,
+  giao thức: v2,
+  mô hình bảo mật: usm,
+  người dùng: công khai,
+
+địa chỉ ip/cổng: 135.115.207.36/162,
+  trạng thái: vô hiệu hóa,
+  giao thức: v2,
+  mô hình bảo mật: usm,
+  người dùng: công khai,
+
+địa chỉ ip/cổng: localhost/10162,
+  trạng thái: vô hiệu hóa,
+  giao thức: v3,
+  mô hình bảo mật: tsm,
+  người dùng: joecool,
+  danh tính địa phương: aluSubagent.crt,
+  danh tính từ xa: manager.crt,
+
+địa chỉ ip/cổng: 10.255.24.57/162,
+  trạng thái: bật,
+  giao thức: v1,
+  mô hình bảo mật: usm,
+  người dùng: công cộng,
+
+PHỤ LỤC 4 KHỐI SNMP TLS PORT 10161
+
+Tùy chọn CLI mới:
+
+Để triển khai tính năng mới này, một tùy chọn mới sẽ được thêm vào các lệnh CLI hiện có.
+
+• Lệnh tls bảo mật SNMP
+
+tls bảo mật snmp <tls-status>
+
+Trạng thái Tls có các giá trị dưới đây:
+
+Bật (mặc định)
+Vô hiệu hóa
+
+Kích hoạt: bỏ chặn cổng snmp tls 10161
+Vô hiệu hóa: chặn cổng snmp tls 10161
+
+Định nghĩa bảng MIB:
+
+
+> bảo mật snmp tls <tls-status>
+ID bảng: snmpAgtConfig
+
+Đầu vào CLI Loại đối tượng MIB Tên đối tượng MIB Mô tả
+tls INTEGER { đã bật(1), bị vô hiệu hóa(2) } snmpAgtTlsAdminState Trạng thái Tls (bật/tắt)
+
+
+Ví dụ:
+tls kích hoạt bảo mật snmp
+tls bảo mật snmp vô hiệu hóa
+
+• Hiển thị lệnh
+
+Hiển thị tls bảo mật snmp
+
+Hiển thị trạng thái tls SNMP được cấu hình hiện tại (bật/tắt).
+
+Định nghĩa bảng MIB:
+
+> hiển thị tls bảo mật snmp
+ID bảng: snmpAgtConfig
+
+Cột hiển thị CLI Tên đối tượng MIB Định dạng hiển thị Mô tả
+tls snmpAgtTlsAdminState Chuỗi (bật | tắt) Trạng thái Tls (bật/tắt)
+
+Ví dụ về kết quả của lệnh show:
+
+-> hiển thị tls bảo mật snmp
+bảo mật snmp tls = kích hoạt
+
+
+• Hiển thị ảnh chụp nhanh cấu hình snmp
+
+Ví dụ về kết quả lệnh hiển thị ảnh chụp nhanh:
+
+Bật bảo mật Snmp
+Tls bảo mật Snmp vô hiệu hóa
+
