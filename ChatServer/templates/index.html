@@ -16,31 +16,75 @@
 
         socket.on('connection_id', function(connection_id) {
             var myIDOutput = document.getElementById('myIDOutput');
-            myIDOutput.innerHTML = "My ID: " + connection_id;
+            myIDOutput.innerHTML = "<strong>My ID: </strong>" + connection_id;
         });
 
-        function sendMessage() {
+        function setLanguage() {
+            var language = document.getElementById('myLanguage').value;
+            socket.emit('set_language', {language: language});
+        }
+
+        function sendTextMessage() {
             var yourID = document.getElementById('yourID').value;
             var message = document.getElementById('inMessage').value;
-            socket.emit('send_message', {recipient_id: yourID, message: message});
+            socket.emit('send_text_message', {recipient_id: yourID, message: message});
             var outMessage = document.getElementById('outMessage');
             outMessage.innerHTML += "<p style='color: red;'><strong>Me" + ":</strong> " + message + "</p>";
             document.getElementById('inMessage').value = '';
         }
 
-        socket.on('message', function(data) {
+        function sendImage() {
+            var yourID = document.getElementById('yourID').value;
+            var input = document.getElementById('imageInput');
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    var image = reader.result;
+                    socket.emit('send_image', {recipient_id: yourID, image: image});
+                    var outMessage = document.getElementById('outMessage');
+					outMessage.innerHTML += "<p style='color: red;'><strong>Me" + ":</strong> </p>";
+                    outMessage.innerHTML += "<img src='" + image + "' style='max-width: 500px;'><br>";
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        socket.on('text_message', function(data) {
             var outMessage = document.getElementById('outMessage');
             outMessage.innerHTML += "<p style='color: blue;'><strong>" + data.sender_id + ":</strong> " + data.message + "</p>";
         });
+
+        socket.on('image', function(data) {
+            var outMessage = document.getElementById('outMessage');
+					outMessage.innerHTML += "<p style='color: blue;'><strong>You" + ":</strong> </p>";
+            outMessage.innerHTML += "<img src='" + data.image + "' style='max-width: 500px;'><br>";
+        });
     </script>
+    <style>
+        .bold-label {
+            font-weight: bold;
+        }
+    </style>	
 </head>
 <body>
     <div id="myIDOutput"></div>
-    <label for="yourID">Your ID:</label>
+    <label class="bold-label"; for="yourID">Your ID:</label>
     <input type="text" id="yourID"><br><br>
-    <label for="inMessage">Message:</label>
-    <input type="text" id="inMessage">
-    <button onclick="sendMessage()">Send</button><br><br>
+    <label class="bold-label"; for="myLanguage">My Language:</label>
+    <select id="myLanguage" onchange="setLanguage()">
+        <option value="Select a language">Select a language</option>
+        <option value="English">English</option>
+        <option value="French">French</option>
+        <option value="Vietnamese">Vietnamese</option>
+    </select><br><br>
+    <label class="bold-label"; for="yourID">Chat log:</label>
     <div id="outMessage"></div>
+    <label class="bold-label"; for="inMessage">Message:</label>
+    <input type="text" id="inMessage">
+    <button onclick="sendTextMessage()">Send Text</button><br><br>
+    <label class="bold-label"; for="imageInput">Select Image:</label>
+    <input type="file" id="imageInput">
+    <button onclick="sendImage()">Send Image</button><br><br>
 </body>
 </html>
