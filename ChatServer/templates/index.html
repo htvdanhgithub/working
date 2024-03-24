@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('connect', function() {
+            console.log('Connected to server');
+        });
+
+        socket.on('disconnect', function() {
+            console.log('Disconnected from server');
+        });
+
+        socket.on('connection_id', function(connection_id) {
+            var myIDOutput = document.getElementById('myIDOutput');
+            myIDOutput.innerHTML = "My ID: " + connection_id;
+        });
+
+        function sendMessage() {
+            var yourID = document.getElementById('yourID').value;
+            var message = document.getElementById('inMessage').value;
+            socket.emit('send_message', {recipient_id: yourID, message: message});
+            var outMessage = document.getElementById('outMessage');
+            outMessage.innerHTML += "<p style='color: red;'><strong>Me" + ":</strong> " + message + "</p>";
+            document.getElementById('inMessage').value = '';
+        }
+
+        socket.on('message', function(data) {
+            var outMessage = document.getElementById('outMessage');
+            outMessage.innerHTML += "<p style='color: blue;'><strong>" + data.sender_id + ":</strong> " + data.message + "</p>";
+        });
+    </script>
+</head>
+<body>
+    <div id="myIDOutput"></div>
+    <label for="yourID">Your ID:</label>
+    <input type="text" id="yourID"><br><br>
+    <label for="inMessage">Message:</label>
+    <input type="text" id="inMessage">
+    <button onclick="sendMessage()">Send</button><br><br>
+    <div id="outMessage"></div>
+</body>
+</html>
