@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vertical Toolbar with Icons</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
+<style>
+  /* Styles for the toolbar */
+  .toolbar {
+    background-color: #f0f0f0;
+    width: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+  }
+
+  .toolbar-icon {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+  .message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+  }
+</style>
+</head>
+<body>
+
+<!-- Vertical Toolbar with Icons -->
+<div class="toolbar">
+  <!-- Icon 1 -->
+  <i class="toolbar-icon fas fa-envelope" onclick="showMessage('You clicked on the envelope icon!')"></i>
+  
+  <!-- Icon 2 -->
+  <i class="toolbar-icon fas fa-bell" onclick="showMessage('You clicked on the bell icon!')"></i>
+  
+  <!-- Icon 3 -->
+  <i class="toolbar-icon fas fa-user" onclick="showMessage('You clicked on the user icon!')"></i>
+</div>
+
+<!-- Message display area -->
+<div class="message" id="messageArea" style="display:none;">
+  <!-- Message content will appear here -->
+</div>
+
+<script>
+  // Function to display message
+  function showMessage(message) {
+    var messageArea = document.getElementById("messageArea");
+    messageArea.textContent = message;
+    messageArea.style.display = "block";
+    // Hide message after 3 seconds
+    setTimeout(function() {
+      messageArea.style.display = "none";
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>

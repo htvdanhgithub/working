@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Translation Page</title>
+</head>
+<body>
+
+<select id="languageSelector" onchange="changeLanguage()">
+  <option value="en">English</option>
+  <option value="vi">Vietnamese</option>
+  <option value="zh">Chinese</option>
+</select>
+
+<input type="file" id="fileInput">
+<button id="chooseFileButton">Choose file</button>
+
+<select id="targetLanguage">
+  <option value="en">English</option>
+  <option value="vi">Vietnamese</option>
+  <option value="zh">Chinese</option>
+</select>
+
+<button id="translateButton">Translate</button>
+
+<script>
+function changeLanguage() {
+  var language = document.getElementById("languageSelector").value;
+  var chooseFileButton = document.getElementById("chooseFileButton");
+  var translateButton = document.getElementById("translateButton");
+
+  switch (language) {
+    case "en":
+      chooseFileButton.innerText = "Choose file";
+      translateButton.innerText = "Translate";
+      break;
+    case "vi":
+      chooseFileButton.innerText = "Chọn file";
+      translateButton.innerText = "Dịch";
+      break;
+    case "zh":
+      chooseFileButton.innerText = "选择文件";
+      translateButton.innerText = "翻译";
+      break;
+    default:
+      break;
+  }
+}
+
+// Initialize language on page load
+changeLanguage();
+</script>
+
+</body>
+</html>

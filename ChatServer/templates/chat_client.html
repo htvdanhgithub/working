@@ -60,22 +60,22 @@
         <div class="list-box">
             <!-- List box content goes here -->
             <h3>Friends</h3>
-                <p onclick="showMessage('Friend1')">Friend1</p>
-                <p onclick="showImage()">Friend2</p>
-                <p onclick="showMessage('Friend3')">Friend3</p>
+            <ul>
+                <li onclick="showMessage('Friend1')">Friend1</li>
+                <li onclick="showImage()">Friend2</li>
+                <li onclick="showMessage('Friend3')">Friend3</li>
+            </ul>
         </div>
         <div class="output-box" id="output-box">
             <!-- Output box content goes here -->
         </div>
         <div class="list-box">
 			<h3>Setting</h3>
-				{% if passed == 'yes' %}
-					<p><a href="/signin_link">{{email}}</a></p>
-					<p><a href="/">Sign Out</a></p>
-				{% elif passed == 'no' %}
-					<p><a href="/signin_link">Sign In</a></p>
-					<p><a href="/signup_link">Sign Up</a>
-				{% endif %}
+
+			<ul>
+				<li><a href="/signin_link">Sign In</a></li>
+				<li><a href="/signout_link">Sign Up</a></li>
+			</ul>
         </div>
     </div>
     <div class="bottom-container">

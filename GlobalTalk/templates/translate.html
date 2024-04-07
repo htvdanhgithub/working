@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation</title>
+	<style>
+	/* CSS for positioning the hyperlinks */
+	.top-right {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+</style>
+</head>
+<body>
+    <!-- Hyperlinks for sign-in and sign-up positioned at the top-right corner -->
+    <div class="top-right">
+	    {% if passed == 'yes' %}
+			<a href="/signin_link">{{email}}</a> | <a href="/">Sign Out</a>
+		{% elif passed == 'no' %}
+			<a href="/signin_link">Sign In</a> | <a href="/signup_link">Sign Up</a>
+		{% endif %}
+    </div>
+	
+    <h1>Translate Text</h1>
+    <form action="/translate" method="post" enctype="multipart/form-data">
+        <textarea name="text" placeholder="Enter text to translate" rows="10" cols="100"></textarea><br>
+        <input type="file" name="file" accept=".txt" onchange="validateFile(this)"><br>
+		<h3>From:</h3>
+        <select name="source_language">
+			<option value="arabian">Arabic</option>
+			<option value="basque">Basque</option>
+			<option value="bengal">Bengali</option>
+			<option value="bungary">Bulgarian</option>
+			<option value="catalan">Catalan</option>
+			<option value="cherokee">Cherokee</option>
+			<option value="china_prc">Chinese (Mainland)</option>
+			<option value="china_taiwan">Chinese (Taiwanese)</option>
+			<option value="croatia">Croatian</option>
+			<option value="czech">Czech</option>
+			<option value="danish">Danish</option>
+			<option value="holland">Dutch</option>
+			<option value="english">English (British)</option>
+			<option value="english_american">English (American)</option>
+			<option value="estonia">Estonian</option>
+			<option value="philippines">Filipino</option>
+			<option value="finland">Finnish</option>
+			<option value="french">French</option>
+			<option value="german">German</option>
+			<option value="greek">Greek</option>
+			<option value="gujarat">Gujarati</option>
+			<option value="hebrew">Hebrew</option>
+			<option value="hindi">Hindi</option>
+			<option value="hungary">Hungarian</option>
+			<option value="iceland">Icelandic</option>
+			<option value="indonesia">Indonesian</option>
+			<option value="italia">Italian</option>
+			<option value="japanese">Japanese</option>
+			<option value="kannada">Kannada</option>
+			<option value="korean">Korean</option>
+			<option value="latvia">Latvian</option>
+			<option value="lithuania">Lithuanian</option>
+			<option value="malay">Malay</option>
+			<option value="malayalam">Malayalam</option>
+			<option value="maratha">Maratha</option>
+			<option value="norway">Norwegian</option>
+			<option value="poland">Polish</option>
+			<option value="portugese_brazil">Portuguese (Brazilian)</option>
+			<option value="portugese">Portuguese (Portuguese)</option>
+			<option value="rumani">Roumanian</option>
+			<option value="russian">Russian</option>
+			<option value="serbia">Serbian</option>
+			<option value="slovakia">Slovak</option>
+			<option value="slovenia">Slovenian</option>
+			<option value="spainese">Spanish</option>
+			<option value="swahili">Swahili</option>
+			<option value="swedish">Swedish</option>
+			<option value="tamil">Tamil</option>
+			<option value="telugu">Telugu</option>
+			<option value="thai">Thai</option>
+			<option value="turkish">Turkish</option>
+			<option value="urdu">Urdu</option>
+			<option value="ukraina">Ukrainian</option>
+			<option value="vietnam">Vietnamese</option>
+			<option value="wales">Welsh</option>
+        </select>
+		<h3>To:</h3>
+        <select name="target_language">
+			<option value="arabian">Arabic</option>
+			<option value="basque">Basque</option>
+			<option value="bengal">Bengali</option>
+			<option value="bungary">Bulgarian</option>
+			<option value="catalan">Catalan</option>
+			<option value="cherokee">Cherokee</option>
+			<option value="china_prc">Chinese (Mainland)</option>
+			<option value="china_taiwan">Chinese (Taiwanese)</option>
+			<option value="croatia">Croatian</option>
+			<option value="czech">Czech</option>
+			<option value="danish">Danish</option>
+			<option value="holland">Dutch</option>
+			<option value="english">English (British)</option>
+			<option value="english_american">English (American)</option>
+			<option value="estonia">Estonian</option>
+			<option value="philippines">Filipino</option>
+			<option value="finland">Finnish</option>
+			<option value="french">French</option>
+			<option value="german">German</option>
+			<option value="greek">Greek</option>
+			<option value="gujarat">Gujarati</option>
+			<option value="hebrew">Hebrew</option>
+			<option value="hindi">Hindi</option>
+			<option value="hungary">Hungarian</option>
+			<option value="iceland">Icelandic</option>
+			<option value="indonesia">Indonesian</option>
+			<option value="italia">Italian</option>
+			<option value="japanese">Japanese</option>
+			<option value="kannada">Kannada</option>
+			<option value="korean">Korean</option>
+			<option value="latvia">Latvian</option>
+			<option value="lithuania">Lithuanian</option>
+			<option value="malay">Malay</option>
+			<option value="malayalam">Malayalam</option>
+			<option value="maratha">Maratha</option>
+			<option value="norway">Norwegian</option>
+			<option value="poland">Polish</option>
+			<option value="portugese_brazil">Portuguese (Brazilian)</option>
+			<option value="portugese">Portuguese (Portuguese)</option>
+			<option value="rumani">Roumanian</option>
+			<option value="russian">Russian</option>
+			<option value="serbia">Serbian</option>
+			<option value="slovakia">Slovak</option>
+			<option value="slovenia">Slovenian</option>
+			<option value="spainese">Spanish</option>
+			<option value="swahili">Swahili</option>
+			<option value="swedish">Swedish</option>
+			<option value="tamil">Tamil</option>
+			<option value="telugu">Telugu</option>
+			<option value="thai">Thai</option>
+			<option value="turkish">Turkish</option>
+			<option value="urdu">Urdu</option>
+			<option value="ukraina">Ukrainian</option>
+			<option value="vietnam">Vietnamese</option>
+			<option value="wales">Welsh</option>
+        </select>
+        <button id="translateButton" type="submit">Translate</button>
+		<!-- Message to display -->
+		<p style="color: red;">*The translation may take bit long, depending on the input text size.</p>
+    </form>
+	<script>
+	function validateFile(input) {
+	  const fileName = input.value;
+	  const acceptedExtensions = ['txt'];
+	  const fileExtension = fileName.split('.').pop().toLowerCase();
+
+	  if (!acceptedExtensions.includes(fileExtension)) {
+		alert('Please select a .txt file.');
+		input.value = ''; // Clear the input
+	  }
+	}
+	</script>
+<h4>Note:</h4>
+<ul>
+  <li>This website is to translate in {{num_languagues}} languages in the world with <mark class="highlight">unlimited size input</mark>.</li>
+  <li>Contact: Mr.Danh Hoang, email: htvdanh@gmail.com, cell: (+84) 0375310460.</li>
+</ul>
+</body>
+
+</html>

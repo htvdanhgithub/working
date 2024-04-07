@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Server</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+</head>
+<body>
+    <h2>My ID: <span id="my_id"></span></h2>
+    <label for="your_id">Your ID:</label>
+    <input type="text" id="your_id">
+    <br><br>
+    <div id="out_message" style="border: 1px solid black; padding: 10px;"></div>
+    <br><br>
+    <label for="my_language">My language:</label>
+    <select id="my_language">
+        <option value="">Select a language</option>
+        <option value="English">English</option>
+        <option value="French">French</option>
+        <option value="Vietnamese">Vietnamese</option>
+    </select>
+    <br><br>
+    <label for="in_message">In Message:</label>
+    <input type="text" id="in_message">
+    <button onclick="sendText()">Send text</button>
+    <input type="file" id="select_image">
+    <button onclick="sendImage()">Send Image</button>
+
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('update_id', function(data) {
+            document.getElementById('my_id').innerText = data.connection_id;
+        });
+
+        socket.on('receive_message', function(data) {
+            var messageDiv = document.createElement('div');
+            messageDiv.style.color = data.color;
+            messageDiv.innerText = data.message;
+            document.getElementById('out_message').appendChild(messageDiv);
+        });
+
+        socket.on('receive_image', function(data) {
+            var imageDiv = document.createElement('div');
+            var img = document.createElement('img');
+            img.src = data.image_url;
+            img.width = 100;
+            imageDiv.appendChild(img);
+            document.getElementById('out_message').appendChild(imageDiv);
+        });
+
+        socket.on('error_message', function(data) {
+            alert(data.message);
+        });
+
+        function sendText() {
+            var receiverId = document.getElementById('your_id').value;
+            var message = document.getElementById('in_message').value;
+            if (document.getElementById('my_language').value === '') {
+                alert('Please select a language before sending text.');
+                return;
+            }
+            socket.emit('send_text', {receiver_id: receiverId, message: message});
+            document.getElementById('in_message').value = '';
+        }
+
+        function sendImage() {
+            var receiverId = document.getElementById('your_id').value;
+            var fileInput = document.getElementById('select_image');
+            var file = fileInput.files[0];
+            if (document.getElementById('my_language').value === '') {
+                alert('Please select a language before sending an image.');
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var imageUrl = e.target.result;
+                socket.emit('send_image', {receiver_id: receiverId, image_url: imageUrl});
+            }
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>

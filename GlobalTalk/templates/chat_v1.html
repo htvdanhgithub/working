@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+	<style>
+	.main-div {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: stretch;
+		height: 450px; /* Set height as needed */
+	}
+	.main-sub-div {
+		height: 100%; /* Sub-div height same as mother-div */
+		box-sizing: border-box; /* Include padding in width */
+		border: 1px solid black; /* Just for visualization */
+	}
+	.main-sub-left-div {
+		width: 15%;
+		display: flex;
+		flex-direction: column;
+		padding: 5px;
+	}
+	.main-sub-center-div {
+		width: 70%;
+		display: flex;
+		flex-direction: column;
+		padding: 5px;
+	}
+	.main-sub-right-div {
+		width: 15%;
+		display: flex;
+		flex-direction: column;
+		padding: 5px;
+	}	
+	.edit-box {
+		flex: 1;
+		padding: 5px;
+		margin-right: 10px;
+	}
+	.output-box {
+		padding: 10px;
+		border: 1px solid #ccc;
+		overflow-y: auto;
+		height: 100%; /* Adjust height as needed */
+	}	
+	.send-button {
+		padding: 5px 10px;
+		background-color: #007bff;
+		color: #fff;
+		border: none;
+		cursor: pointer;
+	}	
+	/* CSS for positioning the hyperlinks */
+	.top-right {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+	}
+	.bottom-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 10px;
+	}
+	label {
+		display: inline-block;
+		margin-right: 10px;
+		font-weight: bold;
+		width: 100%;
+	}
+	.friends {
+		display: inline-block;
+		margin-right: 10px;
+		width: 100%;
+		height: 100%; /* Set height as needed */
+	}	
+	.settings {
+		display: inline-block;
+		margin-right: 10px;
+		width: 100%;
+		height: 100%; /* Set height as needed */
+	}	
+	.blank-line {
+		margin-bottom: 20px; /* Adjust as needed */
+	}	
+</style>
+</head>
+<body>
+    <!-- Hyperlinks for sign-in and sign-up positioned at the top-right corner -->
+    <div class="top-right">
+	    {% if passed == 'yes' %}
+			<a href="/signin_link">{{email}}</a> | <a href="/">Sign Out</a>
+		{% elif passed == 'no' %}
+			<a href="/signin_link">Sign In</a> | <a href="/signup_link">Sign Up</a>
+		{% endif %}
+    </div>
+	
+    <h1>Chat</h1>
+    <div class="main-div">
+		<div class="main-sub-div main-sub-left-div">
+			<label for="dropdown">Friends:</label>
+			<select class="friends" multiple id="dropdown">
+				<option value="Danh">Danh</option>
+				<option value="Yen">Yen</option>
+				<option value="Juan">Juan</option>
+				<option value="My">My</option>
+				<option value="Nga">Nga</option>
+			</select>
+		</div>
+
+		<div class="main-sub-div main-sub-center-div">
+			<label for="output-box"><strong>Chat log:</strong></label>
+			<div class="output-box" id="output-box">
+				<!-- Output box content goes here -->
+			</div>
+			<div class="bottom-container">
+				<input type="text" class="edit-box" id="message-input" placeholder="Type your message...">
+				<button class="send-button" onclick="sendMessage()">Send</button>
+			</div>
+		</div>
+		
+		<div class="main-sub-div main-sub-right-div">
+			<label for="dropdown">Settings:</label>
+			<select class="settings" multiple id="dropdown">
+				<option value="account">Account</option>
+				<option value="friends">Friends</option>
+				<option value="language">Language</option>
+				<option value="budget">Budget</option>
+			</select>
+		</div>		
+    </div>
+	<script>
+	function validateFile(input) {
+	  const fileName = input.value;
+	  const acceptedExtensions = ['txt'];
+	  const fileExtension = fileName.split('.').pop().toLowerCase();
+
+	  if (!acceptedExtensions.includes(fileExtension)) {
+		alert('Please select a .txt file.');
+		input.value = ''; // Clear the input
+	  }
+	}
+	</script>
+</body>
+
+</html>

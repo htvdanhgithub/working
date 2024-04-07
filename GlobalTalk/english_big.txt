@@ -1,0 +1,1075 @@
+                                 Enterprise
+Software Functional Specification
+
+
+Net-SNMP Agent
+
+Author:  Bernadette Eyre
+Updates: Danh Hoang
+Revision:  3.8 
+Date: Apr 03, 2020
+
+
+
+
+
+
+
+
+Copyright  1995-2019 ALE USA, Incorporated
+All Rights Reserved
+
+ALE USA, Inc. 
+26801 West Agoura Road, Calabasas, CA 91301
+818 880 3500
+
+
+
+
+ 
+TABLE OF CONTENTS
+1.	INTRODUCTION	7
+1.1.	Purpose	7
+1.2.	Scope	7
+1.3.	Intended Audience	7
+1.4.	Terminology	7
+1.5.	Acronyms	7
+1.6.	Glossary	8
+1.7.	Internal Documents	8
+1.7.1.	External Documents	9
+IETF RFCs	9
+2.	REQUIREMENTS OVERVIEW	9
+2.1.	Hardware Requirements and Limitations	9
+2.2.	Software Requirements and Limitations	9
+2.3.	User Requirements and Limitations in SNMP	11
+2.3.1.	SNMP v1 and v2c frames	11
+Community map	11
+2.3.2.	SNMP v3 frames	11
+2.4.	Compliance with the SNMPv3 RFC	12
+2.5.	Security Requirements	12
+2.5.1.	Security Levels	12
+2.5.2.	VRF Requirements	13
+2.5.3.	Virtual Chassis Requirements	14
+2.5.4.	IfIndex Processing Requirement	14
+2.5.5.	SNMP over TLS	14
+3.	FUNCTIONAL DESCRIPTION	16
+3.1.	Basic Operation	16
+3.2.	Basic Architecture	16
+3.3.	Relationships to Existing Products	19
+3.3.1.	Software Interfaces	19
+PMD	19
+Redundancy and Takeover	19
+ISSU	19
+3.3.2.	Management Interfaces	19
+SNMP	19
+Vlan-Ranges	19
+MIBs Enhancements	20
+1.1.1.1.1	Change in Base OID	20
+1.2.1.1.1	MIB Standards Compliance	21
+Change MIB File name to match internal name	21
+1.3.1.1.1	21
+Command Line Interface (CLI)	22
+1.4.1.1.1	List of Commands	22
+1.5.1.1.1	Configuration Examples	22
+1.6.1.1.1	How to add SNMP user	22
+Web Based Interface	22
+3.4.	Configuration Persistence	23
+4.	SYSTEM REQUIREMENT SPECIFICATIONS	24
+4.1.	Third Part Software Upgrade	24
+4.2.	Configuration Requirements	24
+4.2.1.	CLI requirements	24
+4.2.2.	Web Requirements	24
+4.2.3.	Functional Requirements	24
+4.2.4.	Interface Requirements	24
+4.2.5.	Security Requirements	24
+4.2.6.	Dimensioning	24
+4.2.7.	Scalability and Efficiency	25
+4.2.8.	Platform Supported	25
+4.3.	Supportability	25
+5.	SYSTEM IMPACT	25
+5.1.	Memory Requirement	25
+5.2.	Existing Systems	25
+5.3.	Performance	25
+5.4.	Installation	26
+5.5.	Security Concerns	26
+6.	TEST AND VERIFICATION	26
+6.1.	Test Methodology	26
+6.2.	Management Plane Testing	28
+6.3.	Functional Testing	28
+6.3.1.	SNMPv3	28
+6.3.2.	SNMPv2	28
+6.3.3.	SNMPv1	28
+6.3.4.	Testing in IPSec Environment	28
+6.3.5.	SNMP over TLS	29
+6.4.	Platform Testing	29
+6.5.	Omini Vista Regression Testing	29
+6.6.	Limit and Stress Tests	29
+6.7.	Acceptance Criteria	29
+7.	MIGRATION PATH AND FUTURE ENHANCEMENTS	30
+7.1.	Replace INTEGER Range by Integer32	30
+7.1.1.	MAX-ACCESS	30
+7.1.2.	Remove Deprecated Interfaces	30
+8.	PRODUCT RELEASE	31
+8.1.	Release Observations	31
+APPENDIX 1	SNMP ENGINE ID CONFIGURATION	32
+Overview	32
+New CLI Commands	32
+APPENDIX 2	SNMP OVER TLS SERVER REQUIREMENTS IN COMMON CRITERIA MODE	35
+APPENDIX 3	CLIS SUPPORTING SNMP OVER TLS	36
+New CLI option:	36
+New command:	37
+New CLI option:	38
+APPENDIX 4	BLOCK SNMP TLS PORT 10161	42
+REVISION HISTORY
+
+Date	Revision	Update By	Revision Description	Release	Status
+05/28/09	1.0
+			711R01	Draft
+06/17/09	1.1	Bernadette Eyre	Incorporated G. Andrade comments – provided 2 web-view jpeg images	711R01	Reviewed
+Draft
+6/22/09	1.2	Bernadette Eyre	Incorporated R. Trevor’s comments
+Regarding security VC, and ifIndex	711R01	Reviewed 
+Draft
+6/25/09	1.3
+Agile Rev. 1	Bernadette Eyre	Incorporated C. Ravenscroft comments regarding .s2m files	711R01	Reviewed
+Draft
+8/3/09	1.4
+	Bernadette
+Eyre	Incorporated Review meeting comments	711R01	Update
+12/8/09	1.5
+Agile Rev. A	Bernadette
+Eyre	Updated per comments received.	711R01	Release
+11/2/2016	2
+Agile 
+Rev. 1	B. Eyre	Added Appendix 1	8.4.1R01	draft
+1/17/2017	2.1 Agile
+Rev. A	Vaishnavi. Y	8.4.1.R01 Release version
+P/N: 011708-01	8.4.1.R01	Release
+10/30/2018	3.1 Agile Rev. 1	Danh Hoang	Added SNMP over TLS	8.6.R01	Review Draft
+1/11/2019	3.2 Agile Rev. A	Danh Hoang	Update cli “snmp security tsm” and, “snmp tsm-map” and “snmp station”	8.6.R01	Update
+1/28/2019	3.3 Agile Rev.A1	Sabarinathan V	Update after review
+P/N: 011708-02	8.6.R01	Final
+06/21/2019	3.6 Agile Rev. B
+	Danh Hoang	1.	Remove fingerprint out of “{show} snmp tsm-map” and “{show} snmp station” and change format of “{show} snmp tsm-map”. Add “show snmp station details”
+2.	Update note for “snmp tsm-map” and “snmp station” related to a mandatory reload if certificate’s change
+3.	Update note for manual copying certificates to secondary’s/slaves	8.6.R01	Update
+08/28/2019	3.7 Agile Rev. B
+	Danh Hoang	Add feature “Block snmp tls port 10161”	8.6.R01 post GA	Update
+04/03/2020
+3.8 Agile Rev. B
+	Danh Hoang	Add feature “support authentication algorithm SHA384” for AOSDEV-312	87R01	Final
+1.	INTRODUCTION
+1.1.	Purpose
+This document provides the product definition and functional specification for implementing of the Net-SNMP 5.4.2 version based SNMP Agent and sub-agent for Rushmore product.
+1.2.	Scope
+The scope of this document is to present the complete functional description of the net-snmp subagent as anticipated for its initial release.  Also included is functionality that could be implemented in follow-on releases.  Any such follow-on items are clearly identified.  This document is prepared in accordance with the Alcatel-Lucent Product Development Process.
+The trap management function for net-snmp 5.4.2 agent is handled by a separate sub-system and it has its own software functional specification document.
+1.3.	Intended Audience
+The intended audience for this document includes the engineering design team, the product test team, Quality Assurance, the technical writing team responsible for developing the user documentation, and the support organization providing end-user support.
+1.4.	Terminology
+1.5.	Acronyms
+
+Acronym	Explanation
+AOS	Alcatel Operating System
+API	Application Programming Interface
+BSD	Berkley Software Distribution
+CLI	Command Line Interface
+DNS	Domain Name System
+ESD	Enterprise Solutions Division
+FOSS	Free and Open Source Software
+NMS	Network Management System
+OS	Operating System
+RFC	Request For Comments
+RR	Resource Record
+SDS	Software Design Specification
+SFS	Software Functional Specification
+SIT	Software Integration Test
+SNMP	Simple Network Management Protocol
+SRS	System Requirements Specification
+UT	Unit Test
+TLS	Transport Layer Security
+TSM	Transport Security Model
+Table 1 List of Acronyms
+1.6.	Glossary
+
+Term	Explanation
+Rushmore	Rushmore is the internal and unofficial name given to the Alcatel Omni Switch 9x00 series that are chassis-based intelligent multi-layer switching platforms.
+Managed Device	A managed device is a network node that contains an SNMP agent and that resides on a managed network. Managed devices collect and store management information and make this information available to NMS's using SNMP. Managed devices, sometimes called network elements, can be routers and access servers, switches and bridges, hubs, computer hosts, or printers.
+SNMP Agent	SNMP agent is a network-management software module that resides in a managed device. An agent has local knowledge of management information and translates that information into a form compatible with SNMP. In this document it refers to both, the main net-snmp agent, as well as the Rushmore proprietary sub-agent.
+
+SNMP Manager or Management Station	SNMP Manager or management station issues requests for management operations on behalf of an administrator or application and receives traps from agents as well.
+Network Management System (NMS)	An NMS executes applications that monitor and control managed devices. NMS provide the bulk of the processing and memory resources required for network management. One or more NMS's must exist on any managed network.
+Trap	The trap command is used by managed devices to asynchronously report events to the NMS. When certain types of events occur, a managed device sends a trap to the NMS.
+Table 2 Glossaries of Terms
+1.7.	Internal Documents
+The following are Proprietary documents that influence the design:
+1.	Engineering Development Process. Agile™, 020004-00
+2.	Rushmore Chassis Supervision, Revision Rev.09. June 29th, 2009. 
+3.	Software Functional Specification SNMP Agent over Ipv6 – 08/16/2007
+4.	Software System Design Specification SNMP Agent for SNMPv3 Implementation ver1.3 Alcatel Internetworking, Jan 2003
+5.	Management Internal Protocol (MIP) Library 9/21/2001
+6.	OminSwitch CLI Reference Guide 7/08/2008
+1.7.1.	External Documents
+IETF RFCs
+1.	Simple Network Management Protocol (SNMP) [RFC 1157]
+2.	Introduction to version 3 of the Internet standard Network Management Framework [RFC 3410]
+3.	 Definitions of Version 2 of the Structure of Management Information (SMIv2) [RFC 2578].
+4.	An architecture for describing SNMP Management Frameworks [RFC 3411]
+5.	Message Processing and Dispatching for the simple Network Management Protocol [RFC 3412]
+6.	SNMPv3 Applications [RFC 3413]
+7.	View-based Access Control Model (VACM) for the Simple Network Management Protocol [RFC 3415]
+8.	Coexistence between SNMP versions [RFC 3584]
+9.	User-based Security Model, Authenticated and Private (encrypted) SNMP messages [RFC 3414].
+10.	 View-based Access Control Model (VACM), providing the ability to limit access to different MIB objects on a per-user basis [RFC 3415].
+11.	 Definition of processing entities called master agents and subagents, a protocol (AgentX) [RFC 2741].
+12.	Transport Security Model for the Simple Network Management Protocol (SNMP) [RFC 5591]
+13.	TLS Transport Model for SNMP [RFC 5953]
+2.	Requirements Overview
+The objective is to port the AOS6 SNMP Agent functionality by developing and implementing a Linux based net-snmp Agent using AgentX protocol. The over-all implementation will provide SNMPv1, SNMPv2 and SNMPv3 protocols functionality.
+2.1.	Hardware Requirements and Limitations
+This product only runs on Rushmore family of switches.
+2.2.	Software Requirements and Limitations
+The developed Net-SNMP Agent uses open-source net-snmp 5.4.2 version, Linux based distribution. Net-SNMP open-source distribution is licensed as BSD-like license and is approved by FOSS. As an open-source distribution it has a very flexible compile-time feature configuration options. This translates into configurable runtime binary size.
+
+The base distribution Net-SNMP suite is checked in “tps” directory (Third Part Software). The intention is to keep the open-source code pure and unmodified. This simplifies the software updating and maintainability when a distribution is deemed necessary to be upgraded.
+
+It is due to its licensing and FOSS approval, the Net-SNMP distribution was chosen to be the software base package to develop the SNMP Agent for Rushmore product.
+
+The overall Net-SNMP Agent functionality is divided into two main pieces, the main (master) net-snmp distribution agent and the proprietary Alcatel-Lucent subagent.
+
+The developed subagent depends on the distribution's main (master) agent to provide the standard agent functionality such as agent configuration, MIB file parsing and loading, and SNMP protocols implementation. It also depends on the master agent to provide security and access control via the main net-snmp daemon configuration file, namely snmpd.conf. The main agent configuration file is located in /etc/netsnmp. At install time this file will be mostly empty and is updated as SNMP agent configuration are added and deleted using CLI during runtime.
+
+However the above design has some problems and challenges.  While it is a desirable approach to depend on the main agent to do most of the user security and access control functions but it is not an easily accomplished task.  Due to the requirement of having SNMP configuration parameters modified from CLI and Web View, the SNMP configuration parameters which normally are controlled and accessed by the main agent they also are now required (or expected)  to be accessible and modified from the sub-agent.
+It is hoped that as much as possible the design of the SNMP Agent code will leverage the exiting master agent code.  Implementing such approach will save on development time and testing efforts. However it is also likely that much of the main agent functionality may have to be migrated to the sub-agent to provide a better control over the configuration parameters as well as databases associated with this configuration.
+
+The Ipv6 support will be added after the Ipv4 is stabilized and should be ready for the release version.
+2.3.	 User Requirements and Limitations in SNMP
+Only SNMP frames coming from users previously declared to Net-SNMP Agent can be processed successfully. Frames from unknown users are dropped.  The net-snmp database (UsmUserTable) has to describe all the users allowed to access the switch through SNMP.
+
+By default the SNMP is turned off on the Rushmore switch. Using CLI user commands SNMP users can be added. When AAA user database is defined then the SNMP user database can be refreshed using AAA user database.
+
+For any unknown user the Net-SNMP agent will request the AAA to authenticate the user by calling an AAA API. 
+
+The agent will then authorize the user for the specific operation and the MIB object(s) in the request by calling Partition Manager API.
+
+2.3.1.	SNMP v1 and v2c frames
+The community map feature impacts only SNMP v1 and v2c frames. 
+Community map
+SNMP v1 and v2c frames can be processed correctly provided that the community name in the frame is the name of a user declared to net-snmp as having no authentication.
+To have the same behavior as the SNMPv3, the value given in the community string shall be the same as the user name contained in the SNMPv3 messages. 
+2.3.2.	SNMP v3 frames
+The Net-SNMP Agent considers the user names of SNMP v3 frames as being user names (i.e. security names of an entry of the UsmUserTable).
+SNMPv3/noAuthNoPriv frames can be processed correctly provided that the user name in the frame is the security name of an entry of the UsmUserTable declared to Net-SNMP as having no authentication.
+SNMPv3/AuthNoPriv frames can be processed correctly provided that the user name in the frame is a security name of an entry of the UsmUserTable declared to Net-SNMP as having the same authentication algorithm as the frame and no encryption.
+SNMPv3/AuthPriv frames can be processed correctly provided that the user name in the frame is a security name of an entry of the UsmUserTable declared to Net-SNMP as having the same authentication algorithm as the frame with DES or AES encryption.
+2.4.	Compliance with the SNMPv3 RFC
+A pass-phrase to key transformation process provided by SNMPv3 allows the use of the user password as the pass-phrase to generate the encryption key.
+As the SNMPv3 implementation is linked with the account’s management, the MIBs described in the SNMPv3 (RFC 3414 and 3415) are not fully supported (only the Get operation is supported).  This limitation existed in the old product, too.
+The Net-SNMP software support all the SNMPv3 MIBs and RFCs. Due to switch security requirements, see “Security Requirements” section below, some restrictions exist on the implementation done in switch:
+•	SNMP Set operation upon user’s tables of RFC 3414 is not supported: (only the Gets are allowed).
+•	SNMP Set operation upon vacm tables of RFC 3415 is not supported: (only the Gets are allowed).
+2.5.	Security Requirements
+As is the case with the older AOS releases, because of the relationship between the password used for the login mode access (telnet, console, ftp…) and the key used by SNMPv3 for encryption, modifying keys via SNMP Set operation upon RFC 3414 table is not supported. This allows the users to memorize only a password to connect to the switches independently of the way used for: CLI or SNMPv3.
+2.5.1.	Security Levels
+The net-snmp implements the following level of security:
+	SNMPv1/NoAuth, 
+	SNMPv2c/NoAuth, 
+	SNMPv3/NoAuth,
+	SNMPv3/AuthNoPriv,
+	SNMPv3/AuthPriv
+
+This presents a migration from previously implemented security levels. In the AOS6 releases there was an additional two more security levels, the SNMPV3/SetPriv and Trap-Only.  To support these two additional security levels and to provide a complete port of this feature the sub-agent will supplement the functionality of the main agent by supporting the already implemented proprietary ALCATEL-IND1-SNMP-AGENT-MIB file. By implementing this mib file the sub-agent can provide all the previously implemented security levels as well as provide a mechanism to turn on and off the processing of the v1 and v2 frames by turning the community mode variable on and off.
+The parameter “security level” is added in the switch to define the type of SNMP frames accepted by the switch.
+The different levels are:
+1.	No security (all the PDU with a known user id are accepted)
+2.	Authentication for set (all the get are accepted, but for the set only the snmpv3 authenticated are accepted)
+3.	Authenticated for all (only the snmpv3 authenticated frames are accepted)
+4.	Encrypted for set (the get have to be authenticated and the set encrypted)
+5.	Encrypted for all (only the snmpv3 encrypted frames are accepted)
+6.	Trap only (neither get or set are accepted)
+Note*: current authentication algorithms supported in snmp: MD5, MD5+DES, SHA, SHA+DES, SHA+AES, SHA384.
+
+The different types of SNMP frame are accepted depending of the security level like:
+
+Level	Get v1/v2	Set v1/v2	Get v3 noauth	Set v3 noauth	Get v3 auth	Set v3 auth	Get v3 encrypt	Set v3 encrypt
+1	x	x	x	x	x	x	x	x
+2	x		x		x	x	x	x
+3					x	x	x	x
+4					x		x	x
+5							x	x
+6								
+
+Note: “auth” means authentication without encryption and “encrypt” means encryption with authentication.
+The treatment of the security level is done using Net-SNMP RFC 3415 VACM support and before the authorization processing is done.
+
+
+
+
+
+
+2.5.2.	VRF Requirements
+The implemented Net-SNMP Agent acts as both, a server and a client from MIP implementation prospective. 
+As a client, the Net-Snmp Agent will depend on the SNMPv3 context in each message and VRF aware library to select the correct APPID/VRF combination instance to send the command to the correct VRF instance. The SNMPv3 context will be the name of the VRF or blank (“”) for the default VRF.
+
+The unique VRF index will be retrieved by using the vrfNameToIndex API as the VRF instance associated with the name.
+
+Information pertaining to different VRFs can be accessed via SNMP by setting the vacmContextName field in the SNMP_VIEW_BASED_VACM MIB.  
+
+As of this writing the VRF implementation is planned to be part of Chassis Supervisor (internal Document 2) and is TBD.
+
+
+2.5.3.	Virtual Chassis Requirements
+
+It is expected that most mibs that include an ifIndex to remain unchanged, that the chassis id for virtual chassis to be embedded in that ifIndex, and that a relatively small number of mibs will have explicit virtual chassis id added.
+Based on this the impact on the Net-SNMP is assumed to be minimum.
+Virtual Chassis implementation requirement and specification is TBD.
+
+
+2.5.4.	IfIndex Processing Requirement
+
+As stated in the Config Manager SFS, “for Rushmore the intent is that the specific code that handles the distributed tables should be kept at the application level.  A single application registers for the shared table and is responsible for distributing requests to the correct managing application.  The relationship between applications can be master and slave, or a third party manager.”
+
+The Net-SNMP sub-agents assumes and depends on such external sub-system (such as Port Manager and port library in the old AOS6 releases) to be able to process the IfIndex and map the index to correct IfIndex type to obtain the final index and its distributed table type.
+
+2.5.5.	SNMP over TLS
+Using the security’s advantage of TLS, “SNMP over TLS” feature will be enabled in NET-SNMP 5.6 and beyond. 
+It supports in two modes:
+	Default mode: 
+In this mode, TSM is turned on/off via a CLI. If it is turned on, the connection will be encrypted by TLS. By default, SNMP over TLS is disabled.
+	Common Criteria mode (TSM enabled by default): 
+Satisfy all Common Criteria requirements for TLS server role. 
+Note*: 
+- TSM mode is enabled, all USM requests and traps are discarded, only TSM requests and traps are allowed.
+- TSM mode is disabled, all USM and TSM requests and traps are allowed.
+- With TSM mode enabled, SNMP agent handle all currently supported SNMP requests over IPv4 transport only. The support for IPv6 transport is planned for future release.
+Please refer to Appendix 2 for detailed requirements.
+
+3.	FUNCTIONAL DESCRIPTION
+This section will provide a description of the product/feature.  
+3.1.	Basic Operation
+The net-snmp agent implementation is divided into two main Linux OS processes.
+The main process, snmpd, is the master net-snmp 5.4.2 distribution agent, and the secondary, or the sub-agent, aluSubagent, is the second process. Each of these processes is an independent Linux processes with its own memory space and Linux user-space contexts. Both processes run in the background as a fully designed Linux background processes (daemons).
+The objective behind two agents design is to separate the open-source code from the proprietary code and avoid changing the open-source distribution. In addition the design of the sub-agent leverage on the existing written and tested main net-snmp agent code.
+The MIB files, net-snmp distributed vs. Alcatel-Lucent ones, are also kept separately in two different Linux OS directories on the switch.
+In the current switch software environment the SNMP Agent is the only sub-system of the switch that knows the SNMP protocol. The sub-systems of the switch do not know anything about the SNMP protocol and the MIB tables. The sub-systems only know about MIP tables and the MIP protocol. The SNMP Agent has to translate one SNMP request (on possibly several instances of several MIB tables) into one or morel MIP requests (each of them on only one instance of one MIP table). The MIP requests are processed sequentially one after one in a blocked mode by the SNMP Agent through MIP library calls.
+SNMP is a simple request/response protocol. The network-management system issues a request, and managed devices return responses. This behavior is implemented by using one of four protocol operations: Get, GetNext, GetBulk, Set, and Trap. The Get operation is used by the NMS to retrieve the value of one or more object instances from an agent. If the agent responding to the Get operation cannot provide values for all the object instances in a list, it does not provide any values. The GetNext operation is used by the NMS to retrieve the value of the next object instance in a table or a list within an agent. The Set operation is used by the NMS to set the values of object instances within an agent. The Trap operation is used by SNMP agents to asynchronously inform the NMS of a significant event. All these protocol operations are specified by SNMPv1.
+
+3.2.	Basic Architecture
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 	
+Figure 1: Basic Architecture
+3.3.	Relationships to Existing Products
+The two agents (master and subagent) are net-snmp version 5.4.2 Linux based SNMP agents. Together the two of them will support Rushmore switch platform(s).
+The sub-agent has dependency on the main net-snmp agent. If the main agent exits the sub-agent must also exit. This means an external process must kill and restart the main and the sub agent’s processes when the main agent exits. It appears that the Chassis Supervisor, based on the Chassis Supervisor SFS (internal document (2)), will implemented a logic to handle the process restarting dependencies. If not a third process will be designed to monitor and start and restart the two agents as needed.
+In addition, when any of the configuration parameters, such as community mode on/off option, a user has been added or deleted, or switch security mode has been modified the sub-agent will update either or both of the configuration (snmpd.conf and snmp.conf) files as needed and send SIGHUP signal to the master agent to re-read the configuration file and update its internal configuration database accordingly.
+3.3.1.	Software Interfaces 
+PMD
+Using PMD library, Net-SNMP agent may be designed to dump state information in the event of an application crash or if and when PMD is requested.
+Redundancy and Takeover
+The Net-SNMP agent will use cslib to register with Chassis Supervisor to receive the takeover events and act accordingly.
+ISSU
+The In-Service-Software-Update will be supported if and when from Net-SNMP agent design prospective there is a need for it. Net-SNMP agent will support inter-snmp communication and CMM primary/secondary board-type global variable to handle the takeover as well as ISSU requirements.
+
+3.3.2.	Management Interfaces
+SNMP
+All the previously supported MIB files will be supported.
+Vlan-Ranges
+As long as MIB files support ranges (start and end index numbers) and the MIP library and sub-systems are designed to handle the ranges the Net-SNMP agent can be modified to support the ranges without major code modification.
+MIBs Enhancements
+Enhancements will be made to bring Alcatel-Lucent ESD MIBs in compliance with the standards. Following changes will be made:
+1.1.1.1.1	Change in Base OID
+To help reduce the problems associated with keeping multiple branches compatible, the base OID for Rushmore product will be changed. This will disconnect the OID tree from BOP product line. This simple change will eliminate the conflicts due to development in multiple releases while still giving us the ability to merge code because the same MIB variable names are used. 
+
+The enterprise OID allocated to Alcatel-Lucent ESD is 6486. When developing BOP devices the Xylan Enterprise ID (800) was also added to identify these devices as created by Xylan division. Hence the root OID for BOP devices became .1.3.6.1.4.1.6486.800. Adding 800 was not needed at all.
+
+Current BOP OID Tree looks like this:
+
+enterprise(.1.3.6.1.4.1.)
+|
+---6486 (Alcatel)
+    |
+    -----800 (Xylan)
+        |
+        ----1(alcatelIND1Management)
+            |
+            ----1(managementIND1Hardware)
+            |
+            ----2(managementIND1Software)
+            |
+            ----3(managementIND1Notifications)
+            |
+            ----4(managementIND1AgentCapabilities)
+
+With this change Rushmore product line would use the following MIB Tree: 
+
+Enterprise
+|
+---6486 (Alcatel)
+    |
+    ----1 (alcatelIND1Management)
+        |
+        ----1 (managementIND1Hardware)
+        |
+        ----2 (managementIND1Software)
+        |
+        ----3 (managementIND1Notifications)
+        |
+        ----4 (managementIND1AgentCapabilities)
+        
+Pros:
+	Making this change will cutoff the dependence on 5.x and 6.x development and allow us to proceed with development in both branches without creating conflicts across branches.
+	It will not change the Management significantly because all existing MIB variables will still have the same name. 
+
+Cons: 
+	All Test Scripts and Management OID references, if any, for MIB interactions will need to be modified as follows:
+In all scripts, Replace OIDs enterprise.6486.800.* by enterprise.6486.* for the Rushmore devices.
+	NMS will need an extra MIB set for Rushmore devices – Small overhead. Both OmniVista and IPD’s 5620 SAM maintain multiple MIB Sets for management. IPD already maintains multiple MIB Sets for each device type and release!
+
+1.2.1.1.1	MIB Standards Compliance
+Additional changes will be made to comply with MIB Standards as noted in RFC 4181. Some of them are listed below:
+
+Change MIB File name to match internal name
+To comply with standards recommendation file name of each MIB will be changed to its internal name and “.mib” extension.  This change means that MIB File AlcatelIND1Base.mib will be renamed to ALCATEL-IND1-BASE.mib.
+The s2m file name will also change to support the same convention. This will mean the file AlcatelIND1Base.s2m will be renamed to
+ALCATEL-IND1-BASE.s2m.
+    
+	IPD already uses this convention so all our MPLS MIBs are OK.
+	This change will help MIB Compilers in resolving imports more efficiently.
+	alcatel.arf will be updated to use the new MIB names. 
+	Changes from 6.x can still be merged with MIB name mapping.
+1.3.1.1.1	
+
+Command Line Interface (CLI)
+1.4.1.1.1	List of Commands
+All the previously defined CLI-to-SNMP commands are supported.
+For a format of each command refer to the internal document (5).
+
+snmp community map <community_string> {[user user-account name] | {enable | disable}}
+no snmp community map <community_string>
+snmp community map mode {enable | disable}
+show snmp community map
+snmp security {no security | authentication set | authentication all | privacy set | privacy all |
+trap only | tsm {enable | disable}}
+show snmp security
+show snmp security tsm
+show snmp statistics
+show snmp mib family [table name]
+snmp authentication trap {enable | disable}
+snmp tsm-map remote-identity < string> user < string>
+show snmp tsm-map
+snmp station localhost v3 tsm user < string> local-identity < string> remote-identity < string> {enable | disable}
+show snmp station
+show snmp station details
+
+*Note: CLIs supporting for SNMP over TLS:
++ snmp security tsm {enable | disable}: This tsm option is to configure tsm function (enable/disable). The default is TSM disabled.
++ show snmp security: This also shows tsm configuration status (enable/disable).
++ local-identity and remote-identity: file name of certificate
+
+Please refer to Appendix 3 CLI for SNMP over TLS in detail
+1.5.1.1.1	Configuration Examples
+
+The format of the CLI-to-SNMP configuration commands is maintained as 
+Previously supported and documented in internal document (6).
+1.6.1.1.1	How to add SNMP user
+To create a SNMP user refer to OminSwitch CLI Reference guide document.
+
+Web Based Interface
+The interface between SNMP and Web-View is maintained as is.
+ 
+  Figure 2: Web-View-to-Snmp SNMP Configuration Page
+
+
+ 
+
+Figure 3: Web-View-to-Snmp Statistics page
+
+3.4.	Configuration Persistence
+TBD.
+4.	SYSTEM REQUIREMENT SPECIFICATIONS
+4.1.	Third Part Software Upgrade
+The process of upgrading third party software is assumed an NSA compliance issue. Both the Best Practices and the Security Test Plan include “hardening the OS”.  The definition of this is to incorporate security or reliability updates to all significant third party code, including FOSS. As of this writing the process is TBD.
+
+4.2.	Configuration Requirements
+4.2.1.	CLI requirements
+SNMP-CFG-110:  CLI-to- SNMP configuration commands should still work.
+4.2.2.	Web Requirements
+SNMP-CFG-120:  All pre-existing Web-View-to- SNMP configuration commands should still work.
+4.2.3.	Functional Requirements
+SNMP-FUN-110: The SNMP agent should handle all currently supported SNMP requests over IPv4 as well as over IPv6 transport. For TSM model (SNMP over TLS) SNMP requests are supported over IPv4 transport only, IPv6 is planned for future release.
+
+4.2.4.	Interface Requirements
+SNMP-FUN-130: The SNMP master agent should wait for packets on SNMP datagram sockets for IFNET and IFNET6, and should send a message to sub-agent when a packet is received on either of these sockets.
+4.2.5.	Security Requirements
+SNMP-SEC-110  All three different access modes will be provided,  no authentication (NoAuthNoPriv), authentication ( AuthNoPriv), Authentication with encryption (AuthPriv). In addition two propitiator y, namely, SetPriv ad TrapOnly, levels should also work.
+
+4.2.6.	Dimensioning
+The dimensioning are:
+Maximum size of Community name                                   = 256
+Maximum size of a user name or a password                      = 32
+Session limitation = none
+User limitation = none 
+Maximum size of an incoming or outgoing SNMP PDU          = 1477
+
+4.2.7.	Scalability and Efficiency
+None.
+4.2.8.	Platform Supported
+SNMP-ARCH-110: The net-snmp agents will be supported on AOS7 Rushmore platforms.
+4.3.	Supportability
+SNMP-SUPP-110: Debugging traces in SNMP will be provided for logging/display wherever applicable.
+5.	SYSTEM IMPACT 
+As with AOS6, the s2m files will be used to provide the static database array of the user localization and functional authorization. It will be constructed as shared library. This will allow both, Net-SNMP agent and Web View to use it to facilitate their user authorization on any MIB object.
+
+5.1.	Memory Requirement
+As mentioned earlier the Net-SNMP software distribution suite is checked in tps directory in AOS 7.1.x Perforce source control tree. 
+The following provides disk footprint of the libraries and approximate size of the master and sub-agent agent binaries.
+	
+Net-SNMP component	         Disk footprint
+snmpd	~32KB
+aluSubagent	~40KB
+Libnetsnmp.so.15.1.2	760KB
+Libnetsnmpagent.so.15.1.2	296KB
+Libnetsnmphelpers.so.15.1.2	188KB
+Libnetsnmpmibs.so.15.1.2	1.4MB
+Libnetsnmptrapd.so.15.1.2	64KB
+
+5.2.	Existing Systems
+The two agents are not backward compatible with previous platforms.
+5.3.	Performance
+The SNMP agent functionality is distributed between two different processes. 
+Each of these two processes, the master and the sub-agent, have minimum of 4% of Rushmore switch memory requirement when run under simulator of 512MB of memory size.  The sub-agent process is divided into two main functions. Each of the sub-agent function is handled by a separate thread. The main thread processes the NMS and SNMP command utility incoming messages and the secondary thread processes MIP related messages and requests, including CLI-to-SNMP and Web-View-to-SNMP commands.
+5.4.	Installation
+The master, the sub-agent, the net-snmp related commands, and libraries are part of the main switch image (AOS7), and are installed automatically when the switch image is installed.
+Both agents will be installed with default configuration using the standard snmpd.conf and snmp.conf files. The main configuration parameters as before are configurable using Web and CLI interface.  A sample of the net-snmp standard configuration files are listed in the appendix A
+Due to SNMPv3 encryption it is possible that there is a risk associated with exporting this product to certain countries.
+For SNMP/TLS, NET-SNMP version must be 5.6 and beyond.
+For supporting SHA384 authentication, NET-SNMP needs to be upgraded to 5.8 version.
+5.5.	Security Concerns
+Based on the old implementation the Net-SNMP sub-agent expects to receive takeover message from Chassis Supervisor to inform it of the takeover and act accordingly. 
+6.	Test and Verification
+      Testing of the net-snmp based agents will be done on Rushmore platforms.
+6.1.	Test Methodology
+Both of the agents have debug message logging capabilities. Both agents’ processes can be killed and restarted with different command line options to help with debug when necessary.
+The aluSubagent can be run with –h option for usage feature.
+The main/master agent (snmpd) can be started with -Lf <filename> option to log to a separate log file as well as logging to swlog facility. The snmpd has many rich command line debugging options which can be used on demand to help with debugging. 
+The sub-agent (aluSubagent) can be started as a foreground process (without -f option), and with -d option to log to both, to the net-snmp logging facility using a separate log file, and to swlog facility.  With -f option missing and -d option present, the aluSubagent will run in the foreground in the verbose mode to trace all activities. The aluSubagent logging function uses swlog facility severity levels. The severity levels are defined by the swlog sub-system. The aluSubagent default severity levels can be modified to any of the defined severity levels to view as many debug messages as desired. 
+The base topology for testing SNMP Agent over IPv4/IPv6 is shown below. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 2: Test Topology
+
+6.2.	Management Plane Testing
+Following are the scenarios for which management testing would be done:
+1.	Configuration and display of IPv4/IPv6 snmp station through CLI, SNMP and WEB interface.
+2.	Applying configuration of SNMP settings on the switch through CLI.
+3.	Applying SNMP configuration when a restart is given on the switch.
+4.	Checking the configuration for SNMP settings after a takeover is given.
+5.	Displaying SNMP configuration when a show snapshot CLI is given on the switch.
+6.	Wrong configuration sent through CLI for SNMP settings.
+7.	Wrong configuration sent through WEB interface for SNMP settings.
+8.	Wrong configuration sent through SNMP interface for SNMP settings.
+6.3.	Functional Testing
+Following scenarios would be covered under functional testing:
+6.3.1.	SNMPv3
+1.	Test SNMP get/set/getnext/getbulk request/response on IPv4/IPv6 transport for SNMPv3.
+2.	Test get/set/getnext/getbulk on IPv4/IPv6 transport for SNMPv3 with authentication.
+3.	Test get/set/getnext/getbulk on IPv4/IPv6 transport for SNMPv3 with authentication and privacy (encryption).
+6.3.2.	SNMPv2
+1.	Test SNMP get/set/getnext request/response on IPv4/IPv6 transport for SNMPv2.
+6.3.3.	SNMPv1
+1.	Test SNMP get/set/getnext request/response on IPv4/IPv6 transport for SNMPv1.
+6.3.4.	Testing in IPSec Environment
+1.	All of the test cases would also be done in the environment where some rules and policies of IPSec are configured in the network. 
+6.3.5.	SNMP over TLS
+1. Test SNMP/TLS in two modes: default mode (tsm enable/disable) and Common Criteria mode (tsm always enable).
+2. Prepare correct certificates, turn on tls mode
+3. Test SNMP v3 get/set/getnext/getbulk/walk /trap on IPv4 transport. IPv6 transport is planned for future release.
+4. TSM mode is enabled, all USM requests and traps are discarded, only TSM requests and traps are allowed. TSM mode is disabled, all USM and TSM requests and traps are allowed.
+5. Omni Vista doesn’t support TSM model yet, testing is done using open source net-snmp-5.7.3 or beyond installed on Linux as SNMP client. 
+Please refer to Appendix 2 for detailed requirements.
+
+
+6.4.	Platform Testing
+1.	Execute above set of cases on Rushmore or for Rushmore switch, only.
+6.5.	Omini Vista Regression Testing
+
+1.	This will entail testing Discovery, Topology, Notifications, VLAN and QoS etc applications
+
+6.6.	Limit and Stress Tests
+Following scenario would be covered under limit and stress testing:
+1.	Maximum number of IPv6/v4 SNMP Manager – there are none.
+2.	Do a MIB Walk from IPv4 SNMP Manager.
+3.	Do a MIB Walk from IPv6 SNMP Manager.
+4.	Do a MIB Walk simultaneously from multiple SNMP Managers including some IPv4 SNMP Managers and some IPv6 SNMP Managers.
+5.	Maximum number of simultaneous snmp sessions – there are none.
+6.7.	Acceptance Criteria
+The above listed functional requirements, limitation and stress tests should be met and passed for acceptance criteria.
+7.	Migration Path and Future Enhancements
+The intent is to complete all the functional requirements of this product if the schedule allows. One of the features that may not be immediately available and may be scheduled for a follow up release is the IPv6 support.
+
+This document is not backward compatible with any of older than AOS7.x releases
+
+7.1.	Replace INTEGER Range by Integer32 
+All INTEGER MIB variable declarations for range values like (1..200) etc. will be changed to Integer32. This change has been recommended to maintain portability across 32/64 bit systems. (Note: VxWorks is 32 bit).
+
+7.1.1.	MAX-ACCESS
+Some SNMP variables do not have their MAX-ACCESS set according to the standards resulting in numerous warnings.
+
+1.	Table Index Variables
+As per standards, Table Index variables will be MAX-ACCESS "not-accessible". Some of the MIBs declare them as "read-write". For example, Look at the following MIB variables from MIB : AlcatelIND1Dot1Q.mib
+qPortVlanSlot
+qPortVlanPort
+qPortVlanTagValue
+qAggregateVlanAggregateId
+qAggregateVlanTagValue
+qAtmIfIndex
+qAtmVpiValue
+qAtmVciValue
+qAtmIfIndexVpiVciVlanTagValue
+
+2.	Table Variables with RowStatus
+As per standards, all MIB Tables containing a RowStatus variable will use MAX-ACCESS "read-create" for all variables that can be modified.
+
+7.1.2.	Remove Deprecated Interfaces
+Some Deprecated SNMP interfaces should be dropped at this time to help cleanup our MIBs. 
+
+
+
+8.	PRODUCT RELEASE
+8.1.	Release Observations
+The release of this feature closely follows the schedule for AOS 7.1.1.R01.
+
+APPENDIX 1	SNMP ENGINE ID CONFIGURATION
+Overview
+
+AOS 8.4.1.R01 is expected to meet JITC requirement. JITC is a certification agency which provides risk based Test Evaluation & Certification services, tools, and environments for certifying IT products that are used in military and defense networks. Making SNMP engine id configurable is part of this set of requirement.
+
+Maximum allowed length of SNMP engine id is 32 octets as specified by the standard SNMP-FRAMEWORK-MIB.  From CLI, only 27 octets engine id length is allowed to be specified.  The other 5 octets constitute the first 5 octets of SNMP engine id which are assigned internally by the software. 
+
+The 27 octets of SNMP engine id value that are allowed to be entered from CLI, using the new command, can be any valid IPv4 address, IPv6 address, Mac address, or text. 
+
+When SNMP agent is first initialized (at boot time or takeover time) the SNMP engine id is set to switch’s MAC address (the default value as it is in all 7.X releases). During the SNMP agent configuration process (configuration manager applying the saved configuration) , if the engine id configuration command is saved in the configuration file (using write memory CLI command) then SNMP agent engine id will be re-configured to match what is in the configuration file and to what the user has set it to.
+
+The engine id types follow the standard specification for Engine ID textual convention as outlined in SNMP-FRAMEWORK-MIB.
+
+ SNMP agent engine id value can be toggled between default value and one of the other type of values. The default value is reserved for MAC Address type only. This will preserve backward compatibility with previous releases.
+
+New CLI Commands
+
+To implement this new feature a new set of CLI commands are provided.
+
+•	SNMP engine-id configuration command
+
+Snmp snmp-engineid-type <snmp-engine-id-type> snmp-engineid <snmp-engine-id>
+
+This CLI command provides the ability to change the existing SNMP engine id type to one of the following types:
+
+ipv4-address
+ipv6-address
+mac-address
+text 
+
+The engine Id string must be a valid IPv4 address, valid Ipv6 address, valid Mac address, or just text. Snmp engine Id can be restored to the original value by using the default option as shown below.
+
+MIB Table definitions:
+
+
+> Snmp snmp-engineid-type <snmp-engine-id-type> snmp-engineid <snmp-engine-id>
+Table ID: alcatelIND1SNMPAgentMIBObjects	
+	
+CLI Input	MIB Object Type	MIB Object Name	Description
+Snmp-engineid-type	Uint32	snmpAgtEngineIdType	Engine-id type
+(One of the above listed types)
+Snmp-engineid	String
+	snmpAgtEngineId	SNMP agent Engine-ID value 
+
+
+Examples:
+snmp snmp-engineid-type ipv4-address snmp-engineid 192.124.15.14
+snmp snmp-engineid-type ipv6-adress snmp-engineid 2001:0:3238:DFE1:0063::FEFB
+snmp snmp-engineid-type mac-address snmp-engineid default
+
+ 
+•	Show command
+
+Show snmp snmp-engineid 
+
+Displays the current configured SNMP agent engine-id.
+
+MIB table definitions:
+
+> show snmp engine-id 
+Table ID: alcatelIND1SNMPAgentMIBObjects	
+	
+CLI Display Columns	MIB Object Name	Display Format	Description
+Engine-id  value	snmpAgtEngineId	Depending on the type.
+It can be decimal string (as in Ipv4) or hex value (as in MAC and IPv6)	Engine-id value
+Engine-id type	snmpAgtEngineIdType
+	Number	SNMP engine-id type
+(One of the specified types)
+				
+
+Example of the result of show command:
+
+Snmp engineId type              snmp engineId
+---------------------------+-------------------------------------
+Default Mac                       800019560300e0b1e7067f
+
+•	Show configuration snapshots snmp
+
+As before this command will list snmp configuration if different than the default values. If snmp engine Id is different than the default value it will list snmp engine id configuration as well as any other non-default snmp comfiguration.
+
+Example of the show snapshot command results:
+Snmp security no-security
+Snmp snmp-engineid-type ipv4-address snmp-engineid 192.168.34.12
+Snmp community-map mode enable
+Snmp community-map “private” user “private” enable
+
+
+
+
+APPENDIX 2	SNMP OVER TLS SERVER REQUIREMENTS IN COMMON CRITERIA MODE
+
+In 86R01 for RTR 5376 SNMP access is over TLS encrypted connection by default in Common Criteria Mode. 
+
+Please refer to below sections for TLS server requirements in Common Criteria in detailed:
+
+1. B.2.1.5 FCS_TLSS_EXT.2 (TLS Server Protocol with mutual authentication):
+Section from FCS_TLSS_EXT.2.1 to FCS_TLSS_EXT.2.5 (page 114-116).
+
+2. B.3 Identification and Authentication (FIA)
+Section from B.3.1.1 FIA_X509_EXT.1 to B.3.1.3 FIA_X509_EXT.3 (page 116-119)
+
+In document: https://www.commoncriteriaportal.org/files/ppfiles/CPP_ND_V2.01.pdf
+
+Please refer to the below sections for AOS implementation of X.509v3 certificate infrastructure required to support SNMP over TLS in Common Criteria mode.
+
+Section 4.3.4 Authentication using X.509 certificates
+
+Section 4.7.1 Trusted Channel (FTP_ITC) 
+
+In document SFS Common Criteria Evaluation for 8x SW Releases Agile P/N: 014477-00. An update of this document to include the changes for 86R01 Common Criteria requirements is expected to be available soon.
+APPENDIX 3	CLIS SUPPORTING SNMP OVER TLS
+
+In 86R01 for RTR 5376 SNMP access over TLS encrypted connection is supported through CLI configuration. 
+New CLI option:
+
+To implement this new feature a new option is added to existing CLI commands.
+
+•	SNMP security tsm command
+
+snmp security tsm <tsm-status>
+
+Tsm-status have below values:
+
+enable
+disable
+
+Enable: the connection is encrypted by tls
+Disable: the connection is not encrypted by tls
+
+Note: By default the connection is not encrypted by TLS.
+
+MIB Table definitions:
+
+
+> snmp security tsm <tsm-status>
+Table ID: snmpAgtConfig	
+	
+CLI Input	MIB Object Type	MIB Object Name	Description
+tls	INTEGER {                enabled(1),                disabled(2) }	snmpAgtTsmAdminState	Tsm status (enable/disable)
+
+
+Examples:
+snmp security tsm enable
+snmp security tsm disable
+
+•	Show command
+
+Show snmp security tsm 
+
+Displays the current configured SNMP tsm status (enable/disable).
+
+MIB table definitions:
+
+> show snmp security tsm
+Table ID: snmpAgtConfig	
+	
+CLI Display Columns	MIB Object Name	Display Format	Description
+tsm	snmpAgtTsmAdminState	String (enable | disable)	Tsm status (enable/disable)
+
+Example of the result of show command:
+
+-> show snmp security tsm
+snmp security tsm = enable
+
+
+•	Show configuration snapshots snmp
+
+Example of the show snapshot command results:
+
+Snmp security tsm enable
+Snmp security tsm disable
+
+New command:
+
+•	SNMP tsm-map command
+
+snmp tsm-map remote-identity <string> user <string>
+
+This command is to map a remote_identity to a user in TSM mode in server mode. remote_identity can be file name only.
+
+MIB Table definitions:
+
+
+> snmp tsm-map remote-identity <string> user <string>
+Table ID: alaSnmpTsmUserTable	
+	
+CLI Input	MIB Object Type	MIB Object Name	Description
+remote-identity 	SnmpAdminString (SIZE(1..256))	alaSnmpTsmUserRemoteIdentity 	file name of certificate 
+user 	SnmpAdminString (SIZE(0..32))	alaSnmpTsmUserName 	User name 
+
+
+*Note: If the contents of remote certificates is changed, the changed certificates must be manually copied from master/primary to all secondary and slaves before a reboot is required for the changes to be applied.
+
+
+Examples:
+snmp tsm-map remote-identity "manager.crt" user "joecool"
+
+snmp tsm-map remote-identity "manager.pem" user "joecool"
+
+•	Show command
+
+show snmp tsm-map  
+
+Displays the current configured SNMP tsm-map.
+
+MIB table definitions:
+> show snmp tsm-map
+Table ID: alaSnmpTsmUserTable	
+	
+CLI Input	MIB Object Type	MIB Object Name	Description
+remote-identity 	SnmpAdminString (SIZE(1..256))	alaSnmpTsmUserRemoteIdentity 	file name of certificate 
+user 	SnmpAdminString (SIZE(0..32))	alaSnmpTsmUserName 	User name 
+
+
+Example of the result of show command:
+
+-> show snmp tsm-map
+Remote Identity                     User           
+-----------------------------------+------------------------------------------------------------------
+manager.crt                           joecool 
+
+-> show snmp tsm-map
+Remote Identity                     User           
+-----------------------------------+------------------------------------------------------------------
+manager.pem                         joecool
+
+New CLI option:
+•	SNMP snmp station command
+
+snmp station localhost v3 tsm user <string> local-identity <string> remote-identity <string> {enable | disable}
+
+This command is used to configure v3 tsm mode trap station. local_identity and remote_identity are file names of certificate.
+
+MIB Table definitions:
+
+
+> snmp station localhost v3 tsm user <string> local-identity <string> remote-identity <string> {enable | disable}
+Table ID: alaTrapInetStationTable	
+	
+CLI Input	MIB Object Type	MIB Object Name	Description
+user	SnmpAdminString (SIZE(1..32))	alaSnmpTsmUserName	User name
+local-identity	SnmpAdminString (SIZE(0..256))	alaTrapInetStationLocalIdentity	file name of certificate
+remote-identity	SnmpAdminString (SIZE(0..256))	alaTrapInetStationRemoteIdentity	file name of certificate
+
+*Note: If the contents of local or remote certificates is changed, the changed certificates must be manually copied from master/primary to all secondary and slaves before a reboot is required for the changes to be applied.
+
+Examples:
+snmp station localhost v3 tsm user "joecool" local-identity "aluSubagent.crt" remote-identity "manager.crt" enable
+
+snmp station localhost v3 tsm user "joecool" local-identity "aluSubagent.crt" remote-identity "manager.crt" disable
+
+snmp station localhost v3 tsm user "joecool" local-identity "aluSubagent.pem" remote-identity "manager.pem" enable
+
+snmp station localhost v3 tsm user "joecool" local-identity "aluSubagent.pem" remote-identity "manager.pem" disable
+
+•	Show command
+
+show snmp station  
+
+Displays the current configured trap station.
+
+MIB table definitions:
+> show snmp station
+Table ID: alaTrapInetStationTable	
+	
+CLI Input	MIB Object Type	MIB Object Name	Description
+user	SnmpAdminString (SIZE(1..32))	alaSnmpTsmUserName	User name
+local-identity	SnmpAdminString (SIZE(0..256))	alaTrapInetStationLocalIdentity	file name of certificate
+remote-identity	SnmpAdminString (SIZE(0..256))	alaTrapInetStationRemoteIdentity	file name of certificate
+
+
+Example of the result of show command:
+
+-> show snmp station
+ipAddress/port                                   status    protocol user
+---------------------------------------------------+---------+--------+-------
+localhost/10162                                     enable    v3       joecool
+
+•	Show command
+
+show snmp station details 
+
+Displays the current configured trap station.
+
+MIB table definitions:
+> show snmp station details
+Table ID: alaTrapInetStationTable	
+	
+CLI Input	MIB Object Type	MIB Object Name	Description
+user	SnmpAdminString (SIZE(1..32))	alaSnmpTsmUserName	User name
+local-identity	SnmpAdminString (SIZE(0..256))	alaTrapInetStationLocalIdentity	file name of certificate
+remote-identity	SnmpAdminString (SIZE(0..256))	alaTrapInetStationRemoteIdentity	file name of certificate
+
+
+Example of the result of show command:
+
+-> show snmp station details
+ipAddress/port:    10.255.24.59/162,
+  status:          disable,
+  protocol:        v2,
+  security model:  usm,
+  user:            public,
+
+ipAddress/port:    135.115.207.36/162,
+  status:          disable,
+  protocol:        v2,
+  security model:  usm,
+  user:            public,
+
+ipAddress/port:    localhost/10162,
+  status:          disable,
+  protocol:        v3,
+  security model:  tsm,
+  user:            joecool,
+  local identity:  aluSubagent.crt,
+  remote identity: manager.crt,
+
+ipAddress/port:    10.255.24.57/162,
+  status:          enable,
+  protocol:        v1,
+  security model:  usm,
+  user:            public,
+
+APPENDIX 4	BLOCK SNMP TLS PORT 10161
+
+New CLI option:
+
+To implement this new feature a new option is added to existing CLI commands.
+
+•	SNMP security tls command
+
+snmp security tls <tls-status>
+
+Tls-status have below values:
+
+Enable (default)
+Disable
+
+Enable: unblock snmp tls port 10161
+Disable: block snmp tls port 10161
+
+MIB Table definitions:
+
+
+> snmp security tls <tls-status>
+Table ID: snmpAgtConfig	
+	
+CLI Input	MIB Object Type	MIB Object Name	Description
+tls	INTEGER {                enabled(1),                disabled(2) }	snmpAgtTlsAdminState	Tls status (enable/disable)
+
+
+Examples:
+snmp security tls enable
+snmp security tls disable
+
+•	Show command
+
+Show snmp security tls 
+
+Displays the current configured SNMP tls status (enable/disable).
+
+MIB table definitions:
+
+> show snmp security tls
+Table ID: snmpAgtConfig	
+	
+CLI Display Columns	MIB Object Name	Display Format	Description
+tls	snmpAgtTlsAdminState	String (enable | disable)	Tls status (enable/disable)
+
+Example of the result of show command:
+
+-> show snmp security tls
+snmp security tls = enable
+
+
+•	Show configuration snapshots snmp
+
+Example of the show snapshot command results:
+
+Snmp security tls enable
+Snmp security tls disable
+
