@@ -108,11 +108,53 @@
 		margin-bottom: 10px;
 		cursor: pointer;
 	}	
+	.popup-menu {
+		display: none;
+		position: absolute;
+		background-color: #f9f9f9;
+		min-width: 160px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		z-index: 1;
+	}
+
+	.popup-menu a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+	}
+
+	.popup-menu a:hover {
+		background-color: #ddd;
+	}
+
+	.image-container {
+		position: relative;
+		display: inline-block;
+	}
+
+	.image-container .popup-menu {
+		top: 0px; /* adjust this value to position the menu */
+		left: 50px; /* adjust this value to position the menu */
+	}
+
+	.image-container:hover .popup-menu {
+		display: block;
+	}	
 </style>
 </head>
 <body>
     <div class="main-div">
 		<div class="main-sub-div main-left-vertical-toolbar">
+			<div class="image-container">
+			  <img src="/image" alt="Click Me" width="50" height="50">
+			  <div class="popup-menu">
+				<a href="/change_image_link">Change image</a>
+				<a href="/change_language_link">Change language</a>
+				<a href="#">Budget</a>
+				<a href="#">Sign out</a>
+			  </div>
+			</div>
 		    <a href="/">
 				<img src="/icon/1" alt="Icon 1" width="50" height="50">
 			</a>

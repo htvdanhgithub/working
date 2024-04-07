@@ -6,6 +6,7 @@ import logging
 import pymongo
 import re
 import hashlib
+import base64
 
 #client = MongoClient('mongodb://localhost:27017/')
 client = pymongo.MongoClient('mongodb://localhost:27017/')
@@ -20,6 +21,8 @@ except pymongo.errors.ConnectionFailure:
 
 db = client['GlobalTalk']
 collection = db['Users']
+
+g_email = ""
 
 def hash_password(password):
     # Convert the password to bytes before hashing
@@ -53,12 +56,12 @@ def insert_record(email, password, language, point):
     password = hash_password(password)
     record = {"email": email, "password": password, "language": language, "point": point}
     if user_exists(email):
-        update_record(email, password, point)
+        update_pwd(email, password, point)
     else:
         collection.insert_one(record)
 
 # Function to update an existing document
-def update_record(email, new_password, new_point):
+def update_pwd(email, new_password, new_point):
     query = {"email": email}
     new_values = {"$set": {"password": new_password, "point": new_point}}
     collection.update_one(query, new_values)
@@ -67,6 +70,32 @@ def update_record(email, new_password, new_point):
 def delete_record(email):
     query = {"email": email}
     collection.delete_one(query)
+
+# Function to update an existing document
+def update_image(email, image):
+    query = {"email": email}
+    new_values = {"$set": {"image": image}}
+    collection.update_one(query, new_values)
+
+def get_image(email):
+    query = {"email": email}
+    result = collection.find_one(query)
+    print(result)
+    print(result["image"])
+    return result["image"]
+
+# Function to update an existing document
+def update_language(email, language):
+    query = {"email": email}
+    new_values = {"$set": {"language": language}}
+    collection.update_one(query, new_values)
+
+def get_language(email):
+    query = {"email": email}
+    result = collection.find_one(query)
+    print(result)
+    print(result["language"])
+    return result["language"]
 
 def validate_email(email):
     # Regular expression pattern for validating email addresses
@@ -198,6 +227,61 @@ def translate(text, source_language_code, target_language_code):
 
     return translated_text
 
+@app.route('/change_image_link')
+def change_image_link():
+    return render_template('upload_image.html')
+
+@app.route('/change_image', methods=['POST'])
+def upload_image():
+    if 'image' not in request.files:
+        return render_template('message.html', goback="/", message="ERROR: No image part...")
+
+    image = request.files['image']
+    if image.filename == '':
+        return render_template('message.html', goback="/", message="ERROR: selected image")
+
+    # Read the image file
+    image_data = image.read()
+
+    # Convert image data to base64 string
+    encoded_image = base64.b64encode(image_data).decode('utf-8')
+
+    # Insert into MongoDB
+    global g_email
+    update_image(g_email, encoded_image)
+
+    return render_template('chat.html')
+
+@app.route('/change_language_link')
+def change_image():
+    return render_template('change_language.html')
+
+@app.route('/change_language', methods=['GET', 'POST'])
+def change_language():
+    global g_email
+
+    language = request.form['language']
+
+    update_language(g_email, language)
+    return render_template('chat.html')
+
+@app.route('/image')
+def image():
+    global g_email
+    image_data = get_image(g_email)
+    if image_data:
+        # Decode base64 string to image data
+        decoded_image = base64.b64decode(image_data)
+
+        # Save the image to a temporary file
+        with open('temp_image.jpg', 'wb') as f:
+            f.write(decoded_image)
+
+        # Return the temporary image file
+        return send_file('temp_image.jpg', mimetype='image/jpeg')
+
+    return 'Image not found'
+
 @app.route('/icon/<int:icon_id>')
 def icon(icon_id):
     icon_paths = {
@@ -289,6 +373,7 @@ def download():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    global g_email
     email = request.form['email']
     password = request.form['password']
     confirm_password = request.form['confirm_password']
@@ -302,6 +387,7 @@ def signup():
     language = request.form['language']
 
     point = 0
+    g_email = email
     insert_record(email, password, language, point)
     return render_template('index.html')
 
@@ -315,6 +401,9 @@ def signin():
 
     if not record_exists(email, password):
         return render_template('message.html', goback="/signin_link", message='ERROR: Wrong user or password')
+
+    global g_email
+    g_email = email
 
     return render_template('index.html')
 
