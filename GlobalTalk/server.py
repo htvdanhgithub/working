@@ -232,14 +232,16 @@ def change_image_link():
     return render_template('upload_image.html')
 
 @app.route('/change_image', methods=['POST'])
-def upload_image():
+def change_image():
     if 'image' not in request.files:
         return render_template('message.html', goback="/", message="ERROR: No image part...")
 
     image = request.files['image']
+    print('image {}'.format(image))
     if image.filename == '':
         return render_template('message.html', goback="/", message="ERROR: selected image")
 
+    print("Danh 1\n")
     # Read the image file
     image_data = image.read()
 
@@ -248,12 +250,14 @@ def upload_image():
 
     # Insert into MongoDB
     global g_email
+    print("Danh 2\n")
     update_image(g_email, encoded_image)
+    print("Danh 3\n")
 
     return render_template('chat.html')
 
 @app.route('/change_language_link')
-def change_image():
+def change_language_link():
     return render_template('change_language.html')
 
 @app.route('/change_language', methods=['GET', 'POST'])
@@ -320,6 +324,29 @@ def chat():
     ip_address = request.remote_addr
     logging.info(f"The IP address of the request is: {ip_address}")
     return render_template('chat.html', num_languagues=len(map_languages), passed='no')
+
+@app.route('/upload_image', methods=['POST'])
+def upload_image():
+    if 'image' not in request.files:
+        return 'No image uploaded', 400
+
+    image = request.files['image']
+
+    if image.filename == '':
+        return 'No image selected', 400
+
+    # Read the image file
+    image_data = image.read()
+
+    # Convert image data to base64 string
+    encoded_image = base64.b64encode(image_data).decode('utf-8')
+
+    # Insert into MongoDB
+    global g_email
+    print("Danh 2\n")
+    update_image(g_email, encoded_image)
+
+    return render_template('upload_image.html')
 
 # Route to handle translation
 @app.route('/translate', methods=['POST'])

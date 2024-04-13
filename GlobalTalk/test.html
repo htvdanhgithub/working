@@ -3,24 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Edit Output</title>
     <style>
-        /* CSS for positioning the hyperlinks */
-        .top-right {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+        .output-container {
+            display: flex;
+            align-items: center;
+        }
+        .output-text {
+            margin-right: 10px;
+        }
+        .edit-icon {
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <!-- Hyperlinks for sign-in and sign-up positioned at the top-right corner -->
-    <div class="top-right">
-        <a href="/signin">Sign In</a> | <a href="/signup">Sign Up</a>
+    <div class="output-container">
+        <p class="output-text" id="outputText">This is the output text.</p>
+        <img class="edit-icon" src="edit_icon.png" alt="Edit" width="20" height="20" onclick="editOutput()">
     </div>
 
-    <!-- Main content of the webpage -->
-    <h1>Welcome to Our Website</h1>
-    <p>This is the main content of the webpage.</p>
+    <div id="editModal" style="display: none;">
+        <textarea id="editTextarea"></textarea>
+        <button onclick="saveChanges()">Save</button>
+    </div>
+
+    <script>
+        function editOutput() {
+            var outputText = document.getElementById("outputText").textContent;
+            document.getElementById("editTextarea").value = outputText;
+            document.getElementById("editModal").style.display = "block";
+        }
+
+        function saveChanges() {
+            var editedText = document.getElementById("editTextarea").value;
+            document.getElementById("outputText").textContent = editedText;
+            document.getElementById("editModal").style.display = "none";
+        }
+    </script>
 </body>
 </html>

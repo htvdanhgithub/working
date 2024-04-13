@@ -3,29 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Upload</title>
+    <title>Image Selector</title>
 </head>
 <body>
-    <h1>Upload an Image</h1>
-    <form id="upload-form" enctype="multipart/form-data">
-        <input type="file" id="image" name="image">
-        <button type="submit">Upload</button>
+    <h1>Image Selector</h1>
+    <form action="/upload_image" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <input type="submit" value="Upload">
     </form>
 
-    <script>
-        document.getElementById('upload-form').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const formData = new FormData();
-            formData.append('image', document.getElementById('image').files[0]);
-
-            const response = await fetch('/change_image', {
-                method: 'POST',
-                body: formData
-            });
-
-            const data = await response.json();
-            console.log(data);
-        });
-    </script>
+    <h2>Selected Image:</h2>
+    <img src="/image" alt="Selected Image" width="300" height="300">
 </body>
 </html>
