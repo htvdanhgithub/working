@@ -141,6 +141,23 @@
 	.image-container:hover .popup-menu {
 		display: block;
 	}	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('connect', function() {
+            console.log('Connected to server');
+        });
+
+        socket.on('disconnect', function() {
+            console.log('Disconnected from server');
+        });
+
+        socket.on('connection_id', function(connection_id) {
+            var myIDOutput = document.getElementById('myIDOutput');
+            myIDOutput.innerHTML = "<strong>My ID: </strong>" + connection_id;
+        });
+    </script>
 </style>
 </head>
 <body>
@@ -151,12 +168,12 @@
 			  <div class="popup-menu">
 				<a href="/change_image_link">Change image</a>
 				<a href="/change_language_link">Change language</a>
-				<a href="#">Budget</a>
-				<a href="#">Sign out</a>
+				<a href="/change_budget_link">Change Budget</a>
+				<a href="/signin_link">Sign out</a>
 			  </div>
 			</div>
-		    <a href="/">
-				<img src="/icon/1" alt="Icon 1" width="50" height="50">
+		    <a href="/add_friend_link">
+				<img src="/icon/2" alt="Icon 2" width="50" height="50">
 			</a>
 			<img src="/icon/2" alt="Icon 2" width="50" height="50">
 			<img src="/icon/3" alt="Icon 3" width="50" height="50">
@@ -166,11 +183,9 @@
 		<div class="main-sub-div main-sub-friend-div">
 			<label for="dropdown">Friends:</label>
 			<select class="friends" multiple id="dropdown">
-				<option value="Danh">Danh</option>
-				<option value="Yen">Yen</option>
-				<option value="Juan">Juan</option>
-				<option value="My">My</option>
-				<option value="Nga">Nga</option>
+				{% for key, value in friends.items(): %}
+					<option value={{ key }}>{{ value }}</option>
+				{% endfor %}
 			</select>
 		</div>
 

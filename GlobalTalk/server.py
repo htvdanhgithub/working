@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, jsonify, send_file
+from flask import Flask, render_template, request, session, jsonify, send_file, make_response
+from flask_socketio import SocketIO, emit
 from google.cloud import translate_v3 as tl
 import os
 import time
@@ -52,13 +53,13 @@ def record_exists(email, password):
     return result is not None
 
 # Function to insert a new document
-def insert_record(email, password, language, point):
+def update_record(email, name, password, language, point, friends):
     password = hash_password(password)
-    record = {"email": email, "password": password, "language": language, "point": point}
+    record = {"email": email, "name": name, "password": password, "language": language, "point": point, "friends": friends}
     if user_exists(email):
-        update_pwd(email, password, point)
-    else:
-        collection.insert_one(record)
+        delete_record(email)
+
+    collection.insert_one(record)
 
 # Function to update an existing document
 def update_pwd(email, new_password, new_point):
@@ -80,9 +81,12 @@ def update_image(email, image):
 def get_image(email):
     query = {"email": email}
     result = collection.find_one(query)
-    print(result)
-    print(result["image"])
-    return result["image"]
+    #print(result)
+    if "image" in result:
+        #print(result["image"])
+        return result["image"]
+    else:
+        return None
 
 # Function to update an existing document
 def update_language(email, language):
@@ -93,9 +97,73 @@ def update_language(email, language):
 def get_language(email):
     query = {"email": email}
     result = collection.find_one(query)
-    print(result)
-    print(result["language"])
+    #print(result)
+    #print(result["language"])
     return result["language"]
+
+# Function to update an existing document
+def add_friend(email, friend):
+    friends = get_friends(email)
+    friends.append(friend)
+    update_friends(email, friends)
+
+def delete_friends(email, friend):
+    friends = get_friends(email)
+    del friends[friend]
+    update_friends(email, friends)
+
+def update_friends(email, friends):
+    query = {"email": email}
+    new_values = {"$set": {"friends": friends}}
+    collection.update_one(query, new_values)
+
+def get_friends(email):
+    query = {"email": email}
+    result = collection.find_one(query)
+    if not result:
+        return []
+
+    if "friends" in result:
+        #print(result["friends"])
+        return result["friends"]
+    else:
+        return []
+
+
+def get_friends_map(friends):
+    if not friends:
+        return {}
+    result = {}
+    for friend in friends:
+        result[friend] = get_name(friend)
+
+    return result
+
+# Function to update an existing document
+def update_budget(email, point):
+    query = {"email": email}
+    new_values = {"$set": {"point": point}}
+    collection.update_one(query, new_values)
+
+def get_budget(email):
+    query = {"email": email}
+    result = collection.find_one(query)
+    #print(result)
+    #print(result["point"])
+    return result["point"]
+
+# Function to update an existing document
+def update_name(email, name):
+    query = {"email": email}
+    new_values = {"$set": {"name": name}}
+    collection.update_one(query, new_values)
+
+def get_name(email):
+    query = {"email": email}
+    result = collection.find_one(query)
+    #print(result)
+    #print(result["name"])
+    return result["name"]
 
 def validate_email(email):
     # Regular expression pattern for validating email addresses
@@ -105,6 +173,7 @@ def validate_email(email):
 app = Flask(__name__)
 # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable to the path of your JSON key file
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "iconic-nimbus-411516-2e62e0e7d871.json"
+socketio = SocketIO(app)
 
 # Define language mappings
 map_languages = {'arabian':'ar',
@@ -163,6 +232,9 @@ map_languages = {'arabian':'ar',
                 'vietnam':'vi',
                 'wales':'cy'
 }
+
+# Dictionary to store the connection ID of each client
+clients = {}
 
 filepath = ""
 def crack_text(text, max_len):
@@ -237,11 +309,10 @@ def change_image():
         return render_template('message.html', goback="/", message="ERROR: No image part...")
 
     image = request.files['image']
-    print('image {}'.format(image))
+    #print('image {}'.format(image))
     if image.filename == '':
         return render_template('message.html', goback="/", message="ERROR: selected image")
 
-    print("Danh 1\n")
     # Read the image file
     image_data = image.read()
 
@@ -250,15 +321,15 @@ def change_image():
 
     # Insert into MongoDB
     global g_email
-    print("Danh 2\n")
     update_image(g_email, encoded_image)
-    print("Danh 3\n")
 
-    return render_template('chat.html')
+    return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
 
 @app.route('/change_language_link')
 def change_language_link():
-    return render_template('change_language.html')
+    global g_email
+    language = get_language(g_email)
+    return render_template('change_language.html', cur_language=language)
 
 @app.route('/change_language', methods=['GET', 'POST'])
 def change_language():
@@ -267,7 +338,22 @@ def change_language():
     language = request.form['language']
 
     update_language(g_email, language)
-    return render_template('chat.html')
+    return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
+
+@app.route('/change_budget_link')
+def change_budget_link():
+    global g_email
+    budget = get_budget(g_email)
+    return render_template('change_budget.html', cur_budget=budget)
+
+@app.route('/change_budget', methods=['GET', 'POST'])
+def change_budget():
+    global g_email
+
+    budget = request.form['budget']
+
+    update_budget(g_email, budget)
+    return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
 
 @app.route('/image')
 def image():
@@ -283,6 +369,8 @@ def image():
 
         # Return the temporary image file
         return send_file('temp_image.jpg', mimetype='image/jpeg')
+    else:
+        return send_file('icons/account.png', mimetype='image/png')
 
     return 'Image not found'
 
@@ -306,9 +394,23 @@ def icon(icon_id):
     else:
         return 'Icon not found', 404
 
+# Set the secret key for the session
+app.secret_key = os.urandom(24)
+
+def print_session_id():
+    # Check if session ID cookie exists
+    # Retrieve or generate session ID
+    session_id = session.get('session_id')
+    if not session_id:
+        session['session_id'] = os.urandom(24).hex()
+        session_id = session['session_id']
+
+    print(f"Your session ID is: {session_id}")
+
 # Route to render the HTML form
 @app.route('/')
 def index():
+    print_session_id()
     ip_address = request.remote_addr
     logging.info(f"The IP address of the request is: {ip_address}")
     return render_template('signin.html')
@@ -321,12 +423,16 @@ def translate():
 
 @app.route('/chat')
 def chat():
+    print_session_id()
     ip_address = request.remote_addr
     logging.info(f"The IP address of the request is: {ip_address}")
-    return render_template('chat.html', num_languagues=len(map_languages), passed='no')
+    global g_email
+
+    return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
 
 @app.route('/upload_image', methods=['POST'])
 def upload_image():
+    print_session_id()
     if 'image' not in request.files:
         return 'No image uploaded', 400
 
@@ -343,10 +449,15 @@ def upload_image():
 
     # Insert into MongoDB
     global g_email
-    print("Danh 2\n")
     update_image(g_email, encoded_image)
 
     return render_template('upload_image.html')
+
+@app.route('/upload_image_done', methods=['POST'])
+def upload_image_done():
+    global g_email
+
+    return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
 
 # Route to handle translation
 @app.route('/translate', methods=['POST'])
@@ -401,6 +512,7 @@ def download():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     global g_email
+    name = request.form['name']
     email = request.form['email']
     password = request.form['password']
     confirm_password = request.form['confirm_password']
@@ -415,7 +527,8 @@ def signup():
 
     point = 0
     g_email = email
-    insert_record(email, password, language, point)
+    friends = []
+    update_record(email, name, password, language, point, friends)
     return render_template('index.html')
 
 @app.route('/signin', methods=['GET', 'POST'])
@@ -434,6 +547,24 @@ def signin():
 
     return render_template('index.html')
 
+@app.route('/add_friend_link')
+def add_friend_link():
+    return render_template('add_friend.html')
+
+@app.route('/addfriend', methods=['GET', 'POST'])
+def addfriend():
+    email = request.form['email']
+
+    if not validate_email(email):
+        return render_template('message.html', goback="/add_friend_link", message='ERROR: Email is in wrong format')
+
+    if not user_exists(email):
+        return render_template('message.html', goback="/add_friend_link", message='ERROR: Friend is not valid')
+
+    global g_email
+    add_friend(g_email, email)
+
+    return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
 
 @app.route('/signin_link')
 def signin_link():
@@ -443,6 +574,19 @@ def signin_link():
 def signup_link():
     return render_template('signup.html')
 
+@socketio.on('connect')
+def handle_connect():
+    connection_id = request.sid
+    clients[connection_id] = True
+    print(f"Client connected with ID: {connection_id}")
+    emit('connection_id', connection_id)
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    connection_id = request.sid
+    del clients[connection_id]
+    print(f"Client disconnected with ID: {connection_id}")
+
 if __name__ == '__main__':
     # Configure logging
     logging.basicConfig(filename='output.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -450,3 +594,4 @@ if __name__ == '__main__':
     #app.run(debug=True)
     from waitress import serve
     serve(app, host='0.0.0.0', port=8080)
+    #socketio.run(app, allow_unsafe_werkzeug=True, debug=True)
