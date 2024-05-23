@@ -28,13 +28,13 @@
 	}
 	
 	.main-sub-friend-div {
-		width: 15%;
+		width: 25%;
 		display: flex;
 		flex-direction: column;
 		padding: 5px;
 	}
 	.main-sub-chat-div {
-		width: 85%;
+		width: 75%;
 		display: flex;
 		flex-direction: column;
 		padding: 5px;
@@ -164,7 +164,7 @@
     <div class="main-div">
 		<div class="main-sub-div main-left-vertical-toolbar">
 			<div class="image-container">
-			  <img src="/image" alt="Click Me" width="50" height="50">
+			  <img src='/image' alt="Click Me" width="50" height="50">
 			  <div class="popup-menu">
 				<a href="/change_image_link">Change image</a>
 				<a href="/change_language_link">Change language</a>
@@ -181,8 +181,8 @@
 		</div>	
 		
 		<div class="main-sub-div main-sub-friend-div">
-			<label for="dropdown">Friends:</label>
-			<select class="friends" multiple id="dropdown">
+			<label for="friend_list">Friends:</label>
+			<select class="friends" multiple id="friend_list">
 				{% for key, value in friends.items(): %}
 					<option value={{ key }}>{{ value }}</option>
 				{% endfor %}
@@ -190,6 +190,7 @@
 		</div>
 
 		<div class="main-sub-div main-sub-chat-div">
+			<img id='friend_picture' alt="Click Me" width="50" height="50">
 			<label for="output-box"><strong>Chat log:</strong></label>
 			<div class="output-box" id="output-box">
 				<!-- Output box content goes here -->
@@ -201,16 +202,28 @@
 		</div>
     </div>
 	<script>
-	function validateFile(input) {
-	  const fileName = input.value;
-	  const acceptedExtensions = ['txt'];
-	  const fileExtension = fileName.split('.').pop().toLowerCase();
+        document.getElementById('friend_list').addEventListener('click', async function(event) {
+            event.preventDefault();
 
-	  if (!acceptedExtensions.includes(fileExtension)) {
-		alert('Please select a .txt file.');
-		input.value = ''; // Clear the input
-	  }
-	}
+            var selectedOption = document.getElementById("friend_list").value;
+
+            const response = await fetch('/select_friend', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ friend: selectedOption })
+            });
+
+            if (response.ok) {
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+
+                document.getElementById('friend_picture').src = url;
+            } else {
+                document.getElementById('responseText').textContent = 'Error: Unable to get response from server';
+            }			
+        });	
 	</script>
 </body>
 

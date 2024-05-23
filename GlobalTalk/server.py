@@ -24,6 +24,7 @@ db = client['GlobalTalk']
 collection = db['Users']
 
 g_email = ""
+selected_friend = ""
 
 def hash_password(password):
     # Convert the password to bytes before hashing
@@ -355,8 +356,33 @@ def change_budget():
     update_budget(g_email, budget)
     return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
 
+@app.route('/image1')
+def image1():
+    global selected_friend
+    print("image1 called")
+    print(f"selected_friend: {selected_friend}")
+
+    if not selected_friend:
+        return send_file('icons/account.png', mimetype='image/png')
+
+    print(f"selected_friend: {selected_friend}")
+    image_data = get_image(selected_friend)
+    if image_data:
+        # Decode base64 string to image data
+        decoded_image = base64.b64decode(image_data)
+
+        # Save the image to a temporary file
+        with open('temp_image.jpg', 'wb') as f:
+            f.write(decoded_image)
+
+        # Return the temporary image file
+        return send_file('temp_image.jpg', mimetype='image/jpeg')
+    else:
+        return send_file('icons/account.png', mimetype='image/png')
+
 @app.route('/image')
 def image():
+    print("image called")
     global g_email
     image_data = get_image(g_email)
     if image_data:
@@ -373,6 +399,26 @@ def image():
         return send_file('icons/account.png', mimetype='image/png')
 
     return 'Image not found'
+
+@app.route('/select_friend', methods=['POST'])
+def select_friend():
+    print("select_friend called")
+    global selected_friend
+    selected_friend = request.json['friend']
+    print(f"select_friend {selected_friend} selected")
+    image_data = get_image(selected_friend)
+    if image_data:
+        # Decode base64 string to image data
+        decoded_image = base64.b64decode(image_data)
+
+        # Save the image to a temporary file
+        with open('temp_image.jpg', 'wb') as f:
+            f.write(decoded_image)
+
+        # Return the temporary image file
+        return send_file('temp_image.jpg', mimetype='image/jpeg')
+    else:
+        return send_file('icons/account.png', mimetype='image/png')
 
 @app.route('/icon/<int:icon_id>')
 def icon(icon_id):
@@ -433,14 +479,19 @@ def chat():
 @app.route('/upload_image', methods=['POST'])
 def upload_image():
     print_session_id()
+    print("upload_image 1")
+
     if 'image' not in request.files:
         return 'No image uploaded', 400
 
+    print("upload_image 2")
     image = request.files['image']
 
+    print("upload_image 3")
     if image.filename == '':
         return 'No image selected', 400
 
+    print("upload_image 4")
     # Read the image file
     image_data = image.read()
 
@@ -449,9 +500,11 @@ def upload_image():
 
     # Insert into MongoDB
     global g_email
+    print("upload_image 5")
     update_image(g_email, encoded_image)
 
-    return render_template('upload_image.html')
+    print("upload_image 6")
+    return render_template('upload_image.html', user=g_email)
 
 @app.route('/upload_image_done', methods=['POST'])
 def upload_image_done():
