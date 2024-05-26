@@ -124,7 +124,7 @@ def update_image(email, image):
 def get_image(email):
     query = {"email": email}
     result = collection.find_one(query)
-    print(result)
+    #print(result)
     if "image" in result:
         #print(result["image"])
         return result["image"]
@@ -458,6 +458,13 @@ def image():
 
     return 'Image not found'
 
+@app.route('/select_friend_name', methods=['POST'])
+def hello():
+    data = request.json
+    if 'friend' in data:
+        return jsonify(friend_name=get_name(data['friend']))
+    return jsonify(message="No text provided"), 400
+
 @app.route('/select_friend', methods=['POST'])
 def select_friend():
     print("select_friend called")
@@ -471,17 +478,17 @@ def select_friend():
         decoded_image = base64.b64decode(image_data)
 
         # Save the image to a temporary file
-        with open(STATIC_DIR + 'temp_select_friend_image.jpg', 'wb') as f:
+        with open('temp_select_friend_image.jpg', 'wb') as f:
             f.write(decoded_image)
 
         # Return the temporary image file
-        out_path = STATIC_DIR + 'temp_select_friend_image.jpg'
+        out_path = 'temp_select_friend_image.jpg'
     else:
         out_path = 'icons/account.png'
 
-    crop_to_square(out_path, STATIC_DIR + 'temp_select_friend_round_image.jpg')
-    make_circle_image(STATIC_DIR + 'temp_select_friend_round_image.jpg', STATIC_DIR + 'temp_select_friend_round_image.jpg')
-    return jsonify({'image_url': STATIC_DIR + 'temp_select_friend_round_image.jpg', 'text': get_name(selected_friend)})
+    crop_to_square(out_path, 'temp_select_friend_round_image.jpg')
+    make_circle_image('temp_select_friend_round_image.jpg', 'temp_select_friend_round_image.jpg')
+    return send_file('temp_select_friend_round_image.jpg', mimetype='image/jpeg')
 
 @app.route('/icon/<int:icon_id>')
 def icon(icon_id):

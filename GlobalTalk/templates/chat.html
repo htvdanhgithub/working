@@ -160,25 +160,6 @@
     </style>
 	
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#friend_list').click(function() {
-                var selected_item = $(this).val();
-                $.ajax({
-                    url: '/select_friend',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ friend: selected_item }),
-                    success: function(data) {
-						console.log(`data.image_url: ${data.image_url}`);
-						console.log(`data.text: ${data.text}`);
-                        $('#friend_picture').attr('src', data.image_url);
-                        $('#friend_name').text(data.text);
-                    }
-                });
-            });
-        });
-    </script>
 </head>
 <body>
     <div class="main-div">
@@ -217,7 +198,7 @@
 			<div class="friend-avatar-container">
 				<img src='/image1' id='friend_picture' alt="Click Me" width="50" height="50">
 				<div class="label">
-					<label id="friend_name" for="output-box"><strong>Chat log:</strong></label>
+					<label id="friend_name" for="output-box"><strong>No name:</strong></label>
 				</div>
 			</div>
 			<div class="output-box" id="output-box">
@@ -229,5 +210,44 @@
 			</div>
 		</div>
     </div>
+    <script>
+        document.getElementById('friend_list').addEventListener('click', async function(event) {
+            event.preventDefault();
+
+            var selectedOption = document.getElementById("friend_list").value;
+
+            const response1 = await fetch('/select_friend', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ friend: selectedOption })
+            });
+
+            if (response1.ok) {
+                const blob = await response1.blob();
+                const url = URL.createObjectURL(blob);
+
+                document.getElementById('friend_picture').src = url;
+            } else {
+                document.getElementById('responseText').textContent = 'Error: Unable to get response from server';
+            }
+
+            const response2 = await fetch('/select_friend_name', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ friend: selectedOption })
+            });
+
+            if (response2.ok) {
+                const result = await response2.json();
+				document.getElementById('friend_name').textContent = result.friend_name;
+            } else {
+                document.getElementById('responseText').textContent = 'Error: Unable to get response from server';
+            }			
+        });	
+    </script>	
 </body>
 </html>
