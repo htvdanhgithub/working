@@ -3,43 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Output</title>
+    <title>Scrollable Selection List</title>
     <style>
-        .output-container {
+        .custom-select {
+            position: relative;
+            width: 200px;
+            max-height: 200px; /* Maximum height of the select box */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .select-item {
             display: flex;
             align-items: center;
-        }
-        .output-text {
-            margin-right: 10px;
-        }
-        .edit-icon {
             cursor: pointer;
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* Add a bottom border to separate items */
+        }
+
+        .select-item img {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="output-container">
-        <p class="output-text" id="outputText">This is the output text.</p>
-        <img class="edit-icon" src="edit_icon.png" alt="Edit" width="20" height="20" onclick="editOutput()">
+
+<h1>Scrollable Selection List</h1>
+<div class="custom-select" id="selection-list">
+    <div class="select-item" data-key="Key1" data-value="Value 1">
+        <img src="images/1.jpg" alt="Image 1">
+        <span>Value 1</span>
     </div>
-
-    <div id="editModal" style="display: none;">
-        <textarea id="editTextarea"></textarea>
-        <button onclick="saveChanges()">Save</button>
+    <div class="select-item" data-key="Key2" data-value="Value 2">
+        <img src="images/2.jpg" alt="Image 2">
+        <span>Value 2</span>
     </div>
+    <div class="select-item" data-key="Key3" data-value="Value 3">
+        <img src="images/3.jpg" alt="Image 3">
+        <span>Value 3</span>
+    </div>
+    <!-- Add more items as needed -->
+</div>
+<p id="selected-key"></p> <!-- Element to display the key of the selected item -->
 
-    <script>
-        function editOutput() {
-            var outputText = document.getElementById("outputText").textContent;
-            document.getElementById("editTextarea").value = outputText;
-            document.getElementById("editModal").style.display = "block";
-        }
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const selectionList = document.getElementById('selection-list');
+        const selectedKeyElement = document.getElementById('selected-key');
 
-        function saveChanges() {
-            var editedText = document.getElementById("editTextarea").value;
-            document.getElementById("outputText").textContent = editedText;
-            document.getElementById("editModal").style.display = "none";
-        }
-    </script>
+        selectionList.addEventListener('click', function(event) {
+            const selectedItem = event.target.closest('.select-item');
+            if (selectedItem) {
+                const key = selectedItem.getAttribute('data-key');
+                selectedKeyElement.textContent = `Selected Key: ${key}`;
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

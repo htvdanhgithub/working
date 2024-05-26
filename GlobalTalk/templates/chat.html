@@ -157,6 +157,27 @@
 			align-items: flex-start;
 			justify-content: flex-start;
 		}
+		
+        .custom-select {
+            position: relative;
+            width: 200px;
+            max-height: 200px; /* Maximum height of the select box */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .select-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* Add a bottom border to separate items */
+        }
+
+        .select-item img {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }	
     </style>
 	
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -165,7 +186,7 @@
     <div class="main-div">
 		<div class="main-sub-div main-left-vertical-toolbar">
 			<div class="image-container">
-			  <img src='/image' alt="Click Me" width="50" height="50">
+			  <img src='/main_user_image' alt="Click Me" width="50" height="50">
 			  <div class="popup-menu">
 				<a href="/change_image_link">Change image</a>
 				<a href="/change_language_link">Change language</a>
@@ -183,22 +204,22 @@
 		
 		<div class="main-sub-div main-sub-friend-div">
 			<label>Friends:</label>
-			<select class="friends" id="friend_list">
+			<div class="custom-select" id="friend_list">
 				{% for key, value in friends.items(): %}
-				    {% if key == friend_selected %}
-						<option value={{ key }} selected>{{ value }}</option>
-					{% else %}
-						<option value={{ key }}>{{ value }}</option>
-					{% endif %}
+					<div class="select-item" data-key={{ key }} data-value={{ value }}>
+						<img id={{ key }} src="query_user_image/{{ key }}" alt="Image 1">
+						<span>{{ value }}</span>
+					</div>
 				{% endfor %}
-			</select>
+			</div>
+			<p id="selected-key"></p> <!-- Element to display the key of the selected item -->
 		</div>
 
 		<div class="main-sub-div main-sub-chat-div">
 			<div class="friend-avatar-container">
-				<img src='/image1' id='friend_picture' alt="Click Me" width="50" height="50">
+				<img src='/query_selected_user_image' id='friend_picture' alt="Click Me" width="50" height="50">
 				<div class="label">
-					<label id="friend_name" for="output-box"><strong>No name:</strong></label>
+					<label id="friend_name"><strong>No name</strong></label>
 				</div>
 			</div>
 			<div class="output-box" id="output-box">
@@ -213,41 +234,47 @@
     <script>
         document.getElementById('friend_list').addEventListener('click', async function(event) {
             event.preventDefault();
+			
+			const selectedItem = event.target.closest('.select-item');
+			if (selectedItem) {
+				const selectedOption = selectedItem.getAttribute('data-key');
+				
+				console.log(`Item clicked: ${selectedOption}`);
+				
+				const response1 = await fetch('/select_friend', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ friend: selectedOption })
+				});
 
-            var selectedOption = document.getElementById("friend_list").value;
+				if (response1.ok) {
+					const blob = await response1.blob();
+					const url = URL.createObjectURL(blob);
 
-            const response1 = await fetch('/select_friend', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ friend: selectedOption })
-            });
+					document.getElementById('friend_picture').src = url;
+					console.log(`url: ${url}`);
+				} else {
+					console.log(`Error: Unable to get response from server`);
+				}
 
-            if (response1.ok) {
-                const blob = await response1.blob();
-                const url = URL.createObjectURL(blob);
+				const response2 = await fetch('/select_friend_name', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ friend: selectedOption })
+				});
 
-                document.getElementById('friend_picture').src = url;
-            } else {
-                document.getElementById('responseText').textContent = 'Error: Unable to get response from server';
-            }
-
-            const response2 = await fetch('/select_friend_name', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ friend: selectedOption })
-            });
-
-            if (response2.ok) {
-                const result = await response2.json();
-				document.getElementById('friend_name').textContent = result.friend_name;
-            } else {
-                document.getElementById('responseText').textContent = 'Error: Unable to get response from server';
-            }			
+				if (response2.ok) {
+					const result = await response2.json();
+					document.getElementById('friend_name').textContent = result.friend_name;
+				} else {
+					console.log(`Error: Unable to get response from server`);
+				}			
+			}	
         });	
-    </script>	
+	</script>	
 </body>
 </html>

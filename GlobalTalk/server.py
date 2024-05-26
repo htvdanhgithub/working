@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, jsonify, send_file, 
 from PIL import Image, ImageOps, ImageDraw
 from flask_socketio import SocketIO, emit
 from google.cloud import translate_v3 as tl
+from datetime import datetime
 import os
 import time
 import logging
@@ -24,8 +25,8 @@ except pymongo.errors.ConnectionFailure:
 db = client['GlobalTalk']
 collection = db['Users']
 
-g_email = ""
-selected_friend = ""
+g_email = None
+selected_friend = None
 STATIC_DIR = "static/"
 def hash_password(password):
     # Convert the password to bytes before hashing
@@ -42,6 +43,12 @@ def hash_password(password):
 
     return hashed_password
 
+def generate_random_filename():
+    # Get the current time down to the millisecond
+    current_time = datetime.now()
+    # Format the time into a string suitable for a filename
+    filename = current_time.strftime("%Y%m%d_%H%M%S_%f")[:-3] + ".jpg"
+    return filename
 
 def crop_to_square(input_image_path, output_image_path):
     # Open the input image
@@ -403,60 +410,53 @@ def change_budget():
 
     return render_template('chat.html', friend_selected=selected_friend, friends=get_friends_map(get_friends(g_email)))
 
-@app.route('/image1')
-def image1():
-    global selected_friend
-    print("image1 called")
-    print(f"selected_friend: {selected_friend}")
+@app.route('/query_selected_user_image')
+def query_selected_user_image():
+    print(f"query_selected_user_image: {selected_friend}")
 
-    if not selected_friend:
-        return send_file('icons/account.png', mimetype='image/png')
+    out_path = get_user_round_image(selected_friend)
 
-    print(f"selected_friend: {selected_friend}")
-    image_data = get_image(selected_friend)
-    out_path = ""
-    if image_data:
-        # Decode base64 string to image data
-        decoded_image = base64.b64decode(image_data)
+    return send_file(out_path, mimetype='image/jpeg')
 
-        # Save the image to a temporary file
-        with open('temp_image1_image.jpg', 'wb') as f:
-            f.write(decoded_image)
+@app.route('/query_user_image/<email>')
+def query_user_image(email):
+    print(f"query_user_image: {email}")
 
-        # Return the temporary image file
-        out_path = 'temp_image1_image.jpg'
+    out_path = get_user_round_image(email)
+
+    return send_file(out_path, mimetype='image/jpeg')
+
+def get_user_round_image(email):
+    out_path = generate_random_filename()
+    print(f"get_user_round_image: email = {email}, out_path = {out_path}")
+    temp_path = "temp_" + out_path
+    temp_path1 = "temp1_" + out_path
+    if email:
+        image_data = get_image(email)
+        if image_data:
+            # Decode base64 string to image data
+            decoded_image = base64.b64decode(image_data)
+
+            # Save the image to a temporary file
+            with open(temp_path, 'wb') as f:
+                f.write(decoded_image)
+        else:
+            temp_path = 'icons/account.jpg'
     else:
-        out_path = 'icons/account.png'
+        temp_path = 'icons/account.jpg'
 
-    crop_to_square(out_path, 'temp_image1_round_image.jpg')
-    make_circle_image('temp_image1_round_image.jpg', 'temp_image1_round_image.jpg')
-    return send_file('temp_image1_round_image.jpg', mimetype='image/jpeg')
+    crop_to_square(temp_path, temp_path1)
+    make_circle_image(temp_path1, out_path)
+    return out_path
 
-
-@app.route('/image')
-def image():
+@app.route('/main_user_image')
+def main_user_image():
     print("image called")
     global g_email
-    image_data = get_image(g_email)
-    out_path = ""
-    if image_data:
-        # Decode base64 string to image data
-        decoded_image = base64.b64decode(image_data)
+    out_path = get_user_round_image(g_email)
 
-        # Save the image to a temporary file
-        with open('temp_image_image.jpg', 'wb') as f:
-            f.write(decoded_image)
+    return send_file(out_path, mimetype='image/jpeg')
 
-        # Return the temporary image file
-        out_path = 'temp_image_image.jpg'
-    else:
-        out_path = 'icons/account.png'
-
-    crop_to_square(out_path, 'temp_image_round_image.jpg')
-    make_circle_image('temp_image_round_image.jpg', 'temp_image_round_image.jpg')
-    return send_file('temp_image_round_image.jpg', mimetype='image/jpeg')
-
-    return 'Image not found'
 
 @app.route('/select_friend_name', methods=['POST'])
 def hello():
@@ -471,38 +471,24 @@ def select_friend():
     global selected_friend
     selected_friend = request.json['friend']
     print(f"select_friend {selected_friend} selected")
-    image_data = get_image(selected_friend)
-    out_path = ""
-    if image_data:
-        # Decode base64 string to image data
-        decoded_image = base64.b64decode(image_data)
 
-        # Save the image to a temporary file
-        with open('temp_select_friend_image.jpg', 'wb') as f:
-            f.write(decoded_image)
+    out_path = get_user_round_image(selected_friend)
 
-        # Return the temporary image file
-        out_path = 'temp_select_friend_image.jpg'
-    else:
-        out_path = 'icons/account.png'
-
-    crop_to_square(out_path, 'temp_select_friend_round_image.jpg')
-    make_circle_image('temp_select_friend_round_image.jpg', 'temp_select_friend_round_image.jpg')
-    return send_file('temp_select_friend_round_image.jpg', mimetype='image/jpeg')
+    return send_file(out_path, mimetype='image/jpeg')
 
 @app.route('/icon/<int:icon_id>')
 def icon(icon_id):
     icon_paths = {
-        1: 'icons/account.png',
-        2: 'icons/add.png',
-        3: 'icons/attachment.png',
-        4: 'icons/budget.png',
-        5: 'icons/emoji.png',
-        6: 'icons/language.png',
-        7: 'icons/picture.png',
-        8: 'icons/settings.png',
-        9: 'icons/sign_in.png',
-        10: 'icons/sign_out.png'
+        1: 'icons/account.jpg',
+        2: 'icons/add.jpg',
+        3: 'icons/attachment.jpg',
+        4: 'icons/budget.jpg',
+        5: 'icons/emoji.jpg',
+        6: 'icons/language.jpg',
+        7: 'icons/picture.jpg',
+        8: 'icons/settings.jpg',
+        9: 'icons/sign_in.jpg',
+        10: 'icons/sign_out.jpg'
     }
     icon_path = icon_paths.get(icon_id)
     if icon_path:
@@ -712,5 +698,5 @@ if __name__ == '__main__':
 
     #app.run(debug=True)
     from waitress import serve
-    serve(app, host='0.0.0.0', port=8080)
+    serve(app, host='0.0.0.0', port=8080, threads=8)
     #socketio.run(app, allow_unsafe_werkzeug=True, debug=True)
