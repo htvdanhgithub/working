@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image and Text Display</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#fetch-button').click(function() {
+				console.log("Hello Danh")
+                $.ajax({
+                    url: '/select_friend',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ friend: 'htvdanh@gmail.com' }),
+                    success: function(data) {
+						console.log(`data.image_url: ${data.image_url}`);
+						console.log(`data.text: ${data.text}`);
+                        $('#image-container').attr('src', data.image_url);
+                        $('#text-container').text(data.text);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Click the Button to Get Image and Text</h1>
+    <button id="fetch-button">Fetch Image and Text</button>
+    <div>
+        <img id="image-container" src="" alt="Image will appear here" style="display: block; margin-top: 20px;">
+        <p id="text-container" style="margin-top: 20px;">Text will appear here</p>
+    </div>
+</body>
+</html>

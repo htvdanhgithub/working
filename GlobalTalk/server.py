@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, jsonify, send_file, make_response
+from PIL import Image, ImageOps, ImageDraw
 from flask_socketio import SocketIO, emit
 from google.cloud import translate_v3 as tl
 import os
@@ -25,7 +26,7 @@ collection = db['Users']
 
 g_email = ""
 selected_friend = ""
-
+STATIC_DIR = "static/"
 def hash_password(password):
     # Convert the password to bytes before hashing
     password_bytes = password.encode('utf-8')
@@ -40,6 +41,47 @@ def hash_password(password):
     hashed_password = hash_algorithm.hexdigest()
 
     return hashed_password
+
+
+def crop_to_square(input_image_path, output_image_path):
+    # Open the input image
+    image = Image.open(input_image_path)
+
+    # Get the dimensions of the image
+    width, height = image.size
+
+    # Calculate the size of the square
+    min_dimension = min(width, height)
+
+    # Calculate the coordinates for cropping
+    left = (width - min_dimension) / 2
+    top = (height - min_dimension) / 2
+    right = (width + min_dimension) / 2
+    bottom = (height + min_dimension) / 2
+
+    # Crop the image to a square
+    square_image = image.crop((left, top, right, bottom))
+
+    # Save the cropped image
+    square_image.save(output_image_path)
+
+def make_circle_image(input_image_path, output_image_path):
+    # Open the input image
+    image = Image.open(input_image_path)
+
+    # Create a mask to crop the image to a circle
+    mask = Image.new('L', image.size, 0)
+    draw = ImageDraw.Draw(mask)
+    width, height = image.size
+    width = height = min(width, height)
+    draw.ellipse((0, 0, width, height), fill=255)
+
+    # Apply the mask to the grayscale image
+    circular_image = ImageOps.fit(image, mask.size, centering=(0.5, 0.5))
+    circular_image.putalpha(mask)
+
+    # Save the circular image
+    circular_image.save(output_image_path, format='PNG')
 
 # Function to check if a document exists based on email, password, and point
 def user_exists(email):
@@ -82,7 +124,7 @@ def update_image(email, image):
 def get_image(email):
     query = {"email": email}
     result = collection.find_one(query)
-    #print(result)
+    print(result)
     if "image" in result:
         #print(result["image"])
         return result["image"]
@@ -323,8 +365,9 @@ def change_image():
     # Insert into MongoDB
     global g_email
     update_image(g_email, encoded_image)
+    global selected_friend
 
-    return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
+    return render_template('chat.html', friend_selected=selected_friend, friends=get_friends_map(get_friends(g_email)))
 
 @app.route('/change_language_link')
 def change_language_link():
@@ -339,7 +382,9 @@ def change_language():
     language = request.form['language']
 
     update_language(g_email, language)
-    return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
+    global selected_friend
+
+    return render_template('chat.html', friend_selected=selected_friend, friends=get_friends_map(get_friends(g_email)))
 
 @app.route('/change_budget_link')
 def change_budget_link():
@@ -354,7 +399,9 @@ def change_budget():
     budget = request.form['budget']
 
     update_budget(g_email, budget)
-    return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
+    global selected_friend
+
+    return render_template('chat.html', friend_selected=selected_friend, friends=get_friends_map(get_friends(g_email)))
 
 @app.route('/image1')
 def image1():
@@ -367,36 +414,47 @@ def image1():
 
     print(f"selected_friend: {selected_friend}")
     image_data = get_image(selected_friend)
+    out_path = ""
     if image_data:
         # Decode base64 string to image data
         decoded_image = base64.b64decode(image_data)
 
         # Save the image to a temporary file
-        with open('temp_image.jpg', 'wb') as f:
+        with open('temp_image1_image.jpg', 'wb') as f:
             f.write(decoded_image)
 
         # Return the temporary image file
-        return send_file('temp_image.jpg', mimetype='image/jpeg')
+        out_path = 'temp_image1_image.jpg'
     else:
-        return send_file('icons/account.png', mimetype='image/png')
+        out_path = 'icons/account.png'
+
+    crop_to_square(out_path, 'temp_image1_round_image.jpg')
+    make_circle_image('temp_image1_round_image.jpg', 'temp_image1_round_image.jpg')
+    return send_file('temp_image1_round_image.jpg', mimetype='image/jpeg')
+
 
 @app.route('/image')
 def image():
     print("image called")
     global g_email
     image_data = get_image(g_email)
+    out_path = ""
     if image_data:
         # Decode base64 string to image data
         decoded_image = base64.b64decode(image_data)
 
         # Save the image to a temporary file
-        with open('temp_image.jpg', 'wb') as f:
+        with open('temp_image_image.jpg', 'wb') as f:
             f.write(decoded_image)
 
         # Return the temporary image file
-        return send_file('temp_image.jpg', mimetype='image/jpeg')
+        out_path = 'temp_image_image.jpg'
     else:
-        return send_file('icons/account.png', mimetype='image/png')
+        out_path = 'icons/account.png'
+
+    crop_to_square(out_path, 'temp_image_round_image.jpg')
+    make_circle_image('temp_image_round_image.jpg', 'temp_image_round_image.jpg')
+    return send_file('temp_image_round_image.jpg', mimetype='image/jpeg')
 
     return 'Image not found'
 
@@ -407,18 +465,23 @@ def select_friend():
     selected_friend = request.json['friend']
     print(f"select_friend {selected_friend} selected")
     image_data = get_image(selected_friend)
+    out_path = ""
     if image_data:
         # Decode base64 string to image data
         decoded_image = base64.b64decode(image_data)
 
         # Save the image to a temporary file
-        with open('temp_image.jpg', 'wb') as f:
+        with open(STATIC_DIR + 'temp_select_friend_image.jpg', 'wb') as f:
             f.write(decoded_image)
 
         # Return the temporary image file
-        return send_file('temp_image.jpg', mimetype='image/jpeg')
+        out_path = STATIC_DIR + 'temp_select_friend_image.jpg'
     else:
-        return send_file('icons/account.png', mimetype='image/png')
+        out_path = 'icons/account.png'
+
+    crop_to_square(out_path, STATIC_DIR + 'temp_select_friend_round_image.jpg')
+    make_circle_image(STATIC_DIR + 'temp_select_friend_round_image.jpg', STATIC_DIR + 'temp_select_friend_round_image.jpg')
+    return jsonify({'image_url': STATIC_DIR + 'temp_select_friend_round_image.jpg', 'text': get_name(selected_friend)})
 
 @app.route('/icon/<int:icon_id>')
 def icon(icon_id):
@@ -473,25 +536,22 @@ def chat():
     ip_address = request.remote_addr
     logging.info(f"The IP address of the request is: {ip_address}")
     global g_email
+    global selected_friend
 
-    return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
+    return render_template('chat.html', friend_selected=selected_friend, friends=get_friends_map(get_friends(g_email)))
 
 @app.route('/upload_image', methods=['POST'])
 def upload_image():
     print_session_id()
-    print("upload_image 1")
 
     if 'image' not in request.files:
         return 'No image uploaded', 400
 
-    print("upload_image 2")
     image = request.files['image']
 
-    print("upload_image 3")
     if image.filename == '':
         return 'No image selected', 400
 
-    print("upload_image 4")
     # Read the image file
     image_data = image.read()
 
@@ -500,17 +560,15 @@ def upload_image():
 
     # Insert into MongoDB
     global g_email
-    print("upload_image 5")
     update_image(g_email, encoded_image)
 
-    print("upload_image 6")
     return render_template('upload_image.html', user=g_email)
 
 @app.route('/upload_image_done', methods=['POST'])
 def upload_image_done():
     global g_email
-
-    return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
+    global selected_friend
+    return render_template('chat.html', friend_selected=selected_friend, friends=get_friends_map(get_friends(g_email)))
 
 # Route to handle translation
 @app.route('/translate', methods=['POST'])
@@ -616,8 +674,9 @@ def addfriend():
 
     global g_email
     add_friend(g_email, email)
+    global selected_friend
 
-    return render_template('chat.html', friends=get_friends_map(get_friends(g_email)))
+    return render_template('chat.html', friend_selected=selected_friend, friends=get_friends_map(get_friends(g_email)))
 
 @app.route('/signin_link')
 def signin_link():

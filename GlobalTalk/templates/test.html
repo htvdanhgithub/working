@@ -1,20 +1,33 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Box Demo</title>
+    <title>Image and Label in Same Row</title>
+    <style>
+        .container {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .container img {
+            max-width: 100px; /* Adjust the size as needed */
+            margin-right: 10px; /* Space between image and label */
+        }
+
+        .container .label {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+    </style>
 </head>
 <body>
-    <h1>Select an item:</h1>
-    <form action="/show_item" method="post">
-        <select name="selected_item">
-            {% for item in items %}
-            <option value="{{ item }}">{{ item }}</option>
-            {% endfor %}
-        </select>
-        <input type="submit" value="Show">
-    </form>
+    <div class="container">
+        <img src="your-image-url.jpg" alt="Image">
+        <div class="label">
+            <label for="some-input">This is a label</label>
+        </div>
+    </div>
 </body>
 </html>
